@@ -3,103 +3,225 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dweller — how decisions shape your life</title>
+<title>Dweller — how public decisions shape your life</title>
 <meta name="description" content="Dweller is a nonpartisan civic app that shows North Carolina residents how local, state and federal decisions shape their own lives. Pilot: Mecklenburg County.">
+<meta name="theme-color" content="#10304a">
 <style>
-  :root{--ink:#1d2433;--muted:#5b6475;--line:#e6e0d3;--bg:#f8f4ec;--card:#fff;--accent:#2f5d50;--accent-soft:#e7f0ec;--warn:#8a5a00;--warn-soft:#fff6e3}
+  @font-face{font-family:"DM Sans";src:url(fonts/dm-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+  @font-face{font-family:"DM Sans";src:url(fonts/dm-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+  @font-face{font-family:"DM Sans";src:url(fonts/dm-sans-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+  :root{
+    --navy:#10304a; --deep:#186078; --teal:#2a8a92; --sea:#68a8a0; --mist:#b0d0c8; --foam:#e2f0ee;
+    --gold:#f2c674; --gold-ink:#b07d1a; --bg:#f2f3f3; --card:#ffffff; --ink:#10304a; --muted:#4d6273; --line:#dde5e7;
+  }
   *{box-sizing:border-box}
-  body{margin:0;font:17px/1.6 Georgia,"Iowan Old Style","Times New Roman",serif;color:var(--ink);background:var(--bg)}
-  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
-  header{position:relative;overflow:hidden;padding:56px 0 190px;background:linear-gradient(180deg,#f3ead9 0%,#f6efe2 45%,#eef0e4 100%)}
-  header .wrap{position:relative;z-index:1}
-  header svg.land{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:220px;display:block}
-  .sun{position:absolute;right:12%;top:40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#f7d9a8 0%,rgba(247,217,168,.35) 55%,rgba(247,217,168,0) 72%)}
-  .tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-  h1{font-size:44px;line-height:1.1;margin:10px 0 14px;font-weight:600}
-  h2{font:600 13px/1.2 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:44px 0 12px}
-  p.lead{font-size:20px;color:#2c3446;margin:0}
-  .status{display:inline-block;margin-top:20px;font:14px/1.4 system-ui,sans-serif;background:var(--warn-soft);color:var(--warn);padding:8px 12px;border-radius:6px}
-  .rings{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none}
-  .rings li{font:14px system-ui,sans-serif;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
-  .card h3{margin:0 0 6px;font:600 16px/1.3 system-ui,sans-serif}
-  .card p{margin:0;font-size:15px;color:#3a4256}
-  ul.plain{padding-left:20px}
-  ul.plain li{margin:6px 0}
-  .steps{counter-reset:s;list-style:none;padding:0}
-  .steps li{counter-increment:s;position:relative;padding:10px 0 10px 44px;border-bottom:1px solid var(--line);font-size:16px}
-  .steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font:600 14px/28px system-ui,sans-serif;text-align:center}
-  .steps li.now{font-weight:600}
-  .steps li.now::after{content:"in progress";margin-left:8px;font:600 11px system-ui,sans-serif;color:var(--warn);background:var(--warn-soft);padding:2px 7px;border-radius:4px;vertical-align:2px}
-  a{color:var(--accent)}
-  .btn{display:inline-block;font:600 15px system-ui,sans-serif;background:var(--accent);color:#fff;text-decoration:none;padding:10px 16px;border-radius:8px;margin:6px 8px 0 0}
-  .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-  footer{margin:56px 0 0;padding:24px 0 48px;border-top:1px solid var(--line);font:14px/1.6 system-ui,sans-serif;color:var(--muted)}
+  html{scroll-behavior:smooth}
+  body{margin:0;font:17px/1.6 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:var(--deep)}
+  .gold{color:var(--gold-ink)}
+  .tealtxt{color:var(--teal)}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:64px 0 72px}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:24px}
+  .brand{font-weight:700;font-size:88px;line-height:.95;letter-spacing:-.03em;margin:0 0 18px;color:var(--navy)}
+  .tagline{font-size:28px;line-height:1.25;font-weight:500;margin:0 0 18px;max-width:20ch}
+  .tagline em{font-style:normal;color:var(--gold-ink)}
+  .sub{font-size:18px;color:var(--muted);max-width:44ch;margin:0}
+  .status{display:inline-flex;gap:8px;align-items:center;margin-top:24px;font-size:14px;font-weight:500;background:#fff;border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:999px}
+  .status i{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
+  .rings{width:100%;max-width:470px;justify-self:center;aspect-ratio:1}
+  .rings svg{width:100%;height:100%;display:block}
+
+  /* ---------- Sections ---------- */
+  section{padding:64px 0}
+  section.alt{background:#fff}
+  h2{font-size:40px;line-height:1.1;letter-spacing:-.02em;margin:0 0 12px;font-weight:700}
+  h2 em{font-style:normal;color:var(--gold-ink)}
+  .lede{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 32px}
+
+  /* Needs / Wants / Desires */
+  .nwd{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+  .tile{border-radius:14px;padding:22px 22px 24px;color:#fff}
+  .tile h3{margin:0 0 6px;font-size:22px}
+  .tile p{margin:0;font-size:15px;opacity:.92}
+  .tile ul{margin:10px 0 0;padding-left:18px;font-size:15px;opacity:.95}
+  .tile.need{background:var(--navy)}
+  .tile.want{background:var(--teal)}
+  .tile.desire{background:var(--gold);color:var(--navy)}
+
+  /* Rings list */
+  .ringlist{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:8px}
+  .ringlist div{border-radius:12px;padding:14px 12px;font-size:14px;line-height:1.35}
+  .ringlist b{display:block;font-size:15px;margin-bottom:4px}
+  .r1{background:#163a55;color:#fff}.r2{background:var(--deep);color:#fff}.r3{background:var(--teal);color:#fff}
+  .r4{background:var(--sea);color:#06222f}.r5{background:var(--mist);color:#06222f}.r6{background:var(--gold);color:#06222f}
+
+  /* Logos / ethos / pathos */
+  .lep{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .orb{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .orb .dot{width:44px;height:44px;border-radius:50%;margin-bottom:12px}
+  .orb h3{margin:0 0 6px;font-size:20px}
+  .orb p{margin:0;font-size:15px;color:var(--muted)}
+
+  /* Phase steps */
+  .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:s}
+  .steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;font-size:15px;position:relative}
+  .steps li::before{content:counter(s);display:block;width:34px;height:34px;border-radius:50%;background:var(--foam);color:var(--deep);font-weight:700;text-align:center;line-height:34px;margin-bottom:10px}
+  .steps li.now{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold) inset}
+  .steps li.now::before{background:var(--gold);color:var(--navy)}
+  .steps .badge{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--gold-ink);text-transform:uppercase;letter-spacing:.06em}
+
+  /* Commitments */
+  .commit{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .commit div{border-left:4px solid var(--teal);background:var(--card);border-radius:0 12px 12px 0;padding:16px 18px;font-size:15px}
+  .commit div:nth-child(2){border-color:var(--navy)}
+  .commit div:nth-child(3){border-color:var(--gold)}
+  .commit b{display:block;font-size:17px;margin-bottom:4px}
+
+  /* Testers */
+  .testers{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+  .towns{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px;padding:0;list-style:none}
+  .towns li{font-size:14px;background:var(--foam);color:var(--deep);border-radius:999px;padding:5px 12px;font-weight:500}
+  .btn{display:inline-block;font-weight:700;font-size:15px;background:var(--navy);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;margin:0 10px 10px 0}
+  .btn.ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+  .privacy-wall{background:var(--gold);color:var(--navy);border-radius:14px;padding:22px;text-align:center}
+  .privacy-wall b{display:block;font-size:22px;margin-bottom:6px}
+
+  footer{background:var(--navy);color:#cfe0e3;padding:36px 0 44px;font-size:14px}
+  footer a{color:var(--gold)}
+
+  @media (max-width:860px){
+    .hero{padding:40px 0 48px}
+    .hero .wrap{grid-template-columns:1fr}
+    .rings{max-width:300px;order:-1}
+    .brand{font-size:64px}
+    .tagline{font-size:24px}
+    h2{font-size:32px}
+    .nwd,.lep,.commit,.testers{grid-template-columns:1fr}
+    .ringlist{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:1fr}
+    section{padding:48px 0}
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="sun" aria-hidden="true"></div>
-  <svg class="land" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
-    <g fill="#c9cfbf" opacity=".9">
-      <rect x="700" y="78" width="26" height="70"/><rect x="732" y="52" width="34" height="96"/><polygon points="749,30 760,52 738,52"/>
-      <rect x="772" y="88" width="22" height="60"/><rect x="800" y="64" width="30" height="84"/><rect x="836" y="96" width="20" height="52"/>
-      <rect x="862" y="74" width="26" height="74"/><rect x="894" y="104" width="24" height="44"/><rect x="660" y="100" width="34" height="48"/>
-    </g>
-    <path d="M0 150 C 200 110 380 120 560 140 S 900 170 1100 130 S 1340 110 1440 125 L1440 220 L0 220Z" fill="#b8c4a6"/>
-    <path d="M0 170 C 240 140 420 175 640 165 S 1000 140 1220 160 S 1380 175 1440 165 L1440 220 L0 220Z" fill="#9fb08c"/>
-    <path d="M0 192 C 260 178 520 205 760 194 S 1160 180 1440 196 L1440 220 L0 220Z" fill="#e9dcc2"/>
-    <path d="M0 210 C 300 202 700 214 1000 206 S 1300 204 1440 210 L1440 220 L0 220Z" fill="#f8f4ec"/>
-  </svg>
+
+<header class="hero">
   <div class="wrap">
-    <div class="tag">Dweller · North Carolina</div>
-    <h1>See how decisions shape your life.</h1>
-    <p class="lead">Dweller is a nonpartisan civic app. It shows each resident how past and pending local, state and federal decisions affect their own needs, wants and goals, with every claim tied to a dated, primary source.</p>
-    <div class="status">Early development · Not yet available to the public · Pilot area: Mecklenburg County, NC</div>
+    <div>
+      <h1 class="brand">Dweller</h1>
+      <p class="tagline">How public decisions shape <em>your life</em>: past, present and the next two years.</p>
+      <p class="sub">A nonpartisan civic app for North Carolina. Every claim is tied to a dated, primary source.</p>
+      <div class="status"><i></i>Early development · Pilot area: Mecklenburg County, NC</div>
+    </div>
+    <div class="rings" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <circle cx="200" cy="200" r="198" fill="#f2c674"/>
+        <circle cx="200" cy="200" r="176" fill="#b0d0c8"/>
+        <circle cx="200" cy="200" r="152" fill="#68a8a0"/>
+        <circle cx="200" cy="200" r="128" fill="#2a8a92"/>
+        <circle cx="200" cy="200" r="104" fill="#186078"/>
+        <circle cx="200" cy="200" r="80"  fill="#10304a"/>
+        <circle cx="200" cy="200" r="54"  fill="#ffffff"/>
+        <!-- generic avatar: illustration only, no real person -->
+        <clipPath id="av"><circle cx="200" cy="200" r="52"/></clipPath>
+        <g clip-path="url(#av)">
+          <circle cx="200" cy="190" r="20" fill="#10304a"/>
+          <path d="M162 262c4-30 20-44 38-44s34 14 38 44z" fill="#2a8a92"/>
+        </g>
+      </svg>
+    </div>
   </div>
 </header>
 
-<main class="wrap">
-  <h2>What it does</h2>
-  <div class="grid">
-    <div class="card"><h3>Your status, explained</h3><p>How laws, rulings and ordinances already on the books shape where you are today.</p></div>
-    <div class="card"><h3>The next 24 months</h3><p>Pending bills, rules, court cases and elections that could affect you, shown with ranges, not guesses.</p></div>
-    <div class="card"><h3>Reach the right office</h3><p>Dweller drafts a report and finds the right agency. You review it and send it yourself.</p></div>
-    <div class="card"><h3>Help nearby</h3><p>Local nonprofits, such as food pantries, can reach residents by area and topic. They never see who you are.</p></div>
+<section class="alt">
+  <div class="wrap">
+    <h2>Your world</h2>
+    <p class="lede">Dweller frames everything around what matters to you, today and tomorrow. You choose what to share, and every question can be skipped.</p>
+    <div class="nwd">
+      <div class="tile need"><h3>Needs</h3><p>The basics decisions touch first.</p><ul><li>Housing and income</li><li>Food, transportation</li><li>Health coverage, child care</li></ul></div>
+      <div class="tile want"><h3>Wants</h3><p>Where you're trying to go.</p><ul><li>Career growth, training</li><li>Home improvements</li><li>Community and belonging</li></ul></div>
+      <div class="tile desire"><h3>Desires</h3><p>Open-ended, and defined by you: the one thing you'd change in the next two years.</p></div>
+    </div>
   </div>
+</section>
 
-  <h2>Built around the circles you live in</h2>
-  <ul class="rings"><li>Family</li><li>Neighborhood</li><li>Community</li><li>City or town</li><li>State</li><li>Nation</li></ul>
+<section>
+  <div class="wrap">
+    <h2>Every Dweller lives inside <em>rings of social relations</em></h2>
+    <p class="lede">Decisions at every level shape your daily life. Dweller shows how they connect.</p>
+    <div class="ringlist">
+      <div class="r1"><b>Family</b>Household, income</div>
+      <div class="r2"><b>Neighborhood</b>Streets, safety, schools</div>
+      <div class="r3"><b>Community</b>Nonprofits, places you rely on</div>
+      <div class="r4"><b>City or town</b>Council, ordinances, budget</div>
+      <div class="r5"><b>State</b>Legislature, courts, agencies</div>
+      <div class="r6"><b>Nation</b>Congress, federal agencies, courts</div>
+    </div>
+  </div>
+</section>
 
-  <h2>Our commitments</h2>
-  <ul class="plain">
-    <li><strong>Nonpartisan.</strong> Neutral facts about officials and decisions. No grades, no endorsements, and Dweller never asks your party or how you vote.</li>
-    <li><strong>Sourced.</strong> Every impact claim cites its primary source and date, and labels fact, estimate and forecast separately.</li>
-    <li><strong>Private.</strong> Every field is optional. You can export or delete everything. Your data is never sold. See <a href="PRIVACY.md">PRIVACY.md</a>.</li>
-  </ul>
+<section class="alt">
+  <div class="wrap">
+    <h2>Logic, credibility and care meet in your <em>digital self</em></h2>
+    <p class="lede">Facts sit at the center. Credibility and personal meaning orbit around them.</p>
+    <div class="lep">
+      <div class="orb"><div class="dot" style="background:var(--navy)"></div><h3>Logos: evidence</h3><p>Bills, rulings, ordinances and data, each with its primary source and date. Fact, estimate and forecast are labeled separately.</p></div>
+      <div class="orb"><div class="dot" style="background:var(--teal)"></div><h3>Ethos: credibility</h3><p>Who decided, what they did and where it's recorded. Neutral facts about officials, never grades.</p></div>
+      <div class="orb"><div class="dot" style="background:var(--gold)"></div><h3>Pathos: meaning</h3><p>What it means for your needs, wants and desires, in your own words.</p></div>
+    </div>
+  </div>
+</section>
 
-  <h2>Where the project is</h2>
-  <ol class="steps">
-    <li class="now">Verify data sources (Mecklenburg County and its six towns)</li>
-    <li>Design the profile and impact model</li>
-    <li>Hand-test impact stories on 10 real NC decisions and 3 sample residents</li>
-    <li>Clickable prototype</li>
-    <li>Pilot in one city with one partner</li>
-  </ol>
-  <p style="font-size:15px;color:var(--muted)">Each phase must pass its test before the next one starts.</p>
+<section>
+  <div class="wrap">
+    <h2>Our commitments</h2>
+    <p class="lede">These are built in from the first line of code.</p>
+    <div class="commit">
+      <div><b>Nonpartisan</b>No endorsements or grades. Dweller never asks your party or how you vote.</div>
+      <div><b>Sourced</b>Every impact claim cites a primary source and date, with ranges instead of false precision.</div>
+      <div><b>Private</b>Every field is optional. Export or delete everything. Data is never sold. <a href="PRIVACY.md">Read more</a>.</div>
+    </div>
+  </div>
+</section>
 
-  <h2>Field testers in North Carolina</h2>
-  <p>We'll be looking for residents of Charlotte, Cornelius, Davidson, Huntersville, Matthews, Mint Hill, Pineville and unincorporated Mecklenburg to try early versions and tell us what's confusing, wrong or missing.</p>
-  <a class="btn" href="https://github.com/tlsman71/dweller/blob/main/TESTING.md">How field testing works</a>
-  <a class="btn ghost" href="https://github.com/tlsman71/dweller/issues/new/choose">Send feedback</a>
+<section class="alt">
+  <div class="wrap">
+    <h2>Where the project is</h2>
+    <p class="lede">Each phase has to pass its test before the next one starts.</p>
+    <ol class="steps">
+      <li class="now">Verify data sources: Mecklenburg County and its six towns<span class="badge">In progress</span></li>
+      <li>Design the profile and impact model</li>
+      <li>Hand-test stories on 10 real NC decisions</li>
+      <li>Clickable prototype</li>
+      <li>Pilot with one partner</li>
+    </ol>
+  </div>
+</section>
 
-  <h2>Contact</h2>
-  <p>Questions, partnership interest (food banks, voter-registration groups, community organizers): <a href="mailto:DwellerApp@proton.me">DwellerApp@proton.me</a></p>
-</main>
+<section>
+  <div class="wrap testers">
+    <div>
+      <h2>Field testers in <em>North Carolina</em></h2>
+      <p class="lede" style="margin-bottom:0">We'll be inviting residents to try early versions and tell us what's confusing, wrong or missing.</p>
+      <ul class="towns"><li>Charlotte</li><li>Cornelius</li><li>Davidson</li><li>Huntersville</li><li>Matthews</li><li>Mint Hill</li><li>Pineville</li><li>Unincorporated Mecklenburg</li></ul>
+      <a class="btn" href="https://github.com/tlsman71/dweller/blob/main/TESTING.md">How field testing works</a>
+      <a class="btn ghost" href="https://github.com/tlsman71/dweller/issues/new/choose">Send feedback</a>
+    </div>
+    <div class="privacy-wall">
+      <b>Privacy wall</b>
+      Community partners see aggregate totals only.<br>Never individual data.
+    </div>
+  </div>
+</section>
 
 <footer>
-  <div class="wrap">Dweller is an independent project and is not affiliated with any government agency, party or candidate. Bill data will be credited to its sources, including LegiScan (CC BY 4.0).</div>
+  <div class="wrap">
+    Contact and partnerships (food banks, voter-registration groups, community organizers): <a href="mailto:DwellerApp@proton.me">DwellerApp@proton.me</a><br><br>
+    Dweller is an independent project, not affiliated with any government agency, party or candidate. Bill data will be credited to its sources, including LegiScan (CC BY 4.0). Font: DM Sans (SIL Open Font License).
+  </div>
 </footer>
 </body>
 </html>
