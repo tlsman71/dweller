@@ -6,11 +6,14 @@
 <title>Dweller — how decisions shape your life</title>
 <meta name="description" content="Dweller is a nonpartisan civic app that shows North Carolina residents how local, state and federal decisions shape their own lives. Pilot: Mecklenburg County.">
 <style>
-  :root{--ink:#1d2433;--muted:#5b6475;--line:#e3e6ec;--bg:#fbfaf7;--card:#fff;--accent:#2f5d50;--accent-soft:#e7f0ec;--warn:#8a5a00;--warn-soft:#fff6e3}
+  :root{--ink:#1d2433;--muted:#5b6475;--line:#e6e0d3;--bg:#f8f4ec;--card:#fff;--accent:#2f5d50;--accent-soft:#e7f0ec;--warn:#8a5a00;--warn-soft:#fff6e3}
   *{box-sizing:border-box}
   body{margin:0;font:17px/1.6 Georgia,"Iowan Old Style","Times New Roman",serif;color:var(--ink);background:var(--bg)}
   .wrap{max-width:760px;margin:0 auto;padding:0 22px}
-  header{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+  header{position:relative;overflow:hidden;padding:56px 0 190px;background:linear-gradient(180deg,#f3ead9 0%,#f6efe2 45%,#eef0e4 100%)}
+  header .wrap{position:relative;z-index:1}
+  header svg.land{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:220px;display:block}
+  .sun{position:absolute;right:12%;top:40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#f7d9a8 0%,rgba(247,217,168,.35) 55%,rgba(247,217,168,0) 72%)}
   .tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
   h1{font-size:44px;line-height:1.1;margin:10px 0 14px;font-weight:600}
   h2{font:600 13px/1.2 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:44px 0 12px}
@@ -37,6 +40,18 @@
 </head>
 <body>
 <header>
+  <div class="sun" aria-hidden="true"></div>
+  <svg class="land" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="#c9cfbf" opacity=".9">
+      <rect x="700" y="78" width="26" height="70"/><rect x="732" y="52" width="34" height="96"/><polygon points="749,30 760,52 738,52"/>
+      <rect x="772" y="88" width="22" height="60"/><rect x="800" y="64" width="30" height="84"/><rect x="836" y="96" width="20" height="52"/>
+      <rect x="862" y="74" width="26" height="74"/><rect x="894" y="104" width="24" height="44"/><rect x="660" y="100" width="34" height="48"/>
+    </g>
+    <path d="M0 150 C 200 110 380 120 560 140 S 900 170 1100 130 S 1340 110 1440 125 L1440 220 L0 220Z" fill="#b8c4a6"/>
+    <path d="M0 170 C 240 140 420 175 640 165 S 1000 140 1220 160 S 1380 175 1440 165 L1440 220 L0 220Z" fill="#9fb08c"/>
+    <path d="M0 192 C 260 178 520 205 760 194 S 1160 180 1440 196 L1440 220 L0 220Z" fill="#e9dcc2"/>
+    <path d="M0 210 C 300 202 700 214 1000 206 S 1300 204 1440 210 L1440 220 L0 220Z" fill="#f8f4ec"/>
+  </svg>
   <div class="wrap">
     <div class="tag">Dweller · North Carolina</div>
     <h1>See how decisions shape your life.</h1>
