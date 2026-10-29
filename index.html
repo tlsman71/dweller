@@ -89,6 +89,16 @@
   .privacy-wall{background:var(--gold);color:var(--navy);border-radius:14px;padding:22px;text-align:center}
   .privacy-wall b{display:block;font-size:22px;margin-bottom:6px}
 
+
+  /* Body map */
+  .bodymap{background:linear-gradient(180deg,#f2f3f3 0%,#e7f1ef 100%)}
+  .bm{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+  .bm-art svg{width:100%;height:auto;display:block}
+  .bm-keys{list-style:none;padding:0;margin:0 0 16px}
+  .bm-keys li{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:16px}
+  .bm-keys span{flex:0 0 14px;height:14px;border-radius:50%;margin-top:5px}
+  .note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+
   footer{background:var(--navy);color:#cfe0e3;padding:36px 0 44px;font-size:14px}
   footer a{color:var(--gold)}
 
@@ -99,7 +109,7 @@
     .brand{font-size:64px}
     .tagline{font-size:24px}
     h2{font-size:32px}
-    .nwd,.lep,.commit,.testers{grid-template-columns:1fr}
+    .nwd,.lep,.commit,.testers,.bm{grid-template-columns:1fr}
     .ringlist{grid-template-columns:repeat(2,1fr)}
     .steps{grid-template-columns:1fr}
     section{padding:48px 0}
@@ -135,6 +145,66 @@
     </div>
   </div>
 </header>
+
+<section class="bodymap">
+  <div class="wrap bm">
+    <div class="bm-art"><svg viewBox="0 0 560 548" role="img" aria-label="Illustration: a generic figure split in two. The left half shows the six rings of social relations; the right half glows where policy areas touch daily life.">
+  <defs>
+    <clipPath id="bodyClip"><circle cx="180" cy="58" r="36"/><path d="M194,96 L196,112 L238,124 L260,150 L272,250 L278,312 L272,326 L260,320 L254,258 L242,182 L232,192 L226,262 L234,302 L226,420 L222,500 L228,514 L196,514 L194,500 L190,330 L180,320 L180,320 L170,330 L166,500 L164,514 L132,514 L138,500 L134,420 L126,302 L134,262 L128,192 L118,182 L106,258 L100,320 L88,326 L82,312 L88,250 L100,150 L122,124 L164,112 L166,96Z"/></clipPath>
+    <clipPath id="leftHalf"><rect x="0" y="0" width="180" height="540"/></clipPath>
+    <clipPath id="rightHalf"><rect x="180" y="0" width="400" height="540"/></clipPath>
+    <radialGradient id="glowBase" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#2a8a92"/><stop offset="1" stop-color="#10304a"/></radialGradient>
+    <radialGradient id="hot" r="50%"><stop offset="0" stop-color="#f6d58e" stop-opacity=".95"/><stop offset=".45" stop-color="#f2c674" stop-opacity=".55"/><stop offset="1" stop-color="#f2c674" stop-opacity="0"/></radialGradient>
+    <radialGradient id="warm" r="50%"><stop offset="0" stop-color="#9fd3cc" stop-opacity=".9"/><stop offset="1" stop-color="#68a8a0" stop-opacity="0"/></radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+    <radialGradient id="aura" r="50%"><stop offset="0" stop-color="#b0d0c8" stop-opacity=".55"/><stop offset="1" stop-color="#b0d0c8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <ellipse cx="180" cy="280" rx="190" ry="260" fill="url(#aura)"/>
+  <g clip-path="url(#bodyClip)">
+    <g clip-path="url(#leftHalf)">
+      <rect x="0" y="0" width="180" height="540" fill="#f2c674"/>
+      <circle cx="180" cy="230" r="225" fill="#b0d0c8"/>
+      <circle cx="180" cy="230" r="180" fill="#68a8a0"/>
+      <circle cx="180" cy="230" r="138" fill="#2a8a92"/>
+      <circle cx="180" cy="230" r="98" fill="#186078"/>
+      <circle cx="180" cy="230" r="58" fill="#10304a"/>
+    </g>
+    <g clip-path="url(#rightHalf)">
+      <rect x="180" y="0" width="400" height="540" fill="url(#glowBase)"/>
+      <g filter="url(#soft)">
+        <circle cx="198" cy="56" r="34" fill="url(#warm)"/>
+        <circle cx="206" cy="170" r="46" fill="url(#hot)"/>
+        <circle cx="210" cy="240" r="40" fill="url(#warm)"/>
+        <circle cx="272" cy="300" r="34" fill="url(#hot)"/>
+        <circle cx="210" cy="430" r="44" fill="url(#warm)"/>
+      </g>
+    </g>
+  </g>
+  <line x1="180" y1="14" x2="180" y2="520" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 6" opacity=".8"/>
+  <g font-family="DM Sans,system-ui,sans-serif" font-size="15" fill="#10304a">
+    <g stroke="#10304a" stroke-width="1.2" opacity=".55"><line x1="208" y1="54" x2="330" y2="54"/><line x1="216" y1="168" x2="330" y2="140"/><line x1="220" y1="240" x2="330" y2="226"/><line x1="276" y1="300" x2="330" y2="312"/><line x1="218" y1="430" x2="330" y2="420"/></g>
+    <g fill="#f2c674" stroke="#10304a" stroke-width="1.5"><circle cx="198" cy="54" r="5"/><circle cx="208" cy="168" r="5"/><circle cx="214" cy="240" r="5"/><circle cx="272" cy="300" r="5"/><circle cx="212" cy="430" r="5"/></g>
+    <text x="338" y="50" font-weight="700">Learning</text><text x="338" y="68" font-size="12" fill="#4d6273">schools, training, loans</text>
+    <text x="338" y="136" font-weight="700">Home &amp; housing</text><text x="338" y="154" font-size="12" fill="#4d6273">rent, taxes, zoning</text>
+    <text x="338" y="222" font-weight="700">Health coverage</text><text x="338" y="240" font-size="12" fill="#4d6273">cost and access, not medical data</text>
+    <text x="338" y="308" font-weight="700">Work &amp; money</text><text x="338" y="326" font-size="12" fill="#4d6273">wages, benefits, taxes</text>
+    <text x="338" y="416" font-weight="700">Getting around</text><text x="338" y="434" font-size="12" fill="#4d6273">transit, roads, fares</text>
+  </g>
+  <g font-family="DM Sans,system-ui,sans-serif" font-size="12" fill="#4d6273" text-anchor="middle">
+    <text x="130" y="536">your rings: family → nation</text>
+  </g>
+</svg></div>
+    <div>
+      <h2>How decisions <em>land on you</em></h2>
+      <p class="lede">Your Dweller has two sides. One shows the rings you live in, from family to nation. The other lights up where laws, budgets and rules touch your daily life.</p>
+      <ul class="bm-keys">
+        <li><span style="background:var(--navy)"></span>Your rings: who decides, at every level</li>
+        <li><span style="background:var(--gold)"></span>Brighter spots: where pending decisions could matter most to you, based only on what you choose to share</li>
+      </ul>
+      <p class="note">Illustration. Every highlight in the app links to its source and date. Dweller never collects medical readings.</p>
+    </div>
+  </div>
+</section>
 
 <section class="alt">
   <div class="wrap">
