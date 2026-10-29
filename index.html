@@ -5,293 +5,213 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dweller — how public decisions shape your life</title>
 <meta name="description" content="Dweller is a nonpartisan civic app that shows North Carolina residents how local, state and federal decisions shape their own lives. Pilot: Mecklenburg County.">
-<meta name="theme-color" content="#10304a">
+<meta name="theme-color" content="#0e1211">
 <style>
-  @font-face{font-family:"DM Sans";src:url(fonts/dm-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
-  @font-face{font-family:"DM Sans";src:url(fonts/dm-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
-  @font-face{font-family:"DM Sans";src:url(fonts/dm-sans-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
-  :root{
-    --navy:#10304a; --deep:#186078; --teal:#2a8a92; --sea:#68a8a0; --mist:#b0d0c8; --foam:#e2f0ee;
-    --gold:#f2c674; --gold-ink:#b07d1a; --bg:#f2f3f3; --card:#ffffff; --ink:#10304a; --muted:#4d6273; --line:#dde5e7;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font:17px/1.6 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  a{color:var(--deep)}
-  .gold{color:var(--gold-ink)}
-  .tealtxt{color:var(--teal)}
-
-  /* ---------- Hero ---------- */
-  .hero{position:relative;overflow:hidden;padding:64px 0 72px}
-  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:24px}
-  .brand{font-weight:700;font-size:88px;line-height:.95;letter-spacing:-.03em;margin:0 0 18px;color:var(--navy)}
-  .tagline{font-size:28px;line-height:1.25;font-weight:500;margin:0 0 18px;max-width:20ch}
-  .tagline em{font-style:normal;color:var(--gold-ink)}
-  .sub{font-size:18px;color:var(--muted);max-width:44ch;margin:0}
-  .status{display:inline-flex;gap:8px;align-items:center;margin-top:24px;font-size:14px;font-weight:500;background:#fff;border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:999px}
-  .status i{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
-  .rings{width:100%;max-width:470px;justify-self:center;aspect-ratio:1}
-  .rings svg{width:100%;height:100%;display:block}
-
-  /* ---------- Sections ---------- */
-  section{padding:64px 0}
-  section.alt{background:#fff}
-  h2{font-size:40px;line-height:1.1;letter-spacing:-.02em;margin:0 0 12px;font-weight:700}
-  h2 em{font-style:normal;color:var(--gold-ink)}
-  .lede{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 32px}
-
-  /* Needs / Wants / Desires */
-  .nwd{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-  .tile{border-radius:14px;padding:22px 22px 24px;color:#fff}
-  .tile h3{margin:0 0 6px;font-size:22px}
-  .tile p{margin:0;font-size:15px;opacity:.92}
-  .tile ul{margin:10px 0 0;padding-left:18px;font-size:15px;opacity:.95}
-  .tile.need{background:var(--navy)}
-  .tile.want{background:var(--teal)}
-  .tile.desire{background:var(--gold);color:var(--navy)}
-
-  /* Rings list */
-  .ringlist{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:8px}
-  .ringlist div{border-radius:12px;padding:14px 12px;font-size:14px;line-height:1.35}
-  .ringlist b{display:block;font-size:15px;margin-bottom:4px}
-  .r1{background:#163a55;color:#fff}.r2{background:var(--deep);color:#fff}.r3{background:var(--teal);color:#fff}
-  .r4{background:var(--sea);color:#06222f}.r5{background:var(--mist);color:#06222f}.r6{background:var(--gold);color:#06222f}
-
-  /* Logos / ethos / pathos */
-  .lep{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .orb{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
-  .orb .dot{width:44px;height:44px;border-radius:50%;margin-bottom:12px}
-  .orb h3{margin:0 0 6px;font-size:20px}
-  .orb p{margin:0;font-size:15px;color:var(--muted)}
-
-  /* Phase steps */
-  .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:s}
-  .steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;font-size:15px;position:relative}
-  .steps li::before{content:counter(s);display:block;width:34px;height:34px;border-radius:50%;background:var(--foam);color:var(--deep);font-weight:700;text-align:center;line-height:34px;margin-bottom:10px}
-  .steps li.now{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold) inset}
-  .steps li.now::before{background:var(--gold);color:var(--navy)}
-  .steps .badge{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--gold-ink);text-transform:uppercase;letter-spacing:.06em}
-
-  /* Commitments */
-  .commit{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .commit div{border-left:4px solid var(--teal);background:var(--card);border-radius:0 12px 12px 0;padding:16px 18px;font-size:15px}
-  .commit div:nth-child(2){border-color:var(--navy)}
-  .commit div:nth-child(3){border-color:var(--gold)}
-  .commit b{display:block;font-size:17px;margin-bottom:4px}
-
-  /* Testers */
-  .testers{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
-  .towns{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px;padding:0;list-style:none}
-  .towns li{font-size:14px;background:var(--foam);color:var(--deep);border-radius:999px;padding:5px 12px;font-weight:500}
-  .btn{display:inline-block;font-weight:700;font-size:15px;background:var(--navy);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;margin:0 10px 10px 0}
-  .btn.ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
-  .privacy-wall{background:var(--gold);color:var(--navy);border-radius:14px;padding:22px;text-align:center}
-  .privacy-wall b{display:block;font-size:22px;margin-bottom:6px}
-
-
-  /* Body map */
-  .bodymap{background:linear-gradient(180deg,#f2f3f3 0%,#e7f1ef 100%)}
-  .bm{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
-  .bm-art svg{width:100%;height:auto;display:block}
-  .bm-keys{list-style:none;padding:0;margin:0 0 16px}
-  .bm-keys li{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:16px}
-  .bm-keys span{flex:0 0 14px;height:14px;border-radius:50%;margin-top:5px}
-  .note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
-
-  footer{background:var(--navy);color:#cfe0e3;padding:36px 0 44px;font-size:14px}
-  footer a{color:var(--gold)}
-
-  @media (max-width:860px){
-    .hero{padding:40px 0 48px}
-    .hero .wrap{grid-template-columns:1fr}
-    .rings{max-width:300px;order:-1}
-    .brand{font-size:64px}
-    .tagline{font-size:24px}
-    h2{font-size:32px}
-    .nwd,.lep,.commit,.testers,.bm{grid-template-columns:1fr}
-    .ringlist{grid-template-columns:repeat(2,1fr)}
-    .steps{grid-template-columns:1fr}
-    section{padding:48px 0}
-  }
+@font-face{font-family:"Roboto Condensed";src:url(fonts/roboto-condensed-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Roboto Condensed";src:url(fonts/roboto-condensed-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Roboto Condensed";src:url(fonts/roboto-condensed-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{--bg:#0e1211;--panel:#161c1a;--panel2:#1b2220;--line:#2a3431;--ink:#e9eeec;--muted:#9aa7a2;--green:#1d8f4e;--green-hi:#3fd17a;--gold:#f5b544;--orange:#f08a3c;--red:#e2502f;--blue:#6f8cff;--cyan:#4cc3ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:18px/1.55 "Roboto Condensed",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(1200px 700px at 50% 20%,#14231d 0%,var(--bg) 60%) fixed,var(--bg)}
+a{color:var(--cyan)}
+.shell{max-width:1240px;margin:0 auto;padding:0 20px}
+/* top bar */
+.bar{display:flex;align-items:center;gap:18px;padding:18px 0;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px;font-size:30px;font-weight:500;color:var(--ink);text-decoration:none}
+.logo svg{width:46px;height:46px}
+.tabs{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px;margin-left:auto}
+.tabs a{color:var(--muted);text-decoration:none;padding:7px 16px;border-radius:999px;font-size:17px}
+.tabs a.on{background:var(--green);color:#fff}
+.tabs a:hover{color:#fff}
+/* dashboard hero */
+.dash{display:grid;grid-template-columns:270px 1fr 300px;gap:18px;align-items:stretch;padding:8px 0 28px}
+.panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:18px}
+.panel h2{font-size:24px;font-weight:500;margin:0 0 4px}
+.panel .sub{color:var(--muted);font-size:15px;margin:0 0 14px}
+.src{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;display:flex;justify-content:space-between;gap:10px;align-items:center;background:#121816}
+.src b{display:block;font-weight:500;font-size:17px}
+.src span{color:var(--muted);font-size:14px}
+.pill{font-size:13px;font-weight:500;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:rgba(63,209,122,.12);color:var(--green-hi);border:1px solid rgba(63,209,122,.35)}
+.pill.wip{background:rgba(245,181,68,.12);color:var(--gold);border:1px solid rgba(245,181,68,.35)}
+.src.ok{border-color:rgba(63,209,122,.35);background:rgba(29,143,78,.08)}
+.src.wip{border-color:rgba(245,181,68,.3);background:rgba(245,181,68,.05)}
+.center{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.center h1{font-size:44px;line-height:1.05;margin:0 0 6px;text-align:center;font-weight:700}
+.center h1 em{font-style:normal;color:var(--gold)}
+.center p.tag{margin:0 0 6px;color:var(--muted);text-align:center;max-width:46ch}
+.bodyart{width:100%;max-width:780px;height:auto;display:block}
+.example{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.towns{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px}
+.towns span{font-size:14px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted)}
+.towns span:first-child{background:var(--green);color:#fff;border-color:var(--green)}
+.box{border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--muted);font-size:15px;min-height:76px;background:#111715}
+.btn{display:inline-block;font-weight:500;font-size:17px;text-decoration:none;border-radius:999px;padding:9px 20px}
+.btn.gold{background:var(--gold);color:#1b1407}
+.btn.white{background:#fff;color:#0e1211}
+.btn.ghost{border:1px solid var(--line);color:var(--ink)}
+.right-foot{font-size:13px;color:var(--muted);margin-top:12px;display:flex;gap:6px;align-items:flex-start}
+.right-foot i{color:var(--green-hi);font-style:normal}
+/* sections */
+section{padding:26px 0}
+.sec-title{font-size:34px;font-weight:700;margin:0 0 6px}
+.sec-title em{font-style:normal;color:var(--gold)}
+.lede{color:var(--muted);max-width:66ch;margin:0 0 18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:18px}
+.card h3{margin:0 0 6px;font-size:22px;font-weight:500}
+.card p,.card li{color:var(--muted);font-size:16px}
+.card ul{margin:8px 0 0;padding-left:18px}
+.need{border-top:3px solid var(--blue)}.want{border-top:3px solid var(--orange)}.desire{border-top:3px solid var(--gold)}
+.rings{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.rings div{border-radius:14px;padding:14px;font-size:15px;color:#0e1211}
+.rings b{display:block;font-size:17px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;font-size:16px;color:var(--muted)}
+.steps li::before{content:counter(s);display:block;width:32px;height:32px;border-radius:50%;background:#222b28;color:var(--ink);text-align:center;line-height:32px;margin-bottom:10px;font-weight:700}
+.steps li.now{border-color:var(--green);color:var(--ink);box-shadow:0 0 0 1px var(--green) inset}
+.steps li.now::before{background:var(--green);color:#fff}
+.privacy{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:stretch}
+.wall{background:var(--gold);color:#1b1407;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.wall b{font-size:24px}
+footer{border-top:1px solid var(--line);margin-top:30px;padding:24px 0 44px;color:var(--muted);font-size:15px}
+footer a{color:var(--gold)}
+@media (max-width:1100px){.dash{grid-template-columns:1fr}.center{order:-1}.rings{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:700px){.tabs{margin-left:0;width:100%;overflow-x:auto}.tabs a{white-space:nowrap;padding:6px 12px}.center h1{font-size:34px}.grid3,.privacy{grid-template-columns:1fr}.rings{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.sec-title{font-size:28px}}
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <div class="wrap">
-    <div>
-      <h1 class="brand">Dweller</h1>
-      <p class="tagline">How public decisions shape <em>your life</em>: past, present and the next two years.</p>
-      <p class="sub">A nonpartisan civic app for North Carolina. Every claim is tied to a dated, primary source.</p>
-      <div class="status"><i></i>Early development · Pilot area: Mecklenburg County, NC</div>
-    </div>
-    <div class="rings" aria-hidden="true">
-      <svg viewBox="0 0 400 400">
-        <circle cx="200" cy="200" r="198" fill="#f2c674"/>
-        <circle cx="200" cy="200" r="176" fill="#b0d0c8"/>
-        <circle cx="200" cy="200" r="152" fill="#68a8a0"/>
-        <circle cx="200" cy="200" r="128" fill="#2a8a92"/>
-        <circle cx="200" cy="200" r="104" fill="#186078"/>
-        <circle cx="200" cy="200" r="80"  fill="#10304a"/>
-        <circle cx="200" cy="200" r="54"  fill="#ffffff"/>
-        <!-- generic avatar: illustration only, no real person -->
-        <clipPath id="av"><circle cx="200" cy="200" r="52"/></clipPath>
-        <g clip-path="url(#av)">
-          <circle cx="200" cy="190" r="20" fill="#10304a"/>
-          <path d="M162 262c4-30 20-44 38-44s34 14 38 44z" fill="#2a8a92"/>
-        </g>
-      </svg>
-    </div>
-  </div>
+<div class="shell">
+<header class="bar">
+  <a class="logo" href="#top" aria-label="Dweller home">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="#4cc3ff" stroke-width="1.2" opacity=".85"><circle cx="24" cy="24" r="20"/><path d="M24 4 L41 14 L41 34 L24 44 L7 34 L7 14Z"/><path d="M7 14 L41 34 M41 14 L7 34 M24 4 L24 44"/></g><g fill="#f08a3c"><circle cx="24" cy="4" r="2"/><circle cx="41" cy="14" r="2"/><circle cx="7" cy="34" r="2"/></g><g fill="#4cc3ff"><circle cx="41" cy="34" r="2"/><circle cx="7" cy="14" r="2"/><circle cx="24" cy="44" r="2"/></g><circle cx="24" cy="15" r="3.4" fill="#7fd6ff"/><path d="M18 33 l2-11 h8 l2 11 h-3 l-1 8 h-4 l-1-8z" fill="#7fd6ff"/></svg>
+    Dweller
+  </a>
+  <nav class="tabs" aria-label="Sections">
+    <a class="on" href="#top">Policy Impact</a><a href="#world">Your World</a><a href="#progress">Progress</a><a href="#testing">Field Testing</a><a href="#privacy">Privacy</a>
+  </nav>
 </header>
 
-<section class="bodymap">
-  <div class="wrap bm">
-    <div class="bm-art"><svg viewBox="0 0 560 548" role="img" aria-label="Illustration: a generic figure split in two. The left half shows the six rings of social relations; the right half glows where policy areas touch daily life.">
-  <defs>
-    <clipPath id="bodyClip"><circle cx="180" cy="58" r="36"/><path d="M194,96 L196,112 L238,124 L260,150 L272,250 L278,312 L272,326 L260,320 L254,258 L242,182 L232,192 L226,262 L234,302 L226,420 L222,500 L228,514 L196,514 L194,500 L190,330 L180,320 L180,320 L170,330 L166,500 L164,514 L132,514 L138,500 L134,420 L126,302 L134,262 L128,192 L118,182 L106,258 L100,320 L88,326 L82,312 L88,250 L100,150 L122,124 L164,112 L166,96Z"/></clipPath>
-    <clipPath id="leftHalf"><rect x="0" y="0" width="180" height="540"/></clipPath>
-    <clipPath id="rightHalf"><rect x="180" y="0" width="400" height="540"/></clipPath>
-    <radialGradient id="glowBase" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#2a8a92"/><stop offset="1" stop-color="#10304a"/></radialGradient>
-    <radialGradient id="hot" r="50%"><stop offset="0" stop-color="#f6d58e" stop-opacity=".95"/><stop offset=".45" stop-color="#f2c674" stop-opacity=".55"/><stop offset="1" stop-color="#f2c674" stop-opacity="0"/></radialGradient>
-    <radialGradient id="warm" r="50%"><stop offset="0" stop-color="#9fd3cc" stop-opacity=".9"/><stop offset="1" stop-color="#68a8a0" stop-opacity="0"/></radialGradient>
-    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
-    <radialGradient id="aura" r="50%"><stop offset="0" stop-color="#b0d0c8" stop-opacity=".55"/><stop offset="1" stop-color="#b0d0c8" stop-opacity="0"/></radialGradient>
-  </defs>
-  <ellipse cx="180" cy="280" rx="190" ry="260" fill="url(#aura)"/>
-  <g clip-path="url(#bodyClip)">
-    <g clip-path="url(#leftHalf)">
-      <rect x="0" y="0" width="180" height="540" fill="#f2c674"/>
-      <circle cx="180" cy="230" r="225" fill="#b0d0c8"/>
-      <circle cx="180" cy="230" r="180" fill="#68a8a0"/>
-      <circle cx="180" cy="230" r="138" fill="#2a8a92"/>
-      <circle cx="180" cy="230" r="98" fill="#186078"/>
-      <circle cx="180" cy="230" r="58" fill="#10304a"/>
-    </g>
-    <g clip-path="url(#rightHalf)">
-      <rect x="180" y="0" width="400" height="540" fill="url(#glowBase)"/>
-      <g filter="url(#soft)">
-        <circle cx="198" cy="56" r="34" fill="url(#warm)"/>
-        <circle cx="206" cy="170" r="46" fill="url(#hot)"/>
-        <circle cx="210" cy="240" r="40" fill="url(#warm)"/>
-        <circle cx="272" cy="300" r="34" fill="url(#hot)"/>
-        <circle cx="210" cy="430" r="44" fill="url(#warm)"/>
-      </g>
-    </g>
-  </g>
-  <line x1="180" y1="14" x2="180" y2="520" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 6" opacity=".8"/>
-  <g font-family="DM Sans,system-ui,sans-serif" font-size="15" fill="#10304a">
-    <g stroke="#10304a" stroke-width="1.2" opacity=".55"><line x1="208" y1="54" x2="330" y2="54"/><line x1="216" y1="168" x2="330" y2="140"/><line x1="220" y1="240" x2="330" y2="226"/><line x1="276" y1="300" x2="330" y2="312"/><line x1="218" y1="430" x2="330" y2="420"/></g>
-    <g fill="#f2c674" stroke="#10304a" stroke-width="1.5"><circle cx="198" cy="54" r="5"/><circle cx="208" cy="168" r="5"/><circle cx="214" cy="240" r="5"/><circle cx="272" cy="300" r="5"/><circle cx="212" cy="430" r="5"/></g>
-    <text x="338" y="50" font-weight="700">Learning</text><text x="338" y="68" font-size="12" fill="#4d6273">schools, training, loans</text>
-    <text x="338" y="136" font-weight="700">Home &amp; housing</text><text x="338" y="154" font-size="12" fill="#4d6273">rent, taxes, zoning</text>
-    <text x="338" y="222" font-weight="700">Health coverage</text><text x="338" y="240" font-size="12" fill="#4d6273">cost and access, not medical data</text>
-    <text x="338" y="308" font-weight="700">Work &amp; money</text><text x="338" y="326" font-size="12" fill="#4d6273">wages, benefits, taxes</text>
-    <text x="338" y="416" font-weight="700">Getting around</text><text x="338" y="434" font-size="12" fill="#4d6273">transit, roads, fares</text>
-  </g>
-  <g font-family="DM Sans,system-ui,sans-serif" font-size="12" fill="#4d6273" text-anchor="middle">
-    <text x="130" y="536">your rings: family → nation</text>
-  </g>
-</svg></div>
-    <div>
-      <h2>How decisions <em>land on you</em></h2>
-      <p class="lede">Your Dweller has two sides. One shows the rings you live in, from family to nation. The other lights up where laws, budgets and rules touch your daily life.</p>
-      <ul class="bm-keys">
-        <li><span style="background:var(--navy)"></span>Your rings: who decides, at every level</li>
-        <li><span style="background:var(--gold)"></span>Brighter spots: where pending decisions could matter most to you, based only on what you choose to share</li>
-      </ul>
-      <p class="note">Illustration. Every highlight in the app links to its source and date. Dweller never collects medical readings.</p>
-    </div>
-  </div>
-</section>
+<main id="top">
+<div class="dash">
+  <aside class="panel">
+    <h2>Data Sources</h2>
+    <p class="sub">Phase 1 · Mecklenburg County, NC</p>
+    <div class="src ok"><div><b>Federal</b><span>Congress.gov · Federal Register</span></div><span class="pill ok">Access set up</span></div>
+    <div class="src wip"><div><b>State</b><span>NC General Assembly · NC Board of Elections</span></div><span class="pill wip">In progress</span></div>
+    <div class="src wip"><div><b>Local</b><span>Charlotte · Mecklenburg · 6 towns</span></div><span class="pill wip">In progress</span></div>
+    <div class="src ok"><div><b>Places</b><span>ZIP → district maps (HUD, county GIS)</span></div><span class="pill ok">Access set up</span></div>
+    <p class="sub" style="margin-top:14px">Every claim in Dweller will cite a primary source and date, and label fact, estimate and forecast.</p>
+  </aside>
 
-<section class="alt">
-  <div class="wrap">
-    <h2>Your world</h2>
-    <p class="lede">Dweller frames everything around what matters to you, today and tomorrow. You choose what to share, and every question can be skipped.</p>
-    <div class="nwd">
-      <div class="tile need"><h3>Needs</h3><p>The basics decisions touch first.</p><ul><li>Housing and income</li><li>Food, transportation</li><li>Health coverage, child care</li></ul></div>
-      <div class="tile want"><h3>Wants</h3><p>Where you're trying to go.</p><ul><li>Career growth, training</li><li>Home improvements</li><li>Community and belonging</li></ul></div>
-      <div class="tile desire"><h3>Desires</h3><p>Open-ended, and defined by you: the one thing you'd change in the next two years.</p></div>
+  <div class="center">
+    <h1>How public decisions <em>land on you</em></h1>
+    <p class="tag">A nonpartisan civic app for North Carolina: past, present and the next two years.</p>
+    <svg class="bodyart" viewBox="0 0 780 560" role="img" aria-label="Illustration: a generic figure split down the middle. The left half is a heat map of policy areas; the right half is a glowing outline of how decisions land on daily life.">
+<defs>
+ <clipPath id="fb"><circle cx="200" cy="60" r="36"/><path d="M215,98 L217,112 L256,124 L274,140 L292,230 L304,300 L300,316 L288,314 L276,250 L262,176 L252,190 L248,262 L254,300 L248,420 L242,496 L250,512 L216,512 L214,496 L210,330 L200,322 L200,322 L190,330 L186,496 L184,512 L150,512 L158,496 L152,420 L146,300 L152,262 L148,190 L138,176 L124,250 L112,314 L100,316 L96,300 L108,230 L126,140 L144,124 L183,112 L185,98Z"/></clipPath>
+ <clipPath id="lh"><rect x="0" y="0" width="200" height="560"/></clipPath>
+ <clipPath id="rh"><rect x="200" y="0" width="200" height="560"/></clipPath>
+ <linearGradient id="heat" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#3d4fd6"/><stop offset=".2" stop-color="#4f86d8"/>
+  <stop offset=".3" stop-color="#e9b44a"/><stop offset=".45" stop-color="#ef8a36"/>
+  <stop offset=".62" stop-color="#e2502f"/><stop offset=".8" stop-color="#a9354a"/><stop offset="1" stop-color="#5b2238" stop-opacity=".7"/>
+ </linearGradient>
+ <linearGradient id="holo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5ccbff" stop-opacity=".55"/><stop offset="1" stop-color="#1b6fb3" stop-opacity=".35"/></linearGradient>
+ <filter id="glow" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <filter id="blur3"><feGaussianBlur stdDeviation="3"/></filter>
+ <radialGradient id="halo" r="50%"><stop offset="0" stop-color="#2f7fb8" stop-opacity=".35"/><stop offset="1" stop-color="#2f7fb8" stop-opacity="0"/></radialGradient>
+ <radialGradient id="warmhalo" r="50%"><stop offset="0" stop-color="#e2502f" stop-opacity=".28"/><stop offset="1" stop-color="#e2502f" stop-opacity="0"/></radialGradient>
+</defs><g transform="translate(180,0)">
+<ellipse cx="240" cy="270" rx="170" ry="280" fill="url(#halo)"/>
+<ellipse cx="150" cy="300" rx="150" ry="260" fill="url(#warmhalo)"/>
+<g clip-path="url(#fb)">
+ <g clip-path="url(#lh)"><rect x="0" y="0" width="200" height="560" fill="url(#heat)" filter="url(#blur3)"/></g>
+ <g clip-path="url(#rh)"><rect x="200" y="0" width="200" height="560" fill="url(#holo)"/>
+  <g stroke="#9fe3ff" stroke-width="1.2" fill="none" opacity=".75">
+   <path d="M206,110 C220,160 218,220 212,300 S220,420 226,500"/>
+   <path d="M230,128 C260,150 278,210 290,300"/>
+   <path d="M210,150 C230,170 240,200 236,240"/>
+   <path d="M214,330 C230,360 236,420 234,490"/>
+   <circle cx="216" cy="60" r="18"/>
+  </g>
+ </g>
+</g>
+<g clip-path="url(#rh)"><circle cx="200" cy="60" r="36" fill="none" stroke="#7fd6ff" stroke-width="2" filter="url(#glow)"/><path d="M215,98 L217,112 L256,124 L274,140 L292,230 L304,300 L300,316 L288,314 L276,250 L262,176 L252,190 L248,262 L254,300 L248,420 L242,496 L250,512 L216,512 L214,496 L210,330 L200,322 L200,322 L190,330 L186,496 L184,512 L150,512 L158,496 L152,420 L146,300 L152,262 L148,190 L138,176 L124,250 L112,314 L100,316 L96,300 L108,230 L126,140 L144,124 L183,112 L185,98Z" fill="none" stroke="#7fd6ff" stroke-width="2" filter="url(#glow)"/></g>
+<line x1="200" y1="10" x2="200" y2="548" stroke="#ffffff" stroke-width="2" opacity=".9"/>
+<g fill="none" stroke="#4cc3ff" filter="url(#glow)" opacity=".8">
+ <ellipse cx="200" cy="522" rx="120" ry="18" stroke-width="1.5"/><ellipse cx="200" cy="522" rx="80" ry="11" stroke-width="2"/><ellipse cx="200" cy="522" rx="150" ry="24" stroke-width="1" stroke-dasharray="3 7"/>
+</g>
+</g><g font-family="Roboto Condensed,system-ui,sans-serif"><g><text x="16" y="110" fill="#6f8cff" font-size="22" font-weight="500">Income &amp; Tax</text><circle cx="136.39999999999998" cy="104" r="4" fill="#6f8cff"/><path d="M142.39999999999998,104 H222 V112 H262" stroke="#6f8cff" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><text x="16" y="165" fill="#f4b04a" font-size="22" font-weight="500">Housing &amp; Zoning</text><circle cx="173.2" cy="159" r="4" fill="#f4b04a"/><path d="M179.2,159 H232 V196 H272" stroke="#f4b04a" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><text x="16" y="235" fill="#f39a45" font-size="22" font-weight="500">Education</text><circle cx="108.8" cy="229" r="4" fill="#f39a45"/><path d="M114.8,229 H242 V270 H282" stroke="#f39a45" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><text x="16" y="300" fill="#ec6a3a" font-size="22" font-weight="500">Employment</text><circle cx="118.0" cy="294" r="4" fill="#ec6a3a"/><path d="M124.0,294 H256 V344 H296" stroke="#ec6a3a" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><text x="16" y="420" fill="#b9586e" font-size="22" font-weight="500">Transportation</text><circle cx="154.79999999999998" cy="414" r="4" fill="#b9586e"/><path d="M160.79999999999998,414 H260 V430 H300" stroke="#b9586e" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><path d="M412,110 H452 V109 H584" stroke="#9fb3c8" fill="none" opacity=".6"/><circle cx="590" cy="109" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="602" y="115" fill="#e8ecea" font-size="22">Daily costs</text></g><g><path d="M452,230 H492 V234 H584" stroke="#9fb3c8" fill="none" opacity=".6"/><circle cx="590" cy="234" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="602" y="240" fill="#e8ecea" font-size="22">Time &amp; commute</text></g><g><path d="M436,330 H476 V324 H584" stroke="#9fb3c8" fill="none" opacity=".6"/><circle cx="590" cy="324" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="602" y="330" fill="#e8ecea" font-size="22">Safety &amp; environment</text></g><g><path d="M424,440 H464 V444 H584" stroke="#9fb3c8" fill="none" opacity=".6"/><circle cx="590" cy="444" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="602" y="450" fill="#e8ecea" font-size="22">Community ties</text></g></g></svg>
+    <span class="example">Illustration · not real data · no medical readings</span>
+  </div>
+
+  <aside class="panel" id="testing">
+    <h2>Field Testing</h2>
+    <p class="sub">Help shape Dweller before it launches</p>
+    <div class="towns"><span>Charlotte</span><span>Cornelius</span><span>Davidson</span><span>Huntersville</span><span>Matthews</span><span>Mint Hill</span><span>Pineville</span><span>Unincorporated</span></div>
+    <div class="box">Tell us what's confusing, wrong, missing or feels one-sided. Every question is optional.</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <a class="btn gold" href="https://github.com/tlsman71/dweller/issues/new/choose">Send Feedback</a>
+      <a class="btn ghost" href="https://github.com/tlsman71/dweller/blob/main/TESTING.md">How testing works</a>
     </div>
+    <div class="right-foot"><i>✓</i><span>Feedback on GitHub is public. For anything private: <a href="mailto:DwellerApp@proton.me">DwellerApp@proton.me</a></span></div>
+  </aside>
+</div>
+
+<section id="world">
+  <h2 class="sec-title">Your <em>world</em></h2>
+  <p class="lede">Dweller frames everything around what matters to you. You choose what to share.</p>
+  <div class="grid3">
+    <div class="card need"><h3>Needs</h3><ul><li>Housing and income</li><li>Food and transportation</li><li>Health coverage cost, child care</li></ul></div>
+    <div class="card want"><h3>Wants</h3><ul><li>Career growth and training</li><li>Home improvements</li><li>Community and belonging</li></ul></div>
+    <div class="card desire"><h3>Desires</h3><p>Defined by you: the one thing you'd change in the next two years.</p></div>
   </div>
 </section>
 
 <section>
-  <div class="wrap">
-    <h2>Every Dweller lives inside <em>rings of social relations</em></h2>
-    <p class="lede">Decisions at every level shape your daily life. Dweller shows how they connect.</p>
-    <div class="ringlist">
-      <div class="r1"><b>Family</b>Household, income</div>
-      <div class="r2"><b>Neighborhood</b>Streets, safety, schools</div>
-      <div class="r3"><b>Community</b>Nonprofits, places you rely on</div>
-      <div class="r4"><b>City or town</b>Council, ordinances, budget</div>
-      <div class="r5"><b>State</b>Legislature, courts, agencies</div>
-      <div class="r6"><b>Nation</b>Congress, federal agencies, courts</div>
-    </div>
+  <h2 class="sec-title">The rings around you</h2>
+  <p class="lede">Decisions at every level shape your daily life. Dweller shows how they connect.</p>
+  <div class="rings">
+    <div style="background:#6f8cff"><b>Family</b>Household, income</div>
+    <div style="background:#7fb6e8"><b>Neighborhood</b>Streets, safety, schools</div>
+    <div style="background:#f4c35a"><b>Community</b>Nonprofits you rely on</div>
+    <div style="background:#f39a45"><b>City or town</b>Council, budget</div>
+    <div style="background:#ec6a3a"><b>State</b>Legislature, courts</div>
+    <div style="background:#c45a6f"><b>Nation</b>Congress, agencies</div>
   </div>
 </section>
 
-<section class="alt">
-  <div class="wrap">
-    <h2>Logic, credibility and care meet in your <em>digital self</em></h2>
-    <p class="lede">Facts sit at the center. Credibility and personal meaning orbit around them.</p>
-    <div class="lep">
-      <div class="orb"><div class="dot" style="background:var(--navy)"></div><h3>Logos: evidence</h3><p>Bills, rulings, ordinances and data, each with its primary source and date. Fact, estimate and forecast are labeled separately.</p></div>
-      <div class="orb"><div class="dot" style="background:var(--teal)"></div><h3>Ethos: credibility</h3><p>Who decided, what they did and where it's recorded. Neutral facts about officials, never grades.</p></div>
-      <div class="orb"><div class="dot" style="background:var(--gold)"></div><h3>Pathos: meaning</h3><p>What it means for your needs, wants and desires, in your own words.</p></div>
-    </div>
-  </div>
+<section id="progress">
+  <h2 class="sec-title">Where the project is</h2>
+  <p class="lede">Each phase must pass its test before the next one starts.</p>
+  <ol class="steps">
+    <li class="now">Verify data sources: Mecklenburg and its six towns</li>
+    <li>Design the profile and impact model</li>
+    <li>Hand-test stories on 10 real NC decisions</li>
+    <li>Clickable prototype</li>
+    <li>Pilot with one partner</li>
+  </ol>
 </section>
 
-<section>
-  <div class="wrap">
-    <h2>Our commitments</h2>
-    <p class="lede">These are built in from the first line of code.</p>
-    <div class="commit">
-      <div><b>Nonpartisan</b>No endorsements or grades. Dweller never asks your party or how you vote.</div>
-      <div><b>Sourced</b>Every impact claim cites a primary source and date, with ranges instead of false precision.</div>
-      <div><b>Private</b>Every field is optional. Export or delete everything. Data is never sold. <a href="PRIVACY.md">Read more</a>.</div>
+<section id="privacy">
+  <h2 class="sec-title">Our commitments</h2>
+  <div class="privacy">
+    <div class="grid3">
+      <div class="card"><h3>Nonpartisan</h3><p>Neutral facts about officials: votes, bills, status. No grades or endorsements. We never ask your party or vote.</p></div>
+      <div class="card"><h3>Sourced</h3><p>Every impact claim cites a primary source and date, with ranges instead of false precision.</p></div>
+      <div class="card"><h3>Private</h3><p>Every field optional. Export or delete everything. Never sold. No medical readings. <a href="PRIVACY.md">Details</a></p></div>
     </div>
+    <div class="wall"><b>Privacy Wall</b>Partners see aggregate totals only.<br>Never individual data.</div>
   </div>
 </section>
-
-<section class="alt">
-  <div class="wrap">
-    <h2>Where the project is</h2>
-    <p class="lede">Each phase has to pass its test before the next one starts.</p>
-    <ol class="steps">
-      <li class="now">Verify data sources: Mecklenburg County and its six towns<span class="badge">In progress</span></li>
-      <li>Design the profile and impact model</li>
-      <li>Hand-test stories on 10 real NC decisions</li>
-      <li>Clickable prototype</li>
-      <li>Pilot with one partner</li>
-    </ol>
-  </div>
-</section>
-
-<section>
-  <div class="wrap testers">
-    <div>
-      <h2>Field testers in <em>North Carolina</em></h2>
-      <p class="lede" style="margin-bottom:0">We'll be inviting residents to try early versions and tell us what's confusing, wrong or missing.</p>
-      <ul class="towns"><li>Charlotte</li><li>Cornelius</li><li>Davidson</li><li>Huntersville</li><li>Matthews</li><li>Mint Hill</li><li>Pineville</li><li>Unincorporated Mecklenburg</li></ul>
-      <a class="btn" href="https://github.com/tlsman71/dweller/blob/main/TESTING.md">How field testing works</a>
-      <a class="btn ghost" href="https://github.com/tlsman71/dweller/issues/new/choose">Send feedback</a>
-    </div>
-    <div class="privacy-wall">
-      <b>Privacy wall</b>
-      Community partners see aggregate totals only.<br>Never individual data.
-    </div>
-  </div>
-</section>
+</main>
 
 <footer>
-  <div class="wrap">
-    Contact and partnerships (food banks, voter-registration groups, community organizers): <a href="mailto:DwellerApp@proton.me">DwellerApp@proton.me</a><br><br>
-    Dweller is an independent project, not affiliated with any government agency, party or candidate. Bill data will be credited to its sources, including LegiScan (CC BY 4.0). Font: DM Sans (SIL Open Font License).
-  </div>
+  Contact &amp; partnerships (food banks, voter-registration groups, organizers): <a href="mailto:DwellerApp@proton.me">DwellerApp@proton.me</a><br>
+  Dweller is an independent project, not affiliated with any government agency, party or candidate. Bill data will be credited to its sources, including LegiScan (CC BY 4.0). Font: Roboto Condensed (SIL Open Font License).
 </footer>
+</div>
 </body>
 </html>
