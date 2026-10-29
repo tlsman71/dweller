@@ -53,6 +53,21 @@ a{color:var(--cyan)}
 .btn.ghost{border:1px solid var(--line);color:var(--ink)}
 .right-foot{font-size:13px;color:var(--muted);margin-top:12px;display:flex;gap:6px;align-items:flex-start}
 .right-foot i{color:var(--green-hi);font-style:normal}
+
+.under{width:100%;max-width:620px;display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:4px}
+.legend{display:flex;gap:16px;font-size:15px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+.k{font-style:normal;font-weight:700;font-size:12px;width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;border:1px solid}
+.k.n{color:#3fd17a;border-color:#3fd17a;background:rgba(63,209,122,.15)}
+.k.w{color:#4cc3ff;border-color:#4cc3ff;background:rgba(76,195,255,.15)}
+.k.d{color:#f5b544;border-color:#f5b544;background:rgba(245,181,68,.15)}
+.ringtabs{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px}
+.ringtabs span{font-size:15px;color:var(--muted);padding:5px 12px;border-radius:999px}
+.ringtabs span.on{background:#fff;color:#0e1211;font-weight:500}
+.goal{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.goal small{display:block;color:var(--gold);font-size:13px;letter-spacing:.02em}
+.goal b{font-size:19px;font-weight:500}
+@media (max-width:700px){.goal{flex-direction:column;align-items:stretch;text-align:center}.ringtabs{border-radius:16px}}
 /* sections */
 section{padding:26px 0}
 .sec-title{font-size:34px;font-weight:700;margin:0 0 6px}
@@ -108,43 +123,72 @@ footer a{color:var(--gold)}
   <div class="center">
     <h1>How public decisions <em>land on you</em></h1>
     <p class="tag">A nonpartisan civic app for North Carolina: past, present and the next two years.</p>
-    <svg class="bodyart" viewBox="0 0 810 560" role="img" aria-label="Illustration: a generic figure split down the middle. The left half is a heat map of policy areas; the right half is a glowing outline of how decisions land on daily life.">
-<defs>
- <clipPath id="fb"><circle cx="200" cy="60" r="36"/><path d="M215,98 L217,112 L256,124 L274,140 L292,230 L304,300 L300,316 L288,314 L276,250 L262,176 L252,190 L248,262 L254,300 L248,420 L242,496 L250,512 L216,512 L214,496 L210,330 L200,322 L200,322 L190,330 L186,496 L184,512 L150,512 L158,496 L152,420 L146,300 L152,262 L148,190 L138,176 L124,250 L112,314 L100,316 L96,300 L108,230 L126,140 L144,124 L183,112 L185,98Z"/></clipPath>
+    <svg class="bodyart" viewBox="0 0 810 560" role="img" aria-label="Illustration: a figure split down the middle. The left half is a heat map of example topics marked as needs or wants; the right half is a glowing outline of how decisions land on daily life."><g transform="translate(180,0)"><defs>
+ <clipPath id="fr"><ellipse cx="200" cy="58" rx="31" ry="37"/><path transform="translate(200,0)" d="M0,94 L11,94 C12,100 13,106 15,110 C28,114 44,116 54,120 C64,124 69,134 70,146 C73,176 76,206 79,232 C83,256 88,282 92,300 C96,310 101,320 102,332 C100,340 94,344 89,342 C86,334 84,322 82,312 C78,292 74,266 70,244 C65,220 60,196 54,168 C53,192 50,226 45,262 C47,280 53,292 55,306 C57,340 55,372 50,404 C48,430 46,456 41,488 C42,498 46,506 46,514 L16,516 C15,506 16,498 17,490 C15,458 13,432 13,404 C11,372 8,344 3,326 L0,322 Z"/><path transform="translate(200,0) scale(-1,1)" d="M0,94 L11,94 C12,100 13,106 15,110 C28,114 44,116 54,120 C64,124 69,134 70,146 C73,176 76,206 79,232 C83,256 88,282 92,300 C96,310 101,320 102,332 C100,340 94,344 89,342 C86,334 84,322 82,312 C78,292 74,266 70,244 C65,220 60,196 54,168 C53,192 50,226 45,262 C47,280 53,292 55,306 C57,340 55,372 50,404 C48,430 46,456 41,488 C42,498 46,506 46,514 L16,516 C15,506 16,498 17,490 C15,458 13,432 13,404 C11,372 8,344 3,326 L0,322 Z"/></clipPath>
  <clipPath id="lh"><rect x="0" y="0" width="200" height="560"/></clipPath>
- <clipPath id="rh"><rect x="200" y="0" width="200" height="560"/></clipPath>
- <linearGradient id="heat" x1="0" y1="0" x2="0" y2="1">
-  <stop offset="0" stop-color="#3d4fd6"/><stop offset=".2" stop-color="#4f86d8"/>
-  <stop offset=".3" stop-color="#e9b44a"/><stop offset=".45" stop-color="#ef8a36"/>
-  <stop offset=".62" stop-color="#e2502f"/><stop offset=".8" stop-color="#a9354a"/><stop offset="1" stop-color="#5b2238" stop-opacity=".7"/>
+ <clipPath id="rh"><rect x="200" y="0" width="220" height="560"/></clipPath>
+ <linearGradient id="heat" x1="0" y1="0" x2="0" y2="560" gradientUnits="userSpaceOnUse">
+  <stop offset="0" stop-color="#4b4fd8"/><stop offset=".1" stop-color="#4f78e0"/><stop offset=".19" stop-color="#5c9ee0"/>
+  <stop offset=".25" stop-color="#8fb7c9"/><stop offset=".3" stop-color="#e9be55"/><stop offset=".4" stop-color="#f19a3c"/>
+  <stop offset=".52" stop-color="#ec6b33"/><stop offset=".62" stop-color="#d9452e"/><stop offset=".75" stop-color="#b23646"/>
+  <stop offset=".9" stop-color="#7c2a45"/><stop offset="1" stop-color="#4a1f35"/>
  </linearGradient>
- <linearGradient id="holo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5ccbff" stop-opacity=".55"/><stop offset="1" stop-color="#1b6fb3" stop-opacity=".35"/></linearGradient>
- <filter id="glow" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
- <filter id="blur3"><feGaussianBlur stdDeviation="3"/></filter>
- <radialGradient id="halo" r="50%"><stop offset="0" stop-color="#2f7fb8" stop-opacity=".35"/><stop offset="1" stop-color="#2f7fb8" stop-opacity="0"/></radialGradient>
- <radialGradient id="warmhalo" r="50%"><stop offset="0" stop-color="#e2502f" stop-opacity=".28"/><stop offset="1" stop-color="#e2502f" stop-opacity="0"/></radialGradient>
-</defs><g transform="translate(180,0)">
-<ellipse cx="240" cy="270" rx="170" ry="280" fill="url(#halo)"/>
-<ellipse cx="150" cy="300" rx="150" ry="260" fill="url(#warmhalo)"/>
-<g clip-path="url(#fb)">
- <g clip-path="url(#lh)"><rect x="0" y="0" width="200" height="560" fill="url(#heat)" filter="url(#blur3)"/></g>
- <g clip-path="url(#rh)"><rect x="200" y="0" width="200" height="560" fill="url(#holo)"/>
-  <g stroke="#9fe3ff" stroke-width="1.2" fill="none" opacity=".75">
-   <path d="M206,110 C220,160 218,220 212,300 S220,420 226,500"/>
-   <path d="M230,128 C260,150 278,210 290,300"/>
-   <path d="M210,150 C230,170 240,200 236,240"/>
-   <path d="M214,330 C230,360 236,420 234,490"/>
-   <circle cx="216" cy="60" r="18"/>
+ <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+ <linearGradient id="holo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fd4ff" stop-opacity=".45"/><stop offset=".6" stop-color="#2a8fd6" stop-opacity=".3"/><stop offset="1" stop-color="#174f8a" stop-opacity=".3"/></linearGradient>
+ <filter id="glow" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <filter id="soft"><feGaussianBlur stdDeviation="2.2"/></filter>
+ <radialGradient id="halo" r="50%"><stop offset="0" stop-color="#2f8fd0" stop-opacity=".38"/><stop offset="1" stop-color="#2f8fd0" stop-opacity="0"/></radialGradient>
+ <radialGradient id="warmhalo" r="50%"><stop offset="0" stop-color="#e2502f" stop-opacity=".3"/><stop offset="1" stop-color="#e2502f" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="250" cy="270" rx="170" ry="285" fill="url(#halo)"/>
+<ellipse cx="145" cy="300" rx="155" ry="270" fill="url(#warmhalo)"/>
+<g clip-path="url(#fr)">
+ <g clip-path="url(#lh)"><rect x="0" y="0" width="200" height="560" fill="url(#heat)" filter="url(#soft)"/><rect x="0" y="0" width="200" height="560" fill="url(#sheen)"/></g>
+ <g clip-path="url(#rh)"><rect x="200" y="0" width="220" height="560" fill="url(#holo)"/>
+  <g fill="none" stroke="#bdf0ff" stroke-linecap="round" filter="url(#glow)" opacity=".85">
+   <!-- skull & jaw -->
+   <path d="M200,24 C220,24 228,42 227,58 C226,74 218,86 200,90" stroke-width="1.3"/>
+   <path d="M206,52 h10" stroke-width="1.2"/>
+   <!-- spine -->
+   <path d="M203,96 V318" stroke-width="2"/>
+   <!-- ribs -->
+   <path d="M203,140 C222,140 240,148 244,162" stroke-width="1.1"/>
+   <path d="M203,156 C224,156 242,166 245,180" stroke-width="1.1"/>
+   <path d="M203,172 C224,174 240,184 243,198" stroke-width="1.1"/>
+   <path d="M203,188 C222,190 236,200 239,212" stroke-width="1.1"/>
+   <!-- clavicle & shoulder -->
+   <path d="M204,118 C224,116 244,120 256,128" stroke-width="1.4"/>
+   <!-- arm bones -->
+   <path d="M262,140 L272,236 L286,302" stroke-width="1.6"/>
+   <!-- pelvis -->
+   <path d="M203,296 C220,282 240,284 248,300 C240,318 220,322 203,318" stroke-width="1.4"/>
+   <!-- leg bones -->
+   <path d="M230,318 L232,404 L228,492" stroke-width="1.8"/>
+   <circle cx="232" cy="404" r="5" stroke-width="1.3"/>
+  </g>
+  <g fill="none" stroke="#ff8f3c" stroke-width="1.1" opacity=".75" filter="url(#glow)">
+   <path d="M210,120 C218,150 214,210 216,290 C220,340 224,420 222,500"/>
+   <path d="M216,150 C240,150 258,170 266,210 C272,250 280,280 292,318"/>
+   <path d="M216,300 C230,330 240,380 238,470"/>
   </g>
  </g>
 </g>
-<g clip-path="url(#rh)"><circle cx="200" cy="60" r="36" fill="none" stroke="#7fd6ff" stroke-width="2" filter="url(#glow)"/><path d="M215,98 L217,112 L256,124 L274,140 L292,230 L304,300 L300,316 L288,314 L276,250 L262,176 L252,190 L248,262 L254,300 L248,420 L242,496 L250,512 L216,512 L214,496 L210,330 L200,322 L200,322 L190,330 L186,496 L184,512 L150,512 L158,496 L152,420 L146,300 L152,262 L148,190 L138,176 L124,250 L112,314 L100,316 L96,300 L108,230 L126,140 L144,124 L183,112 L185,98Z" fill="none" stroke="#7fd6ff" stroke-width="2" filter="url(#glow)"/></g>
-<line x1="200" y1="10" x2="200" y2="548" stroke="#ffffff" stroke-width="2" opacity=".9"/>
-<g fill="none" stroke="#4cc3ff" filter="url(#glow)" opacity=".8">
- <ellipse cx="200" cy="522" rx="120" ry="18" stroke-width="1.5"/><ellipse cx="200" cy="522" rx="80" ry="11" stroke-width="2"/><ellipse cx="200" cy="522" rx="150" ry="24" stroke-width="1" stroke-dasharray="3 7"/>
+<g clip-path="url(#rh)" fill="none" stroke="#8fe0ff" stroke-width="2" filter="url(#glow)">
+ <ellipse cx="200" cy="58" rx="31" ry="37"/><path transform="translate(200,0)" d="M0,94 L11,94 C12,100 13,106 15,110 C28,114 44,116 54,120 C64,124 69,134 70,146 C73,176 76,206 79,232 C83,256 88,282 92,300 C96,310 101,320 102,332 C100,340 94,344 89,342 C86,334 84,322 82,312 C78,292 74,266 70,244 C65,220 60,196 54,168 C53,192 50,226 45,262 C47,280 53,292 55,306 C57,340 55,372 50,404 C48,430 46,456 41,488 C42,498 46,506 46,514 L16,516 C15,506 16,498 17,490 C15,458 13,432 13,404 C11,372 8,344 3,326 L0,322 Z"/>
 </g>
-</g><g font-family="Roboto Condensed,system-ui,sans-serif"><g><text x="12" y="110" fill="#6f8cff" font-size="22" font-weight="500">Income &amp; Tax</text><circle cx="151.2" cy="103" r="4" fill="#6f8cff"/><path d="M157.2,103 H222 V112 H262" stroke="#6f8cff" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><text x="12" y="165" fill="#f4b04a" font-size="22" font-weight="500">Housing &amp; Zoning</text><circle cx="193.6" cy="158" r="4" fill="#f4b04a"/><path d="M199.6,158 H232 V196 H272" stroke="#f4b04a" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><text x="12" y="235" fill="#f39a45" font-size="22" font-weight="500">Education</text><circle cx="119.39999999999999" cy="228" r="4" fill="#f39a45"/><path d="M125.39999999999999,228 H242 V270 H282" stroke="#f39a45" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><text x="12" y="300" fill="#ec6a3a" font-size="22" font-weight="500">Employment</text><circle cx="130.0" cy="293" r="4" fill="#ec6a3a"/><path d="M136.0,293 H256 V344 H296" stroke="#ec6a3a" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><text x="12" y="420" fill="#b9586e" font-size="22" font-weight="500">Transportation</text><circle cx="172.4" cy="413" r="4" fill="#b9586e"/><path d="M178.4,413 H260 V430 H300" stroke="#b9586e" stroke-dasharray="2 4" fill="none" opacity=".7"/></g><g><path d="M412,110 H452 V108 H574" stroke="#9fb3c8" fill="none" opacity=".6"/><circle cx="580" cy="108" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="592" y="115" fill="#e8ecea" font-size="22">Daily costs</text></g><g><path d="M452,230 H492 V233 H574" stroke="#9fb3c8" fill="none" opacity=".6"/><circle cx="580" cy="233" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="592" y="240" fill="#e8ecea" font-size="22">Time &amp; commute</text></g><g><path d="M436,330 H476 V323 H574" stroke="#9fb3c8" fill="none" opacity=".6"/><circle cx="580" cy="323" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="592" y="330" fill="#e8ecea" font-size="22">Safety &amp; environment</text></g><g><path d="M424,440 H464 V443 H574" stroke="#9fb3c8" fill="none" opacity=".6"/><circle cx="580" cy="443" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="592" y="450" fill="#e8ecea" font-size="22">Community ties</text></g></g></svg>
-    <span class="example">Illustration · not real data · no medical readings</span>
+<line x1="200" y1="8" x2="200" y2="548" stroke="#ffffff" stroke-width="2.2" opacity=".95"/>
+<g fill="none" stroke="#4cc3ff" filter="url(#glow)" opacity=".85">
+ <ellipse cx="200" cy="522" rx="125" ry="18" stroke-width="1.5"/><ellipse cx="200" cy="522" rx="82" ry="11" stroke-width="2.2"/><ellipse cx="200" cy="522" rx="155" ry="25" stroke-width="1" stroke-dasharray="3 7"/>
+</g></g><g font-family="Roboto Condensed,system-ui,sans-serif"><g><rect x="10" y="101" width="22" height="22" rx="6" fill="#3fd17a" fill-opacity=".18" stroke="#3fd17a"/><text x="21" y="118" text-anchor="middle" fill="#3fd17a" font-size="14" font-weight="700">N</text><text x="40" y="118" fill="#7d95ff" font-size="21" font-weight="500">Income &amp; Tax</text><path d="M175.2,111 H305 V128 H345" stroke="#7d95ff" stroke-dasharray="2 4" fill="none" opacity=".7"/><circle cx="345" cy="128" r="9" fill="#3fd17a" fill-opacity=".25"/><circle cx="345" cy="128" r="4.5" fill="#3fd17a"/></g><g><rect x="10" y="161" width="22" height="22" rx="6" fill="#3fd17a" fill-opacity=".18" stroke="#3fd17a"/><text x="21" y="178" text-anchor="middle" fill="#3fd17a" font-size="14" font-weight="700">N</text><text x="40" y="178" fill="#f4b04a" font-size="21" font-weight="500">Housing &amp; Zoning</text><path d="M217.6,171 H300 V190 H340" stroke="#f4b04a" stroke-dasharray="2 4" fill="none" opacity=".7"/><circle cx="340" cy="190" r="9" fill="#3fd17a" fill-opacity=".25"/><circle cx="340" cy="190" r="4.5" fill="#3fd17a"/></g><g><rect x="10" y="227" width="22" height="22" rx="6" fill="#4cc3ff" fill-opacity=".18" stroke="#4cc3ff"/><text x="21" y="244" text-anchor="middle" fill="#4cc3ff" font-size="14" font-weight="700">W</text><text x="40" y="244" fill="#f39a45" font-size="21" font-weight="500">Education</text><path d="M143.39999999999998,237 H310 V250 H350" stroke="#f39a45" stroke-dasharray="2 4" fill="none" opacity=".7"/><circle cx="350" cy="250" r="9" fill="#4cc3ff" fill-opacity=".25"/><circle cx="350" cy="250" r="4.5" fill="#4cc3ff"/></g><g><rect x="10" y="295" width="22" height="22" rx="6" fill="#3fd17a" fill-opacity=".18" stroke="#3fd17a"/><text x="21" y="312" text-anchor="middle" fill="#3fd17a" font-size="14" font-weight="700">N</text><text x="40" y="312" fill="#ec6a3a" font-size="21" font-weight="500">Employment</text><path d="M154.0,305 H290 V322 H330" stroke="#ec6a3a" stroke-dasharray="2 4" fill="none" opacity=".7"/><circle cx="330" cy="322" r="9" fill="#3fd17a" fill-opacity=".25"/><circle cx="330" cy="322" r="4.5" fill="#3fd17a"/></g><g><rect x="10" y="411" width="22" height="22" rx="6" fill="#3fd17a" fill-opacity=".18" stroke="#3fd17a"/><text x="21" y="428" text-anchor="middle" fill="#3fd17a" font-size="14" font-weight="700">N</text><text x="40" y="428" fill="#c25c74" font-size="21" font-weight="500">Transportation</text><path d="M196.4,421 H312 V440 H352" stroke="#c25c74" stroke-dasharray="2 4" fill="none" opacity=".7"/><circle cx="352" cy="440" r="9" fill="#3fd17a" fill-opacity=".25"/><circle cx="352" cy="440" r="4.5" fill="#3fd17a"/></g><g><path d="M412,150 H442 V121 H574" stroke="#9fb3c8" fill="none" opacity=".55"/><circle cx="580" cy="121" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="592" y="128" fill="#e8ecea" font-size="21">Household budget</text></g><g><path d="M470,262 H500 V241 H574" stroke="#9fb3c8" fill="none" opacity=".55"/><circle cx="580" cy="241" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="592" y="248" fill="#e8ecea" font-size="21">Time &amp; commute</text></g><g><path d="M420,360 H450 V333 H574" stroke="#9fb3c8" fill="none" opacity=".55"/><circle cx="580" cy="333" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="592" y="340" fill="#e8ecea" font-size="21">Safety &amp; environment</text></g><g><path d="M412,440 H442 V433 H574" stroke="#9fb3c8" fill="none" opacity=".55"/><circle cx="580" cy="433" r="5" fill="none" stroke="#f5b544" stroke-width="2"/><text x="592" y="440" fill="#e8ecea" font-size="21">Opportunity</text></g></g></svg>
+    <div class="under">
+      <div class="legend"><span><i class="k n">N</i>Need</span><span><i class="k w">W</i>Want</span><span><i class="k d">★</i>Desire</span></div>
+      <div class="ringtabs" aria-label="Ring filters (example)"><span>Family</span><span>Neighborhood</span><span>Community</span><span class="on">City</span><span>State</span><span>Nation</span></div>
+      <div class="goal">
+        <div><small>★ Your Goal · Example profile: urban, mid-income</small><b>"Buy a home in the next two years"</b></div>
+        <a class="btn white" href="#world">See what affects it</a>
+      </div>
+      <span class="example">Illustration · example data only · no medical readings</span>
+    </div>
   </div>
 
   <aside class="panel" id="testing">
