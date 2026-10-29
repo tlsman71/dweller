@@ -1,0 +1,18 @@
+name: Source correction
+description: Report a fact, source or date that is wrong or out of date.
+title: "[Source] "
+labels: ["data-source"]
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: What does Dweller say?
+    validations:
+      required: true
+  - type: textarea
+    id: correct
+    attributes:
+      label: What's correct, and where is the primary source?
+      description: Link to the official page or document, with its date.
+    validations:
+      required: true

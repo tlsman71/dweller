@@ -1,0 +1,6 @@
+# Never commit keys or personal data
+.env
+*.env
+*keys*.txt
+secrets/
+*.xlsx

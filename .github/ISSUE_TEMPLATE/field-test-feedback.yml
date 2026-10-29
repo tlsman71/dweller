@@ -1,0 +1,36 @@
+name: Field test feedback
+description: Tell us what was confusing, wrong, missing or felt slanted.
+title: "[Feedback] "
+labels: ["field-test"]
+body:
+  - type: markdown
+    attributes:
+      value: "**This form is public.** Please don't include your name, address, phone number or other personal details."
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where do you live? (optional)
+      options: [Charlotte, Cornelius, Davidson, Huntersville, Matthews, Mint Hill, Pineville, Unincorporated Mecklenburg, Elsewhere in NC, Prefer not to say]
+  - type: dropdown
+    id: round
+    attributes:
+      label: Test round
+      options: ["Round 1: impact stories", "Round 2: prototype", "Round 3: pilot", "Other"]
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of feedback?
+      options: [Confusing, Wrong or outdated fact, Missing something, Felt one-sided or slanted, Privacy concern, Something worked well, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What happened?
+      description: What were you doing, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source or date shown on screen (if about a fact)
