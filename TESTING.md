@@ -3,7 +3,7 @@
 Dweller is not ready for testers yet. We are in Phase 1 (checking data sources). This page explains how testing will work so partners and future testers know what to expect.
 
 ## Who we're looking for
-Adults living in Mecklenburg County, NC, in Charlotte, Cornelius, Davidson, Huntersville, Matthews, Mint Hill, Pineville or unincorporated areas. A mix of ages, neighborhoods, incomes and comfort with technology.
+Adults in the United States. Early rounds start in one test area; later rounds open to every state. A mix of ages, neighborhoods, incomes and comfort with technology.
 
 ## What testers will do
 1. Try a short task in an early version (for example: onboarding, or reading one "how this affects me" story).
