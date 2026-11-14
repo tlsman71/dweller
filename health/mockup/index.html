@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dweller Health · Mockup v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Cabin+Sketch:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1211; --slate:#16201c; --slate2:#1b2823; --line:#2f3d37; --chalk:#eeede4; --mute:#c3c8bf;
+  --gold:#c9a227; --gold2:#e8c860; --green:#3fa66b; --green2:#86d8a6; --amber:#e0a030; --amber2:#f2c46c; --cream:#efe6cc; --blue:#8fb6e0; --purple:#c39be6;
+  --chalkfont:"Cabin Sketch","Comic Sans MS",cursive; --body:"Atkinson Hyperlegible",Verdana,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--chalk);font-family:var(--body);font-size:20px;line-height:1.55}
+a{color:var(--gold2)} a:hover{color:#f6dc8a}
+h1,h2,h3{margin:0;font-weight:700}
+.chalk{font-family:var(--chalkfont);font-weight:700;letter-spacing:.01em}
+.wrap{max-width:1240px;margin:0 auto;padding:0 22px}
+.board{background:var(--slate);background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1.2px),radial-gradient(rgba(255,255,255,.02) 1px,transparent 1.4px);background-size:7px 7px,13px 13px;border:1px solid var(--line);border-radius:14px;box-shadow:inset 0 0 60px rgba(0,0,0,.35)}
+.draft{background:#2b2410;color:#f2d98a;font-size:16px;text-align:center;padding:8px 14px}
+header.top{border-bottom:2px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:30}
+header.top .wrap{display:flex;align-items:center;gap:18px;min-height:72px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--chalk);font-family:var(--chalkfont);font-weight:700;font-size:30px}
+.logo span{color:var(--gold2)}
+.place{border:2px solid #2f6b49;color:var(--green2);border-radius:999px;padding:2px 14px;font-weight:700;font-size:17px}
+nav.mainnav{display:flex;gap:6px 18px;flex-wrap:wrap;margin-left:auto}
+nav.mainnav a{color:var(--mute);text-decoration:none;font-weight:700;font-size:18px;padding:10px 4px}
+nav.mainnav a:hover{color:var(--chalk);text-decoration:underline}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 22px;border-radius:10px;border:2px solid var(--line);background:var(--slate2);color:var(--chalk);font-family:var(--body);font-weight:700;font-size:19px;text-decoration:none;cursor:pointer}
+.btn:hover{border-color:#5a6b63;color:var(--chalk)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#17140a}
+.btn.gold:hover{background:var(--gold2);color:#17140a}
+.circled{position:relative;display:inline-block;padding:0 .18em;white-space:nowrap}
+.circled::after{content:"";position:absolute;inset:-.28em -.42em -.22em -.38em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M18 44 C14 18 70 6 112 8 C160 10 192 22 190 42 C188 66 140 76 96 74 C50 72 10 64 14 40 C16 26 40 14 70 12' fill='none' stroke='%23e8c860' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%;pointer-events:none}
+.under{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C50 3 110 11 198 5' fill='none' stroke='%23e8c860' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom/100% .38em;padding-bottom:.12em}
+.kind{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:4px 12px;border-radius:8px;border:2px solid}
+.k-Fact{color:var(--green2);border-color:#2f6b49;background:#12261b}
+.k-Estimate{color:var(--amber2);border-color:#6b5222;background:#2a2112}
+.k-Forecast{color:#b8d2f0;border-color:#35506e;background:#121c27}
+.k-Quote{color:var(--chalk);border-color:#55605a;background:#1b2220}
+.k-Pending{color:var(--chalk);border-color:#6a756e;background:#1b2220;border-style:dashed}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+section.block{padding:72px 0 10px}
+.sec-title{font-family:var(--chalkfont);font-weight:700;font-size:clamp(36px,4.6vw,56px);line-height:1.05}
+.sec-lede{font-size:21px;color:var(--mute);max-width:820px;margin:12px 0 0}
+
+/* hero */
+.hero{padding:40px 0 20px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center}
+@media (max-width:920px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-family:var(--chalkfont);font-weight:700;font-size:clamp(42px,5.6vw,72px);line-height:1.02}
+.hero p.lede{font-size:22px;color:var(--mute);margin:16px 0 22px;max-width:640px}
+.hero-art{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--line);aspect-ratio:1600/902}
+.hero-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:drift 26s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.1) translate(-2.5%,-1.5%)}}
+@media (prefers-reduced-motion:reduce){.hero-art img{animation:none}}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:30px}
+.quick .q{padding:20px 22px}
+.quick .q .lbl{font-size:17px;color:var(--mute);font-weight:700}
+.quick .q .val{font-family:var(--chalkfont);font-weight:700;font-size:34px;line-height:1.1;margin-top:6px}
+.cue{display:flex;align-items:center;gap:12px;justify-content:center;margin:40px 0 0;color:var(--mute);font-weight:700}
+.cue svg{animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+
+/* scroll story */
+.story{position:relative;margin-top:30px}
+.story-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:28px}
+.stage-col{position:relative}
+.stage-sticky{position:sticky;top:96px}
+.stage{position:relative;width:100%;aspect-ratio:1600/902;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#0b0e0d}
+.cam{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform}
+.cam img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
+.cam img.on{opacity:1}
+.cam svg{position:absolute;inset:0;width:100%;height:100%;z-index:5}
+.ftag{position:absolute;z-index:6;pointer-events:none;background:rgba(14,18,17,.9);border:2px solid #6b5a1c;border-radius:8px;padding:4px 10px;font-size:clamp(12px,1.15vw,16px);line-height:1.25;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .3s}
+.ftag b{color:var(--gold2)}
+.ftag.on{opacity:1}
+.progress{display:flex;gap:6px;margin-top:12px}
+.progress i{flex:1;height:8px;border-radius:4px;background:#2a3430}
+.progress i.on{background:var(--gold)}
+.stage-cap{margin-top:10px;font-size:17px;color:var(--mute)}
+.steps{display:flex;flex-direction:column}
+.step{min-height:88vh;display:flex;align-items:center;padding:20px 0}
+.step:first-child{min-height:70vh}
+.card{padding:26px 28px;width:100%;opacity:.38;transition:opacity .5s}
+.step.active .card{opacity:1}
+.card .kick{font-weight:700;color:var(--gold2);font-size:17px;letter-spacing:.04em;text-transform:uppercase}
+.card h3{font-family:var(--chalkfont);font-size:clamp(32px,3.2vw,44px);line-height:1.05;margin:6px 0 10px}
+.card .say{font-size:22px;line-height:1.5;margin:0 0 16px}
+.fact{background:#f3efe2;color:#1d2422;border-radius:10px;padding:16px 18px;margin-top:12px;box-shadow:0 3px 0 rgba(0,0,0,.35)}
+.fact .kind{margin-bottom:8px}
+.fact .k-Fact{color:#11572f;background:#dff0e4;border-color:#3f9a64}
+.fact .k-Estimate{color:#6b4504;background:#f8e9c8;border-color:#c48a1d}
+.fact .k-Forecast{color:#1f3d63;background:#e1ebf7;border-color:#6189b8}
+.fact .k-Quote{color:#2b302d;background:#e9e7df;border-color:#8a8f88}
+.fact .k-Pending{color:#2b302d;background:#e9e7df;border-color:#8a8f88}
+.fact p{margin:0;font-size:21px;line-height:1.45}
+.fact .src{font-size:17px;color:#47504c;margin-top:8px}
+.deckq{margin-top:14px;font-style:italic;color:var(--mute);font-size:18px}
+@media (max-width:920px){
+  .story-grid{grid-template-columns:1fr}
+  .stage-sticky{top:72px;z-index:5}
+  .stage-col{position:sticky;top:72px;z-index:5;background:var(--bg);padding-bottom:6px}
+  .stage-sticky{position:relative;top:0}
+  .stage-cap,.progress{display:none}
+  .step{min-height:75vh}
+}
+
+/* slideshow */
+.deckwrap{padding:18px}
+.deckframe{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#E4F0EF}
+.deckinner{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+.deckinner > section{position:absolute;inset:0;display:none !important}
+.deckinner > section.cur{display:flex !important}
+.deckinner aside{display:none}
+.deckbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.deckbar .count{font-weight:700;font-size:20px;min-width:120px;text-align:center}
+.deckmeta{display:flex;gap:10px 22px;flex-wrap:wrap;align-items:center;color:var(--mute);font-size:18px;margin-top:10px}
+.deckthumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.deckthumbs button{min-width:52px;min-height:44px;border-radius:8px;border:2px solid var(--line);background:var(--slate2);color:var(--chalk);font-weight:700;font-size:17px;cursor:pointer}
+.deckthumbs button[aria-current="true"]{background:var(--gold);color:#17140a;border-color:var(--gold)}
+.notes{margin-top:12px;font-size:18px;color:var(--mute);border-left:4px solid var(--gold);padding:6px 14px}
+
+/* money */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:22px}
+.stat{padding:20px 22px}
+.stat .lbl{font-weight:700;font-size:17px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.stat .val{font-family:var(--chalkfont);font-weight:700;font-size:44px;line-height:1.05;margin:6px 0}
+.stat .sub{font-size:17px;color:var(--mute)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 10px;align-items:center}
+.fbtn{min-height:48px;padding:0 18px;border-radius:10px;border:2px solid var(--line);background:var(--slate2);color:var(--chalk);font-weight:700;font-size:18px;cursor:pointer;font-family:var(--body)}
+.fbtn[aria-pressed="true"]{background:var(--gold);color:#17140a;border-color:var(--gold)}
+.bands{padding:18px 20px}
+.band{display:grid;grid-template-columns:minmax(150px,1fr) 2.2fr minmax(150px,1fr);gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #26332e}
+.band:last-child{border-bottom:none}
+.band .end{font-weight:700;font-size:18px;line-height:1.25}
+.band .end small{display:block;font-weight:400;color:var(--mute);font-size:16px}
+.band .bar{position:relative;height:14px;border-radius:8px;min-height:10px}
+.band .bar.Fact{background:var(--green)}
+.band .bar.Estimate{background:repeating-linear-gradient(90deg,var(--amber) 0 14px,transparent 14px 22px);border:2px solid var(--amber)}
+.band .amt{position:absolute;left:50%;top:-30px;transform:translateX(-50%);font-weight:700;font-size:18px;white-space:nowrap}
+@media (max-width:760px){.band{grid-template-columns:1fr}.band .amt{position:static;transform:none;display:block;margin-bottom:6px}}
+.tablewrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:12px}
+table.tx{width:100%;border-collapse:collapse;min-width:900px;font-size:18px}
+table.tx th{text-align:left;font-size:16px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);padding:12px;background:var(--slate2);border-bottom:2px solid var(--line)}
+table.tx td{padding:14px 12px;border-bottom:1px solid #26332e;vertical-align:top}
+table.tx td.amt{font-weight:700;white-space:nowrap}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;margin-top:16px}
+@media (max-width:920px){.mapgrid{grid-template-columns:1fr}}
+.mapbox{position:relative;min-height:560px;overflow:hidden}
+.mapbox svg{width:100%;height:560px;display:block}
+.mapbox .node{cursor:pointer}
+.mapbox .node:focus{outline:none}
+.mapbox .node:focus-visible circle{stroke:var(--gold2);stroke-width:4}
+.mapbox text{font-family:var(--body);font-size:14px;fill:var(--chalk);paint-order:stroke;stroke:#16201c;stroke-width:4px}
+.legend{display:flex;gap:8px 16px;flex-wrap:wrap;font-size:17px;margin-top:12px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:16px;height:16px;border-radius:50%;display:inline-block}
+.record{padding:20px}
+.record h3{font-family:var(--chalkfont);font-size:30px;line-height:1.1;margin-bottom:8px}
+.record ol{padding-left:22px;margin:8px 0}
+.record li{margin-bottom:10px;font-size:18px}
+.record .src{font-size:16px;color:var(--mute)}
+.note{margin-top:16px;padding:14px 18px;border-left:4px solid var(--green);background:#13201a;font-size:18px}
+.dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
+.date{padding:16px 18px}
+.date .d{font-family:var(--chalkfont);font-weight:700;font-size:26px;color:var(--gold2)}
+.date .w{font-weight:700;margin:4px 0}
+.date .s{font-size:16px;color:var(--mute)}
+.pending{margin-top:16px;padding:16px 20px;border:2px dashed #6a756e;border-radius:12px;font-size:18px}
+
+/* action + follow */
+.act-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;margin-top:22px}
+@media (max-width:920px){.act-grid{grid-template-columns:1fr}}
+.act{padding:24px}
+.period{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;padding:16px 0;border-bottom:1px solid #2a3832}
+.period:last-child{border-bottom:none}
+.period .when{font-family:var(--chalkfont);font-weight:700;font-size:30px;color:var(--gold2);grid-column:1/3}
+.period .what{grid-column:1/3;font-size:20px}
+.phone{font-family:var(--chalkfont);font-weight:700;font-size:44px;line-height:1.1}
+.follow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:22px}
+.tile{padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.tile h3{font-family:var(--chalkfont);font-size:30px;line-height:1.05}
+.tile .item{font-size:18px;border-top:1px solid #2a3832;padding-top:8px}
+.tile .item b{color:var(--gold2)}
+.tile .q{font-size:17px;color:var(--mute);font-style:italic}
+footer{margin-top:80px;border-top:2px solid var(--line);padding:30px 0 50px;color:var(--mute);font-size:18px}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-bottom:6px}
+
+/* deck styles, scoped */
+
+</style>
+<link rel="stylesheet" href="../deck/deck.css">
+</head>
+<body>
+<div class="draft" role="note">Design mockup, version 2 · Nov 13, 2026 · Figures are drafts until they pass Phase 1 source checks.</div>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Dweller Health, home">
+      <svg width="34" height="34" viewBox="0 0 30 30" aria-hidden="true"><path d="M4 26V12L15 4l11 8v14" fill="none" stroke="#e8c860" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 26v-7h8v7" fill="none" stroke="#eeede4" stroke-width="2.2"/><path d="M15 9.5v5M12.5 12h5" stroke="#3fa66b" stroke-width="2.2"/></svg>
+      Dweller <span>Health</span>
+    </a>
+    <span class="place">North Carolina</span>
+    <nav class="mainnav" aria-label="Main">
+      <a href="#street">The Street</a>
+      <a href="#deck">The presentation</a>
+      <a href="#money">Follow the money</a>
+      <a href="#act">What you can do</a>
+      <a href="#updates">Updates</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>How health-coverage decisions reach <span class="under">your</span> coverage, costs and care</h1>
+      <p class="lede">Medicare Advantage, explained one step at a time. Just scroll: the street below walks you through who pays, who gets paid, and what you can do about it in North Carolina.</p>
+      <a class="btn gold" href="#act">See your enrollment dates</a>
+    </div>
+    <div class="hero-art"><img src="../deck/img/street-00-concept.webp" alt="A pencil drawing of a town street: Original Medicare's civic building and an hourglass on the left, private insurance office buildings on the right."></div>
+  </div>
+  <div class="wrap">
+    <div class="quick">
+      <div class="q board"><div class="lbl">Open Enrollment ends</div><div class="val"><span class="circled">Dec 7</span>, 2026</div></div>
+      <div class="q board"><div class="lbl">Free, unbiased help (SHIIP)</div><div class="val"><a href="tel:18554081212" style="color:inherit;text-decoration:none">1-855-408-1212</a></div></div>
+      <div class="q board"><div class="lbl">Already in an MA plan? One more change</div><div class="val">Jan 1 – Mar 31</div></div>
+    </div>
+    <div class="cue" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="#e8c860" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Scroll down to walk the street</div>
+  </div>
+</section>
+
+<section class="block" id="street" aria-label="The Street, a scroll-through story">
+  <div class="wrap">
+    <h2 class="sec-title">The Street</h2>
+    <p class="sec-lede">Two ways to get Medicare sit on either side of one street. Each scroll step is one part of the 2024 presentation. The figures stand for average people, never real ones.</p>
+    <div class="story">
+      <div class="story-grid">
+        <div class="stage-col"><div class="stage-sticky">
+          <div class="stage" id="stage">
+            <div class="cam" id="cam">
+              <img data-k="0" src="../deck/img/street-00-concept.webp" alt="">
+              <img data-k="1" src="../deck/img/street-01-street.webp" alt="">
+              <img data-k="2" src="../deck/img/street-02-money.webp" alt="">
+              <img data-k="3" src="../deck/img/street-03-gate.webp" alt="">
+              <img data-k="4" src="../deck/img/street-04-way-back.webp" alt="">
+              <img data-k="5" src="../deck/img/street-05-lights-out.webp" alt="">
+              <img data-k="6" src="../deck/img/street-06-doctors-leave.webp" alt="">
+              <img data-k="7" src="../deck/img/street-07-hourglass.webp" alt="">
+              <img data-k="8" src="../deck/img/street-08-your-move.webp" alt="">
+              <svg id="fx" viewBox="0 0 1000 564" preserveAspectRatio="none" aria-hidden="true"></svg>
+            </div>
+          </div>
+          <div class="progress" id="prog" aria-hidden="true"></div>
+          <div class="stage-cap" id="stagecap"></div>
+        </div></div>
+        <div class="steps" id="steps"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="deck">
+  <div class="wrap">
+    <h2 class="sec-title">The presentation</h2>
+    <p class="sec-lede">Based on <i>Medicare Advantage</i> by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026. It’s a living deck: when a figure is re-checked, that slide is updated and dated.</p>
+    <div class="board deckwrap" style="margin-top:22px">
+      <div id="deckhost"></div>
+      <div class="deckbar">
+        <button class="btn" id="dprev" aria-label="Previous slide"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</button>
+        <div class="count" id="dcount" aria-live="polite"></div>
+        <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <a class="btn" href="https://tlsman71.github.io/dweller/health/deck/" style="margin-left:auto">Open the full deck</a>
+      </div>
+      <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
+      <div class="deckmeta"><span id="dupdated"></span><span>Every change is recorded in the deck’s public history on GitHub.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="money">
+  <div class="wrap">
+    <h2 class="sec-title">Follow the money</h2>
+    <p class="sec-lede">Where Medicare dollars start, where they end up, and what each step costs taxpayers and people with Medicare. Green lines are documented in public records. Dashed amber lines are researchers’ estimates. Every line points to its source.</p>
+    <div class="stats">
+      <div class="stat board"><div class="lbl">Paid to MA plans above Original Medicare</div><div class="val"><span class="circled">≈ $76 billion</span></div><div class="sub">2026 · Estimate · MedPAC, March 2026 (was $83B in 2024)</div></div>
+      <div class="stat board"><div class="lbl">Extra payments linked to coding</div><div class="val">$10–15 billion</div><div class="sub">a year · Estimate · Health Economics Review, Jan 2, 2024</div></div>
+      <div class="stat board"><div class="lbl">Insurer gross margin per MA enrollee</div><div class="val">$1,730</div><div class="sub">2021, vs. $689–$768 in other markets · Fact · KFF, Feb 28, 2023</div></div>
+    </div>
+    <p style="font-size:17px;color:var(--mute);margin:12px 0 0">These figures cover different years and kinds of money, so they are not added together. An estimate is a researcher’s calculation, not a transfer anyone can trace.</p>
+
+    <div class="filters" role="group" aria-label="Show">
+      <button class="fbtn" data-f="all" aria-pressed="true">All money</button>
+      <button class="fbtn" data-f="Fact" aria-pressed="false">Documented</button>
+      <button class="fbtn" data-f="Estimate" aria-pressed="false">Estimates</button>
+    </div>
+    <div class="board bands" id="bands" aria-label="Where the money started and where it ended up"></div>
+
+    <div class="tablewrap"><table class="tx" id="txtable"><thead><tr><th scope="col">When</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Amount</th><th scope="col">Kind</th><th scope="col">What for</th><th scope="col">Source</th></tr></thead><tbody></tbody></table></div>
+
+    <h3 class="chalk" style="font-size:38px;margin-top:46px">Money map</h3>
+    <p class="sec-lede" style="margin-top:6px">Tap or click any circle to see its record: every connection, with the document it comes from.</p>
+    <div class="legend" id="legend"></div>
+    <div class="mapgrid">
+      <div class="board mapbox"><svg id="map" viewBox="0 0 900 560" role="img" aria-label="Money map of Medicare Advantage: agencies, funds, insurers, providers and reports, connected by payments and findings"></svg></div>
+      <div class="board record" id="record" aria-live="polite">
+        <h3>How to read this</h3>
+        <ol>
+          <li>Click a circle to see its record, in date order, each with its source.</li>
+          <li>Solid green lines are documented money or facts.</li>
+          <li>Dashed amber lines are estimates.</li>
+          <li>Grey dashed circles are not yet sourced. Nothing goes on the map without a document.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="note">Appearing on this map does not mean wrongdoing. It shows how Medicare money moves, as reported by government bodies, researchers and companies. Insurers’ responses are added next to critical findings as they are sourced.</div>
+    <div class="pending"><b>Not on the map yet:</b> insurers’ lobbying (Senate lobbying disclosures), political giving (Federal Election Commission), and Justice Department cases about Medicare Advantage billing. These will be added only with the filings themselves.</div>
+
+    <h3 class="chalk" style="font-size:38px;margin-top:46px">Key dates</h3>
+    <div class="dates" id="dates"></div>
+  </div>
+</section>
+
+<section class="block" id="act">
+  <div class="wrap">
+    <h2 class="sec-title">What you can do</h2>
+    <p class="sec-lede">Dweller explains your options and drafts what you need. You decide and you send. Dweller never enrolls you or contacts a plan for you.</p>
+    <div class="act-grid">
+      <div class="board act">
+        <span class="kind k-Fact">Fact · checked Nov 9, 2026</span>
+        <div class="period"><div class="when">Oct 15 – Dec 7, 2026</div><div class="what"><b>Open Enrollment.</b> Join, switch or drop a Medicare Advantage or drug plan, or go back to Original Medicare. New coverage starts Jan 1.</div></div>
+        <div class="period"><div class="when">Jan 1 – Mar 31, 2027</div><div class="what"><b>MA Open Enrollment.</b> Already in an MA plan? You can make one change: another MA plan, or Original Medicare plus a drug plan.</div></div>
+        <div class="period"><div class="when">Any time, if something changes</div><div class="what"><b>Special Enrollment.</b> For example, you move, lose other coverage, or your plan leaves your area.</div></div>
+        <p style="font-size:17px;color:var(--mute);margin:12px 0 0">Source: Medicare.gov, <a href="https://www.medicare.gov/publications/12026-understanding-medicare-advantage-plans.pdf">Understanding Medicare Advantage Plans</a>.</p>
+      </div>
+      <div class="board act">
+        <h3 class="chalk" style="font-size:34px">Free help in North Carolina</h3>
+        <p style="margin:6px 0 2px"><b>SHIIP</b>, NC Department of Insurance. Free and unbiased; they don’t sell insurance.</p>
+        <div class="phone"><a href="tel:18554081212" style="color:var(--gold2);text-decoration:none">1-855-408-1212</a></div>
+        <p style="margin:2px 0 14px;color:var(--mute)">Monday to Friday, 8am–5pm · <a href="https://www.ncdoi.gov/consumers/medicare-and-shiip">ncdoi.gov/shiip</a></p>
+        <h3 class="chalk" style="font-size:30px">Leaving Medicare Advantage?</h3>
+        <p style="margin:6px 0">Check Medigap first. You are guaranteed a Medigap policy only in certain situations, such as your plan leaving your area or your first 12 months in Medicare Advantage. <a href="https://www.medicare.gov/health-drug-plans/medigap/ready-to-buy/when">Medicare.gov: When can I buy Medigap?</a></p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+          <a class="btn gold" href="https://www.medicare.gov/plan-compare">Compare plans on Medicare.gov</a>
+          <a class="btn" href="#act">Draft my questions for SHIIP</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="updates">
+  <div class="wrap">
+    <h2 class="sec-title">Follow the updates</h2>
+    <p class="sec-lede">What’s new from CMS, MedPAC, the Inspector General, the courts and North Carolina. Each item links to its docket. (Live feeds connect in the prototype; these are sample entries.)</p>
+    <div class="follow-grid">
+      <article class="tile board"><h3>Spending &amp; premiums</h3>
+        <div class="item"><b>2026</b> · CMS: 2027 Medicare Advantage payments up 2.48% on average (over $13 billion)</div>
+        <div class="item"><b>Mar 2026</b> · MedPAC: about $76 billion more for MA enrollees than Original Medicare</div>
+        <div class="q">From the presentation: “MA Plans Gouge Taxpayers to Manage Profit Margins”</div></article>
+      <article class="tile board"><h3>Prior authorization</h3>
+        <div class="item"><b>2026</b> · Inspector General report OEI-09-24-00330 on denials; CMS update due <b>Dec 7, 2026</b></div>
+        <div class="item"><b>2026</b> · WISeR pilot in 6 states, <b>not in North Carolina</b></div>
+        <div class="q">From the presentation: “Delay, Deny, Profit”</div></article>
+      <article class="tile board"><h3>Plans leaving</h3>
+        <div class="item"><b>2026</b> · JAMA: about 2.9 million MA enrollees had to switch plans for 2026</div>
+        <div class="item"><b>Oct 15 – Dec 7</b> · Open Enrollment is open now</div>
+        <div class="q">From the presentation: “In For a Penny Out For a Profit”</div></article>
+      <article class="tile board"><h3>NC Medicaid &amp; ACA</h3>
+        <div class="item"><b>Jan 1, 2027</b> · NC Medicaid work requirement starts</div>
+        <div class="item"><b>2027</b> · ACA out-of-pocket limit $12,000 / $24,000; higher bronze limit paused by a federal court</div>
+        <div class="q">New dockets, layouts coming next</div></article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div><h3>Dweller Health</h3>Part of the Dweller family (Dweller, Dweller Docket). Starting in North Carolina.</div>
+    <div><h3>How we check</h3>Every claim has a dated source and says whether it’s a Fact, an Estimate, a Forecast or a Quote. Critical findings sit next to the other side’s response.</div>
+    <div><h3>Your privacy</h3>Every field is optional. Export or delete everything at any time. Your data is never sold.</div>
+  </div>
+</footer>
+
+<script src="../deck/slides.js"></script>
+<script src="../deck/deck.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id)};
+var NS="http://www.w3.org/2000/svg";
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+/* ================= THE STREET (scroll-driven) ================= */
+var S=[
+ {img:0,k:"Start here",t:"The Street",
+  say:"Two ways to get Medicare benefits sit on either side of one street. On the left, Original Medicare, run by the government (CMS). On the right, Medicare Advantage plans, run by private insurance companies.",
+  fact:{L:"Fact",x:"Congress created today’s Medicare Advantage program in 2003, in the Medicare Modernization Act. More than half of people eligible for Medicare are now in a Medicare Advantage plan.",s:"Public Law 108-173 (2003); KFF, 2024 (to refresh)"},
+  deck:"Slide 1: “Medicare Advantage Plans Cost Taxpayers More Than Traditional Medicare”",cam:[[1,0,0],[1.06,-1,-1]]},
+ {img:1,k:"Who’s on the street",t:"People choose a side",
+  say:"When you turn 65 you choose: stay with Original Medicare, or join a private Medicare Advantage plan. Watch the figure crossing the street. It stands for an average person, not a real one.",
+  fact:{L:"Pending",x:"When someone joins Medicare Advantage, Medicare pays their plan a set amount every month. We are checking the per-person amount, and how it compares with Original Medicare, before we show it.",s:"CMS payment data; MedPAC · being checked"},
+  deck:"Slide 1: “Neglects Enrollees … Threatens Original Medicare”",cam:[[1.02,1,0],[1.1,-3,-2]],
+  actors:[{type:"walker",p:[[590,560],[575,495],[470,492],[360,492],[330,470]],a:.1,b:.9,tag:["Joins Medicare Advantage","Medicare pays the plan every month"]}]},
+ {img:2,k:"The money",t:"Payments cross the street",
+  say:"For every person in a Medicare Advantage plan, Medicare sends a monthly payment across the street to their insurer. Bigger companies get bigger streams.",
+  fact:{L:"Estimate",x:"Medicare is expected to pay about $76 billion more in 2026 for people in Medicare Advantage than it would if they were in Original Medicare. (The presentation cited $83 billion for 2024.)",s:"MedPAC, Report to the Congress, March 2026 · re-check in Phase 1"},
+  deck:"Slide 10: “MA Plans ‘Corporations Are People Too’”",cam:[[1,0,0],[1.08,-2,2]],tokens:true},
+ {img:3,k:"Access to care",t:"The gate",
+  say:"Many treatments need the plan’s permission first. This is called prior authorization. Most requests pass. Some are denied, and very few denials are appealed, even though most appeals win.",
+  fact:{L:"Fact",x:"In 2021: 35 million requests, 2 million denied, 11% of denials appealed, and 82% of appeals overturned the denial.",s:"KFF, Feb 2, 2023 · to refresh with the latest year"},
+  deck:"Slide 3: “MA Plans Short-Change Seniors”",cam:[[1.04,-3,-1],[1.16,-9,-4]],
+  actors:[{type:"walker",p:[[600,500],[640,455],[675,440],[645,465],[600,520]],a:.05,b:.6,tag:["Request denied","You can appeal"]},{type:"walker",p:[[560,560],[605,500],[660,452],[690,440]],a:.5,b:.95,tag:["Appeals","Brings a folder back"]}]},
+ {img:4,k:"Who gets kept, who gets dropped",t:"The way back",
+  say:"Some people leave Medicare Advantage and go back to Original Medicare. In the year after, their care costs Medicare more than people who never left.",
+  fact:{L:"Estimate",x:"People who left Medicare Advantage cost Medicare $2,585 more on average the next year (2022). Insurers say this gives “an incomplete and misleading picture.”",s:"KFF, Dec 6, 2024 · Insurers: AHIP, via The Wall Street Journal"},
+  deck:"Slide 5: “MA Plans Cherry-Pick Enrollees”",cam:[[1.08,0,-4],[1.02,0,0]],
+  actors:[{type:"walker",p:[[600,470],[560,492],[450,494],[350,494],[300,480]],a:.08,b:.92,slow:1,tag:["Back to Original Medicare","≈ $2,585 more the next year"]}]},
+ {img:1,k:"Who is affected",t:"Who is on each side",
+  say:"Medicare Advantage has made some care more affordable for people with lower incomes. But better-rated plans, and plan closings, are not spread evenly.",
+  fact:{L:"Fact",x:"About 30% of the nearly 34 million people in Medicare Advantage are Black, Latino or Asian.",s:"Better Medicare Alliance, State of MA 2024 (an industry-supported group) · corrected Nov 11"},
+  deck:"Slides 7–8: “MA Use and Access Disparities”",cam:[[1.18,-14,-6],[1.26,-18,-8]]},
+ {img:5,k:"Plans leaving",t:"Lights out",
+  say:"When a plan closes in your county, you get a letter and must pick new coverage: another plan, or Original Medicare.",
+  fact:{L:"Fact",x:"About 2.9 million people in Medicare Advantage had to switch plans for 2026 because their plan ended. Humana alone ended plans for about 560,000 members for 2025.",s:"JAMA, 2026 (checked Nov 13) · Humana CFO, Sept 4, 2024 (Becker’s)"},
+  deck:"Slide 9: “In For a Penny Out For a Profit”",cam:[[1.04,-4,0],[1.14,-10,-3]],
+  actors:[{type:"walker",p:[[880,470],[800,500],[700,520],[600,500]],a:.1,b:.9,tag:["Plan ended","Must pick new coverage"]}]},
+ {img:6,k:"Doctors leaving",t:"Doctors leave",
+  say:"Some hospitals and doctors’ groups are dropping their contracts with Medicare Advantage plans. They say denials and slow payments are the reason.",
+  fact:{L:"Estimate",x:"16% of health systems surveyed planned to stop accepting one or more Medicare Advantage plans.",s:"HFMA survey of 135 health-system finance chiefs, 2024"},
+  deck:"Slide 12: “MA Plan Providers Exit Networks”",cam:[[1.06,-6,-3],[1.16,-12,-6]],
+  actors:[{type:"doctor",p:[[700,430],[780,470],[880,500],[1010,520]],a:.1,b:.9,tag:["Leaves the network","Find a new in-network doctor"]}]},
+ {img:7,k:"The trust fund",t:"The hourglass",
+  say:"Hospital care under Medicare Part A is paid from a trust fund. Each year the Medicare Trustees project how long it will last.",
+  fact:{L:"Forecast",x:"The Part A trust fund is projected to run short in 2033. After that, about 89% of hospital benefits could still be paid.",s:"Medicare Trustees Report, June 9, 2026"},
+  deck:"Slide 1: “…threaten the fiscal sustainability of Original Medicare.” (MedPAC)",cam:[[1,0,0],[1.12,0,-2]]},
+ {img:8,k:"Your move",t:"What you can do",
+  say:"You can change your coverage at set times each year, and free, unbiased help is a phone call away.",
+  fact:{L:"Fact",x:"Open Enrollment: Oct 15 – Dec 7. Medicare Advantage Open Enrollment: Jan 1 – Mar 31. Free help from SHIIP: 1-855-408-1212.",s:"Medicare.gov; NC Department of Insurance · checked Nov 9, 2026"},
+  deck:"Slide 12: “Network Stress” (dates corrected Nov 2026)",cam:[[1.08,0,-3],[1,0,0]]}
+];
+var LBL={Fact:"Fact: from the record",Estimate:"Estimate: a researcher’s calculation",Forecast:"Forecast: a projection",Quote:"Quote: someone’s words",Pending:"Still being checked"};
+var steps=$("steps"),prog=$("prog");
+S.forEach(function(s,i){
+  var st=document.createElement("div");st.className="step";st.dataset.i=i;
+  st.innerHTML='<div class="card board"><div class="kick">'+(i+1)+' of '+S.length+' · '+esc(s.k)+'</div><h3>'+esc(s.t)+'</h3><p class="say">'+esc(s.say)+'</p>'+
+   '<div class="fact"><span class="kind k-'+s.fact.L+'">'+LBL[s.fact.L]+'</span><p>'+esc(s.fact.x)+'</p><div class="src">Source: '+esc(s.fact.s)+'</div></div>'+
+   '<div class="deckq">From the presentation, '+esc(s.deck)+'</div></div>';
+  steps.appendChild(st);
+  prog.appendChild(document.createElement("i"));
+});
+var cam=$("cam"),fx=$("fx"),stage=$("stage"),imgs=[].slice.call(cam.querySelectorAll("img"));
+var cur=-1,actors=[],tokens=[],tagEls=[];
+function sizeAt(y){return Math.max(14,16+(y-200)*0.2)}
+function figure(type){
+  var g=el("g",{});
+  el("ellipse",{cx:2,cy:-1,rx:7,ry:2,fill:"rgba(0,0,0,.35)"},g);
+  el("ellipse",{cx:0,cy:-38,rx:4.2,ry:4.8,fill:"#cfc8b4",stroke:"#2b2a25","stroke-width":.9},g);
+  el("path",{d:type==="doctor"?"M-5,-32 L5,-32 L6.5,-8 L-6.5,-8 Z":"M-4.5,-32 L4.5,-32 L4,-14 L-4,-14 Z",fill:type==="doctor"?"#f1eee4":"#a9a28f",stroke:"#2b2a25","stroke-width":.9},g);
+  el("rect",{x:-2.5,y:-27,width:5,height:6,fill:"#e8c34a",stroke:"#7a5d12","stroke-width":.5,rx:.8},g);
+  var la=el("line",{x1:-1.5,y1:-14,x2:-3,y2:0,stroke:"#5a5548","stroke-width":2.4,"stroke-linecap":"round"},g);
+  var lb=el("line",{x1:1.5,y1:-14,x2:3,y2:0,stroke:"#5a5548","stroke-width":2.4,"stroke-linecap":"round"},g);
+  if(type==="doctor")el("rect",{x:5,y:-16,width:7,height:6,rx:1.5,fill:"#1c1c1a"},g);
+  return {g:g,la:la,lb:lb};
+}
+function pathPos(p,u){var L=[],tot=0,i;for(i=1;i<p.length;i++){var l=Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]);L.push(l);tot+=l}
+  var d=u*tot;for(i=1;i<p.length;i++){if(d<=L[i-1]||i===p.length-1){var f=L[i-1]?Math.min(1,d/L[i-1]):0;return [p[i-1][0]+(p[i][0]-p[i-1][0])*f,p[i-1][1]+(p[i][1]-p[i-1][1])*f,p[i][0]-p[i-1][0]]}d-=L[i-1]}}
+function build(i){
+  fx.innerHTML="";actors=[];tokens=[];tagEls.forEach(function(e){e.remove()});tagEls=[];
+  var s=S[i];
+  (s.actors||[]).forEach(function(a){var f=figure(a.type);fx.appendChild(f.g);var ft=document.createElement("div");ft.className="ftag";ft.innerHTML="<b>"+esc(a.tag[0])+"</b><br>"+esc(a.tag[1]);stage.appendChild(ft);tagEls.push(ft);actors.push({a:a,f:f,ft:ft})});
+  if(s.tokens){var T=[[640,190,1.6],[830,205,1.4],[650,320,1.1],[890,320,.9],[680,420,.8],[810,420,.6],[920,440,.6]];
+    for(var n=0;n<46;n++){var tg=T[n%T.length];tokens.push({c:el("circle",{r:3.2,fill:"#e8c34a",stroke:"#7a5d12","stroke-width":.6,opacity:0},fx),tx:tg[0],ty:tg[1],off:(n*.53)%6,sp:3.2/tg[2]})}}
+  imgs.forEach(function(im,k){im.classList.toggle("on",k===s.img)});
+  [].forEach.call(prog.children,function(x,j){x.classList.toggle("on",j<=i)});
+  $("stagecap").textContent="Step "+(i+1)+" of "+S.length+": "+s.t;
+  [].forEach.call(steps.children,function(x,j){x.classList.toggle("active",j===i)});
+}
+function lerp(a,b,u){return a+(b-a)*u}
+function stepProgress(i){var r=steps.children[i].getBoundingClientRect(),vh=window.innerHeight;return Math.max(0,Math.min(1,(vh*.6-r.top)/(r.height)))}
+function current(){var vh=window.innerHeight,best=0;for(var i=0;i<steps.children.length;i++){var r=steps.children[i].getBoundingClientRect();if(r.top<vh*.6)best=i}return best}
+var clock=0,last=null;
+function frame(ts){
+  if(last==null)last=ts;clock+=Math.min(.1,(ts-last)/1000);last=ts;
+  var i=current();if(i!==cur){cur=i;build(i)}
+  var s=S[i],p=stepProgress(i),e=reduce?.5:p;
+  var c0=s.cam[0],c1=s.cam[1],sc=lerp(c0[0],c1[0],reduce?0:e),lim=(sc-1)/2/sc*100-.2;
+  var tx=Math.max(-lim,Math.min(lim,lerp(c0[1],c1[1],reduce?0:e))),ty=Math.max(-lim,Math.min(lim,lerp(c0[2],c1[2],reduce?0:e)));
+  cam.style.transform="scale("+sc+") translate("+tx+"%,"+ty+"%)";
+  var R=stage.getBoundingClientRect();
+  actors.forEach(function(o){var a=o.a,u=(p-a.a)/(a.b-a.a);if(reduce)u=.5;var vis=u>=0&&u<=1;o.f.g.style.display=vis?"":"none";o.ft.classList.toggle("on",vis&&u>.05&&u<.95);if(!vis)return;
+    var P=pathPos(a.p,u),k=sizeAt(P[1])/40,dir=P[2]<0?-1:1,sw=reduce?0:Math.sin(u*(a.slow?40:70));
+    o.f.g.setAttribute("transform","translate("+P[0].toFixed(1)+","+P[1].toFixed(1)+") scale("+(k*dir).toFixed(3)+","+k.toFixed(3)+")");
+    o.f.la.setAttribute("x2",(-3+sw*3).toFixed(2));o.f.lb.setAttribute("x2",(3-sw*3).toFixed(2));
+    var W=R.width,H=R.height,px=P[0]/1000*W,py=(P[1]-44*k)/564*H;px=(px-W/2)*sc+W/2+tx/100*W*sc;py=(py-H/2)*sc+H/2+ty/100*H*sc;
+    var hw=(o.ft.offsetWidth||160)/2+6;o.ft.style.left=Math.max(hw,Math.min(W-hw,px))+"px";o.ft.style.top=Math.max(44,py-4)+"px"});
+  tokens.forEach(function(k){if(reduce){k.c.setAttribute("opacity",0);return}var q=((clock+k.off)/k.sp)%1;
+    k.c.setAttribute("cx",lerp(225,k.tx,q).toFixed(1));k.c.setAttribute("cy",(lerp(250,k.ty,q)-Math.sin(q*Math.PI)*120).toFixed(1));k.c.setAttribute("opacity",(.25+.75*Math.sin(q*Math.PI)).toFixed(2))});
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ================= SLIDE SHOW (same renderer and content as the GitHub deck) ================= */
+var dk=renderDeck($("deckhost"),{imgBase:"../deck/img/",onchange:function(i,n){$("dcount").textContent=(i+1)+" of "+n;[].forEach.call($("dthumbs").children,function(b,j){b.setAttribute("aria-current",j===i?"true":"false")})}});
+DECK.slides.forEach(function(s,i){var b=document.createElement("button");b.textContent=i+1;b.setAttribute("aria-label","Slide "+(i+1)+": "+s.headline);b.addEventListener("click",function(){dk.go(i)});$("dthumbs").appendChild(b)});
+dk.go(0);
+$("dprev").addEventListener("click",dk.prev);$("dnext").addEventListener("click",dk.next);
+$("dupdated").innerHTML="<b>Last updated:</b> "+DECK.updated+" · <b>Sources checked:</b> "+DECK.checked;
+
+/* ================= FOLLOW THE MONEY ================= */
+var N=[
+ {id:"tax",n:"Taxpayers & payroll taxes",t:"group"},
+ {id:"benes",n:"People with Medicare",t:"group"},
+ {id:"hi",n:"Part A trust fund",t:"account"},
+ {id:"smi",n:"Part B & D trust fund",t:"account"},
+ {id:"cms",n:"CMS · Original Medicare",t:"agency"},
+ {id:"ma",n:"Medicare Advantage plans",t:"company"},
+ {id:"unh",n:"UnitedHealth Group",t:"company"},
+ {id:"hum",n:"Humana",t:"company"},
+ {id:"cvs",n:"CVS Health / Aetna",t:"company"},
+ {id:"cen",n:"Centene / WellCare",t:"company"},
+ {id:"prov",n:"Hospitals & doctors’ groups",t:"group"},
+ {id:"left",n:"People who left MA",t:"group"},
+ {id:"inv",n:"Shareholders",t:"group"},
+ {id:"congress",n:"Congress",t:"agency"},
+ {id:"medpac",n:"MedPAC",t:"agency"},
+ {id:"trustees",n:"Medicare Trustees",t:"agency"},
+ {id:"oig",n:"HHS Inspector General",t:"agency"},
+ {id:"mma",n:"Medicare Modernization Act 2003",t:"law"},
+ {id:"r_kff",n:"KFF analyses",t:"report"},
+ {id:"r_her",n:"Health Economics Review study",t:"report"},
+ {id:"r_jama",n:"JAMA study",t:"report"},
+ {id:"r_hfma",n:"HFMA survey",t:"report"},
+ {id:"p_lda",n:"Lobbying (not yet sourced)",t:"pending"},
+ {id:"p_fec",n:"Political giving (not yet sourced)",t:"pending"},
+ {id:"p_doj",n:"DOJ billing cases (not yet sourced)",t:"pending"}
+];
+var E=[
+ {s:"congress",t:"mma",l:"passed",d:"2003",k:"Fact",src:"Public Law 108-173"},
+ {s:"mma",t:"ma",l:"created today’s Medicare Advantage program",d:"2003",k:"Fact",src:"Public Law 108-173"},
+ {s:"tax",t:"hi",l:"payroll taxes fund hospital insurance",d:"2026",k:"Fact",src:"Medicare Trustees Report, Jun 9, 2026"},
+ {s:"tax",t:"smi",l:"general tax revenue funds most of Parts B & D",d:"2026",k:"Fact",src:"Medicare Trustees Report, Jun 9, 2026"},
+ {s:"benes",t:"smi",l:"Part B premiums",d:"2026",k:"Fact",src:"Medicare Trustees Report, Jun 9, 2026"},
+ {s:"benes",t:"smi",l:"higher spending on MA raised Part B premiums for everyone",amt:7e9,amtTxt:"$7 billion (extra spending)",d:"2019",k:"Estimate",src:"KFF, Aug 17, 2021",what:"Extra Medicare spending on MA enrollees in 2019, which raised Part B premiums for all, including people in Original Medicare"},
+ {s:"hi",t:"cms",l:"pays hospital benefits",d:"2026",k:"Fact",src:"Medicare Trustees Report, Jun 9, 2026"},
+ {s:"smi",t:"cms",l:"pays doctor and drug benefits",d:"2026",k:"Fact",src:"Medicare Trustees Report, Jun 9, 2026"},
+ {s:"cms",t:"ma",l:"pays MA plans more than Original Medicare would cost",amt:83e9,amtTxt:"$83 billion",d:"2024",k:"Estimate",src:"MedPAC, Report to the Congress, Mar 15, 2024",what:"Payments for MA enrollees above what Original Medicare would have spent on them"},
+ {s:"cms",t:"ma",l:"pays MA plans more than Original Medicare would cost",amt:76e9,amtTxt:"≈ $76 billion",d:"2026",k:"Estimate",src:"MedPAC, Report to the Congress, Mar 2026 (re-check)",what:"Same comparison, newest year"},
+ {s:"cms",t:"ma",l:"2027 payment increase",amt:13e9,amtTxt:"+2.48%, over $13 billion",d:"2027",k:"Fact",src:"CMS, 2027 MA rate announcement (checked Nov 13, 2026)",what:"Average change in what Medicare pays MA plans for 2027"},
+ {s:"cms",t:"ma",l:"extra payments from diagnosis coding",amt:12.5e9,amtTxt:"$10–15 billion a year",d:"2010–2019",k:"Estimate",src:"Joiner, Lin & Pantano, Health Economics Review, Jan 2, 2024",what:"Estimated yearly MA payments from coding patients as sicker (vs. $656 million in Original Medicare Part A)"},
+ {s:"cms",t:"left",l:"pays more for people who left MA",amtTxt:"+$2,585 per person, next year",d:"2022",k:"Estimate",src:"KFF, Dec 6, 2024",what:"Extra Medicare spending in the year after people leave MA, compared with people who stayed in Original Medicare",quote:"Insurers say: “an incomplete and misleading picture” (AHIP, via WSJ)"},
+ {s:"cms",t:"left",l:"cost shifted for people in their last year of life",amtTxt:"$218 a day, 300,075 people",d:"2016–2022",k:"Estimate",src:"Wall Street Journal analysis, via AHCJ, Dec 2024",what:"Cost of care for people who left MA in their final year of life, moving from insurers to Medicare"},
+ {s:"unh",t:"ma",l:"runs MA plans",k:"Fact",src:"CMS enrollment data"},{s:"hum",t:"ma",l:"runs MA plans",k:"Fact",src:"CMS enrollment data"},
+ {s:"cvs",t:"ma",l:"runs MA plans (Aetna)",k:"Fact",src:"CMS enrollment data"},{s:"cen",t:"ma",l:"runs MA plans (WellCare)",k:"Fact",src:"CMS enrollment data"},
+ {s:"unh",t:"inv",l:"net earnings, all businesses",amt:22.4e9,amtTxt:"$22.4 billion",d:"2023",k:"Fact",src:"UnitedHealth Group, 2023 results, Jan 12, 2024",what:"Company-wide net earnings (not Medicare Advantage alone)"},
+ {s:"ma",t:"prov",l:"pays hospitals and doctors, often at lower network rates",k:"Fact",src:"Presentation slide 12 (sources listed there)"},
+ {s:"prov",t:"ma",l:"16% of health systems plan to drop one or more MA plans",d:"2024",k:"Estimate",src:"HFMA & Eliciting Insights, CFO survey, 2024"},
+ {s:"hum",t:"benes",l:"ended plans for about 560,000 members",d:"2025",k:"Fact",src:"Humana CFO at Wells Fargo conference, Sep 4, 2024 (Becker’s)"},
+ {s:"cvs",t:"benes",l:"planned to cut about 430,000 MA enrollees",d:"2025",k:"Estimate",src:"W. Potter, HEALTH CARE un-covered, Aug 8, 2024"},
+ {s:"cen",t:"benes",l:"planned to cut nearly 40,000 enrollees in six states",d:"2025",k:"Estimate",src:"W. Potter, Aug 8, 2024"},
+ {s:"ma",t:"benes",l:"about 2.9 million had to switch plans",d:"2026",k:"Fact",src:"JAMA, 2026 (checked Nov 13, 2026)"},
+ {s:"medpac",t:"congress",l:"advises on Medicare payment",k:"Fact",src:"MedPAC"},
+ {s:"medpac",t:"ma",l:"reports MA payments above Original Medicare",d:"Mar 2026",k:"Estimate",src:"MedPAC, March 2026"},
+ {s:"trustees",t:"hi",l:"projects the fund runs short in 2033; about 89% payable after",d:"Jun 2026",k:"Forecast",src:"Medicare Trustees Report, Jun 9, 2026"},
+ {s:"oig",t:"ma",l:"report on denials of post-acute care; CMS update due Dec 7, 2026",d:"2026",k:"Fact",src:"HHS OIG, OEI-09-24-00330"},
+ {s:"r_kff",t:"ma",l:"gross margin $1,730 per enrollee (2021) vs. $689–$768 in other markets",d:"2021",k:"Fact",src:"KFF, Feb 28, 2023"},
+ {s:"r_kff",t:"left",l:"spending after leaving MA",d:"2022",k:"Estimate",src:"KFF, Dec 6, 2024"},
+ {s:"r_her",t:"cms",l:"estimates coding-related payments",d:"Jan 2024",k:"Estimate",src:"Health Economics Review, Jan 2, 2024"},
+ {s:"r_jama",t:"benes",l:"counts forced plan switches",d:"2026",k:"Fact",src:"JAMA, 2026"},
+ {s:"r_hfma",t:"prov",l:"surveys health systems",d:"2024",k:"Estimate",src:"HFMA, 2024"},
+ {s:"p_lda",t:"ma",l:"not yet sourced: Senate lobbying disclosures",k:"Pending",src:"To be pulled (Phase 1)"},
+ {s:"p_fec",t:"ma",l:"not yet sourced: FEC filings",k:"Pending",src:"To be pulled (Phase 1)"},
+ {s:"p_doj",t:"ma",l:"not yet sourced: court filings",k:"Pending",src:"To be pulled (Phase 1)"}
+];
+var NT={group:{c:"#c39be6",n:"People & groups"},account:{c:"#8fb6e0",n:"Trust funds"},agency:{c:"#3fa66b",n:"Agencies & bodies"},company:{c:"#e0a030",n:"Insurers"},law:{c:"#a9b0aa",n:"Laws"},report:{c:"#efe6cc",n:"Reports & studies"},pending:{c:"transparent",n:"Not yet sourced"}};
+var byId={};N.forEach(function(n){byId[n.id]=n});
+var filt="all";
+function pass(k){return filt==="all"||k===filt}
+// bands
+function drawBands(){
+  var B=E.filter(function(e){return e.amt&&pass(e.k)}).sort(function(a,b){return b.amt-a.amt}),max=83e9,h="";
+  B.forEach(function(e){var w=Math.max(6,e.amt/max*100);
+    h+='<div class="band"><div class="end">'+esc(byId[e.s].n)+'<small>sent · '+esc(e.d)+'</small></div><div><div class="bar '+e.k+'" style="width:'+w.toFixed(1)+'%"><span class="amt">'+esc(e.amtTxt)+'</span></div></div><div class="end">'+esc(byId[e.t].n)+'<small>'+esc(e.l)+'</small></div></div>'});
+  $("bands").innerHTML=h||'<p>No money lines of this kind yet.</p>';
+}
+function drawTable(){
+  var rows=E.filter(function(e){return e.amtTxt&&pass(e.k)}).map(function(e){
+    return '<tr><td>'+esc(e.d)+'</td><td>'+esc(byId[e.s].n)+'</td><td>'+esc(byId[e.t].n)+'</td><td class="amt">'+esc(e.amtTxt)+'</td><td><span class="kind k-'+e.k+'">'+e.k+'</span></td><td>'+esc(e.what||e.l)+(e.quote?'<br><i>'+esc(e.quote)+'</i>':'')+'</td><td>'+esc(e.src)+'</td></tr>'}).join("");
+  document.querySelector("#txtable tbody").innerHTML=rows;
+}
+// legend
+$("legend").innerHTML=Object.keys(NT).map(function(k){return '<span><i style="background:'+NT[k].c+(k==="pending"?';border:2px dashed #8a948d':'')+'"></i>'+NT[k].n+'</span>'}).join("")+'<span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="#3fa66b" stroke-width="3"/></svg>Documented</span><span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="#e0a030" stroke-width="3" stroke-dasharray="6 4"/></svg>Estimate or forecast</span>';
+// force layout (precomputed, deterministic)
+var W=900,H=560,pos={};
+var seedPos={cms:[450,280],ma:[640,280],tax:[110,150],benes:[300,470],hi:[250,150],smi:[250,330],unh:[820,140],hum:[840,250],cvs:[820,360],cen:[760,450],prov:[640,500],left:[430,470],inv:[860,40],congress:[300,40],medpac:[480,60],trustees:[110,60],oig:[640,90],mma:[470,150],r_kff:[560,400],r_her:[380,370],r_jama:[150,500],r_hfma:[780,520],p_lda:[700,40],p_fec:[560,30],p_doj:[760,200]};
+N.forEach(function(n){pos[n.id]={x:seedPos[n.id][0],y:seedPos[n.id][1],vx:0,vy:0}});
+for(var it=0;it<260;it++){
+  N.forEach(function(a){N.forEach(function(b){if(a===b)return;var A=pos[a.id],B=pos[b.id],dx=A.x-B.x,dy=A.y-B.y,d2=dx*dx+dy*dy+.01,d=Math.sqrt(d2);if(d<150){var f=900/d2;A.vx+=dx/d*f;A.vy+=dy/d*f}})});
+  E.forEach(function(e){var A=pos[e.s],B=pos[e.t],dx=B.x-A.x,dy=B.y-A.y,d=Math.sqrt(dx*dx+dy*dy)+.01,f=(d-170)*.004;A.vx+=dx/d*f;A.vy+=dy/d*f;B.vx-=dx/d*f;B.vy-=dy/d*f});
+  N.forEach(function(n){var P=pos[n.id],S0=seedPos[n.id];P.vx+=(S0[0]-P.x)*.02;P.vy+=(S0[1]-P.y)*.02;P.x+=P.vx*.5;P.y+=P.vy*.5;P.vx*=.6;P.vy*=.6;P.x=Math.max(70,Math.min(W-70,P.x));P.y=Math.max(28,Math.min(H-28,P.y))});
+}
+var map=$("map"),sel=null;
+function deg(id){return E.filter(function(e){return e.s===id||e.t===id}).length}
+function drawMap(){
+  map.innerHTML="";var gE=el("g",{},map),gN=el("g",{},map);
+  E.forEach(function(e){if(!pass(e.k)&&e.k!=="Pending")return;var A=pos[e.s],B=pos[e.t];
+    var col=e.k==="Fact"?"#3fa66b":e.k==="Pending"?"#6a756e":"#e0a030",dash=e.k==="Fact"?"":"7 5";
+    var on=!sel||e.s===sel||e.t===sel;
+    el("line",{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:col,"stroke-width":e.amt?Math.max(2.5,Math.min(9,e.amt/1e10)):2,"stroke-dasharray":dash,opacity:on?.9:.15},gE)});
+  N.forEach(function(n){var P=pos[n.id],r=n.t==="pending"?11:Math.min(22,9+deg(n.id)*1.6);
+    var on=!sel||sel===n.id||E.some(function(e){return (e.s===sel&&e.t===n.id)||(e.t===sel&&e.s===n.id)});
+    var g=el("g",{class:"node",tabindex:"0",role:"button","aria-label":n.n+". Show its record",opacity:on?1:.3},gN);
+    el("circle",{cx:P.x,cy:P.y,r:r,fill:NT[n.t].c,stroke:n.t==="pending"?"#8a948d":"#16201c","stroke-width":n.t==="pending"?2:3,"stroke-dasharray":n.t==="pending"?"4 3":""},g);
+    var tx=el("text",{x:P.x,y:P.y+r+16,"text-anchor":"middle"},g);tx.textContent=n.n;
+    var open=function(){sel=(sel===n.id)?null:n.id;drawMap();record(sel)};
+    g.addEventListener("click",open);g.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();open()}});
+  });
+}
+function record(id){
+  var R=$("record");
+  if(!id){R.innerHTML='<h3>How to read this</h3><ol><li>Click a circle to see its record, in date order, each with its source.</li><li>Solid green lines are documented money or facts.</li><li>Dashed amber lines are estimates.</li><li>Grey dashed circles are not yet sourced. Nothing goes on the map without a document.</li></ol>';return}
+  var n=byId[id],L=E.filter(function(e){return e.s===id||e.t===id}).sort(function(a,b){return String(a.d||"").localeCompare(String(b.d||""))});
+  R.innerHTML='<h3>'+esc(n.n)+'</h3><p class="src">'+NT[n.t].n+' · '+L.length+' connections</p><ol>'+L.map(function(e){var other=e.s===id?byId[e.t].n:byId[e.s].n,dir=e.s===id?"→ ":"← ";
+    return '<li><span class="kind k-'+e.k+'" style="font-size:14px;padding:1px 8px">'+e.k+'</span> '+(e.d?'<b>'+esc(e.d)+'</b> · ':'')+dir+esc(other)+': '+esc(e.l)+(e.amtTxt?' <b>('+esc(e.amtTxt)+')</b>':'')+'<div class="src">Source: '+esc(e.src)+'</div></li>'}).join("")+'</ol><button class="btn" id="clearsel">Show the whole map</button>';
+  $("clearsel").addEventListener("click",function(){sel=null;drawMap();record(null)});
+}
+[].forEach.call(document.querySelectorAll(".fbtn"),function(b){b.addEventListener("click",function(){filt=b.dataset.f;[].forEach.call(document.querySelectorAll(".fbtn"),function(x){x.setAttribute("aria-pressed",x===b)});drawBands();drawTable();drawMap()})});
+drawBands();drawTable();drawMap();
+// key dates
+var D=[["2003","Medicare Advantage created","Medicare Modernization Act (P.L. 108-173)"],["Feb 2, 2023","Prior authorization counts","KFF: 35M requests, 2M denied (2021)"],["Mar 15, 2024","MedPAC: $83B more","Report to the Congress"],["Dec 6, 2024","Leaving MA costs more","KFF: +$2,585 per person (2022)"],["Mar 2026","MedPAC: ≈ $76B more","Report to the Congress (re-check)"],["Jun 9, 2026","Trust fund forecast","Trustees: Part A short in 2033"],["2026","2.9M forced switches","JAMA, for plan year 2026"],["Oct 15 – Dec 7, 2026","Open Enrollment","Medicare.gov"],["Dec 7, 2026","CMS update due to OIG","OEI-09-24-00330"],["Jan 1 – Mar 31, 2027","MA Open Enrollment","Medicare.gov"]];
+$("dates").innerHTML=D.map(function(d){return '<div class="date board"><div class="d">'+esc(d[0])+'</div><div class="w">'+esc(d[1])+'</div><div class="s">'+esc(d[2])+'</div></div>'}).join("");
+})();
+</script>
+</body>
+</html>
