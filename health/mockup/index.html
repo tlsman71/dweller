@@ -110,12 +110,52 @@ section.block{padding:72px 0 10px}
 .fact .src{font-size:17px;color:#47504c;margin-top:8px}
 .deckq{margin-top:14px;font-style:italic;color:var(--mute);font-size:18px}
 @media (max-width:920px){
-  .story-grid{grid-template-columns:1fr}
-  .stage-sticky{top:72px;z-index:5}
-  .stage-col{position:sticky;top:72px;z-index:5;background:var(--bg);padding-bottom:6px}
+  /* Phones and small tablets: the street stays pinned at the very top of the screen and the
+     story cards scroll underneath it. The site header is not pinned here (on a phone its menu
+     wraps to ~275px and used to cover the street completely). */
+  header.top{position:relative}
+  .story-grid{grid-template-columns:1fr;gap:0}
+  .stage-col{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0 10px;margin:0 -22px;padding-left:22px;padding-right:22px;box-shadow:0 10px 14px -8px rgba(0,0,0,.7)}
   .stage-sticky{position:relative;top:0}
-  .stage-cap,.progress,.stage-note{display:none}
-  .step{min-height:75vh}
+  /* keep the pinned street to at most ~42% of the screen height (matters in landscape) */
+  .stage{max-width:calc(42vh * 1600 / 902);margin:0 auto}
+  .stage-cap,.stage-note{display:none}
+  .progress{display:flex;max-width:calc(42vh * 1600 / 902);margin:8px auto 0;gap:4px}
+  .progress i{height:6px}
+  .step{min-height:0;padding:28vh 0 0}
+  .step:first-child{min-height:0;padding-top:16px}
+  .step:last-child{padding-bottom:30vh}
+  .card{padding:20px 18px;opacity:.45}
+  .card .kick{font-size:16px}
+  .card h3{font-size:32px}
+  .card .say{font-size:20px;line-height:1.5}
+  .fact{padding:14px 14px}
+  .fact p{font-size:20px;line-height:1.45}
+  .fact .src{font-size:16px}
+  .deckq{font-size:17px}
+  .ftag{white-space:normal;width:max-content;max-width:62%;font-size:13px;padding:3px 8px}
+}
+@media (max-width:520px){
+  /* small phones: building signs show the name only, so the seven signs on the right don't pile up */
+  .blbl small{display:none}
+  .blbl{padding:0 5px;border-width:1.5px}
+}
+@media (max-width:920px) and (max-height:500px){
+  /* phone held sideways: street and story side by side again, street pinned */
+  .story-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px}
+  .stage-col{position:relative;margin:0;padding:0;box-shadow:none;background:none}
+  .stage-sticky{position:sticky;top:8px}
+  .stage{max-width:none}
+  .progress{max-width:none}
+  .step{padding:30vh 0 0}
+  .step:first-child{padding-top:0}
+}
+@media (max-width:760px){
+  nav.mainnav{margin-left:0;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:4px 16px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  nav.mainnav::-webkit-scrollbar{display:none}
+  nav.mainnav a{white-space:nowrap;padding:8px 2px}
+  header.top .wrap{gap:6px 14px;padding-top:6px;padding-bottom:4px;min-height:0}
+  .logo{font-size:26px}
 }
 
 /* slideshow */
@@ -520,8 +560,14 @@ function build(i){
   [].forEach.call(steps.children,function(x,j){x.classList.toggle("active",j===i)});
 }
 function lerp(a,b,u){return a+(b-a)*u}
-function stepProgress(i){var r=steps.children[i].getBoundingClientRect(),vh=window.innerHeight;return Math.max(0,Math.min(1,(vh*.6-r.top)/(r.height)))}
-function current(){var vh=window.innerHeight,best=0;for(var i=0;i<steps.children.length;i++){var r=steps.children[i].getBoundingClientRect();if(r.top<vh*.6)best=i}return best}
+/* Trigger line for the active step. Desktop: 60% down the screen. Phone (street pinned on top):
+   halfway down the part of the screen below the pinned street, so a card turns active when it is
+   actually readable, not while it is still hidden behind the street. */
+var stageColEl=document.querySelector(".stage-col"),mqPhone=window.matchMedia("(max-width:920px) and (min-height:501px)"),mqNarrow=window.matchMedia("(max-width:920px)");
+function trigger(){var vh=window.innerHeight;if(!mqPhone.matches)return vh*.6;var b=stageColEl.getBoundingClientRect().bottom;b=Math.max(0,Math.min(vh*.6,b));return b+(vh-b)*.45}
+function box(i){var st=steps.children[i];return (mqNarrow.matches?st.firstElementChild:st).getBoundingClientRect()}
+function stepProgress(i){var r=box(i),y=trigger();return Math.max(0,Math.min(1,(y-r.top)/(r.height)))}
+function current(){var y=trigger(),best=0;for(var i=0;i<steps.children.length;i++){if(box(i).top<y)best=i}return best}
 var clock=0,last=null;
 function frame(ts){
   if(last==null)last=ts;clock+=Math.min(.1,(ts-last)/1000);last=ts;
@@ -536,7 +582,7 @@ function frame(ts){
     o.f.g.setAttribute("transform","translate("+P[0].toFixed(1)+","+P[1].toFixed(1)+") scale("+(k*dir).toFixed(3)+","+k.toFixed(3)+")");
     o.f.la.setAttribute("x2",(-3+sw*3).toFixed(2));o.f.lb.setAttribute("x2",(3-sw*3).toFixed(2));
     var W=R.width,H=R.height,px=P[0]/1000*W,py=(P[1]-44*k)/564*H;px=(px-W/2)*sc+W/2+tx/100*W*sc;py=(py-H/2)*sc+H/2+ty/100*H*sc;
-    var hw=(o.ft.offsetWidth||160)/2+6;o.ft.style.left=Math.max(hw,Math.min(W-hw,px))+"px";o.ft.style.top=Math.max(44,py-4)+"px"});
+    var hw=(o.ft.offsetWidth||160)/2+6;o.ft.style.left=Math.max(hw,Math.min(W-hw,px))+"px";o.ft.style.top=Math.max(44,(o.ft.offsetHeight||40)+4,py-4)+"px"});
   tokens.forEach(function(k){if(reduce){k.c.setAttribute("opacity",0);return}var q=((clock+k.off)/k.sp)%1;
     k.c.setAttribute("cx",lerp(225,k.tx,q).toFixed(1));k.c.setAttribute("cy",(lerp(250,k.ty,q)-Math.sin(q*Math.PI)*120).toFixed(1));k.c.setAttribute("opacity",(.25+.75*Math.sin(q*Math.PI)).toFixed(2))});
   requestAnimationFrame(frame);
