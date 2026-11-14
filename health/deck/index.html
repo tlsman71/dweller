@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medicare Advantage in North Carolina · Dweller Health</title>
+<meta name="description" content="A nonpartisan, source-checked presentation on Medicare Advantage costs, coverage and choices for North Carolina residents. Updated as sources are re-checked.">
+<meta name="theme-color" content="#0e1211">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/icon-32.png">
+<style>
+@font-face{font-family:"Roboto Condensed";src:url(../../fonts/roboto-condensed-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Roboto Condensed";src:url(../../fonts/roboto-condensed-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+html,body{margin:0;background:#0e1211;color:#ecebe4;font-family:"Roboto Condensed","Arial Narrow",Arial,sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:18px}
+.top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.top h1{margin:0;font-size:24px}
+.top h1 b{color:#e0bd45}
+.top .meta{color:#a9b0aa;font-size:17px;margin-left:auto}
+.ctrl{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.btn{min-height:48px;padding:0 20px;border-radius:8px;border:1px solid #2a3430;background:#1d2522;color:#ecebe4;font:700 19px "Roboto Condensed",Arial,sans-serif;cursor:pointer}
+.btn.gold{background:#c9a227;border-color:#c9a227;color:#17140a}
+.count{font-size:20px;font-weight:700;min-width:90px;text-align:center}
+a{color:#e0bd45}
+.foot{color:#a9b0aa;font-size:16px;margin-top:14px;line-height:1.5}
+</style>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><h1>Dweller <b>Health</b> · Medicare Advantage in North Carolina</h1><span class="meta" id="meta"></span></div>
+  <div id="deck"></div>
+  <div class="ctrl">
+    <button class="btn" id="prev" aria-label="Previous slide">← Back</button>
+    <span class="count" id="count" aria-live="polite"></span>
+    <button class="btn gold" id="next" aria-label="Next slide">Next →</button>
+    <span style="margin-left:auto;color:#a9b0aa">Arrow keys work too. Press F for full screen.</span>
+  </div>
+  <p class="foot">This is a living deck: each slide shows the date it was last updated, and every change is recorded in the <a href="https://github.com/tlsman71/dweller/commits/main/health/deck">change history</a>. Every number is labeled Fact, Estimate, Forecast or Quote, with its source. Nonpartisan; insurers’ responses are added as they are sourced.</p>
+</div>
+<script src="slides.js"></script>
+<script src="deck.js"></script>
+<script>
+var d=renderDeck(document.getElementById("deck"),{imgBase:"img/",hash:true,onchange:function(i,n){document.getElementById("count").textContent=(i+1)+" / "+n}});
+document.getElementById("prev").onclick=d.prev;document.getElementById("next").onclick=d.next;
+document.getElementById("meta").textContent="Updated "+DECK.updated+" · sources checked "+DECK.checked;
+document.addEventListener("keydown",function(e){if(e.target.closest&&e.target.closest(".dk-frame"))return;if(e.key==="ArrowRight")d.next();if(e.key==="ArrowLeft")d.prev();if(e.key==="f"||e.key==="F"){var f=document.querySelector(".dk-frame");if(f.requestFullscreen)f.requestFullscreen()}});
+</script>
+</body>
+</html>
