@@ -76,6 +76,14 @@ section.block{padding:72px 0 10px}
 .cam img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
 .cam img.on{opacity:1}
 .cam svg{position:absolute;inset:0;width:100%;height:100%;z-index:5}
+.blabels{position:absolute;inset:0;z-index:4;pointer-events:none;transition:opacity .6s}
+.blabels.off{opacity:0}
+.blbl{position:absolute;transform:translate(-50%,-50%);background:#f3efe2;color:#1d2422;border:2px solid #2b2a25;border-radius:5px;padding:1px 7px;font-family:var(--body);font-weight:700;font-size:clamp(10px,1.02vw,15px);line-height:1.15;text-align:center;white-space:nowrap;box-shadow:0 2px 0 rgba(0,0,0,.45)}
+.blbl.civic{font-size:clamp(11px,1.2vw,18px);padding:2px 10px}
+.blbl.closed{background:#3a3f3c;color:#e9e7df;border-color:#8a8f88;font-weight:400}
+.blbl small{display:block;font-weight:400;font-size:.82em}
+.stage-note{margin-top:6px;font-size:16px;color:var(--mute)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .ftag{position:absolute;z-index:6;pointer-events:none;background:rgba(14,18,17,.9);border:2px solid #6b5a1c;border-radius:8px;padding:4px 10px;font-size:clamp(12px,1.15vw,16px);line-height:1.25;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .3s}
 .ftag b{color:var(--gold2)}
 .ftag.on{opacity:1}
@@ -106,7 +114,7 @@ section.block{padding:72px 0 10px}
   .stage-sticky{top:72px;z-index:5}
   .stage-col{position:sticky;top:72px;z-index:5;background:var(--bg);padding-bottom:6px}
   .stage-sticky{position:relative;top:0}
-  .stage-cap,.progress{display:none}
+  .stage-cap,.progress,.stage-note{display:none}
   .step{min-height:75vh}
 }
 
@@ -254,11 +262,14 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
               <img data-k="6" src="../deck/img/street-06-doctors-leave.webp" alt="">
               <img data-k="7" src="../deck/img/street-07-hourglass.webp" alt="">
               <img data-k="8" src="../deck/img/street-08-your-move.webp" alt="">
+              <div class="blabels" id="blabels" aria-hidden="true"></div>
               <svg id="fx" viewBox="0 0 1000 564" preserveAspectRatio="none" aria-hidden="true"></svg>
             </div>
+            <p class="sr-only" id="streetdesc">On the left side of the street: Original Medicare, run by CMS, with an hourglass for the Part A trust fund. On the right side: buildings for the Medicare Advantage insurers UnitedHealthcare, Humana, Aetna (CVS Health), Elevance, Kaiser Permanente, Centene (WellCare), and all other plans.</p>
           </div>
           <div class="progress" id="prog" aria-hidden="true"></div>
           <div class="stage-cap" id="stagecap"></div>
+          <div class="stage-note">Company names are text labels, not logos. Building sizes are a drawing for now; they will follow each company’s Medicare Advantage enrollment once those figures are verified.</div>
         </div></div>
         <div class="steps" id="steps"></div>
       </div>
@@ -459,6 +470,28 @@ S.forEach(function(s,i){
   prog.appendChild(document.createElement("i"));
 });
 var cam=$("cam"),fx=$("fx"),stage=$("stage"),imgs=[].slice.call(cam.querySelectorAll("img"));
+/* Building labels: plain text on the blank sign panels (no logos). Positions are the sign centers
+   in the 1000x564 art space; the same layout is used in stills 00-06 and 08. Assignment follows
+   the brief's list in order of size (2 large, 2 medium, 3 small); sizes are illustrative until the
+   enrollment figures are verified. In stills 05-06 two buildings are drawn dark (plan closed), so
+   they show a generic "Plan closed" sign rather than a company name. */
+var BL=[
+ {x:203,y:189,n:"Original Medicare",sub:"CMS",civic:1},
+ {x:630,y:163,n:"UnitedHealthcare"},
+ {x:836,y:173,n:"Humana"},
+ {x:664,y:278,n:"Aetna",sub:"CVS Health"},
+ {x:891,y:298,n:"Elevance",dark:1},
+ {x:685,y:365,n:"Kaiser",sub:"Permanente"},
+ {x:812,y:386,n:"Centene",sub:"WellCare"},
+ {x:920,y:383,n:"All other",sub:"plans",dark:1}
+];
+var blab=$("blabels"),blEls=BL.map(function(b){var d=document.createElement("div");d.className="blbl"+(b.civic?" civic":"");d.style.left=(b.x/10)+"%";d.style.top=(b.y/5.64)+"%";blab.appendChild(d);return d});
+function setLabels(img){
+  blab.classList.toggle("off",img===7);
+  var dark=img===5||img===6;
+  BL.forEach(function(b,k){var d=blEls[k],closed=dark&&b.dark;d.classList.toggle("closed",closed);
+    d.innerHTML=closed?"Plan closed<small>example</small>":esc(b.n)+(b.sub?"<small>"+esc(b.sub)+"</small>":"")});
+}
 var cur=-1,actors=[],tokens=[],tagEls=[];
 function sizeAt(y){return Math.max(14,16+(y-200)*0.2)}
 function figure(type){
@@ -481,6 +514,7 @@ function build(i){
   if(s.tokens){var T=[[640,190,1.6],[830,205,1.4],[650,320,1.1],[890,320,.9],[680,420,.8],[810,420,.6],[920,440,.6]];
     for(var n=0;n<46;n++){var tg=T[n%T.length];tokens.push({c:el("circle",{r:3.2,fill:"#e8c34a",stroke:"#7a5d12","stroke-width":.6,opacity:0},fx),tx:tg[0],ty:tg[1],off:(n*.53)%6,sp:3.2/tg[2]})}}
   imgs.forEach(function(im,k){im.classList.toggle("on",k===s.img)});
+  setLabels(s.img);
   [].forEach.call(prog.children,function(x,j){x.classList.toggle("on",j<=i)});
   $("stagecap").textContent="Step "+(i+1)+" of "+S.length+": "+s.t;
   [].forEach.call(steps.children,function(x,j){x.classList.toggle("active",j===i)});

@@ -13,10 +13,11 @@ Design mockup of the Dweller Health landing page, Nov 13, 2026. Every figure is 
 5. **What you can do:** enrollment periods, Medigap note and SHIIP (checked Nov 9, 2026).
 6. **Follow the updates:** sample entries; live feeds come in the prototype.
 
+**Building labels (Nov 13, 2026):** plain-text signs on the street art (the `BL` list in the script): Original Medicare (CMS) on the left; UnitedHealthcare, Humana, Aetna (CVS Health), Elevance, Kaiser Permanente, Centene (WellCare) and All other plans on the right, in the brief's order by building size. Sizes are illustrative until enrollment shares are verified. In the "Lights out" and "Doctors leave" stills, the two dark buildings read "Plan closed · example" instead of a company name. Hidden on the hourglass close-up. A screen-reader description of the street is included.
+
 ## Look
 "Chalkboard civics class" in Dweller colors: Cabin Sketch headings, Atkinson Hyperlegible body text at 20px or larger, high contrast, labels written out in words. Honors reduced-motion settings.
 
 ## Next
-- Text labels for CMS and the insurer buildings on the street.
 - Phone-width check of the scroll story.
 - North Carolina figures beside the national ones, once verified.
