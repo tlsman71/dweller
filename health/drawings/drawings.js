@@ -24,8 +24,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-medpac-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-medpac-v2"
    },
    "headline": "Advantage pay adds $11 billion to Part B premiums",
    "source_short": "MedPAC, Mar 2026"
@@ -46,8 +48,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-hi-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-hi-v2"
    },
    "headline": "Part A pays in full until 2033. Then 89%.",
    "source_short": "Medicare Trustees, Jun 2026"
@@ -68,8 +72,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-oig-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-oig-v2"
    },
    "headline": "Top 3 insurers: some of the highest rehab-care denial rates",
    "source_short": "HHS Inspector General, Jun 2026"
@@ -90,8 +96,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-tax-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-tax-v2"
    },
    "headline": "Your paycheck funds Part A: 2.9%, split with your employer",
    "source_short": "Medicare Trustees, 2026"
@@ -112,8 +120,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-benes-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-benes-v2"
    },
    "headline": "1 in 10 Advantage members lost their plan for 2026",
    "source_short": "JAMA, 2026"
@@ -134,8 +144,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-smi-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-smi-v2"
    },
    "headline": "Taxes pay 73% of Part B and 81% of Part D",
    "source_short": "Medicare Trustees, 2026"
@@ -156,8 +168,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-cms-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-cms-v2"
    },
    "headline": "Advantage costs Medicare $76 billion more than Original would",
    "source_short": "MedPAC, Mar 2026"
@@ -178,8 +192,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-ma-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-ma-v2"
    },
    "headline": "34.9 million in Advantage: 55% of those eligible",
    "source_short": "MedPAC, Mar 2026"
@@ -222,8 +238,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-hum-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-hum-v2"
    },
    "headline": "Humana: 560,000 members had to find a new plan",
    "source_short": "Humana, Sep 2024"
@@ -244,8 +262,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-cvs-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-cvs-v2"
    },
    "headline": "Aetna: Advantage members to drop by high single digits",
    "source_short": "CVS Health, Feb 2025"
@@ -310,8 +330,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-left-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-left-v2"
    },
    "headline": "Left Advantage? Medicare then spent 27% more",
    "source_short": "KFF, Dec 2024"
@@ -376,8 +398,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-trustees-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-trustees-v2"
    },
    "headline": "Part A's shortfall date moved up: mid-2033",
    "source_short": "Medicare Trustees, Jun 2026"
@@ -398,8 +422,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-mma-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-mma-v2"
    },
    "headline": "2003: the law that created Medicare Advantage",
    "source_short": "Public Law 108-173"
