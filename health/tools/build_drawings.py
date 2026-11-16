@@ -7,12 +7,15 @@ Reads health/drawings/drawings.js. For every slide whose image Tom approved:
   - health/drawings/img/<id>.webp    1280x720 WebP (quality 82) for the slide show
   - health/drawings/share/<id>.jpg   share card: the image, the Dweller Health name, the caption
                                      (only once Tom approved it), a QR code and the link back to the slide
+  - health/drawings/p/<id>.html      share page: preview tags so the card shows in social posts,
+                                     then it forwards the visitor to the slide
+    (--pages-only rebuilds just the share pages from the cards already in the repo; no masters needed)
 Files for slides that are not approved are removed, so nothing unapproved is published.
 Masters (dweller-health-drawing-<id>.webp; redraws <id>-v<N>.webp) stay off the repo.
 
 Needs: pip install pillow qrcode fonttools brotli
 """
-import argparse, io, json, re, sys, textwrap
+import argparse, html, io, json, re, sys, textwrap
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 import qrcode
@@ -20,7 +23,7 @@ from fontTools.ttLib import TTFont
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "health/drawings/drawings.js"
-IMG, SHARE = ROOT / "health/drawings/img", ROOT / "health/drawings/share"
+IMG, SHARE, PAGES = ROOT / "health/drawings/img", ROOT / "health/drawings/share", ROOT / "health/drawings/p"
 BG, PANEL, CHALK, MUTE, GOLD, GREEN, AMBER, BLUE = "#0e1211", "#16201c", "#eeede4", "#c3c8bf", "#e8c860", "#86d8a6", "#f2c46c", "#b8d2f0"
 KIND_COLOR = {"Fact": GREEN, "Estimate": AMBER, "Forecast": BLUE, "Quote": CHALK}
 
@@ -79,11 +82,60 @@ def card(pic, s, url):
     return c
 
 
+def pages(cfg, keep):
+    """One small page per approved slide. Social sites read its preview tags (the card), people are sent to the slide."""
+    base = cfg["share_base"].rstrip("/") + "/"
+    droot = re.sub(r"mockup/$", "drawings/", base)
+    PAGES.mkdir(parents=True, exist_ok=True)
+    for s in cfg["slides"]:
+        if s["id"] not in keep:
+            continue
+        cap_ok = s.get("caption", {}).get("status") == "approved"
+        title = html.escape((s["headline"] if cap_ok else s["label"]) + " · Dweller Health")
+        desc = html.escape((s["kind"] + " · " + s["source_short"] + ". " if cap_ok else "") + "How health-coverage decisions reach your coverage, costs and care. North Carolina.")
+        img, me, slide = f"{droot}share/{s['id']}.jpg", f"{droot}p/{s['id']}.html", f"{base}#slide-{s['id']}"
+        alt = html.escape(s.get("scene", s["label"]))
+        (PAGES / f"{s['id']}.html").write_text(f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>{title}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="{me}">
+<meta name="description" content="{desc}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dweller Health">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{me}">
+<meta property="og:image" content="{img}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="1020">
+<meta property="og:image:alt" content="{alt}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{img}">
+<meta name="twitter:image:alt" content="{alt}">
+<style>body{{margin:0;background:#0e1211;color:#eeede4;font:20px/1.5 Verdana,sans-serif;padding:40px 20px;text-align:center}}a{{color:#e8c860}}</style>
+<script>location.replace({json.dumps(slide)});</script>
+</head><body><p>Opening Dweller Health… <a href="{slide}">Go to the picture</a></p></body></html>
+""", encoding="utf-8")
+    for f in PAGES.glob("*.html"):
+        if f.stem not in keep:
+            f.unlink(); print("removed (not approved):", f.relative_to(ROOT))
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--masters", required=True, help="folder with dweller-health-drawing-<id>.webp masters")
+    ap.add_argument("--masters", help="folder with dweller-health-drawing-<id>.webp masters")
+    ap.add_argument("--pages-only", action="store_true", help="only rebuild the share pages from cards already built")
     a = ap.parse_args()
     cfg = load()
+    if a.pages_only:
+        keep = {s["id"] for s in cfg["slides"] if s["image"]["status"] == "approved" and (SHARE / f"{s['id']}.jpg").exists()}
+        pages(cfg, keep); print(f"built {len(keep)} share page(s)"); return
+    if not a.masters:
+        ap.error("--masters is required (or use --pages-only)")
     base = cfg["share_base"].rstrip("/") + "/"
     IMG.mkdir(parents=True, exist_ok=True); SHARE.mkdir(parents=True, exist_ok=True)
     keep, missing = set(), []
@@ -102,7 +154,8 @@ def main():
         for f in folder.glob(f"*.{ext}"):
             if f.stem not in keep:
                 f.unlink(); print("removed (not approved):", f.relative_to(ROOT))
-    print(f"built {len(keep)} approved slide(s)")
+    pages(cfg, keep)
+    print(f"built {len(keep)} approved slide(s) and share pages")
     if missing:
         sys.exit("missing masters:\n  " + "\n  ".join(missing))
 

@@ -280,7 +280,11 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 .share-panel img{width:100%;max-width:520px;border-radius:8px;border:1px solid var(--line)}
 .share-panel .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
 .sharei{width:58px;min-width:58px;padding:0;border-radius:50%;min-height:58px}
-.social a{min-height:48px;font-size:17px;padding:0 14px}
+.sharewrap{position:relative;display:inline-block}
+.sharemenu{position:absolute;left:0;bottom:66px;z-index:40;display:flex;flex-direction:column;gap:6px;min-width:200px;padding:10px;background:var(--slate2);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.sharemenu[hidden]{display:none}
+.sharemenu a,.sharemenu button{display:flex;align-items:center;min-height:46px;padding:0 14px;border-radius:8px;color:var(--chalk);text-decoration:none;font:700 18px var(--body);background:transparent;border:0;cursor:pointer;text-align:left}
+.sharemenu a:hover,.sharemenu button:hover,.sharemenu a:focus-visible,.sharemenu button:focus-visible{background:#26332e;outline:none}
 .share-panel input{font:inherit;font-size:16px;width:100%;background:var(--bg);color:var(--chalk);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
 .draftbadge{position:absolute;top:12px;right:12px;background:#2b2410;color:#f2d98a;border:1px solid #6b5222;border-radius:999px;padding:4px 14px;font-size:16px;font-weight:700}
 </style>
@@ -298,8 +302,8 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <nav class="mainnav" aria-label="Main">
       <a href="#pictures">Your health, your cost, who gets paid</a>
       <a href="#street">The Street</a>
-      <a href="#deck">The presentation</a>
       <a href="#money">Follow the money</a>
+      <a href="#deck">The presentation</a>
       <a href="#act">What you can do</a>
       <a href="#updates">Updates</a>
     </nav>
@@ -320,16 +324,6 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
         <div class="show-cap" id="showcap" aria-live="polite"></div>
       </div>
       <div class="show-dots" id="showdots" role="group" aria-label="Choose a picture"></div>
-      <div class="share-panel" id="sharepanel" hidden>
-        <div><img id="shareimg" alt=""></div>
-        <div>
-          <p style="margin:0;font-weight:700">Share this picture</p>
-          <p style="margin:6px 0 0;color:var(--mute);font-size:17px">Save the picture and post it anywhere. Its QR code and link bring people back to this slide.</p>
-          <div class="row social" id="sharesocial" aria-label="Share on"></div>
-          <div class="row"><a class="btn gold" id="sharedl" download>Save the picture</a><button class="btn" id="sharecopy" type="button">Copy the link</button></div>
-          <label style="display:block;margin-top:10px;font-size:16px;color:var(--mute)">Link<input id="sharelink" readonly></label>
-        </div>
-      </div>
     </div>
   </div>
   <div class="wrap">
@@ -375,24 +369,6 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   </div>
 </section>
 
-<section class="block" id="deck">
-  <div class="wrap">
-    <h2 class="sec-title">The presentation</h2>
-    <p class="sec-lede">Based on <i>Medicare Advantage</i> by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026. It’s a living deck: when a figure is re-checked, that slide is updated and dated.</p>
-    <div class="board deckwrap" style="margin-top:22px">
-      <div id="deckhost"></div>
-      <div class="deckbar">
-        <button class="btn" id="dprev" aria-label="Previous slide"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</button>
-        <div class="count" id="dcount" aria-live="polite"></div>
-        <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <a class="btn" href="https://tlsman71.github.io/dweller/health/deck/" style="margin-left:auto">Open the full deck</a>
-      </div>
-      <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
-      <div class="deckmeta"><span id="dupdated"></span><span>Every change is recorded in the deck’s public history on GitHub.</span></div>
-    </div>
-  </div>
-</section>
-
 <section class="block" id="money">
   <div class="wrap">
     <h2 class="sec-title">Follow the money</h2>
@@ -433,6 +409,24 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 
     <h3 class="chalk" style="font-size:38px;margin-top:46px">Key dates</h3>
     <div class="dates" id="dates"></div>
+  </div>
+</section>
+
+<section class="block" id="deck">
+  <div class="wrap">
+    <h2 class="sec-title">The presentation</h2>
+    <p class="sec-lede">Based on <i>Medicare Advantage</i> by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026. It’s a living deck: when a figure is re-checked, that slide is updated and dated.</p>
+    <div class="board deckwrap" style="margin-top:22px">
+      <div id="deckhost"></div>
+      <div class="deckbar">
+        <button class="btn" id="dprev" aria-label="Previous slide"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</button>
+        <div class="count" id="dcount" aria-live="polite"></div>
+        <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <a class="btn" href="https://tlsman71.github.io/dweller/health/deck/" style="margin-left:auto">Open the full deck</a>
+      </div>
+      <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
+      <div class="deckmeta"><span id="dupdated"></span><span>Every change is recorded in the deck’s public history on GitHub.</span></div>
+    </div>
   </div>
 </section>
 
@@ -523,29 +517,43 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     var b=document.getElementById("draftbadge"); if(b)b.hidden=s.image.status==="approved";
     var ok=s.caption.status==="approved"||drafts;
     cap.innerHTML='<div><p class="eyebrow">'+e(s.label)+'</p>'+(ok?'<h3>'+e(s.headline)+'</h3><p class="src"><span class="kind k-'+e(s.kind)+'">'+e(s.kind)+'</span> <a href="'+e(s.source.url)+'" target="_blank" rel="noopener">'+e(s.source_short)+'</a></p>'+(drafts&&s.caption.status!=="approved"?'<span class="review">Caption draft · waiting for review</span>':''):'<span class="review">Caption under review</span>')+'</div>'+
-      '<div class="show-actions"><button class="btn gold sharei" type="button" id="sharebtn" aria-label="Share this picture" title="Share this picture"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3" fill="currentColor"/><circle cx="6" cy="12" r="3" fill="currentColor"/><circle cx="18" cy="19" r="3" fill="currentColor"/><path d="M8.6 10.7l6.8-4M8.6 13.3l6.8 4" stroke="currentColor" stroke-width="2.2" fill="none"/></svg></button><a class="btn" href="#money">See it on the money map</a></div>';
+      '<div class="show-actions"><span class="sharewrap"><button class="btn gold sharei" type="button" id="sharebtn" aria-haspopup="menu" aria-expanded="false" aria-label="Share this picture" title="Share this picture"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3" fill="currentColor"/><circle cx="6" cy="12" r="3" fill="currentColor"/><circle cx="18" cy="19" r="3" fill="currentColor"/><path d="M8.6 10.7l6.8-4M8.6 13.3l6.8 4" stroke="currentColor" stroke-width="2.2" fill="none"/></svg></button><span class="sharemenu" id="sharemenu" role="menu" hidden></span></span><a class="btn" href="#money">See it on the money map</a></div>';
     document.getElementById("sharebtn").addEventListener("click",function(){share(s)});
-    document.getElementById("sharepanel").hidden=true;
+    
     if(!fromHash&&location.hash.indexOf("#slide-")===0&&history.replaceState)history.replaceState(null,"","#slide-"+s.id);
   }
+  /* Share: one tap. Phones (and computers with a system share menu) open the share sheet with the card attached.
+     Elsewhere a short menu of networks opens the network's own post window; the link is the slide's share page,
+     whose preview tags make the card picture appear in the post. Nothing is shown on this page. */
+  var pageBase=base.replace(/mockup\/$/,"drawings/p/");
+  function sharePage(s){return pageBase+s.id+".html"}
   function share(s){
-    var url=link(s), card="../drawings/share/"+s.id+".jpg", text=s.label+" · Dweller Health";
-    var panel=document.getElementById("sharepanel");
-    function fallback(){document.getElementById("shareimg").src=card;document.getElementById("shareimg").alt="Share card: "+s.label+", with the Dweller Health name, a QR code and a link back to this slide";
-      var dl=document.getElementById("sharedl");dl.href=card;dl.setAttribute("download","dweller-health-"+s.id+".jpg");
-      document.getElementById("sharelink").value=url;
-      var u=encodeURIComponent(url),t=encodeURIComponent(s.headline||text),ut=encodeURIComponent((s.headline||text)+" "+url);
-      document.getElementById("sharesocial").innerHTML=[["Facebook","https://www.facebook.com/sharer/sharer.php?u="+u],["X","https://x.com/intent/post?text="+t+"&url="+u],["Bluesky","https://bsky.app/intent/compose?text="+ut],["LinkedIn","https://www.linkedin.com/sharing/share-offsite/?url="+u],["Reddit","https://www.reddit.com/submit?url="+u+"&title="+t],["Email","mailto:?subject="+t+"&body="+ut]].map(function(x){return '<a class="btn" target="_blank" rel="noopener" href="'+x[1]+'">'+x[0]+'</a>'}).join("");
-      panel.hidden=false;panel.scrollIntoView({block:"nearest",behavior:"smooth"})}
-    if(s.image.status!=="approved"||!navigator.share){fallback();return}
-    fetch(card).then(function(r){return r.blob()}).then(function(bl){
-      var f=new File([bl],"dweller-health-"+s.id+".jpg",{type:"image/jpeg"});
-      var data=navigator.canShare&&navigator.canShare({files:[f]})?{files:[f],title:text,text:text+" "+url,url:url}:{title:text,text:text,url:url};
-      return navigator.share(data);
-    }).catch(function(err){if(!err||err.name!=="AbortError")fallback()});
+    var url=sharePage(s), card="../drawings/share/"+s.id+".jpg", title=(s.caption.status==="approved"?s.headline:s.label)+" · Dweller Health";
+    if(navigator.share&&s.image.status==="approved"){
+      fetch(card).then(function(r){return r.blob()}).then(function(bl){
+        var f=new File([bl],"dweller-health-"+s.id+".jpg",{type:"image/jpeg"});
+        return navigator.share(navigator.canShare&&navigator.canShare({files:[f]})?{files:[f],title:title,text:title+" "+url}:{title:title,text:title,url:url});
+      }).catch(function(err){if(err&&err.name!=="AbortError")menu(s,url,title)});
+      return;
+    }
+    menu(s,url,title);
   }
-  document.getElementById("sharecopy").addEventListener("click",function(){var v=document.getElementById("sharelink");
-    (navigator.clipboard?navigator.clipboard.writeText(v.value):Promise.reject()).then(function(){document.getElementById("sharecopy").textContent="Link copied"},function(){v.select();document.execCommand("copy")})});
+  function menu(s,url,title){
+    var m=document.getElementById("sharemenu"),btn=document.getElementById("sharebtn");
+    if(!m.hidden){m.hidden=true;btn.setAttribute("aria-expanded","false");return}
+    var u=encodeURIComponent(url),t=encodeURIComponent(title),ut=encodeURIComponent(title+" "+url);
+    var nets=[["Facebook","https://www.facebook.com/sharer/sharer.php?u="+u],["X","https://x.com/intent/post?text="+t+"&url="+u],["Bluesky","https://bsky.app/intent/compose?text="+ut],["LinkedIn","https://www.linkedin.com/sharing/share-offsite/?url="+u],["Reddit","https://www.reddit.com/submit?url="+u+"&title="+t],["Email","mailto:?subject="+t+"&body="+ut]];
+    m.innerHTML=nets.map(function(x){return '<a role="menuitem" href="'+x[1]+'" data-net="'+x[0]+'">'+x[0]+'</a>'}).join("")+'<button role="menuitem" type="button" id="sharecopy">Copy the link</button>';
+    m.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(ev){
+      m.hidden=true;btn.setAttribute("aria-expanded","false");
+      if(a.dataset.net==="Email")return;
+      ev.preventDefault();window.open(a.href,"dhshare","width=640,height=640,noopener")})});
+    document.getElementById("sharecopy").addEventListener("click",function(){var c=this;
+      (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(function(){c.textContent="Link copied"},function(){window.prompt("Copy this link:",url)})});
+    m.hidden=false;btn.setAttribute("aria-expanded","true");m.querySelector("a").focus();
+  }
+  document.addEventListener("click",function(ev){var m=document.getElementById("sharemenu");if(m&&!m.hidden&&!ev.target.closest(".sharewrap")){m.hidden=true;document.getElementById("sharebtn").setAttribute("aria-expanded","false")}});
+  document.addEventListener("keydown",function(ev){var m=document.getElementById("sharemenu");if(ev.key==="Escape"&&m&&!m.hidden){m.hidden=true;document.getElementById("sharebtn").focus()}});
   frame.querySelector(".prev").addEventListener("click",function(){show(i-1)});
   frame.querySelector(".next").addEventListener("click",function(){show(i+1)});
   dots.querySelectorAll("button").forEach(function(b,n){b.addEventListener("click",function(){show(n)})});
