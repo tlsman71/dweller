@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dweller Health · Share your Medicare story (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1211; --panel:#161c1a; --panel2:#1d2522; --line:#2f3d37; --ink:#eeede4; --mute:#c3c8bf;
+  --gold:#c9a227; --gold2:#e8c860; --green:#3fa66b; --green2:#86d8a6; --amber:#e0a030; --amber2:#f2c46c; --red2:#f19a8a;
+  --head:"Roboto Condensed","Arial Narrow",Arial,sans-serif; --body:"Atkinson Hyperlegible",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:21px;line-height:1.55}
+a{color:var(--gold2)}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:.2em 0 .4em}
+h1{font-size:40px} h2{font-size:30px} h3{font-size:24px}
+.wrap{max-width:860px;margin:0 auto;padding:20px 18px 80px}
+header.top{display:flex;align-items:center;gap:12px;font-family:var(--head);font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);padding:6px 0 16px;border-bottom:1px solid var(--line);margin-bottom:22px}
+header.top b{color:var(--ink)}
+.proto{margin-left:auto;font-size:14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 22px;margin:0 0 20px}
+.panel.hi{border-left:6px solid var(--gold)}
+.mute{color:var(--mute)}
+.small{font-size:17px}
+.pill{display:inline-block;font-family:var(--head);font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:999px;vertical-align:middle}
+.pill.g{background:rgba(63,166,107,.18);color:var(--green2);border:1px solid var(--green)}
+.pill.a{background:rgba(224,160,48,.15);color:var(--amber2);border:1px solid var(--amber)}
+button,.btn{font-family:var(--head);font-size:21px;font-weight:700;border-radius:10px;padding:14px 22px;min-height:56px;cursor:pointer;border:2px solid var(--line);background:var(--panel2);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+button.primary,.btn.primary{background:var(--gold);border-color:var(--gold);color:#16120a}
+button.primary:hover{background:var(--gold2)}
+button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+button[disabled]{opacity:.45;cursor:not-allowed}
+button.rec{background:#2a1513;border-color:#8a3a2e;color:#ffd9d1}
+button.rec.on{background:#b8412f;color:#fff;border-color:#e2725f}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.row.end{justify-content:space-between;margin-top:18px}
+label{display:block;font-weight:700;margin:14px 0 6px}
+input[type=text],input[type=email],textarea,select{width:100%;font:inherit;font-size:21px;color:var(--ink);background:#0b0f0e;border:2px solid var(--line);border-radius:10px;padding:12px 14px}
+textarea{min-height:170px;resize:vertical}
+.check{display:flex;gap:12px;align-items:flex-start;font-weight:400;margin:12px 0}
+.check input{width:28px;height:28px;flex:none;margin-top:2px;accent-color:var(--gold)}
+.steps{display:flex;gap:6px;margin:0 0 18px}
+.steps span{flex:1;height:8px;border-radius:4px;background:var(--line)}
+.steps span.done{background:var(--gold)}
+.steps span.now{background:var(--gold2)}
+.q{font-family:var(--head);font-size:30px;font-weight:700;margin:4px 0 4px}
+.hint{color:var(--mute);font-size:18px;margin:0 0 12px}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0}
+.choices label{margin:0;font-weight:400;display:flex;gap:10px;align-items:center;background:var(--panel2);border:2px solid var(--line);border-radius:10px;padding:12px}
+.choices input{width:26px;height:26px;accent-color:var(--gold)}
+.status{min-height:30px;font-size:18px;color:var(--amber2);margin-top:8px}
+.flag{background:rgba(224,160,48,.12);border:1px solid var(--amber);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:18px}
+.flag mark{background:rgba(224,160,48,.35);color:var(--ink);padding:0 3px;border-radius:3px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:700px){.cmp{grid-template-columns:1fr} h1{font-size:32px} .q{font-size:26px}}
+.box{background:#0b0f0e;border:1px solid var(--line);border-radius:10px;padding:14px;white-space:pre-wrap;font-size:19px;max-height:340px;overflow:auto}
+.dest{display:flex;align-items:center;gap:10px;justify-content:space-between;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
+.dest button{min-height:44px;padding:6px 14px;font-size:17px}
+.out{border:1px solid var(--line);border-left:6px solid var(--green);border-radius:12px;padding:18px;margin:16px 0;background:var(--panel)}
+.out h3{margin-top:0}
+.out .row{margin-top:12px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.tabs button{min-height:44px;font-size:17px;padding:6px 14px}
+.tabs button[aria-pressed=true]{border-color:var(--gold);color:var(--gold2)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--gold);color:#16120a;font-family:var(--head);font-weight:700;padding:12px 20px;border-radius:10px;display:none;z-index:9}
+.icon{width:30px;height:30px;flex:none}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:17px;color:var(--mute)}
+[hidden]{display:none!important}
+@media print{
+  body{background:#fff;color:#000;font-size:14pt}
+  body *{visibility:hidden}
+  #printArea,#printArea *{visibility:visible}
+  #printArea{position:absolute;left:0;top:0;width:100%;white-space:pre-wrap;font-family:Georgia,serif}
+}
+</style>
+</head>
+<body>
+<div id="printArea" hidden></div>
+<div class="wrap">
+<header class="top">
+  <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 27l4-1L26 9l-3-3L6 23z"/><path d="M20 9l3 3"/><path d="M5 27l1-4"/></svg>
+  <span><b>Dweller Health</b> · Share your Medicare story</span>
+  <span class="pill a proto">Prototype</span>
+</header>
+
+<!-- ============ START ============ -->
+<section id="vStart">
+  <div class="panel hi">
+    <h1>Put your Medicare experience on the record</h1>
+    <p>Answer a few short questions out loud or by typing. Dweller Health tidies up the wording, <b>you check every word</b>, and then you choose who should hear it: your members of Congress, your state legislators, your county, an open federal comment period, or a local group you pick.</p>
+    <p><b>Dweller prepares it. You send it.</b> Dweller never sends, files or contacts anyone for you.</p>
+    <ul class="small">
+      <li>Every question is optional. Skip anything you like.</li>
+      <li>Your story stays on this device unless you send it. You can download or delete it at any time. It is never sold.</li>
+      <li>Keep it about your coverage, costs and getting care. You don't need to share medical details.</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>Who is telling the story?</h2>
+    <div class="choices" role="radiogroup" aria-label="Who is telling the story">
+      <label><input type="radio" name="who" value="self" checked> I'm telling my own story</label>
+      <label><input type="radio" name="who" value="helper"> I'm helping someone tell theirs</label>
+    </div>
+    <div id="helperBox" hidden>
+      <label for="helperName">Helper's name and group (optional)</label>
+      <input type="text" id="helperName" placeholder="For example: Pat, SHIIP volunteer">
+      <label class="check"><input type="checkbox" id="consent"> <span>The person whose story this is has agreed to share it, and they will hear or read the final version before anything is sent.</span></label>
+    </div>
+    <div class="row end">
+      <button class="btn" id="btnMine">My saved stories</button>
+      <button class="primary" id="btnBegin">Start
+        <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M8 16h16M18 10l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="vAsk" hidden>
+  <div class="steps" id="steps" aria-hidden="true"></div>
+  <div class="panel">
+    <div class="mute small" id="qCount"></div>
+    <div class="q" id="qText"></div>
+    <p class="hint" id="qHint"></p>
+    <div id="qExtra"></div>
+    <div id="qVoice">
+      <div class="row">
+        <button class="btn" id="btnHear" type="button">
+          <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h5l7-6v20l-7-6H5z"/><path d="M21 11c2 2 2 8 0 10M24 8c4 4 4 12 0 16"/></svg>
+          Read the question aloud</button>
+        <button class="rec" id="btnRec" type="button" aria-pressed="false">
+          <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="12" y="4" width="8" height="15" rx="4"/><path d="M7 15a9 9 0 0 0 18 0M16 24v4M11 28h10"/></svg>
+          <span id="recLabel">Speak my answer</span></button>
+      </div>
+      <div class="status" id="recStatus" role="status" aria-live="polite"></div>
+      <audio id="clip" controls hidden></audio>
+      <label for="answer">Your answer <span class="mute small">(type here, or speak and fix the words here)</span></label>
+      <textarea id="answer"></textarea>
+    </div>
+    <div class="row end">
+      <button class="btn" id="btnBack">Back</button>
+      <div class="row">
+        <button class="btn" id="btnSkip">Skip</button>
+        <button class="primary" id="btnNext">Next</button>
+      </div>
+    </div>
+  </div>
+  <p class="small mute" id="voiceNote"></p>
+</section>
+
+<!-- ============ REVIEW ============ -->
+<section id="vReview" hidden>
+  <div class="panel hi">
+    <h2>Check your story</h2>
+    <p>Dweller tidied the wording: it removed filler words like "um" and fixed spacing and capital letters. <b>It didn't add any opinions or facts.</b> Change anything you like below.</p>
+    <p class="small mute">Prototype note: this tidy-up runs on your device. The Dweller Health AI assistant will take over this step in a later version, under the same rule: it fixes wording, never meaning, and you approve the result.</p>
+  </div>
+  <div id="flags"></div>
+  <div class="panel">
+    <div class="cmp">
+      <div><h3>What you said</h3><div class="box" id="rawBox"></div></div>
+      <div><label for="finalText" style="margin-top:0"><span style="font-family:var(--head);font-size:24px">Your story, tidied</span></label><textarea id="finalText" style="min-height:300px"></textarea></div>
+    </div>
+    <label class="check"><input type="checkbox" id="approve"> <span id="approveText">I've read this, and these are my words.</span></label>
+    <div class="row end">
+      <button class="btn" id="btnBackQ">Back to the questions</button>
+      <button class="primary" id="btnToDest" disabled>Choose where it goes</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESTINATIONS ============ -->
+<section id="vDest" hidden>
+  <div class="panel">
+    <h2>Where should your story go?</h2>
+    <p class="hint">Pick one at a time from the list. You can add as many as you like.</p>
+    <label for="destSel">Add a place to send it</label>
+    <select id="destSel">
+      <option value="">Choose…</option>
+      <optgroup label="Federal">
+        <option value="house">My U.S. Representative</option>
+        <option value="senate">My two U.S. Senators</option>
+        <option value="comment">An open federal comment period (Medicare rules)</option>
+      </optgroup>
+      <optgroup label="North Carolina">
+        <option value="ncsenate">My NC State Senator</option>
+        <option value="nchouse">My NC House Member</option>
+      </optgroup>
+      <optgroup label="Local">
+        <option value="county">My county commissioners</option>
+        <option value="org">A local organization I choose</option>
+        <option value="paper">My local newspaper (letter to the editor)</option>
+      </optgroup>
+      <optgroup label="Just for me">
+        <option value="private">Keep it private for now</option>
+      </optgroup>
+    </select>
+    <div id="destList" style="margin-top:12px"></div>
+    <div class="row end">
+      <button class="btn" id="btnBackR">Back to my story</button>
+      <button class="primary" id="btnMake" disabled>Get it ready to send</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ READY ============ -->
+<section id="vReady" hidden>
+  <div class="panel hi">
+    <h2>Ready to send</h2>
+    <p>Each card below has your story in the right format. <b>You send it:</b> copy it into an email or web form, print it as a letter, or read it on the phone. Then mark it sent so you can keep track.</p>
+  </div>
+  <div id="outs"></div>
+  <div class="row end">
+    <button class="btn" id="btnBackD">Back to places</button>
+    <button class="primary" id="btnDone">Save and finish</button>
+  </div>
+</section>
+
+<!-- ============ MY STORIES ============ -->
+<section id="vMine" hidden>
+  <div class="panel">
+    <h2>My saved stories</h2>
+    <p class="hint">Saved only in this browser, on this device.</p>
+    <div id="mineList"></div>
+    <div class="row end">
+      <button class="btn" id="btnHome">Back to start</button>
+      <div class="row">
+        <button class="btn" id="btnExport">Download all (file)</button>
+        <button class="btn" id="btnWipe">Delete everything</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Free, unbiased Medicare counseling in North Carolina: <b>SHIIP, 1-855-408-1212</b> (Mon–Fri, 8am–5pm) · <a href="https://www.ncdoi.gov/consumers/medicare-and-shiip">ncdoi.gov/shiip</a>. Medicare: 1-800-MEDICARE (1-800-633-4227).</p>
+  <p>Dweller Health is nonpartisan. It lists every elected official, whatever their party, and never tells you what to say. Prototype, Nov 15, 2026: nothing on this page is sent anywhere.</p>
+</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+
+/* ---------- Questions ---------- */
+const QS = [
+  {id:"about", q:"About you", hint:"All optional. Used only to sign your letters.", kind:"about"},
+  {id:"coverage", q:"What Medicare coverage do you have?", hint:"Choose any that apply. You can add more in your own words.", kind:"coverage"},
+  {id:"happened", q:"What happened?", hint:"Tell it like you'd tell a friend. When did it happen, and what went wrong or right?"},
+  {id:"cost", q:"What did it cost you?", hint:"Money, time, travel, or care you went without."},
+  {id:"next", q:"What did you do next, and how did it turn out?", hint:"For example: called the plan, appealed, switched plans, talked to SHIIP."},
+  {id:"ask", q:"What do you want decision-makers to know?", hint:"In your own words. This is the part they'll remember."},
+];
+const COVER = ["Original Medicare","A Medigap (supplement) policy","A Medicare Advantage plan","A Part D drug plan","Medicaid as well (dual-eligible)","Not sure"];
+const TOPICS = ["Prior authorization or a denied service","My doctor or hospital left the plan","My plan left my area","Costs went up","How the plan was sold to me","Something else"];
+
+/* ---------- State ---------- */
+let S = newStory();
+let qi = 0;
+function newStory(){ return {id:"s"+Date.now(), created:new Date().toISOString(), who:"self", helper:"", name:"", town:"", county:"", coverage:[], topics:[], a:{}, final:"", dests:[], sent:{}}; }
+
+/* ---------- Views ---------- */
+const VIEWS = ["vStart","vAsk","vReview","vDest","vReady","vMine"];
+function show(v){ VIEWS.forEach(x=>$(x).hidden = x!==v); window.scrollTo(0,0); const h=$(v).querySelector("h1,h2,.q"); if(h){h.setAttribute("tabindex","-1"); h.focus({preventScroll:true});} }
+function toast(t){ const el=$("toast"); el.textContent=t; el.style.display="block"; clearTimeout(toast.t); toast.t=setTimeout(()=>el.style.display="none",2600); }
+
+/* ---------- Start ---------- */
+document.querySelectorAll("input[name=who]").forEach(r=>r.addEventListener("change",()=>{ $("helperBox").hidden = r.value!=="helper" || !r.checked; if(r.checked && r.value==="self") $("helperBox").hidden=true; }));
+$("btnBegin").onclick = ()=>{
+  const who = document.querySelector("input[name=who]:checked").value;
+  if(who==="helper" && !$("consent").checked){ toast("Please confirm the person has agreed first."); $("consent").focus(); return; }
+  S = newStory(); S.who=who; S.helper=$("helperName").value.trim(); qi=0; renderQ(); show("vAsk");
+};
+$("btnMine").onclick = ()=>{ renderMine(); show("vMine"); };
+$("btnHome").onclick = ()=>show("vStart");
+
+/* ---------- Question view ---------- */
+function renderQ(){
+  const Q = QS[qi];
+  $("steps").innerHTML = QS.map((_,i)=>`<span class="${i<qi?'done':i===qi?'now':''}"></span>`).join("");
+  $("qCount").textContent = `Question ${qi+1} of ${QS.length}`;
+  $("qText").textContent = Q.q; $("qHint").textContent = Q.hint;
+  const ex = $("qExtra"); ex.innerHTML="";
+  $("qVoice").hidden = false;
+  if(Q.kind==="about"){
+    $("qVoice").hidden = true;
+    ex.innerHTML = `<label for="fName">Your name</label><input type="text" id="fName" autocomplete="name">
+      <label for="fTown">Town or city</label><input type="text" id="fTown" autocomplete="address-level2">
+      <label for="fCounty">County</label><input type="text" id="fCounty" placeholder="For example: Wake County">`;
+    $("fName").value=S.name; $("fTown").value=S.town; $("fCounty").value=S.county;
+  } else if(Q.kind==="coverage"){
+    ex.innerHTML = `<div class="choices">${COVER.map((c,i)=>`<label><input type="checkbox" data-c="${i}" ${S.coverage.includes(c)?"checked":""}> ${c}</label>`).join("")}</div>
+      <p class="hint" style="margin-top:14px">What is your story mostly about? (optional)</p>
+      <div class="choices">${TOPICS.map((c,i)=>`<label><input type="checkbox" data-t="${i}" ${S.topics.includes(c)?"checked":""}> ${c}</label>`).join("")}</div>`;
+  }
+  $("answer").value = S.a[Q.id] || "";
+  $("clip").hidden = true; $("recStatus").textContent="";
+  $("btnBack").disabled = qi===0;
+  $("btnNext").textContent = qi===QS.length-1 ? "Check my story" : "Next";
+}
+function saveQ(){
+  const Q = QS[qi];
+  if(Q.kind==="about"){ S.name=$("fName").value.trim(); S.town=$("fTown").value.trim(); S.county=$("fCounty").value.trim(); return; }
+  if(Q.kind==="coverage"){
+    S.coverage = [...document.querySelectorAll("[data-c]")].filter(x=>x.checked).map(x=>COVER[+x.dataset.c]);
+    S.topics = [...document.querySelectorAll("[data-t]")].filter(x=>x.checked).map(x=>TOPICS[+x.dataset.t]);
+  }
+  S.a[Q.id] = $("answer").value.trim();
+}
+$("btnNext").onclick = ()=>{ stopRec(); saveQ(); if(qi<QS.length-1){qi++; renderQ(); show("vAsk");} else { buildReview(); show("vReview"); } };
+$("btnSkip").onclick = ()=>{ stopRec(); if(qi<QS.length-1){qi++; renderQ(); show("vAsk");} else { buildReview(); show("vReview"); } };
+$("btnBack").onclick = ()=>{ stopRec(); saveQ(); if(qi>0){qi--; renderQ(); show("vAsk");} };
+
+/* ---------- Voice: read aloud + speak answer ---------- */
+$("btnHear").onclick = ()=>{
+  if(!("speechSynthesis" in window)){ toast("This browser can't read aloud."); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(QS[qi].q + ". " + QS[qi].hint); u.rate=.9; speechSynthesis.speak(u);
+};
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec=null, media=null, chunks=[], recOn=false, baseText="";
+$("voiceNote").textContent = SR
+  ? "About speaking your answer: your browser turns speech into text. In Chrome this uses Google's speech service, so your words leave this device for that step. If you'd rather not, type your answer instead."
+  : "This browser can record your voice for you to replay, but can't turn it into text. Type your answer, or try Chrome or Edge.";
+$("btnRec").onclick = ()=> recOn ? stopRec() : startRec();
+async function startRec(){
+  if(speechSynthesis) speechSynthesis.cancel();
+  baseText = $("answer").value ? $("answer").value.trim()+" " : "";
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+    chunks=[]; media = new MediaRecorder(stream);
+    media.ondataavailable = e=>chunks.push(e.data);
+    media.onstop = ()=>{ stream.getTracks().forEach(t=>t.stop()); const b=new Blob(chunks,{type:media.mimeType}); const c=$("clip"); c.src=URL.createObjectURL(b); c.hidden=false; };
+    media.start();
+  }catch(e){ $("recStatus").textContent = "The microphone isn't available. You can type your answer instead."; return; }
+  if(SR){
+    rec = new SR(); rec.lang="en-US"; rec.continuous=true; rec.interimResults=true;
+    let finalPart="";
+    rec.onresult = ev=>{ let interim=""; for(let i=ev.resultIndex;i<ev.results.length;i++){ const t=ev.results[i][0].transcript; if(ev.results[i].isFinal) finalPart+=t+" "; else interim+=t; } $("answer").value = baseText + finalPart + interim; };
+    rec.onerror = ev=>{ if(ev.error!=="no-speech") $("recStatus").textContent="Speech-to-text stopped ("+ev.error+"). Your recording is still saved below; type or fix the words by hand."; };
+    rec.onend = ()=>{ if(recOn){ try{rec.start();}catch(_){} } };
+    try{ rec.start(); }catch(_){}
+  }
+  recOn=true; $("btnRec").classList.add("on"); $("btnRec").setAttribute("aria-pressed","true"); $("recLabel").textContent="Stop";
+  $("recStatus").textContent = "Listening… speak in your own words. Press Stop when you're done.";
+}
+function stopRec(){
+  if(!recOn) return; recOn=false;
+  try{ rec && rec.stop(); }catch(_){} try{ media && media.state!=="inactive" && media.stop(); }catch(_){}
+  $("btnRec").classList.remove("on"); $("btnRec").setAttribute("aria-pressed","false"); $("recLabel").textContent="Speak my answer";
+  $("recStatus").textContent = "Stopped. Check the words in the box and fix anything that's wrong. You can replay your recording below.";
+}
+
+/* ---------- Tidy-up (local, wording only) ---------- */
+const FILLERS = /\b(um+|uh+|er+|hmm+|you know|i mean|kind of like|sort of like)\b[,.]?\s*/gi;
+function tidy(t){
+  if(!t) return "";
+  let s = " "+t+" ";
+  s = s.replace(FILLERS," ").replace(/\b(\w+)( \1\b)+/gi,"$1");       // fillers, stutters ("the the")
+  s = s.replace(/\s+([,.!?])/g,"$1").replace(/\s{2,}/g," ").trim();
+  s = s.replace(/\bi\b/g,"I").replace(/\bi'(m|ve|d|ll)\b/gi,(m,x)=>"I'"+x.toLowerCase());
+  s = s.replace(/\b(january|february|march|april|june|july|august|september|october|november|december|monday|tuesday|wednesday|thursday|friday|saturday|sunday|medicare|medicaid|medigap|north carolina|shiip)\b/gi,w=>w.replace(/\b\w/g,c=>c.toUpperCase()).replace("Shiip","SHIIP"));
+  s = s.replace(/(^|[.!?]\s+)([a-z])/g,(m,a,b)=>a+b.toUpperCase());
+  if(!/[.!?]$/.test(s)) s+=".";
+  return s;
+}
+/* Health-detail check (R7): coverage and cost only */
+const HEALTH = ["cancer","diabetes","diabetic","insulin","dialysis","chemo","chemotherapy","surgery","stroke","heart attack","dementia","alzheimer","depression","anxiety","hiv","copd","kidney","tumor","diagnosed","diagnosis","prescription for","mg","pills","medication","oxygen","wheelchair","biopsy","mri","scan","therapy","hospice","pregnan"];
+function healthHits(t){ const lo=t.toLowerCase(); return HEALTH.filter(w=>new RegExp("\\b"+w.replace(/ /g,"\\s+")).test(lo)); }
+
+function storyBody(){
+  const p=[];
+  if(S.coverage.length) p.push(`I have ${listJoin(S.coverage.map(lc))}.`);
+  ["happened","cost","next"].forEach(k=>{ if(S.a[k]) p.push(tidy(S.a[k])); });
+  if(S.a.ask) p.push(tidy(S.a.ask));
+  return p.join("\n\n");
+}
+function rawBody(){
+  const p=[];
+  if(S.coverage.length) p.push("Coverage: "+S.coverage.join(", "));
+  QS.slice(2).forEach(Q=>{ if(S.a[Q.id]) p.push(Q.q+"\n"+S.a[Q.id]); });
+  return p.join("\n\n") || "(No answers yet.)";
+}
+function lc(c){ return c==="Original Medicare"||c==="Not sure"? (c==="Not sure"?"Medicare (I'm not sure which kind)":c) : c.charAt(0).toLowerCase()+c.slice(1); }
+function listJoin(a){ return a.length<2? a.join("") : a.slice(0,-1).join(", ")+" and "+a[a.length-1]; }
+
+function buildReview(){
+  $("rawBox").textContent = rawBody();
+  if(!S.final) S.final = storyBody();
+  $("finalText").value = S.final;
+  $("approve").checked=false; $("btnToDest").disabled=true;
+  $("approveText").textContent = S.who==="helper" ? "I read this back to the person, and they say these are their words." : "I've read this, and these are my words.";
+  renderFlags();
+}
+function renderFlags(){
+  const hits = healthHits($("finalText").value);
+  $("flags").innerHTML = hits.length ? `<div class="flag"><b>Medical details?</b> Your story mentions: ${hits.map(h=>`<mark>${h}</mark>`).join(", ")}. You don't need these to make your point. Decision-makers mostly need to hear what happened with your <b>coverage, costs and getting care</b>. Letters to officials and public comments can be seen by others, so think about leaving these details out. It's your choice.</div>` : "";
+}
+$("finalText").addEventListener("input",()=>{ S.final=$("finalText").value; renderFlags(); $("approve").checked=false; $("btnToDest").disabled=true; });
+$("approve").onchange = ()=> $("btnToDest").disabled = !$("approve").checked || !$("finalText").value.trim();
+$("btnBackQ").onclick = ()=>{ S.final=$("finalText").value; qi=QS.length-1; renderQ(); show("vAsk"); };
+$("btnToDest").onclick = ()=>{ S.final=$("finalText").value.trim(); renderDests(); show("vDest"); };
+
+/* ---------- Destinations ---------- */
+const D = {
+  house:  {name:"My U.S. Representative", fmt:["letter","email","phone"], look:[["Find your U.S. Representative","https://www.house.gov/representatives/find-your-representative"]], to:"Representative"},
+  senate: {name:"My two U.S. Senators", fmt:["letter","email","phone"], look:[["Find and contact your Senators","https://www.senate.gov/senators/senators-contact.htm"]], to:"Senator"},
+  comment:{name:"An open federal comment period", fmt:["comment"], look:[["Find open Medicare comment periods (search \"Medicare\" on Regulations.gov)","https://www.regulations.gov"]], to:""},
+  ncsenate:{name:"My NC State Senator", fmt:["letter","email","phone"], look:[["Find your NC legislators","https://www.ncleg.gov/FindYourLegislators"]], to:"Senator"},
+  nchouse:{name:"My NC House Member", fmt:["letter","email","phone"], look:[["Find your NC legislators","https://www.ncleg.gov/FindYourLegislators"]], to:"Representative"},
+  county: {name:"My county commissioners", fmt:["letter","email","phone"], look:[["Look up your county's website and its Board of Commissioners page",""]], to:"Commissioners"},
+  org:    {name:"A local organization I choose", fmt:["email","letter"], look:[], to:"", ask:true},
+  paper:  {name:"My local newspaper", fmt:["editor"], look:[["Check your paper's \"Letters to the editor\" page for its word limit",""]], to:""},
+  private:{name:"Keep it private for now", fmt:[], look:[], to:""},
+};
+const FMTNAME = {letter:"Letter", email:"Email or web form", phone:"Phone call script", comment:"Public comment", editor:"Letter to the editor"};
+$("destSel").onchange = e=>{
+  const v=e.target.value; e.target.value="";
+  if(!v || S.dests.some(d=>d.k===v)) { if(v) toast("Already on your list."); return; }
+  S.dests.push({k:v, orgName:"", orgEmail:""}); renderDests();
+};
+function renderDests(){
+  $("destList").innerHTML = S.dests.map((d,i)=>`<div class="dest"><div><b>${D[d.k].name}</b>
+    ${D[d.k].ask?`<div class="row small" style="margin-top:6px"><input type="text" placeholder="Organization name" data-on="${i}" value="${esc(d.orgName)}" style="flex:1;min-width:180px"><input type="email" placeholder="Their email (optional)" data-oe="${i}" value="${esc(d.orgEmail)}" style="flex:1;min-width:180px"></div>`:""}
+    </div><button data-rm="${i}" aria-label="Remove ${D[d.k].name}">Remove</button></div>`).join("") || `<p class="mute small">Nothing added yet.</p>`;
+  $("destList").querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{ S.dests.splice(+b.dataset.rm,1); renderDests(); });
+  $("destList").querySelectorAll("[data-on]").forEach(x=>x.oninput=()=>S.dests[+x.dataset.on].orgName=x.value);
+  $("destList").querySelectorAll("[data-oe]").forEach(x=>x.oninput=()=>S.dests[+x.dataset.oe].orgEmail=x.value);
+  $("btnMake").disabled = !S.dests.length;
+}
+$("btnBackR").onclick = ()=>{ buildReview(); $("finalText").value=S.final; show("vReview"); };
+$("btnMake").onclick = ()=>{ renderOuts(); show("vReady"); };
+
+/* ---------- Formats ---------- */
+function sig(){ const where=[S.town,S.county].filter(Boolean).join(", "); return (S.name||"[Your name]") + (where? "\n"+where+", North Carolina" : "\n[Your town], North Carolina"); }
+function intro(){ return `My name is ${S.name||"[your name]"}, and I live in ${S.town||"[your town]"}, North Carolina. I'm writing to share my experience with Medicare.`; }
+function helperNote(){ return S.who==="helper" ? `\n\n(Written down with help from ${S.helper||"a helper"}, in the words of the person named above.)` : ""; }
+function makeText(d,f){
+  const to = d.k==="org" ? (d.orgName||"[organization name]") : D[d.k].to;
+  const body = S.final;
+  if(f==="letter"){ const greet = d.k==="org" ? `Dear ${to},` : d.k==="county" ? "Dear Commissioners," : `Dear ${to} [last name],`;
+    return `${greet}\n\n${intro()}\n\n${body}\n\nThank you for reading my story.\n\nSincerely,\n${sig()}${helperNote()}`; }
+  if(f==="email"){ return `Subject: My Medicare experience, from ${d.k==="org"?"a resident of":"a constituent in"} ${S.town||"[your town]"}, NC\n\n${makeText(d,"letter")}`; }
+  if(f==="phone"){ const first = firstSentence(S.final.split("\n\n").find(p=>!/^I have /.test(p))||S.final);
+    const ask = S.a.ask? firstSentence(tidy(S.a.ask)) : "";
+    return `Hello, my name is ${S.name||"[your name]"}. I'm a constituent from ${S.town||"[your town]"}, ZIP code [your ZIP].\n\nI'm calling about Medicare. ${S.coverage.length?"I have "+listJoin(S.coverage.map(lc))+". ":""}${first}\n\n${ask}\n\nCould you please pass my story along to the ${D[d.k].to==="Commissioners"?"commissioners":D[d.k].to.toLowerCase()}? I can send it in writing too. Thank you.`; }
+  if(f==="comment"){ return `Comment on: [rule name and docket number, for example CMS-XXXX-P]\n\n${intro().replace("I'm writing to share","I'm submitting this comment about")}\n\n${body}${helperNote()}`; }
+  if(f==="editor"){ return `To the editor:\n\n${body}\n\n${sig()}`; }
+  return body;
+}
+function firstSentence(t){ const m=(t||"").match(/^.*?[.!?](\s|$)/); return m? m[0].trim() : (t||"").trim(); }
+function words(t){ return (t.match(/\S+/g)||[]).length; }
+
+function renderOuts(){
+  const o = $("outs"); o.innerHTML="";
+  S.dests.forEach((d,i)=>{
+    const def = D[d.k]; const card=document.createElement("div"); card.className="out";
+    if(d.k==="private"){ card.innerHTML=`<h3>Kept private</h3><p>Your story is saved on this device only. You can come back to it from "My saved stories" and send it later.</p>`; o.appendChild(card); return; }
+    const st = S.sent[d.k] || {status:"Not sent yet", date:""};
+    card.innerHTML = `<h3>${d.k==="org"? esc(d.orgName||def.name) : def.name}</h3>
+      <div class="tabs" role="group" aria-label="Format">${def.fmt.map((f,j)=>`<button data-f="${f}" aria-pressed="${j===0}">${FMTNAME[f]}</button>`).join("")}</div>
+      ${d.k==="comment"?`<div class="flag"><b>Public comments are published.</b> What you submit on Regulations.gov, usually including your name, can be read by anyone. Leave out anything you wouldn't want public. Submit before the comment period's deadline.</div>`:""}
+      <div class="box" data-txt></div><p class="small mute" data-wc></p>
+      <div class="row">
+        <button class="primary" data-copy>Copy text</button>
+        ${def.fmt.includes("letter")||d.k==="paper"?`<button data-print>Print</button>`:""}
+        ${d.k==="org"&&d.orgEmail?`<a class="btn" data-mail href="#">Open in my email</a>`:""}
+      </div>
+      ${def.look.length?`<p class="small" style="margin-top:12px">${def.look.map(([t,u])=>u?`<a href="${u}" target="_blank" rel="noopener">${t}</a>`:t).join(" · ")}</p>`:""}
+      ${d.k==="org"&&d.orgEmail?`<p class="small mute">Their email: ${esc(d.orgEmail)}</p>`:""}
+      <div class="row" style="margin-top:12px"><label for="st${i}" style="margin:0">Status</label>
+        <select id="st${i}" style="width:auto">${["Not sent yet","I sent it","I got a reply"].map(x=>`<option ${x===st.status?"selected":""}>${x}</option>`).join("")}</select>
+        <span class="pill ${st.status==="Not sent yet"?"a":"g"}" data-pill>${st.date?esc(st.date):st.status==="Not sent yet"?"Not sent":""}</span></div>`;
+    o.appendChild(card);
+    let cur = def.fmt[0];
+    const paint = ()=>{ const t=makeText(d,cur); card.querySelector("[data-txt]").textContent=t; card.querySelector("[data-wc]").textContent = words(t)+" words"+(cur==="editor"?" · many papers limit letters to 150–250 words":"")+(cur==="phone"?" · about "+Math.max(20,Math.round(words(t)/2.5))+" seconds to read aloud":"");
+      const m=card.querySelector("[data-mail]"); if(m){ const parts=t.split("\n\n"); const subj=parts[0].replace(/^Subject: /,""); m.href=`mailto:${encodeURIComponent(d.orgEmail)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(parts.slice(1).join("\n\n"))}`; } };
+    card.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{ cur=b.dataset.f; card.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b)); paint(); });
+    card.querySelector("[data-copy]").onclick=async()=>{ try{ await navigator.clipboard.writeText(makeText(d,cur)); toast("Copied. Paste it into the email or web form."); }catch(_){ toast("Couldn't copy. Select the text and copy it by hand."); } };
+    const pr=card.querySelector("[data-print]"); if(pr) pr.onclick=()=>{ const pa=$("printArea"); pa.hidden=false; pa.textContent=makeText(d,cur==="email"||cur==="phone"?(d.k==="paper"?"editor":"letter"):cur).replace(/^Subject:[^\n]*\n\n/,""); try{ window.print(); }catch(_){ toast("Printing isn't available here."); } setTimeout(()=>pa.hidden=true,500); };
+    card.querySelector("select").onchange=e=>{ const v=e.target.value; S.sent[d.k]={status:v, date: v==="Not sent yet"?"": v+" · "+new Date().toLocaleDateString()}; const p=card.querySelector("[data-pill]"); p.className="pill "+(v==="Not sent yet"?"a":"g"); p.textContent=S.sent[d.k].date||"Not sent"; persist(); };
+    paint();
+  });
+}
+$("btnBackD").onclick = ()=>{ renderDests(); show("vDest"); };
+$("btnDone").onclick = ()=>{ persist(); toast("Saved on this device."); renderMine(); show("vMine"); };
+
+/* ---------- Storage (this device only) ---------- */
+const KEY="dwellerHealthStories.v1";
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(_){ return []; } }
+function persist(){ try{ const all=load().filter(x=>x.id!==S.id); all.unshift(S); localStorage.setItem(KEY,JSON.stringify(all)); }catch(_){ toast("This browser won't save. Copy your text before closing."); } }
+function renderMine(){
+  const all=load();
+  $("mineList").innerHTML = all.length ? all.map(s=>`<div class="dest"><div><b>${new Date(s.created).toLocaleDateString()}</b> · ${esc(firstSentence(s.final).slice(0,90)||"(empty)")}<div class="small mute">${s.dests.map(d=>{const st=(s.sent||{})[d.k]; return D[d.k].name+": "+(st?st.status:"Not sent yet");}).join(" · ")||"No places chosen"}</div></div>
+     <div class="row"><button data-open="${s.id}">Open</button><button data-del="${s.id}">Delete</button></div></div>`).join("") : `<p class="mute">No saved stories yet.</p>`;
+  $("mineList").querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>{ S=load().find(x=>x.id===b.dataset.open); if(!S.dests.length){ buildReview(); show("vReview"); } else { renderOuts(); show("vReady"); } });
+  $("mineList").querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{ if(b.dataset.armed){ try{ localStorage.setItem(KEY,JSON.stringify(load().filter(x=>x.id!==b.dataset.del))); }catch(_){} renderMine(); toast("Deleted."); } else { b.dataset.armed=1; b.textContent="Tap again to delete"; } });
+}
+$("btnExport").onclick = ()=>{ const data=JSON.stringify(load(),null,2); const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([data],{type:"application/json"})); a.download="my-dweller-health-stories.json"; document.body.appendChild(a); a.click(); a.remove(); };
+$("btnWipe").onclick = e=>{ const b=e.currentTarget; if(b.dataset.armed){ try{ localStorage.removeItem(KEY); }catch(_){} renderMine(); toast("Everything deleted from this device."); b.textContent="Delete everything"; delete b.dataset.armed; } else { b.dataset.armed=1; b.textContent="Tap again to delete everything"; } };
+
+function esc(s){ return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+</script>
+</body>
+</html>
