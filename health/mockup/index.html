@@ -382,6 +382,8 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 .ev-add label{display:block;font-weight:700;margin:10px 0 4px;font-size:18px}
 .ev-add input,.ev-add select{width:100%;font:inherit;font-size:19px;background:#0b0f0e;color:var(--chalk);border:2px solid var(--line);border-radius:10px;padding:10px 12px}
 .ev-add .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ev-add .row4{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+@media (max-width:900px){.ev-add .row4{grid-template-columns:1fr}.ev-add .row4>div{grid-column:auto!important}}
 @media (max-width:600px){.ev-add .two{grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="../deck/deck.css">
@@ -606,26 +608,28 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
       </div>
       <div>
         <div class="ev-list" id="evList" aria-live="polite"></div>
-        <div class="board ev-add">
+      </div>
+    </div>
+    <div class="board ev-add">
           <h3 class="chalk" style="font-size:28px;margin:0">Add an event to your calendar here</h3>
           <p style="font-size:17px;color:var(--mute);margin:6px 0 0">Know of a town hall, march or meeting? Add it for yourself. It stays on this device only. (Sending events in for everyone to see comes with the pilot, after a source check.)</p>
           <form id="evForm">
-            <label for="evT">What is it?</label><input id="evT" required placeholder="For example: Town hall with our U.S. Representative">
-            <div class="two">
+            <div class="row4">
+              <div><label for="evT">What is it?</label><input id="evT" required placeholder="For example: Town hall with our U.S. Representative"></div>
               <div><label for="evD">Date</label><input id="evD" type="date" required></div>
               <div><label for="evTm">Time (optional)</label><input id="evTm" type="time"></div>
             </div>
-            <label for="evP">Where (optional)</label><input id="evP" placeholder="Place, town, or online">
-            <div class="two">
+            <div class="row4">
+              <div><label for="evP">Where (optional)</label><input id="evP" placeholder="Place, town, or online"></div>
               <div><label for="evL">Level</label><select id="evL"><option>Local</option><option>State</option><option>Federal</option></select></div>
               <div><label for="evK">Kind</label><select id="evK"><option>Town hall</option><option>March or rally</option><option>Protest</option><option>Public hearing</option><option>Meeting</option><option>Deadline</option><option>Free counseling</option><option>Other</option></select></div>
             </div>
-            <label for="evU">Organizer's web page (optional)</label><input id="evU" type="url" placeholder="https://">
-            <div style="margin-top:14px"><button class="btn gold" type="submit">Add to my list</button></div>
+            <div class="row4" style="align-items:end">
+              <div><label for="evU">Organizer's web page (optional)</label><input id="evU" type="url" placeholder="https://"></div>
+              <div style="grid-column:span 2"><button class="btn gold" type="submit">Add to my list</button></div>
+            </div>
           </form>
         </div>
-      </div>
-    </div>
   </div>
 </section>
 
