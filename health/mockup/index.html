@@ -302,8 +302,8 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <nav class="mainnav" aria-label="Main">
       <a href="#pictures">Your health, your cost, who gets paid</a>
       <a href="#street">The Street</a>
-      <a href="#deck">The presentation</a>
       <a href="#money">Follow the money</a>
+      <a href="#deck">The presentation</a>
       <a href="#act">What you can do</a>
       <a href="#updates">Updates</a>
     </nav>
@@ -369,24 +369,6 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   </div>
 </section>
 
-<section class="block" id="deck">
-  <div class="wrap">
-    <h2 class="sec-title">The presentation</h2>
-    <p class="sec-lede">Based on <i>Medicare Advantage</i> by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026. It’s a living deck: when a figure is re-checked, that slide is updated and dated.</p>
-    <div class="board deckwrap" style="margin-top:22px">
-      <div id="deckhost"></div>
-      <div class="deckbar">
-        <button class="btn" id="dprev" aria-label="Previous slide"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</button>
-        <div class="count" id="dcount" aria-live="polite"></div>
-        <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <a class="btn" href="https://tlsman71.github.io/dweller/health/deck/" style="margin-left:auto">Open the full deck</a>
-      </div>
-      <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
-      <div class="deckmeta"><span id="dupdated"></span><span>Every change is recorded in the deck’s public history on GitHub.</span></div>
-    </div>
-  </div>
-</section>
-
 <section class="block" id="money">
   <div class="wrap">
     <h2 class="sec-title">Follow the money</h2>
@@ -427,6 +409,24 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 
     <h3 class="chalk" style="font-size:38px;margin-top:46px">Key dates</h3>
     <div class="dates" id="dates"></div>
+  </div>
+</section>
+
+<section class="block" id="deck">
+  <div class="wrap">
+    <h2 class="sec-title">The presentation</h2>
+    <p class="sec-lede">Based on <i>Medicare Advantage</i> by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026. It’s a living deck: when a figure is re-checked, that slide is updated and dated.</p>
+    <div class="board deckwrap" style="margin-top:22px">
+      <div id="deckhost"></div>
+      <div class="deckbar">
+        <button class="btn" id="dprev" aria-label="Previous slide"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</button>
+        <div class="count" id="dcount" aria-live="polite"></div>
+        <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <a class="btn" href="https://tlsman71.github.io/dweller/health/deck/" style="margin-left:auto">Open the full deck</a>
+      </div>
+      <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
+      <div class="deckmeta"><span id="dupdated"></span><span>Every change is recorded in the deck’s public history on GitHub.</span></div>
+    </div>
   </div>
 </section>
 
