@@ -107,10 +107,10 @@ window.DH_DRAWINGS = {
    "label": "Part B & D trust fund",
    "scene": "A gold vault marked 'Part B & D' stands in a marble hall between a doctor's office and a pharmacy counter, with residents of many backgrounds looking on.",
    "kind": "Fact",
-   "fact": "Parts B and D (doctor visits and drugs) are paid from a second trust fund, financed mostly by general tax revenue and enrollee premiums (Medicare Trustees Report, 2026).",
+   "fact": "Parts B and D (doctor visits and drugs) are paid from a separate trust fund, financed mostly by general tax revenue (73% of Part B, 81% of Part D) plus enrollee premiums (26% of Part B, 8% of Part D) (Medicare Trustees Report, 2026).",
    "source": {
-    "label": "Social Security and Medicare Trustees, 2026 summary",
-    "url": "https://www.ssa.gov/oact/TRSUM/"
+    "label": "Center for Retirement Research brief on the 2026 Trustees Report (July 2026), Table 1",
+    "url": "https://crr.bc.edu/wp-content/uploads/2026/07/IB_26-14.pdf"
    },
    "image": {
     "status": "approved",
@@ -202,10 +202,10 @@ window.DH_DRAWINGS = {
    "label": "CVS Health / Aetna",
    "scene": "In an Aetna conference room, staff of several backgrounds point to plan areas on a wall map during a planning meeting.",
    "kind": "Estimate",
-   "fact": "CVS Health said Aetna could lose up to 10% of its Medicare Advantage members in 2025 as it left counties it didn't expect to be profitable (CVS executives, May 2024).",
+   "fact": "CVS Health said in February 2025 it expected Aetna's Medicare Advantage membership to fall by a \"high single-digit percentage\" in 2025, after earlier saying it could lose up to 10% (CVS executives, Feb 12, 2025).",
    "source": {
-    "label": "Becker's Payer, '15 payers exiting Medicare Advantage markets in 2025'",
-    "url": "https://www.beckerspayer.com/payer/5-payers-exiting-medicare-advantage-markets-in-2025/"
+    "label": "Becker's Payer, Feb 2025 (CVS Q4 2024 investor call)",
+    "url": "https://www.beckerspayer.com/payer/cvs-working-tirelessly-to-improve-aetna-7-notes/"
    },
    "image": {
     "status": "approved",
@@ -221,7 +221,7 @@ window.DH_DRAWINGS = {
    "label": "Centene / WellCare",
    "scene": "In a WellCare office, a Native American manager and an East Asian analyst study a whiteboard map with six states shaded.",
    "kind": "Estimate",
-   "fact": "Centene's WellCare left Medicare Advantage in six states for 2025, affecting about 37,300 members (Stephens research note, via Fierce Healthcare, Aug 2024).",
+   "fact": "Centene's WellCare left Medicare Advantage in six states for 2025 (Alabama, Massachusetts, New Hampshire, New Mexico, Rhode Island and Vermont), affecting about 37,300 members, about 3% of its MA members (Stephens research note, via Fierce Healthcare, Aug 2024).",
    "source": {
     "label": "Fierce Healthcare, Aug 2024",
     "url": "https://www.fiercehealthcare.com/payers/centene-subsidiary-wellcare-retreats-six-states-2025"
