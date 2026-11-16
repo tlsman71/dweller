@@ -369,6 +369,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 .ev-legend span{display:inline-flex;align-items:center;gap:6px}
 .ev-legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
 .ev-list{display:flex;flex-direction:column;gap:12px;max-height:720px;overflow:auto;padding-right:4px}
+@media (max-width:900px){.ev-list{max-height:560px}}
 .ev-item{padding:16px 18px}
 .ev-item h3{font-size:24px;margin:6px 0 4px;font-family:var(--body)}
 .ev-meta{font-size:17px;color:var(--mute)}
@@ -588,7 +589,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <h2 class="sec-title">Events and dates</h2>
     <p class="sec-lede">Deadlines, hearings, town halls, marches and other public events about Medicare and health coverage: local, state and federal. Tap <b>Add to my calendar</b> to save one with a reminder, or <b>Email myself a note</b>. Dweller doesn't send you anything unless you set it up.</p>
     <div class="ev-wrap">
-      <div>
+      <div id="evLeft">
         <div class="board ev-cal">
           <div class="ev-head">
             <button class="btn" id="evPrev" aria-label="Previous month">‹</button>
@@ -720,6 +721,11 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     save(); var d=pd(g("evD")); view=new Date(d.getFullYear(),d.getMonth(),1); sel=g("evD"); this.reset(); render();
     document.getElementById("evList").scrollIntoView({block:"nearest"});
   };
+  function fit(){var l=document.getElementById("evLeft"),r=document.getElementById("evList");if(!l||!r)return;
+    if(window.matchMedia("(max-width:900px)").matches){r.style.maxHeight="";return}
+    r.style.maxHeight=Math.max(320,Math.round(l.getBoundingClientRect().height))+"px"}
+  if(window.ResizeObserver)new ResizeObserver(fit).observe(document.getElementById("evLeft"));
+  window.addEventListener("resize",fit);
   render();
 })();
 </script>
