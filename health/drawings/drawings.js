@@ -83,7 +83,7 @@ window.DH_DRAWINGS = {
   {
    "id": "tax",
    "label": "Taxpayers & payroll taxes",
-   "scene": "Workers at the end of a shift (a construction worker, a nurse, an office worker) hold pay stubs with the Medicare line highlighted as coins drop into strongboxes marked 'Part A' and 'Part B & D'.",
+   "scene": "A giant pay stub towers over a city sidewalk; its 'Medicare' line peels off and pours coins into a steel vault marked 'Part A' as three workers look up.",
    "kind": "Fact",
    "fact": "Part A gets most of its money from a 2.9% payroll tax, split equally between workers and employers (Medicare Trustees Report, 2026).",
    "source": {
@@ -92,8 +92,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-tax-v1"
+    "version": 2,
+    "review_id": "node-tax-v2"
    },
    "caption": {
     "status": "approved",
@@ -126,6 +126,28 @@ window.DH_DRAWINGS = {
     "review_id": "caption-node-benes-v2"
    },
    "headline": "1 in 10 Advantage members lost their plan for 2026",
+   "source_short": "JAMA, 2026"
+  },
+  {
+   "id": "r_jama",
+   "label": "JAMA study",
+   "scene": "A wall of plan cards in rows of ten, one red card in each row, as researchers count them.",
+   "kind": "Fact",
+   "fact": "About 2.9 million people, roughly 1 in 10 Medicare Advantage enrollees, had to change coverage for 2026 because their plan left the market (JAMA, 2026).",
+   "source": {
+    "label": "JAMA, March 2026 (Viewpoint citing Meiselbach et al., Feb 18, 2026)",
+    "url": "https://jamanetwork.com/journals/jama/fullarticle/2845239"
+   },
+   "image": {
+    "status": "waiting",
+    "version": 2,
+    "review_id": "node-r_jama-v2"
+   },
+   "caption": {
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "2.9 million had to find a new plan for 2026",
    "source_short": "JAMA, 2026"
   },
   {
@@ -203,7 +225,7 @@ window.DH_DRAWINGS = {
   {
    "id": "unh",
    "label": "UnitedHealth Group",
-   "scene": "Executives of several backgrounds review an annual report in a boardroom high in a glass tower marked 'UnitedHealth Group'.",
+   "scene": "A glass tower marked 'UnitedHealth Group' is topped by a stack of gold coins rising into the clouds, above the city skyline.",
    "kind": "Fact",
    "fact": "UnitedHealth Group reported $22.4 billion in net earnings for 2023 across all its businesses, not Medicare Advantage alone (UnitedHealth Group, Jan 12, 2024).",
    "source": {
@@ -212,8 +234,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-unh-v1"
+    "version": 2,
+    "review_id": "node-unh-v2"
    },
    "caption": {
     "status": "waiting",
@@ -295,7 +317,7 @@ window.DH_DRAWINGS = {
   {
    "id": "prov",
    "label": "Hospitals & doctors' groups",
-   "scene": "Hospital finance staff review insurer contracts and a payment-rate table in an office overlooking the hospital entrance.",
+   "scene": "Outside a hospital, a finance officer holding a 'Plan' clipboard raises giant scissors over ribbons tying the hospital to insurance plans.",
    "kind": "Estimate",
    "fact": "In a 2024 survey of 135 health-system finance chiefs, 16% said they planned to stop accepting one or more Medicare Advantage plans within two years (HFMA and Eliciting Insights, 2024).",
    "source": {
@@ -304,8 +326,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-prov-v1"
+    "version": 2,
+    "review_id": "node-prov-v2"
    },
    "caption": {
     "status": "waiting",
@@ -341,7 +363,7 @@ window.DH_DRAWINGS = {
   {
    "id": "inv",
    "label": "Shareholders",
-   "scene": "Shareholders of many backgrounds in a hotel ballroom watch a screen showing a rising earnings chart.",
+   "scene": "A golden pipe from a corporate tower pours a river of coins into a ballroom where shareholders catch it in briefcases.",
    "kind": "Fact",
    "fact": "In 2023, UnitedHealth Group returned $14.8 billion to shareholders through dividends and share buybacks, across all its businesses (UnitedHealth Group, Jan 12, 2024).",
    "source": {
@@ -350,8 +372,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-inv-v1"
+    "version": 2,
+    "review_id": "node-inv-v2"
    },
    "caption": {
     "status": "waiting",
@@ -363,7 +385,7 @@ window.DH_DRAWINGS = {
   {
    "id": "congress",
    "label": "Congress",
-   "scene": "Lawmakers and staff of many backgrounds carry folders up the steps of the U.S. Capitol at sunset.",
+   "scene": "On the Capitol steps, a balance scale weighs piles of votes marked 220 and 215, barely tipped, as lawmakers lean in.",
    "kind": "Fact",
    "fact": "Congress passed the Medicare Modernization Act in November 2003, by 220 to 215 in the House and 54 to 44 in the Senate (Congressional Research Service).",
    "source": {
@@ -372,8 +394,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-congress-v1"
+    "version": 2,
+    "review_id": "node-congress-v2"
    },
    "caption": {
     "status": "waiting",
@@ -385,7 +407,7 @@ window.DH_DRAWINGS = {
   {
    "id": "trustees",
    "label": "Medicare Trustees",
-   "scene": "Medicare trustees in a late-night meeting review a chart sloping down toward 2033, marked 89%.",
+   "scene": "At night, a trustee moves a red pin on a giant year calendar onto 2033, beside a gauge reading 89%.",
    "kind": "Forecast",
    "fact": "The Trustees moved the date the Part A fund runs short one quarter earlier, to the second quarter of 2033 (Medicare Trustees, June 2026).",
    "source": {
@@ -394,8 +416,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-trustees-v1"
+    "version": 2,
+    "review_id": "node-trustees-v2"
    },
    "caption": {
     "status": "approved",
@@ -433,7 +455,7 @@ window.DH_DRAWINGS = {
   {
    "id": "r_kff",
    "label": "KFF analyses",
-   "scene": "Two researchers compare bar charts of insurer margins on their monitors, surrounded by printed reports.",
+   "scene": "Two coin stacks on a desk: 'Medicare Advantage' stands more than twice as tall as 'other markets' while researchers measure it.",
    "kind": "Fact",
    "fact": "In 2021, Medicare Advantage insurers averaged $1,730 in gross margin per enrollee, at least double the $689 to $768 in other markets (KFF, Feb 28, 2023).",
    "source": {
@@ -442,8 +464,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-r_kff-v1"
+    "version": 2,
+    "review_id": "node-r_kff-v2"
    },
    "caption": {
     "status": "waiting",
@@ -455,7 +477,7 @@ window.DH_DRAWINGS = {
   {
    "id": "r_her",
    "label": "Health Economics Review study",
-   "scene": "Economists compare medical billing code forms beside a chalkboard of graphs.",
+   "scene": "Economists study a giant patient chart through a magnifying glass as extra code stamps drop coins onto a tipping scale.",
    "kind": "Estimate",
    "fact": "A 2024 Health Economics Review paper reports estimates that 'upcoding' in Medicare Advantage costs $10 billion to $15 billion a year (Joiner, Lin and Pantano, Jan 2, 2024).",
    "source": {
@@ -464,8 +486,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-r_her-v1"
+    "version": 2,
+    "review_id": "node-r_her-v2"
    },
    "caption": {
     "status": "waiting",
@@ -477,7 +499,7 @@ window.DH_DRAWINGS = {
   {
    "id": "r_hfma",
    "label": "HFMA survey",
-   "scene": "Two hospital finance chiefs fill out a survey on clipboards while a slide shows a pie chart with a small highlighted slice.",
+   "scene": "Five hospitals are roped to 'MA plan' signs; one rope is cut, and executives with survey clipboards stand beside it.",
    "kind": "Estimate",
    "fact": "19% of health systems surveyed had already dropped at least one Medicare Advantage plan, and 16% planned to within two years (HFMA and Eliciting Insights, March 2024).",
    "source": {
@@ -486,8 +508,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "approved_on": null,
-    "review_id": "illus-node-r_hfma-v1"
+    "version": 2,
+    "review_id": "node-r_hfma-v2"
    },
    "caption": {
     "status": "waiting",
