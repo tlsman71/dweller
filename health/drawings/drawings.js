@@ -499,7 +499,7 @@ window.DH_DRAWINGS = {
   {
    "id": "r_her",
    "label": "Health Economics Review study",
-   "scene": "A medical coder changes a code field on one screen and the payment amount jumps on the other, as older patients look on.",
+   "scene": "At a hospital coding desk, a coder changes a code on one screen while the other reads '$10–15 billion a year'; behind the glass, an older patient rests in a hospital bed with a nurse.",
    "kind": "Estimate",
    "fact": "A 2024 Health Economics Review paper reports estimates that 'upcoding' in Medicare Advantage costs $10 billion to $15 billion a year (Joiner, Lin and Pantano, Jan 2, 2024).",
    "source": {
@@ -507,13 +507,16 @@ window.DH_DRAWINGS = {
     "url": "https://doi.org/10.1186/s13561-023-00465-4"
    },
    "image": {
-    "status": "waiting",
-    "version": 3,
-    "review_id": "node-r_her-v3"
+    "status": "approved",
+    "version": 4,
+    "approved_on": "2026-11-15",
+    "review_id": "node-r_her-v4"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "node-r_her-v4"
    },
    "headline": "Coding estimates: $10–15 billion a year in Advantage",
    "source_short": "Health Economics Review, 2024"
