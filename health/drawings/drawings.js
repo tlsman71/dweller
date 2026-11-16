@@ -140,13 +140,16 @@ window.DH_DRAWINGS = {
     "url": "https://jamanetwork.com/journals/jama/fullarticle/2845239"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 3,
+    "approved_on": "2026-11-15",
     "review_id": "node-r_jama-v3"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "node-r_jama-v3"
    },
    "headline": "2.9 million had to find a new plan for 2026",
    "source_short": "JAMA, 2026"
@@ -331,13 +334,16 @@ window.DH_DRAWINGS = {
     "url": "https://www.beckershospitalreview.com/finance/nearly-half-of-health-systems-are-considering-dropping-ma-plans/"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 3,
+    "approved_on": "2026-11-15",
     "review_id": "node-prov-v3"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "node-prov-v3"
    },
    "headline": "16% of health systems plan to drop an Advantage plan",
    "source_short": "HFMA survey, 2024"
@@ -377,13 +383,16 @@ window.DH_DRAWINGS = {
     "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176624000023/a2023q4exhibit991.htm"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 3,
+    "approved_on": "2026-11-15",
     "review_id": "node-inv-v3"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "node-inv-v3"
    },
    "headline": "$14.8 billion back to UnitedHealth shareholders",
    "source_short": "UnitedHealth Group, Jan 2024"
@@ -399,13 +408,16 @@ window.DH_DRAWINGS = {
     "url": "https://www.congress.gov/crs_external_products/RL/PDF/RL31966/RL31966.3.pdf"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 3,
+    "approved_on": "2026-11-15",
     "review_id": "node-congress-v3"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "node-congress-v3"
    },
    "headline": "2003: passed the House by 5 votes, 220 to 215",
    "source_short": "Congressional Research Service"
@@ -421,8 +433,9 @@ window.DH_DRAWINGS = {
     "url": "https://www.ssa.gov/oact/TRSUM/"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 3,
+    "approved_on": "2026-11-15",
     "review_id": "node-trustees-v3"
    },
    "caption": {
