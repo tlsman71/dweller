@@ -197,17 +197,22 @@ section.block{padding:72px 0 10px}
 }
 
 /* slideshow */
-.deckwrap{padding:18px}
+.deckwrap{padding:18px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
+@media (max-width:920px){.deckwrap{grid-template-columns:1fr}}
+.deckside{display:flex;flex-direction:column;gap:14px}
+.deckfull{width:100%}
 .deckframe{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#E4F0EF}
 .deckinner{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
 .deckinner > section{position:absolute;inset:0;display:none !important}
 .deckinner > section.cur{display:flex !important}
 .deckinner aside{display:none}
-.deckbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
-.deckbar .count{font-weight:700;font-size:20px;min-width:120px;text-align:center}
-.deckmeta{display:flex;gap:10px 22px;flex-wrap:wrap;align-items:center;color:var(--mute);font-size:18px;margin-top:10px}
-.deckthumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.deckthumbs button{min-width:52px;min-height:44px;border-radius:8px;border:2px solid var(--line);background:var(--slate2);color:var(--chalk);font-weight:700;font-size:17px;cursor:pointer}
+.deckbar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.deckbar .btn{padding:0 16px}
+.deckbar .count{font-weight:700;font-size:19px;text-align:center;white-space:nowrap}
+.deckmeta{color:var(--mute);font-size:14px;line-height:1.45;margin:10px 2px 0}
+.deckthumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+@media (max-width:920px){.deckthumbs{display:flex;flex-wrap:wrap}}
+.deckthumbs button{min-width:44px;min-height:44px;border-radius:8px;border:2px solid var(--line);background:var(--slate2);color:var(--chalk);font-weight:700;font-size:17px;cursor:pointer}
 .deckthumbs button[aria-current="true"]{background:var(--gold);color:#17140a;border-color:var(--gold)}
 .notes{margin-top:12px;font-size:18px;color:var(--mute);border-left:4px solid var(--gold);padding:6px 14px}
 
@@ -468,15 +473,17 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <p class="sec-lede">Based on <i>Medicare Advantage</i> by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026. It’s a living deck: when a figure is re-checked, that slide is updated and dated.</p>
     <div class="board deckwrap" style="margin-top:22px">
       <div id="deckhost"></div>
+      <div class="deckside">
       <div class="deckbar">
         <button class="btn" id="dprev" aria-label="Previous slide"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</button>
         <div class="count" id="dcount" aria-live="polite"></div>
         <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <a class="btn" href="https://tlsman71.github.io/dweller/health/deck/" style="margin-left:auto">Open the full deck</a>
       </div>
       <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
-      <div class="deckmeta"><span id="dupdated"></span><span>Every change is recorded in the deck’s public history on GitHub.</span></div>
+      <a class="btn deckfull" href="https://tlsman71.github.io/dweller/health/deck/">Open the full deck</a>
+      </div>
     </div>
+    <p class="deckmeta"><span id="dupdated"></span> · Every change is recorded in the deck’s public history on GitHub.</p>
   </div>
 </section>
 
