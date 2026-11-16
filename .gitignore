@@ -4,3 +4,5 @@
 *keys*.txt
 secrets/
 *.xlsx
+health/drawings/draft/
+__pycache__/

@@ -242,6 +242,40 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 
 /* deck styles, scoped */
 
+
+/* slide show of approved node illustrations (O45) */
+.shows{margin-top:26px}
+.show{position:relative;border-radius:14px;border:1px solid var(--line);overflow:hidden;background:#0b0e0d}
+.show-frame{position:relative;aspect-ratio:16/9;background:#0b0e0d}
+.show-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.show-frame img.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.show-frame img{transition:none}}
+.show-nav{position:absolute;top:50%;transform:translateY(-50%);width:58px;height:58px;border-radius:50%;border:2px solid rgba(238,237,228,.55);background:rgba(14,18,17,.72);color:var(--chalk);font-size:30px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.show-nav:hover{background:rgba(14,18,17,.92);border-color:var(--gold2)}
+.show-nav:focus-visible,.show-dots button:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.show-nav.prev{left:14px}.show-nav.next{right:14px}
+.show-count{position:absolute;top:12px;left:12px;background:rgba(14,18,17,.82);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:17px;font-weight:700}
+.show-cap{padding:20px 24px 22px;background:var(--slate);border-top:2px solid var(--gold);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 24px;align-items:start}
+@media (max-width:760px){.show-cap{grid-template-columns:1fr}}
+.show-cap .eyebrow{margin:0 0 6px;font-size:17px;font-weight:700;color:var(--gold2);text-transform:uppercase;letter-spacing:.06em}
+.show-cap h3{font-family:var(--chalkfont);font-size:clamp(28px,3.2vw,40px);line-height:1.1}
+.show-cap .scene{margin:8px 0 0;color:var(--mute)}
+#pictures{scroll-margin-top:84px}
+.show-cap .sfact{margin:10px 0 0}
+.show-cap .src{font-size:17px;margin:12px 0 0;color:var(--mute);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.show-cap .review{display:inline-block;margin-top:10px;font-size:17px;font-weight:700;color:var(--amber2);border:2px dashed #6b5222;border-radius:8px;padding:3px 12px}
+.show-actions{display:flex;flex-direction:column;gap:10px;min-width:220px}
+.show-dots{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px 10px 2px}
+.show-dots button{width:16px;height:16px;border-radius:50%;border:2px solid var(--mute);background:transparent;padding:0;cursor:pointer}
+.show-dots button[aria-current="true"]{background:var(--gold2);border-color:var(--gold2)}
+.show-empty{padding:34px 26px;text-align:center;color:var(--mute)}
+.share-panel{margin-top:14px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--slate2);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+.share-panel[hidden]{display:none}
+@media (max-width:760px){.share-panel{grid-template-columns:1fr}}
+.share-panel img{width:100%;max-width:520px;border-radius:8px;border:1px solid var(--line)}
+.share-panel .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.share-panel input{font:inherit;font-size:16px;width:100%;background:var(--bg);color:var(--chalk);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.draftbadge{position:absolute;top:12px;right:12px;background:#2b2410;color:#f2d98a;border:1px solid #6b5222;border-radius:999px;padding:4px 14px;font-size:16px;font-weight:700}
 </style>
 <link rel="stylesheet" href="../deck/deck.css">
 </head>
@@ -255,6 +289,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     </a>
     <span class="place">North Carolina</span>
     <nav class="mainnav" aria-label="Main">
+      <a href="#pictures">In pictures</a>
       <a href="#street">The Street</a>
       <a href="#deck">The presentation</a>
       <a href="#money">Follow the money</a>
@@ -269,7 +304,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   <div class="wrap hero-grid">
     <div>
       <h1>How health-coverage decisions reach <span class="under">your</span> coverage, costs and care</h1>
-      <p class="lede">Medicare Advantage, explained one step at a time. Just scroll: the street below walks you through who pays, who gets paid, and what you can do about it in North Carolina.</p>
+      <p class="lede">Medicare Advantage, explained one step at a time. Start with the pictures, then scroll down the street, which walks you through who pays, who gets paid, and what you can do about it in North Carolina.</p>
       <a class="btn gold" href="#act">See your enrollment dates</a>
     </div>
     <div class="hero-art"><img src="../deck/img/street-00-concept.webp" alt="A pencil drawing of a town street: Original Medicare's civic building and an hourglass on the left, private insurance office buildings on the right."></div>
@@ -281,6 +316,29 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
       <div class="q board"><div class="lbl">Already in an MA plan? One more change</div><div class="val">Jan 1 – Mar 31</div></div>
     </div>
     <div class="cue" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="#e8c860" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Scroll down to walk the street</div>
+  </div>
+</section>
+
+<section class="block" id="pictures" aria-label="In pictures: slide show of Dweller Health illustrations">
+  <div class="wrap">
+    <h2 class="sec-title">In pictures</h2>
+    <p class="sec-lede">One drawing for each part of the Medicare money map. Each comes with a sourced fact. Share any of them: the picture carries a link and QR code back here.</p>
+    <div class="shows">
+      <div class="show" id="show" role="region" aria-roledescription="carousel" aria-label="Dweller Health illustrations">
+        <div class="show-frame" id="showframe"></div>
+        <div class="show-cap" id="showcap" aria-live="polite"></div>
+      </div>
+      <div class="show-dots" id="showdots" role="group" aria-label="Choose a picture"></div>
+      <div class="share-panel" id="sharepanel" hidden>
+        <div><img id="shareimg" alt=""></div>
+        <div>
+          <p style="margin:0;font-weight:700">Share this picture</p>
+          <p style="margin:6px 0 0;color:var(--mute);font-size:17px">Save the picture and post it anywhere. Its QR code and link bring people back to this slide.</p>
+          <div class="row"><a class="btn gold" id="sharedl" download>Save the picture</a><button class="btn" id="sharecopy" type="button">Copy the link</button></div>
+          <label style="display:block;margin-top:10px;font-size:16px;color:var(--mute)">Link<input id="sharelink" readonly></label>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -440,6 +498,64 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   </div>
 </footer>
 
+<script src="../drawings/drawings.js"></script>
+<script>
+/* "In pictures" slide show (O45). Only slides whose image Tom approved appear; captions appear once Tom approves them.
+   ?drafts=1 shows every slide with a Draft badge, for review only. Deep links: #slide-<id>. */
+(function(){
+  var D=window.DH_DRAWINGS||{slides:[]}, drafts=/[?&]drafts=1\b/.test(location.search);
+  var S=D.slides.filter(function(s){return drafts||s.image.status==="approved"});
+  var frame=document.getElementById("showframe"), cap=document.getElementById("showcap"), dots=document.getElementById("showdots");
+  var base=(D.share_base||location.href.split("#")[0]).replace(/\/?$/,"/"), i=0;
+  function e(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  if(!S.length){frame.style.display="none";cap.className="show-empty";cap.innerHTML="Illustrations are on their way. Each one is checked against its source and approved before it appears here.";return}
+  var imgsrc=function(s){return drafts&&s.image.status!=="approved"?"../drawings/draft/"+s.id+".webp":"../drawings/img/"+s.id+".webp"};
+  frame.innerHTML=S.map(function(s,k){return '<img src="'+imgsrc(s)+'" alt="'+e(s.scene)+'" data-k="'+k+'"'+(k?' loading="lazy"':'')+'>'}).join("")+
+    '<span class="show-count" id="showcount"></span>'+(drafts?'<span class="draftbadge" id="draftbadge" hidden>Draft · not approved</span>':'')+
+    '<button class="show-nav prev" type="button" aria-label="Previous picture">&#8249;</button><button class="show-nav next" type="button" aria-label="Next picture">&#8250;</button>';
+  dots.innerHTML=S.map(function(s,k){return '<button type="button" aria-label="Picture '+(k+1)+': '+e(s.label)+'"></button>'}).join("");
+  function link(s){return base+"#slide-"+s.id}
+  function show(k,fromHash){
+    i=(k+S.length)%S.length; var s=S[i];
+    frame.querySelectorAll("img").forEach(function(im,n){im.classList.toggle("on",n===i)});
+    dots.querySelectorAll("button").forEach(function(b,n){b.setAttribute("aria-current",n===i?"true":"false")});
+    document.getElementById("showcount").textContent=(i+1)+" of "+S.length;
+    var b=document.getElementById("draftbadge"); if(b)b.hidden=s.image.status==="approved";
+    var ok=s.caption.status==="approved"||drafts;
+    cap.innerHTML='<div><p class="eyebrow">'+e(s.label)+'</p>'+(ok?'<h3>'+e(s.headline)+'</h3><p class="src"><span class="kind k-'+e(s.kind)+'">'+e(s.kind)+'</span> <a href="'+e(s.source.url)+'" target="_blank" rel="noopener">'+e(s.source_short)+'</a></p>'+(drafts&&s.caption.status!=="approved"?'<span class="review">Caption draft · waiting for review</span>':''):'<span class="review">Caption under review</span>')+'</div>'+
+      '<div class="show-actions"><button class="btn gold" type="button" id="sharebtn">Share this picture</button><a class="btn" href="#money">See it on the money map</a></div>';
+    document.getElementById("sharebtn").addEventListener("click",function(){share(s)});
+    document.getElementById("sharepanel").hidden=true;
+    if(!fromHash&&location.hash.indexOf("#slide-")===0&&history.replaceState)history.replaceState(null,"","#slide-"+s.id);
+  }
+  function share(s){
+    var url=link(s), card="../drawings/share/"+s.id+".jpg", text=s.label+" · Dweller Health";
+    var panel=document.getElementById("sharepanel");
+    function fallback(){document.getElementById("shareimg").src=card;document.getElementById("shareimg").alt="Share card: "+s.label+", with the Dweller Health name, a QR code and a link back to this slide";
+      var dl=document.getElementById("sharedl");dl.href=card;dl.setAttribute("download","dweller-health-"+s.id+".jpg");
+      document.getElementById("sharelink").value=url;panel.hidden=false;panel.scrollIntoView({block:"nearest",behavior:"smooth"})}
+    if(s.image.status!=="approved"||!navigator.share){fallback();return}
+    fetch(card).then(function(r){return r.blob()}).then(function(bl){
+      var f=new File([bl],"dweller-health-"+s.id+".jpg",{type:"image/jpeg"});
+      var data=navigator.canShare&&navigator.canShare({files:[f]})?{files:[f],title:text,text:text+" "+url,url:url}:{title:text,text:text,url:url};
+      return navigator.share(data);
+    }).catch(function(err){if(!err||err.name!=="AbortError")fallback()});
+  }
+  document.getElementById("sharecopy").addEventListener("click",function(){var v=document.getElementById("sharelink");
+    (navigator.clipboard?navigator.clipboard.writeText(v.value):Promise.reject()).then(function(){document.getElementById("sharecopy").textContent="Link copied"},function(){v.select();document.execCommand("copy")})});
+  frame.querySelector(".prev").addEventListener("click",function(){show(i-1)});
+  frame.querySelector(".next").addEventListener("click",function(){show(i+1)});
+  dots.querySelectorAll("button").forEach(function(b,n){b.addEventListener("click",function(){show(n)})});
+  document.getElementById("show").addEventListener("keydown",function(ev){if(ev.key==="ArrowLeft")show(i-1);if(ev.key==="ArrowRight")show(i+1)});
+  document.getElementById("show").tabIndex=0;
+  var x0=null;frame.addEventListener("touchstart",function(ev){x0=ev.touches[0].clientX},{passive:true});
+  frame.addEventListener("touchend",function(ev){if(x0===null)return;var dx=ev.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)show(dx<0?i+1:i-1);x0=null});
+  function fromHash(){var m=location.hash.match(/^#slide-([a-z0-9_]+)$/);if(!m)return false;var k=S.findIndex(function(s){return s.id===m[1]});if(k<0)return false;show(k,true);
+    document.getElementById("pictures").scrollIntoView();return true}
+  window.addEventListener("hashchange",fromHash);
+  if(!fromHash())show(0);
+})();
+</script>
 <script src="../deck/slides.js"></script>
 <script src="../deck/deck.js"></script>
 <script>
