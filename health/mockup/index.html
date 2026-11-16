@@ -255,7 +255,13 @@ table.tx td.amt{font-weight:700;white-space:nowrap}
 .legend{display:flex;gap:8px 16px;flex-wrap:wrap;font-size:17px;margin-top:12px}
 .legend span{display:inline-flex;align-items:center;gap:8px}
 .legend i{width:16px;height:16px;border-radius:50%;display:inline-block}
-.record{padding:20px}
+.record{padding:20px;max-height:560px;overflow-y:auto;overscroll-behavior:contain}
+.record:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+@media (max-width:920px){.record{max-height:70vh}}
+.rthumb{display:block;margin-top:16px;border-top:1px solid var(--line);padding-top:14px;text-decoration:none;color:var(--chalk)}
+.rthumb img{display:block;width:100%;max-width:300px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.rthumb span{display:block;margin-top:6px;font-size:15px;color:var(--gold2);font-weight:700}
+.rthumb:hover img{border-color:var(--gold2)}
 .record h3{font-family:var(--chalkfont);font-size:30px;line-height:1.1;margin-bottom:8px}
 .record ol{padding-left:22px;margin:8px 0}
 .record li{margin-bottom:10px;font-size:18px}
@@ -436,7 +442,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <div class="legend" id="legend"></div>
     <div class="mapgrid">
       <div class="board mapbox"><svg id="map" viewBox="0 0 900 560" role="img" aria-label="Money map of Medicare Advantage: agencies, funds, insurers, providers and reports, connected by payments and findings"></svg></div>
-      <div class="board record" id="record" aria-live="polite">
+      <div class="board record" id="record" aria-live="polite" tabindex="0" role="region" aria-label="Record of the selected circle (scrolls)">
         <h3>How to read this</h3>
         <ol>
           <li>Click a circle to see its record, in date order, each with its source.</li>
@@ -917,12 +923,17 @@ function drawMap(){
     g.addEventListener("click",open);g.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();open()}});
   });
 }
+/* The node's approved picture, at the bottom of its record (Tom, Nov 15 20:26). Only approved pictures appear;
+   clicking it opens that picture in the slide show at the top of the page. */
+function thumb(id){var D=window.DH_DRAWINGS,sl=D&&D.slides.filter(function(x){return x.id===id&&x.image.status==="approved"})[0];
+  if(!sl)return "";
+  return '<a class="rthumb" href="#slide-'+esc(id)+'"><img src="../drawings/img/'+esc(id)+'.webp" alt="'+esc(sl.scene||sl.label)+'" loading="lazy"><span>See this picture in the slide show</span></a>'}
 function record(id){
-  var R=$("record");
+  var R=$("record");R.scrollTop=0;
   if(!id){R.innerHTML='<h3>How to read this</h3><ol><li>Click a circle to see its record, in date order, each with its source.</li><li>Solid green lines are documented money or facts.</li><li>Dashed amber lines are estimates.</li><li>Grey dashed circles are not yet sourced. Nothing goes on the map without a document.</li></ol>';return}
   var n=byId[id],L=E.filter(function(e){return e.s===id||e.t===id}).sort(function(a,b){return String(a.d||"").localeCompare(String(b.d||""))});
   R.innerHTML='<h3>'+esc(n.n)+'</h3><p class="src">'+NT[n.t].n+' · '+L.length+' connections</p><ol>'+L.map(function(e){var other=e.s===id?byId[e.t].n:byId[e.s].n,dir=e.s===id?"→ ":"← ";
-    return '<li><span class="kind k-'+e.k+'" style="font-size:14px;padding:1px 8px">'+e.k+'</span> '+(e.d?'<b>'+esc(e.d)+'</b> · ':'')+dir+esc(other)+': '+esc(e.l)+(e.amtTxt?' <b>('+esc(e.amtTxt)+')</b>':'')+'<div class="src">Source: '+esc(e.src)+'</div></li>'}).join("")+'</ol><button class="btn" id="clearsel">Show the whole map</button>';
+    return '<li><span class="kind k-'+e.k+'" style="font-size:14px;padding:1px 8px">'+e.k+'</span> '+(e.d?'<b>'+esc(e.d)+'</b> · ':'')+dir+esc(other)+': '+esc(e.l)+(e.amtTxt?' <b>('+esc(e.amtTxt)+')</b>':'')+'<div class="src">Source: '+esc(e.src)+'</div></li>'}).join("")+'</ol><button class="btn" id="clearsel">Show the whole map</button>'+thumb(id);
   $("clearsel").addEventListener("click",function(){sel=null;drawMap();record(null)});
 }
 [].forEach.call(document.querySelectorAll(".fbtn"),function(b){b.addEventListener("click",function(){filt=b.dataset.f;[].forEach.call(document.querySelectorAll(".fbtn"),function(x){x.setAttribute("aria-pressed",x===b)});drawBands();drawTable();drawMap()})});
