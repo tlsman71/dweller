@@ -40,8 +40,9 @@ header.top .wrap{display:flex;align-items:center;gap:18px;min-height:72px;flex-w
 .sp-menu li span{font-size:14px}
 .sp-menu li.cur{color:var(--chalk);font-weight:700;background:#13201a;border:1px solid #2f6b49;cursor:default}
 .sp-menu li.cur span{color:var(--green2);font-weight:700}
-nav.mainnav{display:flex;gap:6px 18px;flex-wrap:wrap;margin-left:auto}
-nav.mainnav a{color:var(--mute);text-decoration:none;font-weight:700;font-size:18px;padding:10px 4px}
+nav.mainnav{display:flex;gap:6px 14px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:100%;margin-left:auto}
+nav.mainnav::-webkit-scrollbar{display:none}
+nav.mainnav a{color:var(--mute);text-decoration:none;font-weight:700;font-size:17px;padding:10px 4px;white-space:nowrap}
 nav.mainnav a:hover{color:var(--chalk);text-decoration:underline}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 22px;border-radius:10px;border:2px solid var(--line);background:var(--slate2);color:var(--chalk);font-family:var(--body);font-weight:700;font-size:19px;text-decoration:none;cursor:pointer}
 .btn:hover{border-color:#5a6b63;color:var(--chalk)}
@@ -57,7 +58,7 @@ nav.mainnav a:hover{color:var(--chalk);text-decoration:underline}
 .k-Quote{color:var(--chalk);border-color:#55605a;background:#1b2220}
 .k-Pending{color:var(--chalk);border-color:#6a756e;background:#1b2220;border-style:dashed}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-section.block{padding:72px 0 10px}
+section.block{padding:72px 0 10px;scroll-margin-top:calc(var(--hdr,113px) - 58px)}
 .sec-title{font-family:var(--chalkfont);font-weight:700;font-size:clamp(36px,4.6vw,56px);line-height:1.05}
 .sec-lede{font-size:21px;color:var(--mute);max-width:820px;margin:12px 0 0}
 
@@ -406,6 +407,8 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
       <a href="#money">Follow the money</a>
       <a href="#deck" aria-label="Medicare vs. Medicare Advantage">Medicare vs. MA</a>
       <a href="#act">What you can do</a>
+      <a href="#story" aria-label="Put your story on the record">Your story</a>
+      <a href="#events" aria-label="Events and dates">Events</a>
       <a href="#updates">Updates</a>
     </nav>
   </div>
@@ -599,7 +602,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
           <button class="btn" data-lv="State" aria-pressed="false">State</button>
           <button class="btn" data-lv="Local" aria-pressed="false">Local</button>
         </div>
-        <p style="font-size:17px;color:var(--mute);margin:14px 0 0">Events from any group are listed, whatever its position, once the organizer's own page or an official calendar confirms the date, time and place. A listing isn't an endorsement. Check the organizer's page before you go; plans change.</p>
+        <p style="font-size:17px;color:var(--mute);margin:14px 0 0">Check the organizer's or agency's page before you go; plans change.</p>
       </div>
       <div>
         <div class="ev-list" id="evList" aria-live="polite"></div>
@@ -667,7 +670,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     var L=document.getElementById("evList");
     var es=shown().filter(function(e){return sel? e.d===sel : pd(e.d)>=today}).sort(function(a,b){return (a.d+(a.tm||"")).localeCompare(b.d+(b.tm||""))});
     var head=sel?'<p style="margin:0;color:var(--mute)">Showing '+pd(sel).toLocaleDateString("en-US",{month:"long",day:"numeric"})+' · <a href="#events" id="evAllUp">show all upcoming</a></p>':'';
-    if(!es.length){L.innerHTML=head+'<div class="board ev-empty">'+(sel?"Nothing listed on this day.":"Nothing listed yet for this filter.")+' No town halls, hearings or marches are listed until their dates are confirmed by the organizer or an official calendar. You can add ones you know of below, for yourself.</div>';}
+    if(!es.length){L.innerHTML=head+'<div class="board ev-empty">'+(sel?"Nothing listed on this day.":"Nothing listed yet for this filter.")+' You can add events you know of below, for yourself.</div>';}
     else L.innerHTML=head+es.map(function(e){
       var src=e.mine?'<span class="ev-tag">Added by you · this device only</span>':'<span class="kind k-'+e.lab+'" style="font-size:15px">'+e.lab+' · checked '+esc(e.chk)+'</span>';
       return '<article class="board ev-item"><div class="ev-tags"><span class="ev-tag"><i class="lv-'+e.lv+'" style="width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px"></i>'+e.lv+'</span><span class="ev-tag">'+esc(e.k)+'</span>'+src+'</div>'
