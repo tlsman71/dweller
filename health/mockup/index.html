@@ -344,6 +344,44 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 .sharemenu a:hover,.sharemenu button:hover,.sharemenu a:focus-visible,.sharemenu button:focus-visible{background:#26332e;outline:none}
 .share-panel input{font:inherit;font-size:16px;width:100%;background:var(--bg);color:var(--chalk);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
 .draftbadge{position:absolute;top:12px;right:12px;background:#2b2410;color:#f2d98a;border:1px solid #6b5222;border-radius:999px;padding:4px 14px;font-size:16px;font-weight:700}
+/* Events calendar (Nov 15, 2026) */
+.ev-wrap{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:22px;margin-top:22px;align-items:start}
+@media (max-width:900px){.ev-wrap{grid-template-columns:1fr}}
+.ev-cal{padding:18px}
+.ev-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.ev-head .chalk{font-size:30px;margin:0}
+.ev-head .btn{min-height:46px;padding:0 14px}
+.ev-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.ev-grid .dow{font-size:15px;color:var(--mute);font-weight:700;padding:4px 0}
+.ev-day{min-height:48px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--chalk);font:inherit;font-size:18px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px}
+.ev-day.out{opacity:.35}
+.ev-day.today{border-color:var(--line)}
+.ev-day.has{background:var(--slate2);border-color:#3c4c45;font-weight:700}
+.ev-day.sel{outline:3px solid var(--gold2);outline-offset:1px}
+.ev-dots{display:flex;gap:3px;height:8px}
+.ev-dots i{width:8px;height:8px;border-radius:50%;display:block}
+.lv-Federal{background:#8fb6e0}.lv-State{background:var(--gold2)}.lv-Local{background:var(--green2)}
+.ev-filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.ev-filters button{min-height:44px;padding:0 14px;font-size:17px}
+.ev-filters button[aria-pressed=true]{border-color:var(--gold);color:var(--gold2)}
+.ev-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:16px;color:var(--mute);margin-top:12px}
+.ev-legend span{display:inline-flex;align-items:center;gap:6px}
+.ev-legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.ev-list{display:flex;flex-direction:column;gap:12px;max-height:720px;overflow:auto;padding-right:4px}
+.ev-item{padding:16px 18px}
+.ev-item h3{font-size:24px;margin:6px 0 4px;font-family:var(--body)}
+.ev-meta{font-size:17px;color:var(--mute)}
+.ev-tags{display:flex;gap:8px;flex-wrap:wrap}
+.ev-tag{font-size:15px;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--chalk)}
+.ev-remind{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.ev-remind .btn{min-height:46px;padding:0 14px;font-size:17px}
+.ev-remind select{font:inherit;font-size:17px;min-height:46px;background:#0b0f0e;color:var(--chalk);border:2px solid var(--line);border-radius:10px;padding:0 10px}
+.ev-empty{padding:18px;color:var(--mute)}
+.ev-add{padding:18px;margin-top:22px}
+.ev-add label{display:block;font-weight:700;margin:10px 0 4px;font-size:18px}
+.ev-add input,.ev-add select{width:100%;font:inherit;font-size:19px;background:#0b0f0e;color:var(--chalk);border:2px solid var(--line);border-radius:10px;padding:10px 12px}
+.ev-add .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:600px){.ev-add .two{grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="../deck/deck.css">
 </head>
@@ -539,6 +577,145 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     </div>
   </div>
 </section>
+
+<section class="block" id="events">
+  <div class="wrap">
+    <h2 class="sec-title">Events and dates</h2>
+    <p class="sec-lede">Deadlines, hearings, town halls, marches and other public events about Medicare and health coverage: local, state and federal. Tap <b>Add to my calendar</b> to save one with a reminder, or <b>Email myself a note</b>. Dweller doesn't send you anything unless you set it up.</p>
+    <div class="ev-wrap">
+      <div>
+        <div class="board ev-cal">
+          <div class="ev-head">
+            <button class="btn" id="evPrev" aria-label="Previous month">‹</button>
+            <h3 class="chalk" id="evMonth" aria-live="polite"></h3>
+            <button class="btn" id="evNext" aria-label="Next month">›</button>
+          </div>
+          <div class="ev-grid" id="evGrid" role="grid" aria-label="Event calendar"></div>
+          <div class="ev-legend" aria-hidden="true"><span><i class="lv-Federal"></i>Federal</span><span><i class="lv-State"></i>State</span><span><i class="lv-Local"></i>Local</span></div>
+        </div>
+        <div class="ev-filters" role="group" aria-label="Show events">
+          <button class="btn" data-lv="All" aria-pressed="true">All</button>
+          <button class="btn" data-lv="Federal" aria-pressed="false">Federal</button>
+          <button class="btn" data-lv="State" aria-pressed="false">State</button>
+          <button class="btn" data-lv="Local" aria-pressed="false">Local</button>
+        </div>
+        <p style="font-size:17px;color:var(--mute);margin:14px 0 0">Events from any group are listed, whatever its position, once the organizer's own page or an official calendar confirms the date, time and place. A listing isn't an endorsement. Check the organizer's page before you go; plans change.</p>
+      </div>
+      <div>
+        <div class="ev-list" id="evList" aria-live="polite"></div>
+        <div class="board ev-add">
+          <h3 class="chalk" style="font-size:28px;margin:0">Add an event to your calendar here</h3>
+          <p style="font-size:17px;color:var(--mute);margin:6px 0 0">Know of a town hall, march or meeting? Add it for yourself. It stays on this device only. (Sending events in for everyone to see comes with the pilot, after a source check.)</p>
+          <form id="evForm">
+            <label for="evT">What is it?</label><input id="evT" required placeholder="For example: Town hall with our U.S. Representative">
+            <div class="two">
+              <div><label for="evD">Date</label><input id="evD" type="date" required></div>
+              <div><label for="evTm">Time (optional)</label><input id="evTm" type="time"></div>
+            </div>
+            <label for="evP">Where (optional)</label><input id="evP" placeholder="Place, town, or online">
+            <div class="two">
+              <div><label for="evL">Level</label><select id="evL"><option>Local</option><option>State</option><option>Federal</option></select></div>
+              <div><label for="evK">Kind</label><select id="evK"><option>Town hall</option><option>March or rally</option><option>Protest</option><option>Public hearing</option><option>Meeting</option><option>Deadline</option><option>Free counseling</option><option>Other</option></select></div>
+            </div>
+            <label for="evU">Organizer's web page (optional)</label><input id="evU" type="url" placeholder="https://">
+            <div style="margin-top:14px"><button class="btn gold" type="submit">Add to my list</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  /* Verified dates only. Each needs a source and a check date. Add town halls, hearings, marches and protests here only once the organizer's page or an official calendar confirms them. */
+  var EV=[
+    {id:"oe-end",t:"Medicare Open Enrollment ends",d:"2026-12-07",lv:"Federal",k:"Deadline",place:"Your plan must get your request by this day",note:"Last day to join, switch or drop a Medicare Advantage or drug plan for Jan 1. Free help: SHIIP, 1-855-408-1212.",lab:"Fact",src:"Medicare.gov, Medicare & You 2027",url:"https://www.medicare.gov/publications/10050-le-medicare-and-you.pdf",chk:"Nov 9, 2026"},
+    {id:"oig-dec7",t:"CMS update due on Inspector General report on Medicare Advantage denials",d:"2026-12-07",lv:"Federal",k:"Accountability date",place:"HHS Office of Inspector General",note:"CMS's update is due on the two open recommendations in report OEI-09-24-00330. Dweller Health will check the status that day.",lab:"Fact",src:"HHS OIG, OEI-09-24-00330",url:"https://oig.hhs.gov/",chk:"Nov 13, 2026"},
+    {id:"aca-dec15",t:"HealthCare.gov: last day to enroll for coverage starting Jan 1",d:"2026-12-15",lv:"Federal",k:"Deadline",place:"HealthCare.gov",note:"For marketplace plans (not Medicare). Free help in NC: NC Navigator.",lab:"Fact",src:"HealthCare.gov",url:"https://www.healthcare.gov/",chk:"Nov 13, 2026"},
+    {id:"maoep-start",t:"Medicare Advantage Open Enrollment begins (through Mar 31)",d:"2027-01-01",lv:"Federal",k:"Deadline",place:"Already in an MA plan",note:"If you're in a Medicare Advantage plan, you can make one change: another MA plan, or Original Medicare plus a drug plan.",lab:"Fact",src:"Medicare.gov, Understanding Medicare Advantage Plans",url:"https://www.medicare.gov/publications/12026-understanding-medicare-advantage-plans.pdf",chk:"Nov 9, 2026"},
+    {id:"maoep-end",t:"Medicare Advantage Open Enrollment ends",d:"2027-03-31",lv:"Federal",k:"Deadline",place:"Already in an MA plan",note:"Last day for the one change described on Jan 1.",lab:"Fact",src:"Medicare.gov, Understanding Medicare Advantage Plans",url:"https://www.medicare.gov/publications/12026-understanding-medicare-advantage-plans.pdf",chk:"Nov 9, 2026"}
+  ];
+  var KEY="dwellerHealthEvents.v1", mine=[];
+  try{mine=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){}
+  var all=function(){return EV.concat(mine)};
+  var today=new Date(); today.setHours(0,0,0,0);
+  var view=new Date(today.getFullYear(),today.getMonth(),1), sel=null, lv="All";
+  var MN=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function pd(s){var a=s.split("-");return new Date(+a[0],a[1]-1,+a[2])}
+  function key(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+  function esc(s){return String(s||"").replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function shown(){return all().filter(function(e){return lv==="All"||e.lv===lv})}
+  function nice(e){var d=pd(e.d);return d.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"})+(e.tm?" · "+fmtT(e.tm):"")}
+  function fmtT(t){var h=+t.slice(0,2),m=t.slice(3);return ((h%12)||12)+":"+m+(h<12?" am":" pm")}
+  function grid(){
+    document.getElementById("evMonth").textContent=MN[view.getMonth()]+" "+view.getFullYear();
+    var g=document.getElementById("evGrid"), h="";
+    ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(function(x){h+='<div class="dow" role="columnheader">'+x+'</div>'});
+    var start=new Date(view); start.setDate(1-view.getDay());
+    var by={}; shown().forEach(function(e){(by[e.d]=by[e.d]||[]).push(e)});
+    for(var i=0;i<42;i++){
+      var d=new Date(start); d.setDate(start.getDate()+i); var k=key(d), es=by[k]||[];
+      var cls="ev-day"+(d.getMonth()!==view.getMonth()?" out":"")+(+d===+today?" today":"")+(es.length?" has":"")+(sel===k?" sel":"");
+      var dots=es.slice(0,3).map(function(e){return '<i class="lv-'+e.lv+'"></i>'}).join("");
+      h+='<button class="'+cls+'" data-k="'+k+'" aria-label="'+d.toLocaleDateString("en-US",{month:"long",day:"numeric"})+(es.length?", "+es.length+" event"+(es.length>1?"s":""):"")+'"'+(sel===k?' aria-pressed="true"':'')+'>'+d.getDate()+'<span class="ev-dots">'+dots+'</span></button>';
+    }
+    g.innerHTML=h;
+    g.querySelectorAll(".ev-day").forEach(function(b){b.onclick=function(){sel=(sel===b.dataset.k?null:b.dataset.k);render()}});
+  }
+  function list(){
+    var L=document.getElementById("evList");
+    var es=shown().filter(function(e){return sel? e.d===sel : pd(e.d)>=today}).sort(function(a,b){return (a.d+(a.tm||"")).localeCompare(b.d+(b.tm||""))});
+    var head=sel?'<p style="margin:0;color:var(--mute)">Showing '+pd(sel).toLocaleDateString("en-US",{month:"long",day:"numeric"})+' · <a href="#events" id="evAllUp">show all upcoming</a></p>':'';
+    if(!es.length){L.innerHTML=head+'<div class="board ev-empty">'+(sel?"Nothing listed on this day.":"Nothing listed yet for this filter.")+' No town halls, hearings or marches are listed until their dates are confirmed by the organizer or an official calendar. You can add ones you know of below, for yourself.</div>';}
+    else L.innerHTML=head+es.map(function(e){
+      var src=e.mine?'<span class="ev-tag">Added by you · this device only</span>':'<span class="kind k-'+e.lab+'" style="font-size:15px">'+e.lab+' · checked '+esc(e.chk)+'</span>';
+      return '<article class="board ev-item"><div class="ev-tags"><span class="ev-tag"><i class="lv-'+e.lv+'" style="width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px"></i>'+e.lv+'</span><span class="ev-tag">'+esc(e.k)+'</span>'+src+'</div>'
+        +'<h3>'+esc(e.t)+'</h3><div class="ev-meta">'+nice(e)+(e.place?' · '+esc(e.place):'')+'</div>'
+        +(e.note?'<p style="margin:8px 0 0">'+esc(e.note)+'</p>':'')
+        +(e.url?'<p style="font-size:16px;margin:6px 0 0">'+(e.mine?'Organizer: ':'Source: ')+'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.src||e.url)+'</a></p>':'')
+        +'<div class="ev-remind"><label class="sr-only" for="rm-'+e.id+'">Reminder</label><select id="rm-'+e.id+'" aria-label="When to remind me"><option value="P1D">Remind me 1 day before</option><option value="P7D">1 week before</option><option value="PT2H">2 hours before</option><option value="">No alarm</option></select>'
+        +'<button class="btn gold" data-ics="'+e.id+'">Add to my calendar</button>'
+        +'<a class="btn" target="_blank" rel="noopener" href="'+gcal(e)+'">Google Calendar</a>'
+        +'<a class="btn" href="'+mail(e)+'">Email myself a note</a>'
+        +(e.mine?'<button class="btn" data-del="'+e.id+'">Remove</button>':'')+'</div></article>';
+    }).join("");
+    var up=document.getElementById("evAllUp"); if(up) up.onclick=function(ev){ev.preventDefault();sel=null;render()};
+    L.querySelectorAll("[data-ics]").forEach(function(b){b.onclick=function(){ics(find(b.dataset.ics),document.getElementById("rm-"+b.dataset.ics).value)}});
+    L.querySelectorAll("[data-del]").forEach(function(b){b.onclick=function(){mine=mine.filter(function(e){return e.id!==b.dataset.del});save();render()}});
+  }
+  function find(id){return all().filter(function(e){return e.id===id})[0]}
+  function stamp(e,addH){var d=pd(e.d);if(!e.tm)return null;d.setHours(+e.tm.slice(0,2)+(addH||0),+e.tm.slice(3));return d}
+  function z(d){return d.getFullYear()+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0")+"T"+String(d.getHours()).padStart(2,"0")+String(d.getMinutes()).padStart(2,"0")+"00"}
+  function dOnly(s,plus){var d=pd(s);d.setDate(d.getDate()+(plus||0));return key(d).replace(/-/g,"")}
+  function details(e){return (e.note||"")+(e.url?"\n\n"+(e.mine?"Organizer: ":"Source: ")+e.url:"")+"\n\nFrom Dweller Health: https://tlsman71.github.io/dweller/health/mockup/#events"}
+  function gcal(e){var dates=e.tm? z(stamp(e))+"/"+z(stamp(e,1)) : dOnly(e.d)+"/"+dOnly(e.d,1);
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.t)+"&dates="+dates+"&details="+encodeURIComponent(details(e))+"&location="+encodeURIComponent(e.place||"")}
+  function mail(e){return "mailto:?subject="+encodeURIComponent("Reminder: "+e.t+" ("+pd(e.d).toLocaleDateString("en-US",{month:"short",day:"numeric"})+")")+"&body="+encodeURIComponent(e.t+"\n"+nice(e)+(e.place?"\n"+e.place:"")+"\n\n"+details(e))}
+  function icsEsc(s){return String(s||"").replace(/\\/g,"\\\\").replace(/[,;]/g,function(c){return "\\"+c}).replace(/\n/g,"\\n")}
+  function ics(e,alarm){
+    var L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Dweller Health//Events//EN","BEGIN:VEVENT","UID:"+e.id+"@dweller-health","DTSTAMP:"+z(new Date())];
+    if(e.tm){L.push("DTSTART:"+z(stamp(e)),"DTEND:"+z(stamp(e,1)))}else{L.push("DTSTART;VALUE=DATE:"+dOnly(e.d),"DTEND;VALUE=DATE:"+dOnly(e.d,1))}
+    L.push("SUMMARY:"+icsEsc(e.t),"DESCRIPTION:"+icsEsc(details(e)));
+    if(e.place)L.push("LOCATION:"+icsEsc(e.place)); if(e.url)L.push("URL:"+e.url);
+    if(alarm)L.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsEsc(e.t),"TRIGGER:-"+alarm,"END:VALARM");
+    L.push("END:VEVENT","END:VCALENDAR");
+    var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([L.join("\r\n")],{type:"text/calendar"}));a.download=e.id+".ics";document.body.appendChild(a);a.click();a.remove();
+  }
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}}
+  function render(){grid();list()}
+  document.getElementById("evPrev").onclick=function(){view.setMonth(view.getMonth()-1);render()};
+  document.getElementById("evNext").onclick=function(){view.setMonth(view.getMonth()+1);render()};
+  document.querySelectorAll("[data-lv]").forEach(function(b){b.onclick=function(){lv=b.dataset.lv;document.querySelectorAll("[data-lv]").forEach(function(x){x.setAttribute("aria-pressed",x===b)});render()}});
+  document.getElementById("evForm").onsubmit=function(ev){ev.preventDefault();
+    var g=function(i){return document.getElementById(i).value.trim()};
+    mine.push({id:"my"+Date.now(),mine:true,t:g("evT"),d:g("evD"),tm:g("evTm"),place:g("evP"),lv:g("evL"),k:g("evK"),url:/^https?:\/\//.test(g("evU"))?g("evU"):"",src:""});
+    save(); var d=pd(g("evD")); view=new Date(d.getFullYear(),d.getMonth(),1); sel=g("evD"); this.reset(); render();
+    document.getElementById("evList").scrollIntoView({block:"nearest"});
+  };
+  render();
+})();
+</script>
 
 <section class="block" id="updates">
   <div class="wrap">
