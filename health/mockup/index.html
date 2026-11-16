@@ -420,25 +420,13 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   <div class="wrap">
     <h2 class="sec-title">Follow the money</h2>
     <p class="sec-lede">Where Medicare dollars start, where they end up, and what each step costs taxpayers and people with Medicare. Green lines are documented in public records. Dashed amber lines are researchers’ estimates. Every line points to its source.</p>
-    <div class="stats">
-      <div class="stat board"><div class="lbl">Paid to MA plans above Original Medicare</div><div class="val"><span class="circled">≈ $76 billion</span></div><div class="sub">2026 · Estimate · MedPAC, March 2026 (was $83B in 2024)</div></div>
-      <div class="stat board"><div class="lbl">Extra payments linked to coding</div><div class="val">$10–15 billion</div><div class="sub">a year · Estimate · Health Economics Review, Jan 2, 2024</div></div>
-      <div class="stat board"><div class="lbl">Insurer gross margin per MA enrollee</div><div class="val">$1,730</div><div class="sub">2021, vs. $689–$768 in other markets · Fact · KFF, Feb 28, 2023</div></div>
-    </div>
-    <p style="font-size:17px;color:var(--mute);margin:12px 0 0">These figures cover different years and kinds of money, so they are not added together. An estimate is a researcher’s calculation, not a transfer anyone can trace.</p>
-
+    <h3 class="chalk" style="font-size:38px;margin-top:26px">Money map</h3>
+    <p class="sec-lede" style="margin-top:6px">Tap or click any circle to see its record: every connection, with the document it comes from.</p>
     <div class="filters" role="group" aria-label="Show">
       <button class="fbtn" data-f="all" aria-pressed="true">All money</button>
       <button class="fbtn" data-f="Fact" aria-pressed="false">Documented</button>
       <button class="fbtn" data-f="Estimate" aria-pressed="false">Estimates</button>
     </div>
-    <div class="board bands" id="bands" aria-label="Where the money started and where it ended up"></div>
-
-    <div class="tablewrap" tabindex="0" role="region" aria-label="Money table: scroll to see every row"><table class="tx" id="txtable"><thead><tr><th scope="col">When</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Amount</th><th scope="col">Kind</th><th scope="col">What for</th><th scope="col">Source</th></tr></thead><tbody></tbody></table></div>
-    <p class="tablenote">Scroll inside the table to see every row.</p>
-
-    <h3 class="chalk" style="font-size:38px;margin-top:46px">Money map</h3>
-    <p class="sec-lede" style="margin-top:6px">Tap or click any circle to see its record: every connection, with the document it comes from.</p>
     <div class="legend" id="legend"></div>
     <div class="mapgrid">
       <div class="board mapbox"><svg id="map" viewBox="0 0 900 560" role="img" aria-label="Money map of Medicare Advantage: agencies, funds, insurers, providers and reports, connected by payments and findings"></svg></div>
@@ -454,6 +442,20 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     </div>
     <div class="note">Appearing on this map does not mean wrongdoing. It shows how Medicare money moves, as reported by government bodies, researchers and companies. Insurers’ responses are added next to critical findings as they are sourced.</div>
     <div class="pending"><b>Not on the map yet:</b> insurers’ lobbying (Senate lobbying disclosures), political giving (Federal Election Commission), and Justice Department cases about Medicare Advantage billing. These will be added only with the filings themselves.</div>
+
+
+    <h3 class="chalk" style="font-size:38px;margin-top:46px">The numbers</h3>
+    <div class="stats">
+      <div class="stat board"><div class="lbl">Paid to MA plans above Original Medicare</div><div class="val"><span class="circled">≈ $76 billion</span></div><div class="sub">2026 · Estimate · MedPAC, March 2026 (was $83B in 2024)</div></div>
+      <div class="stat board"><div class="lbl">Extra payments linked to coding</div><div class="val">$10–15 billion</div><div class="sub">a year · Estimate · Health Economics Review, Jan 2, 2024</div></div>
+      <div class="stat board"><div class="lbl">Insurer gross margin per MA enrollee</div><div class="val">$1,730</div><div class="sub">2021, vs. $689–$768 in other markets · Fact · KFF, Feb 28, 2023</div></div>
+    </div>
+    <p style="font-size:17px;color:var(--mute);margin:12px 0 0">These figures cover different years and kinds of money, so they are not added together. An estimate is a researcher’s calculation, not a transfer anyone can trace.</p>
+
+    <div class="board bands" id="bands" aria-label="Where the money started and where it ended up"></div>
+
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Money table: scroll to see every row"><table class="tx" id="txtable"><thead><tr><th scope="col">When</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Amount</th><th scope="col">Kind</th><th scope="col">What for</th><th scope="col">Source</th></tr></thead><tbody></tbody></table></div>
+    <p class="tablenote">Scroll inside the table to see every row.</p>
 
     <h3 class="chalk" style="font-size:38px;margin-top:46px">Key dates</h3>
     <div class="dates" id="dates"></div>
