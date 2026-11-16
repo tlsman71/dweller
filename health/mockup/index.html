@@ -267,10 +267,14 @@ table.tx td.amt{font-weight:700;white-space:nowrap}
 .record li{margin-bottom:10px;font-size:18px}
 .record .src{font-size:16px;color:var(--mute)}
 .note{margin-top:16px;padding:14px 18px;border-left:4px solid var(--green);background:#13201a;font-size:18px}
-.dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
-.date{padding:16px 18px}
-.date .d{font-family:var(--chalkfont);font-weight:700;font-size:26px;color:var(--gold2)}
-.date .w{font-weight:700;margin:4px 0}
+.dates{list-style:none;margin:16px 0 0;padding:0 18px;max-height:min(460px,65vh);overflow-y:auto;overscroll-behavior:contain}
+.dates:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.date{display:grid;grid-template-columns:minmax(200px,260px) minmax(0,1fr);gap:4px 22px;align-items:baseline;padding:14px 0;border-bottom:1px solid #26332e}
+.date:last-child{border-bottom:none}
+@media (max-width:760px){.date{grid-template-columns:1fr}}
+.date .d{font-family:var(--chalkfont);font-weight:700;font-size:26px;color:var(--gold2);grid-row:span 2}
+@media (max-width:760px){.date .d{grid-row:auto}}
+.date .w{font-weight:700}
 .date .s{font-size:16px;color:var(--mute)}
 .pending{margin-top:16px;padding:16px 20px;border:2px dashed #6a756e;border-radius:12px;font-size:18px}
 
@@ -470,7 +474,8 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <p class="tablenote">Scroll inside the table to see every row.</p>
 
     <h3 class="chalk" style="font-size:38px;margin-top:46px">Key dates</h3>
-    <div class="dates" id="dates"></div>
+    <ol class="dates board" id="dates" tabindex="0" aria-label="Key dates (scrolls)"></ol>
+    <p class="tablenote">Scroll inside the list to see every date.</p>
   </div>
 </section>
 
@@ -940,7 +945,7 @@ function record(id){
 drawBands();drawTable();drawMap();
 // key dates
 var D=[["2003","Medicare Advantage created","Medicare Modernization Act (P.L. 108-173)"],["Feb 2, 2023","Prior authorization counts","KFF: 35M requests, 2M denied (2021)"],["Mar 15, 2024","MedPAC: $83B more","Report to the Congress"],["Dec 6, 2024","Leaving MA costs more","KFF: +$2,585 per person (2022)"],["Mar 2026","MedPAC: ≈ $76B more","Report to the Congress (re-check)"],["Jun 9, 2026","Trust fund forecast","Trustees: Part A short in 2033"],["2026","2.9M forced switches","JAMA, for plan year 2026"],["Oct 15 – Dec 7, 2026","Open Enrollment","Medicare.gov"],["Dec 7, 2026","CMS update due to OIG","OEI-09-24-00330"],["Jan 1 – Mar 31, 2027","MA Open Enrollment","Medicare.gov"]];
-$("dates").innerHTML=D.map(function(d){return '<div class="date board"><div class="d">'+esc(d[0])+'</div><div class="w">'+esc(d[1])+'</div><div class="s">'+esc(d[2])+'</div></div>'}).join("");
+$("dates").innerHTML=D.map(function(d){return '<li class="date"><div class="d">'+esc(d[0])+'</div><div class="w">'+esc(d[1])+'</div><div class="s">'+esc(d[2])+'</div></li>'}).join("");
 })();
 </script>
 
