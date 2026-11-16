@@ -8,7 +8,7 @@ Reads health/drawings/drawings.js. For every slide whose image Tom approved:
   - health/drawings/share/<id>.jpg   share card: the image, the Dweller Health name, the caption
                                      (only once Tom approved it), a QR code and the link back to the slide
 Files for slides that are not approved are removed, so nothing unapproved is published.
-Masters (dweller-health-drawing-<id>.webp) stay off the repo.
+Masters (dweller-health-drawing-<id>.webp; redraws <id>-v<N>.webp) stay off the repo.
 
 Needs: pip install pillow qrcode fonttools brotli
 """
@@ -90,7 +90,8 @@ def main():
     for s in cfg["slides"]:
         if s["image"]["status"] != "approved":
             continue
-        src = Path(a.masters) / f"dweller-health-drawing-{s['id']}.webp"
+        v = s["image"].get("version", 1)
+        src = Path(a.masters) / (f"dweller-health-drawing-{s['id']}-v{v}.webp" if v > 1 else f"dweller-health-drawing-{s['id']}.webp")
         if not src.exists():
             missing.append(str(src)); continue
         pic = fit(Image.open(src))

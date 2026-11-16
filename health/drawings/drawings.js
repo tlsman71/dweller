@@ -91,8 +91,9 @@ window.DH_DRAWINGS = {
     "url": "https://crr.bc.edu/medicare-finances-a-perspective-on-the-2026-trustees-report/"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 2,
+    "approved_on": "2026-11-15",
     "review_id": "node-tax-v2"
    },
    "caption": {
@@ -233,13 +234,16 @@ window.DH_DRAWINGS = {
     "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176624000023/a2023q4exhibit991.htm"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 2,
+    "approved_on": "2026-11-15",
     "review_id": "node-unh-v2"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "node-unh-v2"
    },
    "headline": "UnitedHealth: $22.4 billion in 2023 earnings",
    "source_short": "UnitedHealth Group, Jan 2024"
@@ -308,8 +312,10 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-cen-v1"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "caption-node-cen-v2"
    },
    "headline": "WellCare left 6 states: about 37,300 members",
    "source_short": "Stephens, Aug 2024"
@@ -463,13 +469,16 @@ window.DH_DRAWINGS = {
     "url": "https://www.kff.org/medicare/press-release/medicare-advantage-insurers-report-much-higher-gross-margins-per-enrollee-than-insurers-in-other-markets/"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 2,
+    "approved_on": "2026-11-15",
     "review_id": "node-r_kff-v2"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "node-r_kff-v2"
    },
    "headline": "Advantage margins: $1,730 a member, double other markets",
    "source_short": "KFF, Feb 2023"
