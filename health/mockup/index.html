@@ -230,7 +230,10 @@ section.block{padding:72px 0 10px}
 .band .bar.Estimate{background:repeating-linear-gradient(90deg,var(--amber) 0 14px,transparent 14px 22px);border:2px solid var(--amber)}
 .band .amt{position:absolute;left:50%;top:-30px;transform:translateX(-50%);font-weight:700;font-size:18px;white-space:nowrap}
 @media (max-width:760px){.band{grid-template-columns:1fr}.band .amt{position:static;transform:none;display:block;margin-bottom:6px}}
-.tablewrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:12px}
+.tablewrap{overflow:auto;max-height:min(520px,70vh);margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overscroll-behavior:contain}
+.tablewrap:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+table.tx thead th{position:sticky;top:0;z-index:2}
+.tablenote{font-size:16px;color:var(--mute);margin:8px 0 0}
 table.tx{width:100%;border-collapse:collapse;min-width:900px;font-size:18px}
 table.tx th{text-align:left;font-size:16px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);padding:12px;background:var(--slate2);border-bottom:2px solid var(--line)}
 table.tx td{padding:14px 12px;border-bottom:1px solid #26332e;vertical-align:top}
@@ -431,7 +434,8 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     </div>
     <div class="board bands" id="bands" aria-label="Where the money started and where it ended up"></div>
 
-    <div class="tablewrap"><table class="tx" id="txtable"><thead><tr><th scope="col">When</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Amount</th><th scope="col">Kind</th><th scope="col">What for</th><th scope="col">Source</th></tr></thead><tbody></tbody></table></div>
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Money table: scroll to see every row"><table class="tx" id="txtable"><thead><tr><th scope="col">When</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Amount</th><th scope="col">Kind</th><th scope="col">What for</th><th scope="col">Source</th></tr></thead><tbody></tbody></table></div>
+    <p class="tablenote">Scroll inside the table to see every row.</p>
 
     <h3 class="chalk" style="font-size:38px;margin-top:46px">Money map</h3>
     <p class="sec-lede" style="margin-top:6px">Tap or click any circle to see its record: every connection, with the document it comes from.</p>
