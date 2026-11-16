@@ -132,7 +132,7 @@ window.DH_DRAWINGS = {
   {
    "id": "r_jama",
    "label": "JAMA study",
-   "scene": "A wall of plan cards in rows of ten, one red card in each row, as researchers count them.",
+   "scene": "An older man with a tablet plays hide-and-seek for 'new plan' cards around his living room; his old card on the table reads 'Ended 2026'.",
    "kind": "Fact",
    "fact": "About 2.9 million people, roughly 1 in 10 Medicare Advantage enrollees, had to change coverage for 2026 because their plan left the market (JAMA, 2026).",
    "source": {
@@ -141,8 +141,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "version": 2,
-    "review_id": "node-r_jama-v2"
+    "version": 3,
+    "review_id": "node-r_jama-v3"
    },
    "caption": {
     "status": "waiting",
@@ -323,7 +323,7 @@ window.DH_DRAWINGS = {
   {
    "id": "prov",
    "label": "Hospitals & doctors' groups",
-   "scene": "Outside a hospital, a finance officer holding a 'Plan' clipboard raises giant scissors over ribbons tying the hospital to insurance plans.",
+   "scene": "At a rural hospital's front desk, two older patients hold their Medicare Advantage cards under a sign reading 'This plan no longer accepted' as a clerk explains.",
    "kind": "Estimate",
    "fact": "In a 2024 survey of 135 health-system finance chiefs, 16% said they planned to stop accepting one or more Medicare Advantage plans within two years (HFMA and Eliciting Insights, 2024).",
    "source": {
@@ -332,8 +332,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "version": 2,
-    "review_id": "node-prov-v2"
+    "version": 3,
+    "review_id": "node-prov-v3"
    },
    "caption": {
     "status": "waiting",
@@ -369,7 +369,7 @@ window.DH_DRAWINGS = {
   {
    "id": "inv",
    "label": "Shareholders",
-   "scene": "A golden pipe from a corporate tower pours a river of coins into a ballroom where shareholders catch it in briefcases.",
+   "scene": "A golden pipe pours coins into executives' briefcases while older Medicare members watch from behind a velvet rope.",
    "kind": "Fact",
    "fact": "In 2023, UnitedHealth Group returned $14.8 billion to shareholders through dividends and share buybacks, across all its businesses (UnitedHealth Group, Jan 12, 2024).",
    "source": {
@@ -378,8 +378,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "version": 2,
-    "review_id": "node-inv-v2"
+    "version": 3,
+    "review_id": "node-inv-v3"
    },
    "caption": {
     "status": "waiting",
@@ -391,7 +391,7 @@ window.DH_DRAWINGS = {
   {
    "id": "congress",
    "label": "Congress",
-   "scene": "On the Capitol steps, a balance scale weighs piles of votes marked 220 and 215, barely tipped, as lawmakers lean in.",
+   "scene": "Older Americans crowd the House gallery, watching a vote board that reads 220 to 215.",
    "kind": "Fact",
    "fact": "Congress passed the Medicare Modernization Act in November 2003, by 220 to 215 in the House and 54 to 44 in the Senate (Congressional Research Service).",
    "source": {
@@ -400,8 +400,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "version": 2,
-    "review_id": "node-congress-v2"
+    "version": 3,
+    "review_id": "node-congress-v3"
    },
    "caption": {
     "status": "waiting",
@@ -413,17 +413,17 @@ window.DH_DRAWINGS = {
   {
    "id": "trustees",
    "label": "Medicare Trustees",
-   "scene": "At night, a trustee moves a red pin on a giant year calendar onto 2033, beside a gauge reading 89%.",
+   "scene": "Young workers pour coins into a Part A tank marked $255.7 billion (2025) while an older woman draws from its tap; dials read 2033 and 89%.",
    "kind": "Forecast",
-   "fact": "The Trustees moved the date the Part A fund runs short one quarter earlier, to the second quarter of 2033 (Medicare Trustees, June 2026).",
+   "fact": "Part A's trust fund held $255.7 billion at the end of 2025. Payroll taxes paid 87% of its income. The Trustees project it runs short in the second quarter of 2033, one quarter earlier than last year, when it could pay about 89% of benefits (Medicare Trustees Report, June 9, 2026).",
    "source": {
     "label": "Social Security and Medicare Trustees, 2026 summary",
     "url": "https://www.ssa.gov/oact/TRSUM/"
    },
    "image": {
     "status": "waiting",
-    "version": 2,
-    "review_id": "node-trustees-v2"
+    "version": 3,
+    "review_id": "node-trustees-v3"
    },
    "caption": {
     "status": "approved",
@@ -486,7 +486,7 @@ window.DH_DRAWINGS = {
   {
    "id": "r_her",
    "label": "Health Economics Review study",
-   "scene": "Economists study a giant patient chart through a magnifying glass as extra code stamps drop coins onto a tipping scale.",
+   "scene": "A medical coder changes a code field on one screen and the payment amount jumps on the other, as older patients look on.",
    "kind": "Estimate",
    "fact": "A 2024 Health Economics Review paper reports estimates that 'upcoding' in Medicare Advantage costs $10 billion to $15 billion a year (Joiner, Lin and Pantano, Jan 2, 2024).",
    "source": {
@@ -495,8 +495,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "version": 2,
-    "review_id": "node-r_her-v2"
+    "version": 3,
+    "review_id": "node-r_her-v3"
    },
    "caption": {
     "status": "waiting",
@@ -508,7 +508,7 @@ window.DH_DRAWINGS = {
   {
    "id": "r_hfma",
    "label": "HFMA survey",
-   "scene": "Five hospitals are roped to 'MA plan' signs; one rope is cut, and executives with survey clipboards stand beside it.",
+   "scene": "Beside a stack of denial letters, a hospital administrator cuts the rope to a Medicare Advantage plan sign while older plan members hold their cards.",
    "kind": "Estimate",
    "fact": "19% of health systems surveyed had already dropped at least one Medicare Advantage plan, and 16% planned to within two years (HFMA and Eliciting Insights, March 2024).",
    "source": {
@@ -517,8 +517,8 @@ window.DH_DRAWINGS = {
    },
    "image": {
     "status": "waiting",
-    "version": 2,
-    "review_id": "node-r_hfma-v2"
+    "version": 3,
+    "review_id": "node-r_hfma-v3"
    },
    "caption": {
     "status": "waiting",
