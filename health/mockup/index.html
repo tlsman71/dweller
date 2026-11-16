@@ -197,17 +197,23 @@ section.block{padding:72px 0 10px}
 }
 
 /* slideshow */
-.deckwrap{padding:18px}
+.deckwrap{padding:18px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
+@media (max-width:920px){.deckwrap{grid-template-columns:1fr}}
+.deckside{display:flex;flex-direction:column;gap:14px}
+.deckshare{display:flex;gap:10px;align-items:center}
+.deckfull{flex:1}
 .deckframe{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#E4F0EF}
 .deckinner{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
 .deckinner > section{position:absolute;inset:0;display:none !important}
 .deckinner > section.cur{display:flex !important}
 .deckinner aside{display:none}
-.deckbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
-.deckbar .count{font-weight:700;font-size:20px;min-width:120px;text-align:center}
-.deckmeta{display:flex;gap:10px 22px;flex-wrap:wrap;align-items:center;color:var(--mute);font-size:18px;margin-top:10px}
-.deckthumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.deckthumbs button{min-width:52px;min-height:44px;border-radius:8px;border:2px solid var(--line);background:var(--slate2);color:var(--chalk);font-weight:700;font-size:17px;cursor:pointer}
+.deckbar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.deckbar .btn{padding:0 16px}
+.deckbar .count{font-weight:700;font-size:19px;text-align:center;white-space:nowrap}
+.deckmeta{color:var(--mute);font-size:14px;line-height:1.45;margin:10px 2px 0}
+.deckthumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+@media (max-width:920px){.deckthumbs{display:flex;flex-wrap:wrap}}
+.deckthumbs button{min-width:44px;min-height:44px;border-radius:8px;border:2px solid var(--line);background:var(--slate2);color:var(--chalk);font-weight:700;font-size:17px;cursor:pointer}
 .deckthumbs button[aria-current="true"]{background:var(--gold);color:#17140a;border-color:var(--gold)}
 .notes{margin-top:12px;font-size:18px;color:var(--mute);border-left:4px solid var(--gold);padding:6px 14px}
 
@@ -230,7 +236,10 @@ section.block{padding:72px 0 10px}
 .band .bar.Estimate{background:repeating-linear-gradient(90deg,var(--amber) 0 14px,transparent 14px 22px);border:2px solid var(--amber)}
 .band .amt{position:absolute;left:50%;top:-30px;transform:translateX(-50%);font-weight:700;font-size:18px;white-space:nowrap}
 @media (max-width:760px){.band{grid-template-columns:1fr}.band .amt{position:static;transform:none;display:block;margin-bottom:6px}}
-.tablewrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:12px}
+.tablewrap{overflow:auto;max-height:min(520px,70vh);margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overscroll-behavior:contain}
+.tablewrap:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+table.tx thead th{position:sticky;top:0;z-index:2}
+.tablenote{font-size:16px;color:var(--mute);margin:8px 0 0}
 table.tx{width:100%;border-collapse:collapse;min-width:900px;font-size:18px}
 table.tx th{text-align:left;font-size:16px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);padding:12px;background:var(--slate2);border-bottom:2px solid var(--line)}
 table.tx td{padding:14px 12px;border-bottom:1px solid #26332e;vertical-align:top}
@@ -417,24 +426,13 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   <div class="wrap">
     <h2 class="sec-title">Follow the money</h2>
     <p class="sec-lede">Where Medicare dollars start, where they end up, and what each step costs taxpayers and people with Medicare. Green lines are documented in public records. Dashed amber lines are researchers’ estimates. Every line points to its source.</p>
-    <div class="stats">
-      <div class="stat board"><div class="lbl">Paid to MA plans above Original Medicare</div><div class="val"><span class="circled">≈ $76 billion</span></div><div class="sub">2026 · Estimate · MedPAC, March 2026 (was $83B in 2024)</div></div>
-      <div class="stat board"><div class="lbl">Extra payments linked to coding</div><div class="val">$10–15 billion</div><div class="sub">a year · Estimate · Health Economics Review, Jan 2, 2024</div></div>
-      <div class="stat board"><div class="lbl">Insurer gross margin per MA enrollee</div><div class="val">$1,730</div><div class="sub">2021, vs. $689–$768 in other markets · Fact · KFF, Feb 28, 2023</div></div>
-    </div>
-    <p style="font-size:17px;color:var(--mute);margin:12px 0 0">These figures cover different years and kinds of money, so they are not added together. An estimate is a researcher’s calculation, not a transfer anyone can trace.</p>
-
+    <h3 class="chalk" style="font-size:38px;margin-top:26px">Money map</h3>
+    <p class="sec-lede" style="margin-top:6px">Tap or click any circle to see its record: every connection, with the document it comes from.</p>
     <div class="filters" role="group" aria-label="Show">
       <button class="fbtn" data-f="all" aria-pressed="true">All money</button>
       <button class="fbtn" data-f="Fact" aria-pressed="false">Documented</button>
       <button class="fbtn" data-f="Estimate" aria-pressed="false">Estimates</button>
     </div>
-    <div class="board bands" id="bands" aria-label="Where the money started and where it ended up"></div>
-
-    <div class="tablewrap"><table class="tx" id="txtable"><thead><tr><th scope="col">When</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Amount</th><th scope="col">Kind</th><th scope="col">What for</th><th scope="col">Source</th></tr></thead><tbody></tbody></table></div>
-
-    <h3 class="chalk" style="font-size:38px;margin-top:46px">Money map</h3>
-    <p class="sec-lede" style="margin-top:6px">Tap or click any circle to see its record: every connection, with the document it comes from.</p>
     <div class="legend" id="legend"></div>
     <div class="mapgrid">
       <div class="board mapbox"><svg id="map" viewBox="0 0 900 560" role="img" aria-label="Money map of Medicare Advantage: agencies, funds, insurers, providers and reports, connected by payments and findings"></svg></div>
@@ -451,6 +449,20 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <div class="note">Appearing on this map does not mean wrongdoing. It shows how Medicare money moves, as reported by government bodies, researchers and companies. Insurers’ responses are added next to critical findings as they are sourced.</div>
     <div class="pending"><b>Not on the map yet:</b> insurers’ lobbying (Senate lobbying disclosures), political giving (Federal Election Commission), and Justice Department cases about Medicare Advantage billing. These will be added only with the filings themselves.</div>
 
+
+    <h3 class="chalk" style="font-size:38px;margin-top:46px">The numbers</h3>
+    <div class="stats">
+      <div class="stat board"><div class="lbl">Paid to MA plans above Original Medicare</div><div class="val"><span class="circled">≈ $76 billion</span></div><div class="sub">2026 · Estimate · MedPAC, March 2026 (was $83B in 2024)</div></div>
+      <div class="stat board"><div class="lbl">Extra payments linked to coding</div><div class="val">$10–15 billion</div><div class="sub">a year · Estimate · Health Economics Review, Jan 2, 2024</div></div>
+      <div class="stat board"><div class="lbl">Insurer gross margin per MA enrollee</div><div class="val">$1,730</div><div class="sub">2021, vs. $689–$768 in other markets · Fact · KFF, Feb 28, 2023</div></div>
+    </div>
+    <p style="font-size:17px;color:var(--mute);margin:12px 0 0">These figures cover different years and kinds of money, so they are not added together. An estimate is a researcher’s calculation, not a transfer anyone can trace.</p>
+
+    <div class="board bands" id="bands" aria-label="Where the money started and where it ended up"></div>
+
+    <div class="tablewrap" tabindex="0" role="region" aria-label="Money table: scroll to see every row"><table class="tx" id="txtable"><thead><tr><th scope="col">When</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Amount</th><th scope="col">Kind</th><th scope="col">What for</th><th scope="col">Source</th></tr></thead><tbody></tbody></table></div>
+    <p class="tablenote">Scroll inside the table to see every row.</p>
+
     <h3 class="chalk" style="font-size:38px;margin-top:46px">Key dates</h3>
     <div class="dates" id="dates"></div>
   </div>
@@ -462,15 +474,17 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <p class="sec-lede">Based on <i>Medicare Advantage</i> by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026. It’s a living deck: when a figure is re-checked, that slide is updated and dated.</p>
     <div class="board deckwrap" style="margin-top:22px">
       <div id="deckhost"></div>
+      <div class="deckside">
       <div class="deckbar">
         <button class="btn" id="dprev" aria-label="Previous slide"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</button>
         <div class="count" id="dcount" aria-live="polite"></div>
         <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <a class="btn" href="https://tlsman71.github.io/dweller/health/deck/" style="margin-left:auto">Open the full deck</a>
       </div>
       <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
-      <div class="deckmeta"><span id="dupdated"></span><span>Every change is recorded in the deck’s public history on GitHub.</span></div>
+      <div class="deckshare"><span class="sharewrap"><button class="btn gold sharei" type="button" id="decksharebtn" aria-haspopup="menu" aria-expanded="false" aria-label="Share the whole presentation" title="Share the whole presentation"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3" fill="currentColor"/><circle cx="6" cy="12" r="3" fill="currentColor"/><circle cx="18" cy="19" r="3" fill="currentColor"/><path d="M8.6 10.7l6.8-4M8.6 13.3l6.8 4" stroke="currentColor" stroke-width="2.2" fill="none"/></svg></button><span class="sharemenu" id="decksharemenu" role="menu" hidden></span></span><a class="btn deckfull" href="https://tlsman71.github.io/dweller/health/deck/">Open the full deck</a></div>
+      </div>
     </div>
+    <p class="deckmeta"><span id="dupdated"></span> · Every change is recorded in the deck’s public history on GitHub.</p>
   </div>
 </section>
 
@@ -916,6 +930,38 @@ drawBands();drawTable();drawMap();
 // key dates
 var D=[["2003","Medicare Advantage created","Medicare Modernization Act (P.L. 108-173)"],["Feb 2, 2023","Prior authorization counts","KFF: 35M requests, 2M denied (2021)"],["Mar 15, 2024","MedPAC: $83B more","Report to the Congress"],["Dec 6, 2024","Leaving MA costs more","KFF: +$2,585 per person (2022)"],["Mar 2026","MedPAC: ≈ $76B more","Report to the Congress (re-check)"],["Jun 9, 2026","Trust fund forecast","Trustees: Part A short in 2033"],["2026","2.9M forced switches","JAMA, for plan year 2026"],["Oct 15 – Dec 7, 2026","Open Enrollment","Medicare.gov"],["Dec 7, 2026","CMS update due to OIG","OEI-09-24-00330"],["Jan 1 – Mar 31, 2027","MA Open Enrollment","Medicare.gov"]];
 $("dates").innerHTML=D.map(function(d){return '<div class="date board"><div class="d">'+esc(d[0])+'</div><div class="w">'+esc(d[1])+'</div><div class="s">'+esc(d[2])+'</div></div>'}).join("");
+})();
+</script>
+
+<script>
+/* Share the whole presentation (Tom, Nov 15 20:21): same rule as the pictures. One tap goes straight to the
+   person's share sheet (with the deck's share picture) or, where there is none, to a short list of networks
+   that opens the network's own post window. Nothing changes on this page. */
+(function(){
+  var url="https://tlsman71.github.io/dweller/health/deck/", title="Medicare Advantage: who pays, who gets paid, and what you can do · Dweller Health";
+  var btn=document.getElementById("decksharebtn"), m=document.getElementById("decksharemenu");
+  function close(){m.hidden=true;btn.setAttribute("aria-expanded","false")}
+  function menu(){
+    if(!m.hidden){close();return}
+    var u=encodeURIComponent(url),t=encodeURIComponent(title),ut=encodeURIComponent(title+" "+url);
+    var nets=[["Facebook","https://www.facebook.com/sharer/sharer.php?u="+u],["X","https://x.com/intent/post?text="+t+"&url="+u],["Bluesky","https://bsky.app/intent/compose?text="+ut],["LinkedIn","https://www.linkedin.com/sharing/share-offsite/?url="+u],["Reddit","https://www.reddit.com/submit?url="+u+"&title="+t],["Email","mailto:?subject="+t+"&body="+ut]];
+    m.innerHTML=nets.map(function(x){return '<a role="menuitem" href="'+x[1]+'" data-net="'+x[0]+'">'+x[0]+'</a>'}).join("")+'<button role="menuitem" type="button">Copy the link</button>';
+    m.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(ev){close();if(a.dataset.net==="Email")return;ev.preventDefault();window.open(a.href,"dhshare","width=640,height=640,noopener")})});
+    m.querySelector("button").addEventListener("click",function(){var c=this;(navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(function(){c.textContent="Link copied"},function(){window.prompt("Copy this link:",url)})});
+    m.hidden=false;btn.setAttribute("aria-expanded","true");m.querySelector("a").focus();
+  }
+  btn.addEventListener("click",function(){
+    if(navigator.share){
+      fetch("../deck/share.jpg").then(function(r){return r.blob()}).then(function(bl){
+        var f=new File([bl],"dweller-health-presentation.jpg",{type:"image/jpeg"});
+        return navigator.share(navigator.canShare&&navigator.canShare({files:[f]})?{files:[f],title:title,text:title+" "+url}:{title:title,text:title,url:url});
+      }).catch(function(err){if(err&&err.name!=="AbortError")menu()});
+      return;
+    }
+    menu();
+  });
+  document.addEventListener("click",function(ev){if(!m.hidden&&!ev.target.closest("#deck .sharewrap"))close()});
+  document.addEventListener("keydown",function(ev){if(ev.key==="Escape"&&!m.hidden){close();btn.focus()}});
 })();
 </script>
 </body>
