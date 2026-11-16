@@ -257,11 +257,12 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 .show-count{position:absolute;top:12px;left:12px;background:rgba(14,18,17,.82);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:17px;font-weight:700}
 .show-cap{padding:20px 24px 22px;background:var(--slate);border-top:2px solid var(--gold);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 24px;align-items:start}
 @media (max-width:760px){.show-cap{grid-template-columns:1fr}}
-.show-cap h3{font-family:var(--chalkfont);font-size:30px;line-height:1.1}
+.show-cap .eyebrow{margin:0 0 6px;font-size:17px;font-weight:700;color:var(--gold2);text-transform:uppercase;letter-spacing:.06em}
+.show-cap h3{font-family:var(--chalkfont);font-size:clamp(28px,3.2vw,40px);line-height:1.1}
 .show-cap .scene{margin:8px 0 0;color:var(--mute)}
 #pictures{scroll-margin-top:84px}
 .show-cap .sfact{margin:10px 0 0}
-.show-cap .src{font-size:17px;margin:8px 0 0;color:var(--mute)}
+.show-cap .src{font-size:17px;margin:12px 0 0;color:var(--mute);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .show-cap .review{display:inline-block;margin-top:10px;font-size:17px;font-weight:700;color:var(--amber2);border:2px dashed #6b5222;border-radius:8px;padding:3px 12px}
 .show-actions{display:flex;flex-direction:column;gap:10px;min-width:220px}
 .show-dots{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px 10px 2px}
@@ -509,7 +510,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   function e(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   if(!S.length){frame.style.display="none";cap.className="show-empty";cap.innerHTML="Illustrations are on their way. Each one is checked against its source and approved before it appears here.";return}
   var imgsrc=function(s){return drafts&&s.image.status!=="approved"?"../drawings/draft/"+s.id+".webp":"../drawings/img/"+s.id+".webp"};
-  frame.innerHTML=S.map(function(s,k){return '<img src="'+imgsrc(s)+'" alt="'+e(s.caption.status==="approved"||drafts?s.scene:s.label)+'" data-k="'+k+'"'+(k?' loading="lazy"':'')+'>'}).join("")+
+  frame.innerHTML=S.map(function(s,k){return '<img src="'+imgsrc(s)+'" alt="'+e(s.scene)+'" data-k="'+k+'"'+(k?' loading="lazy"':'')+'>'}).join("")+
     '<span class="show-count" id="showcount"></span>'+(drafts?'<span class="draftbadge" id="draftbadge" hidden>Draft · not approved</span>':'')+
     '<button class="show-nav prev" type="button" aria-label="Previous picture">&#8249;</button><button class="show-nav next" type="button" aria-label="Next picture">&#8250;</button>';
   dots.innerHTML=S.map(function(s,k){return '<button type="button" aria-label="Picture '+(k+1)+': '+e(s.label)+'"></button>'}).join("");
@@ -521,7 +522,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     document.getElementById("showcount").textContent=(i+1)+" of "+S.length;
     var b=document.getElementById("draftbadge"); if(b)b.hidden=s.image.status==="approved";
     var ok=s.caption.status==="approved"||drafts;
-    cap.innerHTML='<div><h3>'+e(s.label)+'</h3>'+(ok?'<p class="scene">'+e(s.scene)+'</p><p class="sfact"><span class="kind k-'+e(s.kind)+'">'+e(s.kind)+'</span> '+e(s.fact)+'</p><p class="src">Source: <a href="'+e(s.source.url)+'" target="_blank" rel="noopener">'+e(s.source.label)+'</a></p>'+(drafts&&s.caption.status!=="approved"?'<span class="review">Caption draft · waiting for review</span>':''):'<span class="review">Caption under review</span>')+'</div>'+
+    cap.innerHTML='<div><p class="eyebrow">'+e(s.label)+'</p>'+(ok?'<h3>'+e(s.headline)+'</h3><p class="src"><span class="kind k-'+e(s.kind)+'">'+e(s.kind)+'</span> <a href="'+e(s.source.url)+'" target="_blank" rel="noopener">'+e(s.source_short)+'</a></p>'+(drafts&&s.caption.status!=="approved"?'<span class="review">Caption draft · waiting for review</span>':''):'<span class="review">Caption under review</span>')+'</div>'+
       '<div class="show-actions"><button class="btn gold" type="button" id="sharebtn">Share this picture</button><a class="btn" href="#money">See it on the money map</a></div>';
     document.getElementById("sharebtn").addEventListener("click",function(){share(s)});
     document.getElementById("sharepanel").hidden=true;

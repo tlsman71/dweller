@@ -55,19 +55,19 @@ def card(pic, s, url):
     x, y = 48, top + 34
     d.text((x, y), "Dweller", font=font(700, 50), fill=CHALK)
     d.text((x + d.textlength("Dweller ", font=font(700, 50)), y), "Health", font=font(700, 50), fill=GOLD)
-    d.text((x, y + 62), "North Carolina · public-record health coverage tracker", font=font(400, 24), fill=MUTE)
-    # caption (only if Tom approved it)
-    y2 = y + 110
+    d.text((x + 330, y + 16), "North Carolina", font=font(400, 24), fill=MUTE)
+    # caption (only if Tom approved it): short headline + label + short source
+    y2 = y + 70
     if s["caption"]["status"] == "approved":
-        kind = s["kind"]
-        d.text((x, y2), kind.upper(), font=font(700, 24), fill=KIND_COLOR.get(kind, CHALK))
-        lines = textwrap.wrap(s["fact"], 70)[:3]
-        if len(textwrap.wrap(s["fact"], 70)) > 3:
-            lines[-1] = lines[-1].rstrip(" .,;") + "…"
+        lines = textwrap.wrap(s["headline"], 44)[:2]
         for i, ln in enumerate(lines):
-            d.text((x + d.textlength(kind.upper() + "  ", font=font(700, 24)) if i == 0 else x, y2 + i * 32), ln, font=font(400, 26), fill=CHALK)
+            d.text((x, y2 + i * 44), ln, font=font(700, 38), fill=CHALK)
+        ky = y2 + len(lines) * 44 + 10
+        kind = s["kind"]
+        d.text((x, ky), kind.upper(), font=font(700, 22), fill=KIND_COLOR.get(kind, CHALK))
+        d.text((x + d.textlength(kind.upper() + "   ", font=font(700, 22)), ky), s["source_short"], font=font(400, 22), fill=MUTE)
     else:
-        d.text((x, y2), s["label"], font=font(700, 30), fill=CHALK)
+        d.text((x, y2), s["label"], font=font(700, 34), fill=CHALK)
     # QR + link
     q = qrcode.QRCode(border=2, box_size=8, error_correction=qrcode.constants.ERROR_CORRECT_M)
     q.add_data(url); q.make(fit=True)
@@ -75,7 +75,7 @@ def card(pic, s, url):
     c.paste(qi, (W - 48 - 210, top + 30))
     short = url.replace("https://", "")
     d.text((W - 48 - 105 - d.textlength("Scan to see it on Dweller Health", font=font(700, 18)) / 2, top + 248), "Scan to see it on Dweller Health", font=font(700, 18), fill=GOLD)
-    d.text((x, top + band - 44), short, font=font(400, 20), fill=MUTE)
+    d.text((x, top + band - 40), short, font=font(400, 19), fill=MUTE)
     return c
 
 

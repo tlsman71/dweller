@@ -1,7 +1,8 @@
 // Dweller Health · node illustrations for the centerpiece slide show.
 // Only Tom approves (docs/node-illustrations-protocol.md in the claude.ai project).
 // image.status "approved"   -> the slide appears (image + share card are built by health/tools/build_drawings.py)
-// caption.status "approved" -> the caption (scene + sourced fact) appears; otherwise "Caption under review"
+// caption.status "approved" -> the caption appears: headline + Fact/Estimate/Forecast label + short source (link).
+//   "fact" keeps the full sourced sentence for reviewers; "scene" is the image's alt text; otherwise "Caption under review"
 // share_base: where shares and QR codes point; change it when Dweller Health gets its own domain, then rebuild.
 window.DH_DRAWINGS = {
  "share_base": "https://tlsman71.github.io/dweller/health/mockup/",
@@ -23,8 +24,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-medpac-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Advantage pay adds $11 billion to Part B premiums",
+   "source_short": "MedPAC, Mar 2026"
   },
   {
    "id": "hi",
@@ -42,8 +46,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-hi-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Part A pays in full until 2033. Then 89%.",
+   "source_short": "Medicare Trustees, Jun 2026"
   },
   {
    "id": "oig",
@@ -61,8 +68,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-oig-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Top 3 insurers: some of the highest rehab-care denial rates",
+   "source_short": "HHS Inspector General, Jun 2026"
   },
   {
    "id": "tax",
@@ -80,8 +90,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-tax-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Your paycheck funds Part A: 2.9%, split with your employer",
+   "source_short": "Medicare Trustees, 2026"
   },
   {
    "id": "benes",
@@ -99,8 +112,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-benes-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "1 in 10 Advantage members lost their plan for 2026",
+   "source_short": "JAMA, 2026"
   },
   {
    "id": "smi",
@@ -118,8 +134,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-smi-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Taxes pay 73% of Part B and 81% of Part D",
+   "source_short": "Medicare Trustees, 2026"
   },
   {
    "id": "cms",
@@ -137,8 +156,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-cms-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Advantage costs Medicare $76 billion more than Original would",
+   "source_short": "MedPAC, Mar 2026"
   },
   {
    "id": "ma",
@@ -156,8 +178,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-ma-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "34.9 million in Advantage: 55% of those eligible",
+   "source_short": "MedPAC, Mar 2026"
   },
   {
    "id": "unh",
@@ -175,8 +200,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-unh-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "UnitedHealth: $22.4 billion in 2023 earnings",
+   "source_short": "UnitedHealth Group, Jan 2024"
   },
   {
    "id": "hum",
@@ -194,8 +222,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-hum-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Humana: 560,000 members had to find a new plan",
+   "source_short": "Humana, Sep 2024"
   },
   {
    "id": "cvs",
@@ -213,8 +244,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-cvs-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Aetna: Advantage members to drop by high single digits",
+   "source_short": "CVS Health, Feb 2025"
   },
   {
    "id": "cen",
@@ -232,8 +266,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-cen-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "WellCare left 6 states: about 37,300 members",
+   "source_short": "Stephens, Aug 2024"
   },
   {
    "id": "prov",
@@ -251,8 +288,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-prov-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "16% of health systems plan to drop an Advantage plan",
+   "source_short": "HFMA survey, 2024"
   },
   {
    "id": "left",
@@ -270,8 +310,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-left-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Left Advantage? Medicare then spent 27% more",
+   "source_short": "KFF, Dec 2024"
   },
   {
    "id": "inv",
@@ -289,8 +332,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-inv-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "$14.8 billion back to UnitedHealth shareholders",
+   "source_short": "UnitedHealth Group, Jan 2024"
   },
   {
    "id": "congress",
@@ -308,8 +354,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-congress-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "2003: passed the House by 5 votes, 220 to 215",
+   "source_short": "Congressional Research Service"
   },
   {
    "id": "trustees",
@@ -327,8 +376,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-trustees-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Part A's shortfall date moved up: mid-2033",
+   "source_short": "Medicare Trustees, Jun 2026"
   },
   {
    "id": "mma",
@@ -346,8 +398,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-mma-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "2003: the law that created Medicare Advantage",
+   "source_short": "Public Law 108-173"
   },
   {
    "id": "r_kff",
@@ -365,8 +420,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-r_kff-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Advantage margins: $1,730 a member, double other markets",
+   "source_short": "KFF, Feb 2023"
   },
   {
    "id": "r_her",
@@ -384,8 +442,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-r_her-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "Coding estimates: $10–15 billion a year in Advantage",
+   "source_short": "Health Economics Review, 2024"
   },
   {
    "id": "r_hfma",
@@ -403,8 +464,11 @@ window.DH_DRAWINGS = {
     "review_id": "illus-node-r_hfma-v1"
    },
    "caption": {
-    "status": "waiting"
-   }
+    "status": "waiting",
+    "version": 2
+   },
+   "headline": "19% of health systems already dropped an Advantage plan",
+   "source_short": "HFMA survey, Mar 2024"
   }
  ]
 };
