@@ -255,16 +255,26 @@ table.tx td.amt{font-weight:700;white-space:nowrap}
 .legend{display:flex;gap:8px 16px;flex-wrap:wrap;font-size:17px;margin-top:12px}
 .legend span{display:inline-flex;align-items:center;gap:8px}
 .legend i{width:16px;height:16px;border-radius:50%;display:inline-block}
-.record{padding:20px}
+.record{padding:20px;max-height:560px;overflow-y:auto;overscroll-behavior:contain}
+.record:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+@media (max-width:920px){.record{max-height:70vh}}
+.rthumb{display:block;margin-top:16px;border-top:1px solid var(--line);padding-top:14px;text-decoration:none;color:var(--chalk)}
+.rthumb img{display:block;width:100%;max-width:300px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.rthumb span{display:block;margin-top:6px;font-size:15px;color:var(--gold2);font-weight:700}
+.rthumb:hover img{border-color:var(--gold2)}
 .record h3{font-family:var(--chalkfont);font-size:30px;line-height:1.1;margin-bottom:8px}
 .record ol{padding-left:22px;margin:8px 0}
 .record li{margin-bottom:10px;font-size:18px}
 .record .src{font-size:16px;color:var(--mute)}
 .note{margin-top:16px;padding:14px 18px;border-left:4px solid var(--green);background:#13201a;font-size:18px}
-.dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
-.date{padding:16px 18px}
-.date .d{font-family:var(--chalkfont);font-weight:700;font-size:26px;color:var(--gold2)}
-.date .w{font-weight:700;margin:4px 0}
+.dates{list-style:none;margin:16px 0 0;padding:0 18px;max-height:min(460px,65vh);overflow-y:auto;overscroll-behavior:contain}
+.dates:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.date{display:grid;grid-template-columns:minmax(200px,260px) minmax(0,1fr);gap:4px 22px;align-items:baseline;padding:14px 0;border-bottom:1px solid #26332e}
+.date:last-child{border-bottom:none}
+@media (max-width:760px){.date{grid-template-columns:1fr}}
+.date .d{font-family:var(--chalkfont);font-weight:700;font-size:26px;color:var(--gold2);grid-row:span 2}
+@media (max-width:760px){.date .d{grid-row:auto}}
+.date .w{font-weight:700}
 .date .s{font-size:16px;color:var(--mute)}
 .pending{margin-top:16px;padding:16px 20px;border:2px dashed #6a756e;border-radius:12px;font-size:18px}
 
@@ -436,7 +446,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <div class="legend" id="legend"></div>
     <div class="mapgrid">
       <div class="board mapbox"><svg id="map" viewBox="0 0 900 560" role="img" aria-label="Money map of Medicare Advantage: agencies, funds, insurers, providers and reports, connected by payments and findings"></svg></div>
-      <div class="board record" id="record" aria-live="polite">
+      <div class="board record" id="record" aria-live="polite" tabindex="0" role="region" aria-label="Record of the selected circle (scrolls)">
         <h3>How to read this</h3>
         <ol>
           <li>Click a circle to see its record, in date order, each with its source.</li>
@@ -464,7 +474,8 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
     <p class="tablenote">Scroll inside the table to see every row.</p>
 
     <h3 class="chalk" style="font-size:38px;margin-top:46px">Key dates</h3>
-    <div class="dates" id="dates"></div>
+    <ol class="dates board" id="dates" tabindex="0" aria-label="Key dates (scrolls)"></ol>
+    <p class="tablenote">Scroll inside the list to see every date.</p>
   </div>
 </section>
 
@@ -917,19 +928,24 @@ function drawMap(){
     g.addEventListener("click",open);g.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();open()}});
   });
 }
+/* The node's approved picture, at the bottom of its record (Tom, Nov 15 20:26). Only approved pictures appear;
+   clicking it opens that picture in the slide show at the top of the page. */
+function thumb(id){var D=window.DH_DRAWINGS,sl=D&&D.slides.filter(function(x){return x.id===id&&x.image.status==="approved"})[0];
+  if(!sl)return "";
+  return '<a class="rthumb" href="#slide-'+esc(id)+'"><img src="../drawings/img/'+esc(id)+'.webp" alt="'+esc(sl.scene||sl.label)+'" loading="lazy"><span>See this picture in the slide show</span></a>'}
 function record(id){
-  var R=$("record");
+  var R=$("record");R.scrollTop=0;
   if(!id){R.innerHTML='<h3>How to read this</h3><ol><li>Click a circle to see its record, in date order, each with its source.</li><li>Solid green lines are documented money or facts.</li><li>Dashed amber lines are estimates.</li><li>Grey dashed circles are not yet sourced. Nothing goes on the map without a document.</li></ol>';return}
   var n=byId[id],L=E.filter(function(e){return e.s===id||e.t===id}).sort(function(a,b){return String(a.d||"").localeCompare(String(b.d||""))});
   R.innerHTML='<h3>'+esc(n.n)+'</h3><p class="src">'+NT[n.t].n+' · '+L.length+' connections</p><ol>'+L.map(function(e){var other=e.s===id?byId[e.t].n:byId[e.s].n,dir=e.s===id?"→ ":"← ";
-    return '<li><span class="kind k-'+e.k+'" style="font-size:14px;padding:1px 8px">'+e.k+'</span> '+(e.d?'<b>'+esc(e.d)+'</b> · ':'')+dir+esc(other)+': '+esc(e.l)+(e.amtTxt?' <b>('+esc(e.amtTxt)+')</b>':'')+'<div class="src">Source: '+esc(e.src)+'</div></li>'}).join("")+'</ol><button class="btn" id="clearsel">Show the whole map</button>';
+    return '<li><span class="kind k-'+e.k+'" style="font-size:14px;padding:1px 8px">'+e.k+'</span> '+(e.d?'<b>'+esc(e.d)+'</b> · ':'')+dir+esc(other)+': '+esc(e.l)+(e.amtTxt?' <b>('+esc(e.amtTxt)+')</b>':'')+'<div class="src">Source: '+esc(e.src)+'</div></li>'}).join("")+'</ol><button class="btn" id="clearsel">Show the whole map</button>'+thumb(id);
   $("clearsel").addEventListener("click",function(){sel=null;drawMap();record(null)});
 }
 [].forEach.call(document.querySelectorAll(".fbtn"),function(b){b.addEventListener("click",function(){filt=b.dataset.f;[].forEach.call(document.querySelectorAll(".fbtn"),function(x){x.setAttribute("aria-pressed",x===b)});drawBands();drawTable();drawMap()})});
 drawBands();drawTable();drawMap();
 // key dates
 var D=[["2003","Medicare Advantage created","Medicare Modernization Act (P.L. 108-173)"],["Feb 2, 2023","Prior authorization counts","KFF: 35M requests, 2M denied (2021)"],["Mar 15, 2024","MedPAC: $83B more","Report to the Congress"],["Dec 6, 2024","Leaving MA costs more","KFF: +$2,585 per person (2022)"],["Mar 2026","MedPAC: ≈ $76B more","Report to the Congress (re-check)"],["Jun 9, 2026","Trust fund forecast","Trustees: Part A short in 2033"],["2026","2.9M forced switches","JAMA, for plan year 2026"],["Oct 15 – Dec 7, 2026","Open Enrollment","Medicare.gov"],["Dec 7, 2026","CMS update due to OIG","OEI-09-24-00330"],["Jan 1 – Mar 31, 2027","MA Open Enrollment","Medicare.gov"]];
-$("dates").innerHTML=D.map(function(d){return '<div class="date board"><div class="d">'+esc(d[0])+'</div><div class="w">'+esc(d[1])+'</div><div class="s">'+esc(d[2])+'</div></div>'}).join("");
+$("dates").innerHTML=D.map(function(d){return '<li class="date"><div class="d">'+esc(d[0])+'</div><div class="w">'+esc(d[1])+'</div><div class="s">'+esc(d[2])+'</div></li>'}).join("");
 })();
 </script>
 
