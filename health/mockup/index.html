@@ -27,6 +27,19 @@ header.top .wrap{display:flex;align-items:center;gap:18px;min-height:72px;flex-w
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--chalk);font-family:var(--chalkfont);font-weight:700;font-size:30px}
 .logo span{color:var(--gold2)}
 .place{border:2px solid #2f6b49;color:var(--green2);border-radius:999px;padding:2px 14px;font-weight:700;font-size:17px}
+.statepick{position:relative}
+.statepick summary{list-style:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;border:2px solid #2f6b49;color:var(--green2);border-radius:999px;padding:2px 12px 2px 14px;font-weight:700;font-size:17px;cursor:pointer}
+.statepick summary::-webkit-details-marker{display:none}
+.statepick summary:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.statepick .sp-beta{font-size:13px;letter-spacing:.06em;text-transform:uppercase;background:#2b2410;color:#f2d98a;border:1px solid #6b5222;border-radius:999px;padding:1px 8px}
+.statepick[open] summary svg{transform:rotate(180deg)}
+.sp-menu{position:absolute;left:0;top:calc(100% + 8px);z-index:50;width:min(340px,86vw);max-height:min(70vh,520px);overflow:auto;background:var(--slate2);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.55);padding:10px}
+.sp-note{margin:4px 6px 10px;font-size:16px;color:var(--mute);line-height:1.4}
+.sp-menu ul{list-style:none;margin:0;padding:0}
+.sp-menu li{display:flex;justify-content:space-between;gap:10px;padding:9px 10px;border-radius:8px;font-size:17px;color:#6f7a74;cursor:not-allowed}
+.sp-menu li span{font-size:14px}
+.sp-menu li.cur{color:var(--chalk);font-weight:700;background:#13201a;border:1px solid #2f6b49;cursor:default}
+.sp-menu li.cur span{color:var(--green2);font-weight:700}
 nav.mainnav{display:flex;gap:6px 18px;flex-wrap:wrap;margin-left:auto}
 nav.mainnav a{color:var(--mute);text-decoration:none;font-weight:700;font-size:18px;padding:10px 4px}
 nav.mainnav a:hover{color:var(--chalk);text-decoration:underline}
@@ -70,8 +83,8 @@ section.block{padding:72px 0 10px}
 .story{position:relative;margin-top:30px}
 .story-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:28px}
 .stage-col{position:relative}
-.stage-sticky{position:sticky;top:96px}
-.stage{position:relative;width:100%;aspect-ratio:1600/902;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#0b0e0d}
+.stage-sticky{position:sticky;top:calc(var(--hdr,72px) + 14px)}
+.stage{position:relative;width:100%;max-width:calc((100vh - var(--hdr,72px) - 110px) * 1600 / 902);margin:0 auto;aspect-ratio:1600/902;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#0b0e0d}
 .cam{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform}
 .cam img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
 .cam img.on{opacity:1}
@@ -85,14 +98,24 @@ section.block{padding:72px 0 10px}
 .stage-note{margin-top:6px;font-size:16px;color:var(--mute)}
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .ftag{position:absolute;z-index:6;pointer-events:none;background:rgba(14,18,17,.9);border:2px solid #6b5a1c;border-radius:8px;padding:4px 10px;font-size:clamp(12px,1.15vw,16px);line-height:1.25;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .3s}
+.hgpanel{position:absolute;right:2.5%;top:6%;width:30%;z-index:7;background:rgba(14,18,17,.9);border:2px solid #6b5a1c;border-radius:10px;padding:.8em .9em;font-size:clamp(10px,1.15vw,17px);line-height:1.25;opacity:0;transition:opacity .4s;pointer-events:none}
+.hgpanel.on{opacity:1}
+@media (max-width:920px){.hgpanel{width:44%;top:4%;right:2%;padding:.45em .6em;font-size:11px}.hg-s{display:none}.hg-k{font-size:.75em}}
+.hg-k{font-weight:700;color:var(--gold2);text-transform:uppercase;letter-spacing:.04em;font-size:.8em}
+.hg-y{font-family:var(--chalkfont);font-weight:700;font-size:1.9em;line-height:1.05;margin-top:.2em}
+.hg-m{font-family:var(--chalkfont);font-weight:700;font-size:1.6em;color:var(--gold2);line-height:1.05}
+.hg-bar{height:.6em;border-radius:.3em;background:#2a3430;margin:.5em 0;overflow:hidden}
+.hg-bar i{display:block;height:100%;background:var(--gold);transition:width .4s}
+.hg-l .kind{font-size:.8em;padding:1px 6px;margin-right:4px}
+.hg-s{font-size:.72em;color:var(--mute);margin-top:.4em}
 .ftag b{color:var(--gold2)}
 .ftag.on{opacity:1}
-.progress{display:flex;gap:6px;margin-top:12px}
+.progress{display:flex;gap:6px;margin:12px auto 0;max-width:calc((100vh - var(--hdr,72px) - 110px) * 1600 / 902)}
 .progress i{flex:1;height:8px;border-radius:4px;background:#2a3430}
 .progress i.on{background:var(--gold)}
 .stage-cap{margin-top:10px;font-size:17px;color:var(--mute)}
 .steps{display:flex;flex-direction:column}
-.step{min-height:88vh;display:flex;align-items:center;padding:20px 0}
+.step{min-height:92vh;display:flex;align-items:center;padding:20px 0;scroll-margin-top:calc(var(--hdr,72px) + 14px)}
 .step:first-child{min-height:70vh}
 .card{padding:26px 28px;width:100%;opacity:.38;transition:opacity .5s}
 .step.active .card{opacity:1}
@@ -109,6 +132,21 @@ section.block{padding:72px 0 10px}
 .fact p{margin:0;font-size:21px;line-height:1.45}
 .fact .src{font-size:17px;color:#47504c;margin-top:8px}
 .deckq{margin-top:14px;font-style:italic;color:var(--mute);font-size:18px}
+
+/* desktop: every story card fits on screen below the menu bar (Tom, Nov 15 20:07) */
+@media (min-width:921px){
+  /* each card stays pinned, fully in view, while its step plays; the step's extra height is the scroll room */
+  .step{display:block;min-height:0;height:150vh;padding:0}
+  .step:first-child{min-height:0;height:120vh}
+  .step:last-child{height:auto;padding-bottom:30vh}
+  .card{position:sticky;top:calc(var(--hdr,72px) + 14px);padding:20px 24px}
+  .card h3{font-size:clamp(28px,2.5vw,38px);margin:4px 0 8px}
+  .card .say{font-size:19px;line-height:1.45;margin:0 0 10px}
+  .fact{padding:12px 16px;margin-top:8px}
+  .fact p{font-size:18px;line-height:1.4}
+  .fact .src{font-size:15px;margin-top:6px}
+  .deckq{font-size:15px;margin-top:10px}
+}
 @media (max-width:920px){
   /* Phones and small tablets: the street stays pinned at the very top of the screen and the
      story cards scroll underneath it. The site header is not pinned here (on a phone its menu
@@ -127,12 +165,12 @@ section.block{padding:72px 0 10px}
   .step:last-child{padding-bottom:30vh}
   .card{padding:20px 18px;opacity:.45}
   .card .kick{font-size:16px}
-  .card h3{font-size:32px}
-  .card .say{font-size:20px;line-height:1.5}
+  .card h3{font-size:28px}
+  .card .say{font-size:18px;line-height:1.45}
   .fact{padding:14px 14px}
-  .fact p{font-size:20px;line-height:1.45}
+  .fact p{font-size:18px;line-height:1.4}
   .fact .src{font-size:16px}
-  .deckq{font-size:17px}
+  .deckq{font-size:15px}
   .ftag{white-space:normal;width:max-content;max-width:62%;font-size:13px;padding:3px 8px}
 }
 @media (max-width:520px){
@@ -298,7 +336,13 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
       <svg width="34" height="34" viewBox="0 0 30 30" aria-hidden="true"><path d="M4 26V12L15 4l11 8v14" fill="none" stroke="#e8c860" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 26v-7h8v7" fill="none" stroke="#eeede4" stroke-width="2.2"/><path d="M15 9.5v5M12.5 12h5" stroke="#3fa66b" stroke-width="2.2"/></svg>
       Dweller <span>Health</span>
     </a>
-    <span class="place">North Carolina</span>
+    <details class="statepick" id="statepick">
+      <summary aria-label="State: North Carolina, beta. Other states are coming."><span class="sp-name">North Carolina</span><span class="sp-beta">Beta</span><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div class="sp-menu">
+        <p class="sp-note">Dweller Health is being built for every state. North Carolina is the first test area; the others are coming.</p>
+        <ul role="listbox" aria-label="States"><li role="option" aria-selected="true" class="cur">North Carolina <span>Beta · now testing</span></li><li role="option" aria-disabled="true">Alabama <span>Coming</span></li><li role="option" aria-disabled="true">Alaska <span>Coming</span></li><li role="option" aria-disabled="true">Arizona <span>Coming</span></li><li role="option" aria-disabled="true">Arkansas <span>Coming</span></li><li role="option" aria-disabled="true">California <span>Coming</span></li><li role="option" aria-disabled="true">Colorado <span>Coming</span></li><li role="option" aria-disabled="true">Connecticut <span>Coming</span></li><li role="option" aria-disabled="true">Delaware <span>Coming</span></li><li role="option" aria-disabled="true">District of Columbia <span>Coming</span></li><li role="option" aria-disabled="true">Florida <span>Coming</span></li><li role="option" aria-disabled="true">Georgia <span>Coming</span></li><li role="option" aria-disabled="true">Hawaii <span>Coming</span></li><li role="option" aria-disabled="true">Idaho <span>Coming</span></li><li role="option" aria-disabled="true">Illinois <span>Coming</span></li><li role="option" aria-disabled="true">Indiana <span>Coming</span></li><li role="option" aria-disabled="true">Iowa <span>Coming</span></li><li role="option" aria-disabled="true">Kansas <span>Coming</span></li><li role="option" aria-disabled="true">Kentucky <span>Coming</span></li><li role="option" aria-disabled="true">Louisiana <span>Coming</span></li><li role="option" aria-disabled="true">Maine <span>Coming</span></li><li role="option" aria-disabled="true">Maryland <span>Coming</span></li><li role="option" aria-disabled="true">Massachusetts <span>Coming</span></li><li role="option" aria-disabled="true">Michigan <span>Coming</span></li><li role="option" aria-disabled="true">Minnesota <span>Coming</span></li><li role="option" aria-disabled="true">Mississippi <span>Coming</span></li><li role="option" aria-disabled="true">Missouri <span>Coming</span></li><li role="option" aria-disabled="true">Montana <span>Coming</span></li><li role="option" aria-disabled="true">Nebraska <span>Coming</span></li><li role="option" aria-disabled="true">Nevada <span>Coming</span></li><li role="option" aria-disabled="true">New Hampshire <span>Coming</span></li><li role="option" aria-disabled="true">New Jersey <span>Coming</span></li><li role="option" aria-disabled="true">New Mexico <span>Coming</span></li><li role="option" aria-disabled="true">New York <span>Coming</span></li><li role="option" aria-disabled="true">North Dakota <span>Coming</span></li><li role="option" aria-disabled="true">Ohio <span>Coming</span></li><li role="option" aria-disabled="true">Oklahoma <span>Coming</span></li><li role="option" aria-disabled="true">Oregon <span>Coming</span></li><li role="option" aria-disabled="true">Pennsylvania <span>Coming</span></li><li role="option" aria-disabled="true">Rhode Island <span>Coming</span></li><li role="option" aria-disabled="true">South Carolina <span>Coming</span></li><li role="option" aria-disabled="true">South Dakota <span>Coming</span></li><li role="option" aria-disabled="true">Tennessee <span>Coming</span></li><li role="option" aria-disabled="true">Texas <span>Coming</span></li><li role="option" aria-disabled="true">Utah <span>Coming</span></li><li role="option" aria-disabled="true">Vermont <span>Coming</span></li><li role="option" aria-disabled="true">Virginia <span>Coming</span></li><li role="option" aria-disabled="true">Washington <span>Coming</span></li><li role="option" aria-disabled="true">West Virginia <span>Coming</span></li><li role="option" aria-disabled="true">Wisconsin <span>Coming</span></li><li role="option" aria-disabled="true">Wyoming <span>Coming</span></li></ul>
+      </div>
+    </details>
     <nav class="mainnav" aria-label="Main">
       <a href="#pictures">Your health, your cost, who gets paid</a>
       <a href="#street">The Street</a>
@@ -492,6 +536,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   </div>
 </footer>
 
+<script>(function(){var d=document.getElementById("statepick");document.addEventListener("click",function(e){if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&d.open){d.open=false;d.querySelector("summary").focus()}})})();</script>
 <script src="../drawings/drawings.js"></script>
 <script>
 /* Hero slide show, "Your health, your cost, who gets paid" (O45). Only slides whose image Tom approved appear; captions appear once Tom approves them.
@@ -618,8 +663,8 @@ var S=[
   deck:"Slide 12: “MA Plan Providers Exit Networks”",cam:[[1.06,-6,-3],[1.16,-12,-6]],
   actors:[{type:"doctor",p:[[700,430],[780,470],[880,500],[1010,520]],a:.1,b:.9,tag:["Leaves the network","Find a new in-network doctor"]}]},
  {img:7,k:"The trust fund",t:"The hourglass",
-  say:"Hospital care under Medicare Part A is paid from a trust fund. Each year the Medicare Trustees project how long it will last.",
-  fact:{L:"Forecast",x:"The Part A trust fund is projected to run short in 2033. After that, about 89% of hospital benefits could still be paid.",s:"Medicare Trustees Report, June 9, 2026"},
+  say:"Hospital care under Medicare Part A is paid from a trust fund. Keep scrolling: the hourglass counts the years and the money left, as the Medicare Trustees project them.",
+  fact:{L:"Forecast",x:"The fund held $255.7 billion at the end of 2025. The Trustees project it peaks at $261.9 billion in 2026, then shrinks every year until its reserves run out in 2033. After that, about 89% of hospital benefits could still be paid.",s:"2026 Medicare Trustees Report, June 9, 2026 (year-by-year table as reported by NCPSSM)"},
   deck:"Slide 1: “…threaten the fiscal sustainability of Original Medicare.” (MedPAC)",cam:[[1,0,0],[1.12,0,-2]]},
  {img:8,k:"Your move",t:"What you can do",
   say:"You can change your coverage at set times each year, and free, unbiased help is a phone call away.",
@@ -695,14 +740,35 @@ function trigger(){var vh=window.innerHeight;if(!mqPhone.matches)return vh*.6;va
 function box(i){var st=steps.children[i];return (mqNarrow.matches?st.firstElementChild:st).getBoundingClientRect()}
 function stepProgress(i){var r=box(i),y=trigger();return Math.max(0,Math.min(1,(y-r.top)/(r.height)))}
 function current(){var y=trigger(),best=0;for(var i=0;i<steps.children.length;i++){if(box(i).top<y)best=i}return best}
+
+/* ===== Hourglass: the Part A trust fund, year by year (Tom, Nov 15 20:07: show an actual amount of time and money) =====
+   Fund at year end, $ billion. 2025 is actual; 2026-2032 are the Trustees' projections; 2033 = reserves used up.
+   Source: 2026 Medicare Trustees Report (June 9, 2026), table as reported by NCPSSM. */
+var HG=[[2025,255.7],[2026,261.9],[2027,251.4],[2028,230.1],[2029,197.4],[2030,153.5],[2031,97.3],[2032,28.1],[2033,0]];
+var hgEl=document.createElement("div");hgEl.className="hgpanel";hgEl.setAttribute("aria-hidden","true");
+hgEl.innerHTML='<div class="hg-k">Part A trust fund · hospital care</div><div class="hg-y" id="hgy"></div><div class="hg-m" id="hgm"></div><div class="hg-bar"><i id="hgbar"></i></div><div class="hg-l" id="hgl"></div><div class="hg-s">2026 Medicare Trustees Report, June 9, 2026</div>';
+stage.appendChild(hgEl);
+var hgDots=[];
+function hourglass(i,p){
+  var on=S[i].img===7;hgEl.classList.toggle("on",on);
+  if(!on){hgDots.forEach(function(d){d.remove()});hgDots=[];return}
+  if(!hgDots.length){for(var n=0;n<14;n++)hgDots.push(el("circle",{r:2.2,fill:"#f2cf5a",opacity:0},fx))}
+  var k=reduce?HG.length-1:Math.min(HG.length-1,Math.floor(Math.max(0,p-.05)/.8*HG.length)),y=HG[k][0],v=HG[k][1];
+  $("hgy").textContent=k===HG.length-1?"2033":"End of "+y;
+  $("hgm").textContent=v>0?"$"+v.toFixed(1)+" billion":"Reserves used up";
+  $("hgbar").style.width=(v/261.9*100).toFixed(1)+"%";
+  $("hgl").innerHTML=k===0?'<span class="kind k-Fact">Fact</span> in the fund today':k===HG.length-1?'<span class="kind k-Forecast">Forecast</span> about 89% of hospital bills could still be paid':'<span class="kind k-Forecast">Forecast</span> '+(2033-y)+' year'+(2033-y===1?'':'s')+' left';
+  var run=v>0&&!reduce;
+  hgDots.forEach(function(d,n){var q=((clock*1.4+n/hgDots.length)%1);d.setAttribute("cx",(488+Math.sin(n*7)*1.2).toFixed(1));d.setAttribute("cy",(262+q*150).toFixed(1));d.setAttribute("opacity",run?(1-q*.6).toFixed(2):0)});
+}
 var clock=0,last=null;
 function frame(ts){
   if(last==null)last=ts;clock+=Math.min(.1,(ts-last)/1000);last=ts;
   var i=current();if(i!==cur){cur=i;build(i)}
   var s=S[i],p=stepProgress(i),e=reduce?.5:p;
-  var c0=s.cam[0],c1=s.cam[1],sc=lerp(c0[0],c1[0],reduce?0:e),lim=(sc-1)/2/sc*100-.2;
-  var tx=Math.max(-lim,Math.min(lim,lerp(c0[1],c1[1],reduce?0:e))),ty=Math.max(-lim,Math.min(lim,lerp(c0[2],c1[2],reduce?0:e)));
-  cam.style.transform="scale("+sc+") translate("+tx+"%,"+ty+"%)";
+  /* No zoom (Tom, Nov 15 20:07): the whole picture stays in view at every step. */
+  var sc=1,tx=0,ty=0;cam.style.transform="none";
+  hourglass(i,p);
   var R=stage.getBoundingClientRect();
   actors.forEach(function(o){var a=o.a,u=(p-a.a)/(a.b-a.a);if(reduce)u=.5;var vis=u>=0&&u<=1;o.f.g.style.display=vis?"":"none";o.ft.classList.toggle("on",vis&&u>.05&&u<.95);if(!vis)return;
     var P=pathPos(a.p,u),k=sizeAt(P[1])/40,dir=P[2]<0?-1:1,sw=reduce?0:Math.sin(u*(a.slow?40:70));
@@ -710,10 +776,15 @@ function frame(ts){
     o.f.la.setAttribute("x2",(-3+sw*3).toFixed(2));o.f.lb.setAttribute("x2",(3-sw*3).toFixed(2));
     var W=R.width,H=R.height,px=P[0]/1000*W,py=(P[1]-44*k)/564*H;px=(px-W/2)*sc+W/2+tx/100*W*sc;py=(py-H/2)*sc+H/2+ty/100*H*sc;
     var hw=(o.ft.offsetWidth||160)/2+6;o.ft.style.left=Math.max(hw,Math.min(W-hw,px))+"px";o.ft.style.top=Math.max(44,(o.ft.offsetHeight||40)+4,py-4)+"px"});
+  var tagR=actors.filter(function(o){return o.ft.classList.contains("on")}).map(function(o){return o.ft.getBoundingClientRect()});
+  [].forEach.call(document.querySelectorAll("#blabels .blbl"),function(b){var r=b.getBoundingClientRect();
+    b.style.visibility=tagR.some(function(t){return r.left<t.right+4&&r.right>t.left-4&&r.top<t.bottom+4&&r.bottom>t.top-4})?"hidden":""});
   tokens.forEach(function(k){if(reduce){k.c.setAttribute("opacity",0);return}var q=((clock+k.off)/k.sp)%1;
     k.c.setAttribute("cx",lerp(225,k.tx,q).toFixed(1));k.c.setAttribute("cy",(lerp(250,k.ty,q)-Math.sin(q*Math.PI)*120).toFixed(1));k.c.setAttribute("opacity",(.25+.75*Math.sin(q*Math.PI)).toFixed(2))});
   requestAnimationFrame(frame);
 }
+function setHdr(){var h=document.querySelector("header.top");document.documentElement.style.setProperty("--hdr",(getComputedStyle(h).position==="sticky"?h.getBoundingClientRect().height:0)+"px")}
+setHdr();window.addEventListener("resize",setHdr);
 requestAnimationFrame(frame);
 
 /* ================= SLIDE SHOW (same renderer and content as the GitHub deck) ================= */
