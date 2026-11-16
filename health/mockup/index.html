@@ -200,7 +200,8 @@ section.block{padding:72px 0 10px}
 .deckwrap{padding:18px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
 @media (max-width:920px){.deckwrap{grid-template-columns:1fr}}
 .deckside{display:flex;flex-direction:column;gap:14px}
-.deckfull{width:100%}
+.deckshare{display:flex;gap:10px;align-items:center}
+.deckfull{flex:1}
 .deckframe{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#E4F0EF}
 .deckinner{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
 .deckinner > section{position:absolute;inset:0;display:none !important}
@@ -480,7 +481,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
         <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
       <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
-      <a class="btn deckfull" href="https://tlsman71.github.io/dweller/health/deck/">Open the full deck</a>
+      <div class="deckshare"><span class="sharewrap"><button class="btn gold sharei" type="button" id="decksharebtn" aria-haspopup="menu" aria-expanded="false" aria-label="Share the whole presentation" title="Share the whole presentation"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3" fill="currentColor"/><circle cx="6" cy="12" r="3" fill="currentColor"/><circle cx="18" cy="19" r="3" fill="currentColor"/><path d="M8.6 10.7l6.8-4M8.6 13.3l6.8 4" stroke="currentColor" stroke-width="2.2" fill="none"/></svg></button><span class="sharemenu" id="decksharemenu" role="menu" hidden></span></span><a class="btn deckfull" href="https://tlsman71.github.io/dweller/health/deck/">Open the full deck</a></div>
       </div>
     </div>
     <p class="deckmeta"><span id="dupdated"></span> · Every change is recorded in the deck’s public history on GitHub.</p>
@@ -929,6 +930,38 @@ drawBands();drawTable();drawMap();
 // key dates
 var D=[["2003","Medicare Advantage created","Medicare Modernization Act (P.L. 108-173)"],["Feb 2, 2023","Prior authorization counts","KFF: 35M requests, 2M denied (2021)"],["Mar 15, 2024","MedPAC: $83B more","Report to the Congress"],["Dec 6, 2024","Leaving MA costs more","KFF: +$2,585 per person (2022)"],["Mar 2026","MedPAC: ≈ $76B more","Report to the Congress (re-check)"],["Jun 9, 2026","Trust fund forecast","Trustees: Part A short in 2033"],["2026","2.9M forced switches","JAMA, for plan year 2026"],["Oct 15 – Dec 7, 2026","Open Enrollment","Medicare.gov"],["Dec 7, 2026","CMS update due to OIG","OEI-09-24-00330"],["Jan 1 – Mar 31, 2027","MA Open Enrollment","Medicare.gov"]];
 $("dates").innerHTML=D.map(function(d){return '<div class="date board"><div class="d">'+esc(d[0])+'</div><div class="w">'+esc(d[1])+'</div><div class="s">'+esc(d[2])+'</div></div>'}).join("");
+})();
+</script>
+
+<script>
+/* Share the whole presentation (Tom, Nov 15 20:21): same rule as the pictures. One tap goes straight to the
+   person's share sheet (with the deck's share picture) or, where there is none, to a short list of networks
+   that opens the network's own post window. Nothing changes on this page. */
+(function(){
+  var url="https://tlsman71.github.io/dweller/health/deck/", title="Medicare Advantage: who pays, who gets paid, and what you can do · Dweller Health";
+  var btn=document.getElementById("decksharebtn"), m=document.getElementById("decksharemenu");
+  function close(){m.hidden=true;btn.setAttribute("aria-expanded","false")}
+  function menu(){
+    if(!m.hidden){close();return}
+    var u=encodeURIComponent(url),t=encodeURIComponent(title),ut=encodeURIComponent(title+" "+url);
+    var nets=[["Facebook","https://www.facebook.com/sharer/sharer.php?u="+u],["X","https://x.com/intent/post?text="+t+"&url="+u],["Bluesky","https://bsky.app/intent/compose?text="+ut],["LinkedIn","https://www.linkedin.com/sharing/share-offsite/?url="+u],["Reddit","https://www.reddit.com/submit?url="+u+"&title="+t],["Email","mailto:?subject="+t+"&body="+ut]];
+    m.innerHTML=nets.map(function(x){return '<a role="menuitem" href="'+x[1]+'" data-net="'+x[0]+'">'+x[0]+'</a>'}).join("")+'<button role="menuitem" type="button">Copy the link</button>';
+    m.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(ev){close();if(a.dataset.net==="Email")return;ev.preventDefault();window.open(a.href,"dhshare","width=640,height=640,noopener")})});
+    m.querySelector("button").addEventListener("click",function(){var c=this;(navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(function(){c.textContent="Link copied"},function(){window.prompt("Copy this link:",url)})});
+    m.hidden=false;btn.setAttribute("aria-expanded","true");m.querySelector("a").focus();
+  }
+  btn.addEventListener("click",function(){
+    if(navigator.share){
+      fetch("../deck/share.jpg").then(function(r){return r.blob()}).then(function(bl){
+        var f=new File([bl],"dweller-health-presentation.jpg",{type:"image/jpeg"});
+        return navigator.share(navigator.canShare&&navigator.canShare({files:[f]})?{files:[f],title:title,text:title+" "+url}:{title:title,text:title,url:url});
+      }).catch(function(err){if(err&&err.name!=="AbortError")menu()});
+      return;
+    }
+    menu();
+  });
+  document.addEventListener("click",function(ev){if(!m.hidden&&!ev.target.closest("#deck .sharewrap"))close()});
+  document.addEventListener("keydown",function(ev){if(ev.key==="Escape"&&!m.hidden){close();btn.focus()}});
 })();
 </script>
 </body>
