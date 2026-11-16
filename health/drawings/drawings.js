@@ -529,13 +529,16 @@ window.DH_DRAWINGS = {
     "url": "https://hfma.org/?p=79659"
    },
    "image": {
-    "status": "waiting",
+    "status": "approved",
     "version": 3,
+    "approved_on": "2026-11-15",
     "review_id": "node-r_hfma-v3"
    },
    "caption": {
-    "status": "waiting",
-    "version": 2
+    "status": "approved",
+    "version": 2,
+    "approved_on": "2026-11-15",
+    "review_id": "node-r_hfma-v3"
    },
    "headline": "19% of health systems already dropped an Advantage plan",
    "source_short": "HFMA survey, Mar 2024"
