@@ -289,16 +289,17 @@ const LV={local:"local",state:"state",federal:"federal"};
 
 // ---------- saved profile (this browser only) ----------
 const KEY="dc-profile";
-const BLANK={level:"state",state:"CA",why:"",office:"",officeKind:"assembly",name:"",street:"",zip:"",geo:null,district:"",steps:{},owners:{},opponents:[],expected:"",budget:"",treasurer:"",team:[],ledger:null,step:0,example:true};
+const BLANK={level:"state",state:"NC",why:"",office:"",officeKind:"assembly",name:"",street:"",zip:"",geo:null,district:"",steps:{},owners:{},opponents:[],expected:"",budget:"",treasurer:"",team:[],ledger:null,step:0,example:true};
 let P;try{P=Object.assign({},BLANK,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){P={...BLANK}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}};
-const EXAMPLE={name:"Example Candidate",office:"State Assembly, 1st District",treasurer:"Example Treasurer",team:[{name:"Example Campaign Manager",role:"Staff"},{name:"Example Volunteer Lead",role:"Volunteer"},{name:"Example Neighborhood Association",role:"Endorser (group)"}],
+const EXAMPLE={name:"Example Candidate",office:"State House, 1st District",treasurer:"Example Treasurer",team:[{name:"Example Campaign Manager",role:"Staff"},{name:"Example Volunteer Lead",role:"Volunteer"},{name:"Example Neighborhood Association",role:"Endorser (group)"}],
   ledger:[{d:"2026-08-04",kind:"in",who:"Example Donor A",amt:500},{d:"2026-08-19",kind:"in",who:"Example Donor B",amt:250},{d:"2026-09-02",kind:"out",who:"Example Print Shop",amt:420,memo:"Yard signs"},{d:"2026-09-15",kind:"in",who:"Example Donor C",amt:1000},{d:"2026-10-01",kind:"out",who:"Example Print Shop",amt:310,memo:"Door hangers"},{d:"2026-10-09",kind:"debt",who:"Example Web Designer",amt:600,memo:"Website, unpaid"}]};
 const ledger=()=>P.ledger||(P.example?EXAMPLE.ledger:[]);
 const team=()=>P.team.length?P.team:(P.example?EXAMPLE.team:[]);
 
-const ladder=()=>D.ladders[P.level];
-const covered=()=>{const L=ladder();return !L.stateOnly||L.stateOnly===P.state};
+const ladder=()=>D.ladders[P.level+":"+P.state]||D.ladders[P.level];
+const limits=()=>D.limits[P.level+":"+P.state]||D.limits[P.level];
+const covered=()=>{const L=ladder();return L.stateOnly?L.stateOnly===P.state:!L.generic};
 const office=()=>P.level==="federal"?D.offices.federal:(D.offices[P.state]||{name:`${STATES[P.state]}'s election office`,url:FINDER.url,finder:true});
 const officeA=()=>{const o=office();return `<a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>`};
 const raceWords=()=>P.level==="federal"?"a federal office":`${LV[P.level]} office in ${STATES[P.state]}`;
@@ -373,7 +374,7 @@ function renderSetup(){const i=P.step,v=$("v-setup");let h=`<div class="hello"><
    <div class="result"><span class="flabel">Your win number</span><span class="big" id="win">${P.expected?num(Math.floor(+P.expected/2)+1):"—"}</span><span class="hint">votes. This is simple arithmetic for planning, not a rule. With more than two candidates, ask ${officeA()} how winners are decided.</span></div>
    <div class="field"><span class="flabel">Who else is running?</span><p class="hint">Write each name the same way, whatever their party.</p><div class="list-ed">${P.opponents.map((o,j)=>`<div class="it"><span>${esc(o)}</span><button class="linkbtn" type="button" data-rm="${j}">Remove</button></div>`).join("")}</div>
    <div class="row"><input class="inline-in" id="f-opp" placeholder="Name" style="flex:1 1 200px;width:auto"><button class="btn ghost small" type="button" id="opp-add">Add</button></div></div>`}
-  if(i===4){h+=`<span class="tag">Part 5 of 5</span><h2>Money and team</h2><p class="lede">Choose a treasurer first. They keep the money records and file the reports${P.level==="federal"?"":`, and ${P.state==="CA"?"California requires every committee to have one":"most states require one"}`}.</p>
+  if(i===4){h+=`<span class="tag">Part 5 of 5</span><h2>Money and team</h2><p class="lede">Choose a treasurer first. They keep the money records and file the reports${P.level==="federal"?"":`, and ${P.state==="CA"?"California requires every committee to have one":P.state==="NC"?"North Carolina requires every candidate committee to have one who lives in the state":"most states require one"}`}.</p>
    <div class="fields">${field("f-budget","How much do you hope to raise? ($)",P.budget,"number","For example: 50000")}${field("f-treas","Who is your treasurer?",P.treasurer,"text","Name")}</div>
    <div class="field"><span class="flabel">Who's helping?</span><div class="list-ed">${P.team.map((t,j)=>`<div class="it"><span>${esc(t.name)} <span class="muted small">· ${esc(t.role)}</span></span><button class="linkbtn" type="button" data-rmt="${j}">Remove</button></div>`).join("")}</div>
    <div class="row"><input class="inline-in" id="f-tname" placeholder="Name" style="flex:2 1 180px;width:auto"><select class="inline-in" id="f-trole" style="flex:1 1 160px;width:auto">${["Staff","Volunteer","Endorser (person)","Endorser (group)","Vendor"].map(r=>`<option>${r}</option>`).join("")}</select><button class="btn ghost small" type="button" id="team-add">Add</button></div></div>`}
@@ -435,7 +436,7 @@ function renderDates(){const ds=keyDates(),up=ds.filter(d=>days(d.date)>=0),past
 
 // ---------- Money ----------
 function renderMoney(){const E=ledger(),sum=k=>E.filter(e=>e.kind===k).reduce((a,e)=>a+e.amt,0),inn=sum("in"),out=sum("out"),debt=sum("debt"),cash=inn-out;
-  const lim=D.limits[P.level],limOK=lim&&(!lim.state||lim.state===P.state),per={};E.filter(e=>e.kind==="in").forEach(e=>per[e.who]=(per[e.who]||0)+e.amt);
+  const lim=limits(),limOK=lim&&(!lim.state||lim.state===P.state),per={};E.filter(e=>e.kind==="in").forEach(e=>per[e.who]=(per[e.who]||0)+e.amt);
   const cap=limOK&&lim.rows[0]?+((lim.rows[0][1].match(/\$([\d,]+)/)||[0,"0"])[1].replace(/,/g,"")):0,over=cap?Object.entries(per).filter(([,v])=>v>cap):[];
   $("v-money").innerHTML=`<div class="hello"><h1 id="h-money">Money</h1><p class="lede">Keep track of what comes in and goes out, and the limits on what each person can give.</p></div>
   <div class="card">${!P.ledger&&P.example?`<p><span class="tag ex">Example numbers</span> Add your first entry below and this becomes yours.</p>`:""}
@@ -520,7 +521,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&PICK&&VIEW==="team"
 
 // ---------- Last election ----------
 function lastResult(){return D.results[`${P.state}:${P.officeKind}:${String(P.district||"").replace(/\D/g,"")}`]||null}
-function exampleResult(){return (P.state==="CA"&&P.level==="state")||P.example?D.results["CA:assembly:1"]:null}
+function exampleResult(){return P.state==="CA"&&(P.level==="state"||P.example)?D.results["CA:assembly:1"]:null}
 function renderLast(){const r=lastResult(),R=r||exampleResult(),v=$("v-last");
   if(!R){v.innerHTML=`<div class="hello"><h1 id="h-last">Last election for this seat</h1></div><div class="card"><p class="lede">We don't have checked results for ${P.office?esc(P.office):"your seat"} yet. ${officeA()} publishes past results, turnout and how many voters are registered with each party.</p><p>Fill in your seat and address in <a href="#setup">Set up</a> so we can match them.</p></div>`;return}
   const votes=R.candidates.reduce((a,c)=>a+c.votes,0),reg=R.registration,win=R.candidates.reduce((a,c)=>c.votes>a.votes?c:a),mx=Math.max(...reg.parties.map(p=>p[1]));
@@ -536,7 +537,7 @@ function renderLast(){const r=lastResult(),R=r||exampleResult(),v=$("v-last");
 
 // ---------- search ----------
 function index(){const out=[];tasks().forEach(t=>out.push({k:"Step",t:t.name,m:t.say,go:"steps"}));keyDates().forEach(d=>out.push({k:"Date",t:d.what,m:fmt(d.date),go:"dates"}));
-  const lim=D.limits[P.level];if(lim)lim.rows.forEach(r=>out.push({k:"Limit",t:`${r[0]}: ${r[1]}`,m:lim.cycle,go:"money"}));
+  const lim=limits();if(lim&&(!lim.state||lim.state===P.state))lim.rows.forEach(r=>out.push({k:"Limit",t:`${r[0]}: ${r[1]}`,m:lim.cycle,go:"money"}));
   graph().nodes.forEach(n=>out.push({k:"Team",t:n.label,m:ONE[n.type],go:"team",pick:n.id}));
   VIEWS.forEach(([k,l])=>out.push({k:"Page",t:l,m:"Go to this page",go:k}));MS.forEach((m,i)=>out.push({k:"Set up",t:m[0],m:m[1],go:"setup",step:i}));
   Object.values(D.src).forEach(s=>out.push({k:"Source",t:s.label,m:"Official source",url:s.url}));return out}

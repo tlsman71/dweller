@@ -21,11 +21,19 @@ src: {
   ca_sov_ad:{label:"CA SOS: Statement of Vote, Nov 5, 2024, State Assembly", url:"https://elections.cdn.sos.ca.gov/sov/2024-general/sov/42-state-assembly.pdf"},
   ca_sov:  {label:"CA SOS: Statement of Vote, Nov 5, 2024 (complete)", url:"https://elections.cdn.sos.ca.gov/sov/2024-general/sov/complete-sov.pdf"},
   ca_ror_ad:{label:"CA SOS: Report of Registration as of Oct 21, 2024, by Assembly district", url:"https://elections.cdn.sos.ca.gov/ror/15day-gen-2024/assembly.pdf"},
+  nc_cc:   {label:"NC State Board of Elections: Candidate Committees", url:"https://www.ncsbe.gov/campaign-finance/candidate-committees"},
+  nc_fees: {label:"NC State Board of Elections: Filing Fees", url:"https://www.ncsbe.gov/candidates/filing-candidacy/filing-fees"},
+  nc_req:  {label:"NC State Board of Elections: General Candidate Requirements", url:"https://www.ncsbe.gov/candidates/filing-candidacy/general-candidate-requirements"},
+  nc_noc:  {label:"NC State Board of Elections: Notice of Candidacy", url:"https://www.ncsbe.gov/candidates/filing-candidacy/notice-candidacy"},
+  nc_run:  {label:"NC State Board of Elections: Running for Office (upcoming filing periods)", url:"https://www.ncsbe.gov/candidates/running-office"},
+  nc_file26:{label:"NC State Board of Elections press release, Nov 18, 2025: Candidate Filing for 2026 Elections Begins Dec. 1", url:"https://www.ncsbe.gov/news/press-releases/2025/11/18/candidate-filing-2026-elections-begins-dec-1"},
+  nc_sched:{label:"NC State Board of Elections: State and County Reporting Schedule, 2025–26", url:"https://www.ncsbe.gov/campaign-finance/reporting-schedules/state-and-county-reporting-schedule"},
   census:  {label:"US Census Geocoder", url:"https://geocoding.geo.census.gov/geocoder/"},
 },
 // Election offices to point to when we have no checked entry. Only offices whose pages we have read are listed.
 offices: {
   federal: {name:"Federal Election Commission", url:"https://www.fec.gov/help-candidates-and-committees/"},
+  NC: {name:"North Carolina State Board of Elections", url:"https://www.ncsbe.gov/candidates"},
   CA: {name:"California Secretary of State, Elections", url:"https://www.sos.ca.gov/elections", ethics:{name:"Fair Political Practices Commission", url:"https://www.fppc.ca.gov/"}},
 },
 // Node types for the campaign map (approved by Tom, Nov 21, 2026). Colors live in index.html as --t-* tokens.
@@ -44,7 +52,7 @@ ladders: {
   {id:"election", name:"Election day", live:true, say:"The general election date for your race, from the official calendar for your location."},
   {id:"postgeneral", name:"Post-election report", say:"Covers through 20 days after the general election and is due 30 days after it.", quote:["30 days after the general election"], src:["fec_pg","fec_d26"]},
   {id:"closed", name:"Closed out", say:"A termination report once the committee won't raise or spend again and its debts are settled.", quote:["selecting the \"Termination Report\" box on FEC Form 3/3P, Line 4 of the Summary Page"], src:["fec_wd"], note:"Source is a 2024 FEC workshop outline; to be replaced by a current FEC page."}]},
- state: {model:"California State Assembly", stateOnly:"CA", steps:[
+ "state:CA": {model:"California State Assembly", stateOnly:"CA", steps:[
   {id:"exploring", name:"Exploring", say:"Deciding whether to run. No money raised or spent yet, because Form 501 has to come first.", quote:["The Form 501 must be filed prior to a candidate raising or spending any money"], src:["m1"]},
   {id:"intention", name:"Intention filed", say:"Candidate Intention Statement (Form 501) with the Secretary of State, before asking for or taking any contribution.", quote:["must file Form 501 with the Secretary of State before soliciting or receiving any contributions"], src:["m1","ca_as"]},
   {id:"committee", name:"Committee formed", say:"Form 410 within 10 days of raising or spending $2,000 in a calendar year (personal funds count), $50 annual fee, and a separate account at a California bank for each election.", quote:["File the original Form 410 with the Secretary of State within 10 days of raising or spending $2,000 or more","pay a $50 annual committee fee to the Secretary of State"], src:["m1"]},
@@ -53,7 +61,7 @@ ladders: {
   {id:"primary", name:"Primary", say:"The statewide primary.", quote:["June 2, 2026, Statewide Direct Primary Election"], src:["ca_as"]},
   {id:"election", name:"Election day", live:true, say:"The general election, from the Secretary of State's election calendar."},
   {id:"post", name:"Post-election reports and close-out", live:true, say:"Reports after the election, then terminate the committee. Dates from the FPPC filing schedule."}]},
- local: {model:"California city and county offices", stateOnly:"CA", steps:[
+ "local:CA": {model:"California city and county offices", stateOnly:"CA", steps:[
   {id:"exploring", name:"Exploring", say:"Deciding whether to run. No money raised or spent yet.", quote:["You must file Form 501 before soliciting, raising or spending any money in connection with your election."], src:["ck"]},
   {id:"intention", name:"Intention filed", say:"Form 501 with the filing officer who will receive your campaign statements (City Clerk or County Elections Office).", quote:["must file the Form 501 with the filing officer who will receive the candidate's original campaign statements"], src:["m2"]},
   {id:"committee", name:"Committee formed", say:"Form 410 within 10 days of reaching $2,000 (original and a copy to the Secretary of State, a copy to your local filing officer), a campaign bank account and a treasurer. Under $2,000: Form 470 instead.", quote:["you must file a Form 410 as a recipient committee within 10 days of qualifying.","The Act requires that every committee appoint a treasurer."], src:["ck","m2"]},
@@ -61,7 +69,40 @@ ladders: {
   {id:"ballot", name:"On the ballot", live:true, say:"Your name is certified for the ballot, from your county or city election calendar."},
   {id:"election", name:"Election day", live:true, say:"Election day. In the 90 days before it, 24-hour reports (Form 497) are due for big contributions.", quote:["Within 90 days before the election, including the date of the election","the Form 497 must be filed within 24 hours."], src:["ck"]},
   {id:"reports", name:"Post-election reports", say:"Form 460 campaign statements, including semi-annual ones, until the committee closes.", quote:["as well as other reports including semi-annual campaign statements until the committee terminates."], src:["ck"]},
-  {id:"closed", name:"Closed out", say:"A final Form 460 showing a zero balance with your local filing officer, and Form 410 marked terminated with the Secretary of State.", quote:["you must file a Form 460 with your local filing officer reporting a zero balance"], src:["ck"]}]}
+  {id:"closed", name:"Closed out", say:"A final Form 460 showing a zero balance with your local filing officer, and Form 410 marked terminated with the Secretary of State.", quote:["you must file a Form 460 with your local filing officer reporting a zero balance"], src:["ck"]}]},
+ "state:NC": {model:"North Carolina General Assembly (N.C. House and Senate)", stateOnly:"NC", steps:[
+  {id:"exploring", name:"Exploring", say:"Deciding whether to run. Once you take or spend money for your campaign, or file to run, North Carolina requires a candidate committee.", quote:["Each candidate who has received funds or made payments or given consent for anyone else to receive funds or transfer anything of value for the purpose of bringing about that candidate’s nomination or election for office is required to organize a political committee.","Filing a notice of candidacy with a board of elections also triggers the candidate’s obligation to organize a political committee."], src:["nc_cc"]},
+  {id:"committee", name:"Committee formed", say:"Name a treasurer who lives in North Carolina (you can be your own; your spouse can't), open a bank account in North Carolina used only by the committee, and file the Organizational Report with the State Board of Elections within 10 days.", quote:["All candidate committees must file an Organizational Report within 10 days of organizing or within 10 days of filing a notice of candidacy, whichever occurs first.","Candidates for Council of State, General Assembly, and judicial offices (including district attorney) must file their Organizational Report with the State Board of Elections.","However, a candidate’s spouse may not serve as treasurer.","All bank accounts and other depositories used by the candidate committee must be maintained in North Carolina."], src:["nc_cc"]},
+  {id:"training", name:"Treasurer trained", say:"Your treasurer takes the State Board of Elections' treasurer training within three months of being appointed, and again at least every four years.", quote:["Every treasurer must participate in treasurer training within three months of appointment and at least once every four years thereafter."], src:["nc_cc"]},
+  {id:"filed", name:"Filed to run", say:"Notice of candidacy with your county board of elections during the filing period, signed in person or notarized and mailed, plus the filing fee (generally 1% of the base salary the State Board lists, $13,951 for N.C. House and Senate) or a petition in lieu of the fee. N.C. House: you must have lived in the district for a year before the general election. N.C. Senate: also at least 25 and a state resident for two years.", quote:["Candidates for North Carolina State Senator, State House Representative, and all county and local offices must file their notice of candidacy with their county board of elections.","The fee is generally 1% of the office’s base salary","Candidates must have resided in the district for one year immediately prior to general election."], src:["nc_noc","nc_fees","nc_req"]},
+  {id:"ballot", name:"On the ballot", live:true, say:"Your notice of candidacy is accepted and your name goes on the ballot. Dates come from the State Board of Elections calendar."},
+  {id:"primary", name:"Primary", say:"The statewide primary. Filing for the 2026 elections ran from noon Dec. 1 to noon Dec. 19, 2025.", quote:["The 2026 primary election is March 3. The general election is Nov. 3."], src:["nc_file26"]},
+  {id:"reports", name:"Reports during the race", say:"Quarterly reports in an election year on the State Board's schedule, plus a 48-Hour Report for any contribution of $1,000 or more that arrives after the last report before an election.", quote:["A candidate committee that receives a contribution or transfer of funds of $1,000 or more before an election but after the period covered by the last report due before that election is required to file a 48 Hour Report."], src:["nc_cc","nc_sched"]},
+  {id:"election", name:"Election day", live:true, say:"The general election, from the State Board of Elections calendar."},
+  {id:"closed", name:"Closed out", say:"A final report and a Certification to Close Committee (CRO-3400). To keep the committee for a future run instead, file a Certification of Inactive Status (CRO-3200).", quote:["A candidate committee continues until it winds up operations, disposes of assets, files a final report and files a Certification to Close Committee (CRO-3400)."], src:["nc_cc"]}]},
+ "local:NC": {model:"North Carolina county and city offices", stateOnly:"NC", steps:[
+  {id:"exploring", name:"Exploring", say:"Deciding whether to run. Once you take or spend money for your campaign, or file to run, North Carolina requires a candidate committee.", quote:["Each candidate who has received funds or made payments or given consent for anyone else to receive funds or transfer anything of value for the purpose of bringing about that candidate’s nomination or election for office is required to organize a political committee.","Filing a notice of candidacy with a board of elections also triggers the candidate’s obligation to organize a political committee."], src:["nc_cc"]},
+  {id:"committee", name:"Committee formed", say:"Name a treasurer who lives in North Carolina and file the Organizational Report with your county board of elections within 10 days. If you won't raise or spend more than $1,000 in the election cycle, file a Certification of Threshold (CRO-3600) with it and skip the regular reports.", quote:["Candidates for county and municipal offices file their Organizational Report with the county board of elections.","Candidate committees for county office, municipal office, local school board, and soil and water conservation district may be exempt from filing disclosure reports if the committee determines that it does not intend to receive in contributions or in loans or spend more than $1,000 during the election cycle."], src:["nc_cc"]},
+  {id:"training", name:"Treasurer trained", say:"Your treasurer takes the State Board of Elections' treasurer training within three months of being appointed, and again at least every four years.", quote:["Every treasurer must participate in treasurer training within three months of appointment and at least once every four years thereafter."], src:["nc_cc"]},
+  {id:"filed", name:"Filed to run", live:true, say:"Notice of candidacy with your county board of elections during the filing period, plus the filing fee or a petition in lieu of it. County fees are generally 1% of the office's salary; towns set their own.", quote:["Any person seeking to become a candidate must 1) file a notice of candidacy form and 2) pay the specified filing fee or submit a petition in lieu of the filing fee.","The fee is generally 1% of the office’s base salary"], src:["nc_run","nc_fees"]},
+  {id:"ballot", name:"On the ballot", live:true, say:"Your notice of candidacy is accepted and your name goes on the ballot, from your county board of elections calendar."},
+  {id:"reports", name:"Reports during the race", say:"County candidates follow the State Board's state and county schedule. City and town candidates follow a different schedule: ask your county board of elections.", quote:["Candidate committees for municipal offices file reports according to a different reporting schedule. Please contact your county board of elections to learn the reporting schedule that applies to your committee."], src:["nc_cc","nc_sched"]},
+  {id:"election", name:"Election day", live:true, say:"Election day, from your county board of elections calendar."},
+  {id:"closed", name:"Closed out", say:"A final report and a Certification to Close Committee (CRO-3400). To keep the committee for a future run instead, file a Certification of Inactive Status (CRO-3200).", quote:["A candidate committee continues until it winds up operations, disposes of assets, files a final report and files a Certification to Close Committee (CRO-3400)."], src:["nc_cc"]}]},
+ state: {model:"State offices", generic:true, steps:[
+  {id:"exploring", name:"Exploring", say:"Deciding whether to run. Ask your election office when you must form a committee and name a treasurer."},
+  {id:"committee", name:"Committee formed", live:true, say:"Your state's rules say when you must register a campaign committee, name a treasurer and open a campaign bank account."},
+  {id:"filed", name:"Filed to run", live:true, say:"Your state's filing forms, fees or signatures, and filing period."},
+  {id:"ballot", name:"On the ballot", live:true, say:"Your name is certified for the ballot."},
+  {id:"election", name:"Election day", live:true, say:"The general election, from your state's election calendar."},
+  {id:"closed", name:"Reports and close-out", live:true, say:"Reports after the election, then closing the committee, on your state's schedule."}]},
+ local: {model:"Local offices", generic:true, steps:[
+  {id:"exploring", name:"Exploring", say:"Deciding whether to run. Ask your county or city election office when you must form a committee and name a treasurer."},
+  {id:"committee", name:"Committee formed", live:true, say:"Your state's and city's rules say when you must register a campaign committee and name a treasurer."},
+  {id:"filed", name:"Filed to run", live:true, say:"Filing forms, fees or signatures, and the filing period, from your county or city election office."},
+  {id:"ballot", name:"On the ballot", live:true, say:"Your name is certified for the ballot."},
+  {id:"election", name:"Election day", live:true, say:"Election day, from your county or city election calendar."},
+  {id:"closed", name:"Reports and close-out", live:true, say:"Reports after the election, then closing the committee."}]}
 },
 // Dated deadlines read word for word from the source. Past ones stay, marked (passed).
 dates: [
@@ -72,6 +113,22 @@ dates: [
   {level:"federal", date:"2027-01-31", what:"Year-End report due (closes 12/31/2026)", who:"FEC", src:"fec_q26"},
   {level:"federal", date:"2026-10-22", what:"Pre-General report due (covers 10/01–10/14/2026)", who:"FEC", src:"fec_d26"},
   {level:"federal", date:"2026-12-03", what:"Post-General report due (covers 10/15–11/23/2026)", who:"FEC", src:"fec_d26"},
+  {level:"state", state:"NC", date:"2025-12-01", what:"Candidate filing opens at noon (N.C. House, N.C. Senate and most 2026 contests)", who:"County board of elections", src:"nc_file26"},
+  {level:"state", state:"NC", date:"2025-12-16", what:"Last day to withdraw a notice of candidacy", who:"County board of elections", src:"nc_file26"},
+  {level:"state", state:"NC", date:"2025-12-19", what:"Candidate filing closes at noon", who:"County board of elections", src:"nc_file26"},
+  {level:"state", state:"NC", date:"2026-02-24", what:"2026 First Quarter report due (Jan. 1–Feb. 14, 2026)", who:"NC State Board of Elections", src:"nc_sched"},
+  {level:"state", state:"NC", date:"2026-03-03", what:"Primary election", who:"NC State Board of Elections", src:"nc_file26"},
+  {level:"state", state:"NC", date:"2026-07-10", what:"2026 Second Quarter report due (Feb. 15–June 30, 2026)", who:"NC State Board of Elections", src:"nc_sched"},
+  {level:"state", state:"NC", date:"2026-10-27", what:"2026 Third Quarter report due (July 1–Oct. 17, 2026)", who:"NC State Board of Elections", src:"nc_sched"},
+  {level:"state", state:"NC", date:"2026-11-03", what:"General election", who:"NC State Board of Elections", src:"nc_file26", election:true},
+  {level:"state", state:"NC", date:"2027-01-12", what:"2026 Fourth Quarter report due (Oct. 18–Dec. 31, 2026)", who:"NC State Board of Elections", src:"nc_sched"},
+  {level:"local", state:"NC", date:"2025-12-01", what:"Candidate filing opens at noon (county offices and most 2026 contests)", who:"County board of elections", src:"nc_file26"},
+  {level:"local", state:"NC", date:"2025-12-19", what:"Candidate filing closes at noon (county offices)", who:"County board of elections", src:"nc_file26"},
+  {level:"local", state:"NC", date:"2026-07-06", what:"Filing opens for towns with even-year elections (county board's regular business hours)", who:"County board of elections", src:"nc_run"},
+  {level:"local", state:"NC", date:"2026-07-14", what:"Last day to withdraw a town candidacy with a refund, 5 p.m.", who:"County board of elections", src:"nc_run"},
+  {level:"local", state:"NC", date:"2026-07-17", what:"Filing closes at noon for towns with even-year elections", who:"County board of elections", src:"nc_run"},
+  {level:"local", state:"NC", date:"2026-11-03", what:"General election", who:"NC State Board of Elections", src:"nc_run", election:true},
+  {level:"local", state:"NC", date:"2027-01-12", what:"2026 Fourth Quarter report due for county candidates on the 2026 ballot (Oct. 18–Dec. 31, 2026)", who:"County board of elections", src:"nc_sched"},
   {level:"state", state:"CA", date:"2026-02-04", what:"Last day to circulate petitions in lieu of the filing fee (2026 Assembly primary)", who:"County elections official", src:"ca_as"},
   {level:"state", state:"CA", date:"2026-03-06", what:"Declaration of Candidacy and nomination papers due, 5:00 p.m. (2026 Assembly primary)", who:"County elections official", src:"ca_as"},
   {level:"state", state:"CA", date:"2026-06-02", what:"Statewide Direct Primary Election", who:"CA Secretary of State", src:"ca_as"},
@@ -81,9 +138,13 @@ dates: [
 limits: {
   federal: {cycle:"2025–2026 cycle", note:"The FEC says these per-election limits apply from November 6, 2024 to November 3, 2026. The FEC indexes them for inflation in odd-numbered years; the 2027–2028 figures will be added when the FEC publishes them.", src:["fec_lim","fec_lim26"],
     rows:[["Individual to your committee","$3,500 per election"],["Multicandidate PAC to your committee","$5,000 per election"],["Party committee to your committee","$5,000 per election"]]},
-  state: {state:"CA", cycle:"2025–2026, State Senate and Assembly", note:"Per election. Voluntary expenditure ceilings for Assembly: $784,000 primary, $1,373,000 general (elections held January 1, 2025 to December 31, 2026).", src:["ca_lim"],
+  "state:NC": {state:"NC", cycle:"Effective Jan. 1, 2025", note:"A primary and a general election each get their own limit. Corporations, businesses, labor unions, professional associations and insurance companies may not contribute. General Assembly candidates have extra limits in N.C.G.S. § 163-278.13B and § 163-278.13C.", src:["nc_cc"],
+    rows:[["A person or political committee to your committee","$6,800 per election"],["You or your spouse to your committee","No limit"],["Political party executive committees","No limit (exempt)"]]},
+  "local:NC": {state:"NC", cycle:"Effective Jan. 1, 2025", note:"A primary and a general election each get their own limit. Corporations, businesses, labor unions, professional associations and insurance companies may not contribute.", src:["nc_cc"],
+    rows:[["A person or political committee to your committee","$6,800 per election"],["You or your spouse to your committee","No limit"],["Political party executive committees","No limit (exempt)"]]},
+  "state:CA": {state:"CA", cycle:"2025–2026, State Senate and Assembly", note:"Per election. Voluntary expenditure ceilings for Assembly: $784,000 primary, $1,373,000 general (elections held January 1, 2025 to December 31, 2026).", src:["ca_lim"],
     rows:[["A person to your committee","$5,900 per election"],["Small contributor committee to your committee","$11,800 per election"],["Political party to your committee","No limit"]]},
-  local: {state:"CA", cycle:"Set by each city or county", note:"The FPPC checklist says: “Make sure you are aware of any local contribution limits before accepting contributions.” Ask your city clerk or county elections office.", src:["ck"], rows:[]}
+  "local:CA": {state:"CA", cycle:"Set by each city or county", note:"The FPPC checklist says: “Make sure you are aware of any local contribution limits before accepting contributions.” Ask your city clerk or county elections office.", src:["ck"], rows:[]}
 },
 // Last election snapshots, keyed by state:office:district. Every figure copied from the cited report.
 results: {
