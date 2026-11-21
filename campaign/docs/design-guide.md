@@ -195,4 +195,4 @@ CI (`.github/workflows/campaign-design-guide.yml`) fails a pull request when the
 
 | Version | Date | What changed | Why | Commit |
 | --- | --- | --- | --- | --- |
-| v1.0 | Nov 21, 2026 | First build on the Docket design system: masthead with level and state, search, setup wizard and milestone bar, key dates, to-do board, campaign map with eight node types and shapes, last-election snapshot, fundraising board, sponsors panel, footer. Node colors validated (adjacent pairs pass in both themes; all-pairs covered by shapes); chart colors validated on `#16181A`. | Tom's spec of Nov 21, 2026 and his review-pane approvals | pending |
+| v1.0 | Nov 21, 2026 | First build on the Docket design system: masthead with level and state, search, setup wizard and milestone bar, key dates, to-do board, campaign map with eight node types and shapes, last-election snapshot, fundraising board, sponsors panel, footer. Node colors validated (adjacent pairs pass in both themes; all-pairs covered by shapes); chart colors validated on `#16181A`. | Tom's spec of Nov 21, 2026 and his review-pane approvals | 1f59760 |
