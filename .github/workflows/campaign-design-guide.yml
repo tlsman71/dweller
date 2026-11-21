@@ -1,0 +1,39 @@
+name: Campaign design guide is current
+
+# campaign/docs/design-guide.md is a living document. On every pull request:
+# 1. its generated token table must match the CSS custom properties in campaign/index.html;
+# 2. if campaign/index.html changed, the guide's change log must have a new row.
+# Label a PR "no-design-change" for logic-only or data-only fixes to skip check 2.
+on:
+  pull_request:
+    paths:
+      - "campaign/**"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  guide:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Token table matches the code
+        run: node campaign/scripts/sync-design-guide.mjs --check
+      - name: Design changes are logged
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'no-design-change') }}
+        run: |
+          base="origin/${{ github.base_ref }}"
+          changed=$(git diff --name-only "$base"...HEAD)
+          if echo "$changed" | grep -qx "campaign/index.html"; then
+            if ! git diff "$base"...HEAD -- campaign/docs/design-guide.md | grep -q '^+| v[0-9]'; then
+              echo "::error file=campaign/docs/design-guide.md::campaign/index.html changed but the design guide's change log has no new row. Add one to section 12 (or label the PR no-design-change)."
+              exit 1
+            fi
+          fi
+          echo "✓ campaign design guide change log is up to date"
