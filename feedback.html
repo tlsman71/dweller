@@ -132,7 +132,7 @@
       const out = await res.json();
       if (out.success) {
         show('Thank you! Your feedback was sent.', 'ok');
-        form.comments.value = ''; form.where.value = '';
+        form.comments.value = ''; document.getElementById('where').value = '';
       } else {
         show('Something went wrong: ' + (out.message || 'please try again.'), 'err');
       }
