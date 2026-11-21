@@ -2,7 +2,7 @@
 
 Design mockup of the Dweller Health landing page, Nov 13, 2026. Every figure is a draft until it passes Phase 1 source checks.
 
-- **View:** https://tlsman71.github.io/dweller/health/mockup/ (after merge, with GitHub Pages on)
+- **View:** https://health.dwellerapp.org/
 - **One file:** `index.html`. It loads the living deck's shared files from `../deck/` (`slides.js`, `deck.js`, `deck.css`, `img/`), so the slide show and the street images always match the deck.
 
 ## What's on the page

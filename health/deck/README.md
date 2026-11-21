@@ -2,7 +2,7 @@
 
 A nonpartisan, source-checked presentation on Medicare Advantage costs, coverage and choices for North Carolina residents. Based on *Medicare Advantage* by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026.
 
-- **View:** https://tlsman71.github.io/dweller/health/deck/ (after this folder is on `main` with GitHub Pages on)
+- **View:** https://health.dwellerapp.org/deck/
 - **Content:** `slides.js` (one object per slide). The design is in `deck.css` and the renderer in `deck.js`, and the Dweller Health landing page uses the same three files.
 - **Images:** `img/` holds the Dweller Health "Street" pencil drawings (no real faces, D7).
 

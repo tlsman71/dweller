@@ -15,7 +15,7 @@ import qrcode
 from fontTools.ttLib import TTFont
 
 ROOT = Path(__file__).resolve().parents[2]
-URL = "https://tlsman71.github.io/dweller/health/deck/"
+URL = "https://health.dwellerapp.org/deck/"
 TITLE = "Medicare Advantage: who pays, who gets paid, and what you can do"
 
 

@@ -2,7 +2,7 @@
 
 Started Nov 15, 2026 at Tom's request ("start building now"), ahead of the phase order. This is an organizing tool for the "What you can do" section: Medicare beneficiaries put their experience on the record and choose who should hear it.
 
-- **View:** https://tlsman71.github.io/dweller/health/story/ (after merge). It needs a real web page, not a claude.ai artifact, because the microphone is blocked inside artifacts.
+- **View:** https://health.dwellerapp.org/story/.  It needs a real web page, not a claude.ai artifact, because the microphone is blocked inside artifacts.
 - **One file:** `index.html`. There's no server and nothing is sent anywhere.
 
 ## Flow
