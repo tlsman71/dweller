@@ -6,3 +6,4 @@ secrets/
 *.xlsx
 health/drawings/draft/
 __pycache__/
+health/_site/

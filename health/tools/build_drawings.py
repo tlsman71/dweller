@@ -9,7 +9,8 @@ Reads health/drawings/drawings.js. For every slide whose image Tom approved:
                                      (only once Tom approved it), a QR code and the link back to the slide
   - health/drawings/p/<id>.html      share page: preview tags so the card shows in social posts,
                                      then it forwards the visitor to the slide
-    (--pages-only rebuilds just the share pages from the cards already in the repo; no masters needed)
+    (--pages-only rebuilds just the share pages from the cards already in the repo; no masters needed;
+     --recard also redraws each card's bottom band, e.g. QR and link, from the picture already in the card)
 Files for slides that are not approved are removed, so nothing unapproved is published.
 Masters (dweller-health-drawing-<id>.webp; redraws <id>-v<N>.webp) stay off the repo.
 
@@ -85,7 +86,7 @@ def card(pic, s, url):
 def pages(cfg, keep):
     """One small page per approved slide. Social sites read its preview tags (the card), people are sent to the slide."""
     base = cfg["share_base"].rstrip("/") + "/"
-    droot = re.sub(r"mockup/$", "drawings/", base)
+    droot = re.sub(r"mockup/$", "", base) + "drawings/"
     PAGES.mkdir(parents=True, exist_ok=True)
     for s in cfg["slides"]:
         if s["id"] not in keep:
@@ -129,8 +130,20 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--masters", help="folder with dweller-health-drawing-<id>.webp masters")
     ap.add_argument("--pages-only", action="store_true", help="only rebuild the share pages from cards already built")
+    ap.add_argument("--recard", action="store_true", help="redraw the cards' name/caption/QR band from the picture already in each card (no masters needed; use after share_base changes)")
     a = ap.parse_args()
     cfg = load()
+    if a.recard:
+        base = cfg["share_base"].rstrip("/") + "/"
+        keep = set()
+        for s in cfg["slides"]:
+            f = SHARE / f"{s['id']}.jpg"
+            if s["image"]["status"] != "approved" or not f.exists():
+                continue
+            pic = Image.open(f).convert("RGB").crop((0, 0, 1280, 720))
+            card(pic, s, f"{base}#slide-{s['id']}").save(f, "JPEG", quality=90, optimize=True, progressive=True)
+            keep.add(s["id"])
+        pages(cfg, keep); print(f"redrew {len(keep)} card(s) and share pages"); return
     if a.pages_only:
         keep = {s["id"] for s in cfg["slides"] if s["image"]["status"] == "approved" and (SHARE / f"{s['id']}.jpg").exists()}
         pages(cfg, keep); print(f"built {len(keep)} share page(s)"); return

@@ -535,7 +535,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
         <button class="btn gold" id="dnext" aria-label="Next slide">Next<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
       <div class="deckthumbs" id="dthumbs" aria-label="Go to slide"></div>
-      <div class="deckshare"><span class="sharewrap"><button class="btn gold sharei" type="button" id="decksharebtn" aria-haspopup="menu" aria-expanded="false" aria-label="Share the whole presentation" title="Share the whole presentation"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3" fill="currentColor"/><circle cx="6" cy="12" r="3" fill="currentColor"/><circle cx="18" cy="19" r="3" fill="currentColor"/><path d="M8.6 10.7l6.8-4M8.6 13.3l6.8 4" stroke="currentColor" stroke-width="2.2" fill="none"/></svg></button><span class="sharemenu" id="decksharemenu" role="menu" hidden></span></span><a class="btn deckfull" href="https://tlsman71.github.io/dweller/health/deck/">Open the full deck</a></div>
+      <div class="deckshare"><span class="sharewrap"><button class="btn gold sharei" type="button" id="decksharebtn" aria-haspopup="menu" aria-expanded="false" aria-label="Share the whole presentation" title="Share the whole presentation"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3" fill="currentColor"/><circle cx="6" cy="12" r="3" fill="currentColor"/><circle cx="18" cy="19" r="3" fill="currentColor"/><path d="M8.6 10.7l6.8-4M8.6 13.3l6.8 4" stroke="currentColor" stroke-width="2.2" fill="none"/></svg></button><span class="sharemenu" id="decksharemenu" role="menu" hidden></span></span><a class="btn deckfull" href="https://health.dwellerapp.org/deck/">Open the full deck</a></div>
       </div>
     </div>
     <p class="deckmeta">Based on <i>Medicare Advantage</i> by Tom States (Action NC, 2024), rebuilt and source-checked in November 2026. It’s a living deck: when a figure is re-checked, that slide is updated and dated.<br><span id="dupdated"></span> · Every change is recorded in the deck’s public history on GitHub.</p>
@@ -696,7 +696,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   function stamp(e,addH){var d=pd(e.d);if(!e.tm)return null;d.setHours(+e.tm.slice(0,2)+(addH||0),+e.tm.slice(3));return d}
   function z(d){return d.getFullYear()+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0")+"T"+String(d.getHours()).padStart(2,"0")+String(d.getMinutes()).padStart(2,"0")+"00"}
   function dOnly(s,plus){var d=pd(s);d.setDate(d.getDate()+(plus||0));return key(d).replace(/-/g,"")}
-  function details(e){return (e.note||"")+(e.url?"\n\n"+(e.mine?"Organizer: ":"Source: ")+e.url:"")+"\n\nFrom Dweller Health: https://tlsman71.github.io/dweller/health/mockup/#events"}
+  function details(e){return (e.note||"")+(e.url?"\n\n"+(e.mine?"Organizer: ":"Source: ")+e.url:"")+"\n\nFrom Dweller Health: https://health.dwellerapp.org/#events"}
   function gcal(e){var dates=e.tm? z(stamp(e))+"/"+z(stamp(e,1)) : dOnly(e.d)+"/"+dOnly(e.d,1);
     return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.t)+"&dates="+dates+"&details="+encodeURIComponent(details(e))+"&location="+encodeURIComponent(e.place||"")}
   function mail(e){return "mailto:?subject="+encodeURIComponent("Reminder: "+e.t+" ("+pd(e.d).toLocaleDateString("en-US",{month:"short",day:"numeric"})+")")+"&body="+encodeURIComponent(e.t+"\n"+nice(e)+(e.place?"\n"+e.place:"")+"\n\n"+details(e))}
@@ -798,7 +798,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
   /* Share: one tap. Phones (and computers with a system share menu) open the share sheet with the card attached.
      Elsewhere a short menu of networks opens the network's own post window; the link is the slide's share page,
      whose preview tags make the card picture appear in the post. Nothing is shown on this page. */
-  var pageBase=base.replace(/mockup\/$/,"drawings/p/");
+  var pageBase=base.replace(/mockup\/$/,"")+"drawings/p/";
   function sharePage(s){return pageBase+s.id+".html"}
   function share(s){
     var url=sharePage(s), card="../drawings/share/"+s.id+".jpg", title=(s.caption.status==="approved"?s.headline:s.label)+" · Dweller Health";
@@ -1157,7 +1157,7 @@ $("dates").innerHTML=D.map(function(d){return '<li class="date"><div class="d">'
    person's share sheet (with the deck's share picture) or, where there is none, to a short list of networks
    that opens the network's own post window. Nothing changes on this page. */
 (function(){
-  var url="https://tlsman71.github.io/dweller/health/deck/", title="Medicare Advantage: who pays, who gets paid, and what you can do · Dweller Health";
+  var url="https://health.dwellerapp.org/deck/", title="Medicare Advantage: who pays, who gets paid, and what you can do · Dweller Health";
   var btn=document.getElementById("decksharebtn"), m=document.getElementById("decksharemenu");
   function close(){m.hidden=true;btn.setAttribute("aria-expanded","false")}
   function menu(){

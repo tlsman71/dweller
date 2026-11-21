@@ -5,7 +5,7 @@
 //   "fact" keeps the full sourced sentence for reviewers; "scene" is the image's alt text; otherwise "Caption under review"
 // share_base: where shares and QR codes point; change it when Dweller Health gets its own domain, then rebuild.
 window.DH_DRAWINGS = {
- "share_base": "https://tlsman71.github.io/dweller/health/mockup/",
+ "share_base": "https://health.dwellerapp.org/",
  "updated": "2026-11-15",
  "slides": [
   {
