@@ -1,0 +1,55 @@
+# Dweller Campaign: daily fetch of upcoming federal election and report dates (OpenFEC)
+# and elections with ballot data (Google Civic) into campaign/live-data.js.
+# Keys come from the repo's Actions secrets and never reach the file or the log.
+name: Campaign live data
+
+on:
+  schedule:
+    - cron: "15 10 * * *"   # daily, 10:15 UTC (5:15 AM Eastern in winter)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: campaign-live-data
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch live data
+        id: fetch
+        env:
+          FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+          GOOGLE_CIVIC_API_KEY: ${{ secrets.GOOGLE_CIVIC_API_KEY }}
+        run: |
+          if node campaign/scripts/fetch-live-data.mjs; then echo "failed=0" >> "$GITHUB_OUTPUT"; else echo "failed=1" >> "$GITHUB_OUTPUT"; fi
+
+      # Only the fetched timestamps changing is not worth a commit.
+      - name: Commit if the dates changed
+        run: |
+          if [ ! -f campaign/live-data.js ]; then echo "No file written"; exit 0; fi
+          git add campaign/live-data.js
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          if git diff --cached -U0 | grep '^[+-] ' | grep -vq '"20[0-9-]*T[0-9:.]*Z"'; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Campaign live data: update upcoming election and report dates"
+            git push
+          else
+            echo "Only fetch times changed; not committing"
+          fi
+
+      - name: Fail if a source failed
+        if: steps.fetch.outputs.failed == '1'
+        run: |
+          echo "::error::At least one source failed or had no key; its previous data was kept. See the Fetch live data step."
+          exit 1

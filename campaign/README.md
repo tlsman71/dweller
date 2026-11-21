@@ -51,4 +51,16 @@ The Google key is restricted to the Civic Information API only.
 
 ## Checking the keys
 
-`.github/workflows/campaign-api-check.yml` calls each service once and prints only HTTP status codes. Run it from the Actions tab. It becomes the daily data build once the lookup is written.
+`.github/workflows/campaign-api-check.yml` calls each service once and prints only HTTP status codes. Run it from the Actions tab when a key changes.
+
+## Daily data build
+
+`.github/workflows/campaign-live-data.yml` runs every day at 10:15 UTC (and by hand from the Actions tab). It runs `campaign/scripts/fetch-live-data.mjs`, which writes `campaign/live-data.js` (`window.CAMPAIGN_LIVE`) with the next 24 months of:
+
+- `fec_elections`: federal primaries, runoffs, specials and generals from OpenFEC `/v1/election-dates/` (state, district, office, election type).
+- `fec_reports`: federal campaign report due dates from OpenFEC `/v1/reporting-dates/`, one row per due date and FEC report code (for example `12GR`). The API gives no description here, so the page must label codes from an official FEC source, not from memory.
+- `civic_elections`: elections Google Civic has ballot data for, with their OCD division (state or nationwide). Google's test election is left out.
+
+Every record has a `src` that points to its entry in the file's `src` section. A section whose source fails keeps its previous data, and the run turns red so it gets noticed. The workflow commits only when the dates change, not when only the fetch times do.
+
+The page doesn't show this data yet. Showing it is a design change and follows `campaign/CLAUDE.md`.
