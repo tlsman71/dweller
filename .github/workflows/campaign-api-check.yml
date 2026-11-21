@@ -1,0 +1,55 @@
+# Dweller Campaign: checks that the ballot lookup APIs answer with the repo's secrets.
+# Placeholder for the daily data build described in campaign/README.md.
+# Runs only by hand for now (Actions tab > "Campaign API check" > Run workflow).
+# It prints HTTP status codes only, never keys or response bodies.
+name: Campaign API check
+
+on:
+  workflow_dispatch:
+  # Turn on with the daily data build:
+  # schedule:
+  #   - cron: "15 10 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+      GOOGLE_CIVIC_API_KEY: ${{ secrets.GOOGLE_CIVIC_API_KEY }}
+    steps:
+      - name: Secrets are set
+        run: |
+          missing=0
+          for name in FEC_API_KEY GOOGLE_CIVIC_API_KEY; do
+            if [ -z "${!name}" ]; then echo "::error::$name is not set"; missing=1; else echo "$name is set"; fi
+          done
+          exit $missing
+
+      - name: US Census Geocoder (no key)
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -G \
+            "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress" \
+            --data-urlencode "address=600 E 4th St, Charlotte, NC 28202" \
+            --data-urlencode "benchmark=Public_AR_Current" \
+            --data-urlencode "vintage=Current_Current" \
+            --data-urlencode "format=json")
+          echo "Census Geocoder: HTTP $code"; [ "$code" = "200" ]
+
+      - name: OpenFEC election dates
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -G \
+            "https://api.open.fec.gov/v1/election-dates/" \
+            --data-urlencode "api_key=$FEC_API_KEY" \
+            --data-urlencode "election_state=NC" \
+            --data-urlencode "per_page=1")
+          echo "OpenFEC: HTTP $code"; [ "$code" = "200" ]
+
+      - name: Google Civic Information elections
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -G \
+            "https://www.googleapis.com/civicinfo/v2/elections" \
+            --data-urlencode "key=$GOOGLE_CIVIC_API_KEY")
+          echo "Google Civic: HTTP $code"; [ "$code" = "200" ]
