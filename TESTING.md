@@ -11,6 +11,7 @@ Adults living in Mecklenburg County, NC, in Charlotte, Cornelius, Davidson, Hunt
 3. Each round takes 15–30 minutes.
 
 ## How to send feedback
+- **Easiest, no sign-in:** [open the beta feedback form](https://tlsman71.github.io/dweller/feedback.html). Type your comment and press Send; it is emailed to the Dweller team, not posted publicly.
 - **On GitHub:** [open a feedback form](https://github.com/tlsman71/dweller/issues/new/choose) (needs a free GitHub account). Feedback posted here is **public**, so don't include your name, address, phone number or anything personal.
 - **By email:** DwellerApp@proton.me if you'd rather not post publicly.
 

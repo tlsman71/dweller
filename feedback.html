@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dweller — Beta Feedback</title>
+<style>
+  :root {
+    --bg: #15171c;
+    --card: #1e2229;
+    --line: #2e343e;
+    --text: #e8ecf1;
+    --muted: #9aa4b2;
+    --cyan: #4fd8e8;
+    --orange: #f08a3c;
+    --error: #ff6b6b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    background: radial-gradient(circle at 50% -10%, #1d2a33 0%, var(--bg) 60%);
+    color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex; justify-content: center; padding: 32px 16px;
+  }
+  main { width: 100%; max-width: 560px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; letter-spacing: .06em; }
+  h1 span { color: var(--cyan); }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  form {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 24px;
+  }
+  label { display: block; font-weight: 600; margin: 18px 0 6px; }
+  label:first-of-type { margin-top: 0; }
+  .opt { color: var(--muted); font-weight: 400; font-size: .9rem; }
+  input[type=text], select, textarea {
+    width: 100%; padding: 12px; border-radius: 10px;
+    border: 1px solid var(--line); background: #14171c; color: var(--text);
+    font: inherit;
+  }
+  textarea { min-height: 160px; resize: vertical; }
+  input:focus, select:focus, textarea:focus {
+    outline: none; border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(79,216,232,.18);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips input { position: absolute; opacity: 0; pointer-events: none; }
+  .chips label {
+    margin: 0; font-weight: 500; cursor: pointer;
+    padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+    color: var(--muted);
+  }
+  .chips input:checked + label { border-color: var(--cyan); color: var(--text); background: rgba(79,216,232,.12); }
+  .chips input:focus-visible + label { box-shadow: 0 0 0 3px rgba(79,216,232,.3); }
+  button {
+    margin-top: 24px; width: 100%; padding: 14px; border: 0; border-radius: 10px;
+    background: var(--cyan); color: #0c1a1d; font: 700 1rem system-ui, sans-serif;
+    cursor: pointer;
+  }
+  button:disabled { opacity: .6; cursor: wait; }
+  .msg { margin-top: 16px; padding: 12px 14px; border-radius: 10px; display: none; }
+  .msg.ok { display: block; background: rgba(79,216,232,.12); border: 1px solid var(--cyan); }
+  .msg.err { display: block; background: rgba(255,107,107,.1); border: 1px solid var(--error); }
+  .hp { display: none; }
+  footer { color: var(--muted); font-size: .85rem; margin-top: 16px; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <h1>DWELL<span>ER</span> · Beta Feedback</h1>
+  <p class="sub">Tell us what worked, what broke, or what confused you. No sign-in needed. Just type and press Send.</p>
+
+  <form id="fb" novalidate>
+    <!-- Web3Forms key: emails each submission to the Dweller inbox -->
+    <input type="hidden" name="access_key" value="28346f43-b614-49f6-8c93-a4916be00449">
+    <input type="hidden" name="subject" value="Dweller beta feedback">
+    <input type="hidden" name="from_name" value="Dweller Beta Form">
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+    <label for="name">Your name <span class="opt">(optional)</span></label>
+    <input type="text" id="name" name="name" autocomplete="name">
+
+    <label>What kind of feedback?</label>
+    <div class="chips" role="radiogroup">
+      <input type="radio" id="t1" name="type" value="Bug / something broke" checked><label for="t1">Bug</label>
+      <input type="radio" id="t2" name="type" value="Confusing"><label for="t2">Confusing</label>
+      <input type="radio" id="t3" name="type" value="Idea / suggestion"><label for="t3">Idea</label>
+      <input type="radio" id="t4" name="type" value="Liked it"><label for="t4">Liked it</label>
+      <input type="radio" id="t5" name="type" value="Other"><label for="t5">Other</label>
+    </div>
+
+    <label for="where">Where in the app? <span class="opt">(optional)</span></label>
+    <select id="where" name="where">
+      <option value="">Choose…</option>
+      <option>Home / Needs, Wants &amp; Desires</option>
+      <option>Profile / onboarding</option>
+      <option>Avatar</option>
+      <option>Impact stories</option>
+      <option>Dashboard / map</option>
+      <option>Somewhere else</option>
+    </select>
+
+    <label for="comments">Comments</label>
+    <textarea id="comments" name="comments" required placeholder="What happened? What did you expect?"></textarea>
+
+    <button type="submit" id="send">Send</button>
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+  </form>
+  <footer>Your comment is emailed to the Dweller team (DwellerApp@proton.me) through the Web3Forms service, along with your browser and device type. Don't include your address, phone number or anything personal. Nothing is sold.</footer>
+</main>
+
+<script>
+  const form = document.getElementById('fb');
+  const btn = document.getElementById('send');
+  const msg = document.getElementById('msg');
+
+  function show(text, cls) { msg.textContent = text; msg.className = 'msg ' + cls; }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.comments.value.trim()) { show('Please write a comment before sending.', 'err'); form.comments.focus(); return; }
+    btn.disabled = true; btn.textContent = 'Sending…'; msg.className = 'msg';
+    try {
+      const data = Object.fromEntries(new FormData(form));
+      data.page = location.href;
+      data.device = navigator.userAgent;
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const out = await res.json();
+      if (out.success) {
+        show('Thank you! Your feedback was sent.', 'ok');
+        form.comments.value = ''; form.where.value = '';
+      } else {
+        show('Something went wrong: ' + (out.message || 'please try again.'), 'err');
+      }
+    } catch (err) {
+      show('Could not send. Check your connection and try again.', 'err');
+    }
+    btn.disabled = false; btn.textContent = 'Send';
+  });
+</script>
+</body>
+</html>
