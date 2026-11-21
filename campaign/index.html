@@ -4,611 +4,560 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dweller Campaign: run for office, on the record</title>
+<title>Dweller Campaign: your step-by-step guide to running for office</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* Dweller Campaign follows the Dweller Docket design system (Docket Design Guide v1.46).
-   Layout: masthead, search, notice lede, milestone bar + setup, key dates, to-do board, campaign map (map | 340px record panel),
-   last election, money board (always dark), partners & sponsors, footer. Tokens below feed docs/design-guide.md. */
+/* Dweller Campaign v2: warm, calm and readable (Tom, Nov 21, 2026). Light by default.
+   Layout: friendly header, one search box, a simple tab row, then ONE topic at a time
+   (Home, Setup, Steps, Dates, Money, Team, Last election). Tokens below feed docs/design-guide.md. */
 :root{
-  --bg:#ffffff; --surface:#ffffff; --wash:#f6f7f8; --ink:#36393d; --strong:#1e2124; --muted:#6b7178; --line:#e3e6e8; --tagline:#1e2124;
-  --dollar:#85bb65; --accent:#2e6b3a; --accent-soft:#edf5e8; --focus:#2e6b3a; --tickerbg:#1e2124;
+  --bg:#f7f5f0; --surface:#ffffff; --wash:#f1eee7; --ink:#2b2e31; --strong:#16191c; --muted:#5c6168; --line:#e3ded3; --tagline:#5c6168;
+  --dollar:#85bb65; --accent:#2e6b3a; --accent-ink:#ffffff; --accent-soft:#e8f2e1; --focus:#2e6b3a; --warm:#fdf3e1; --warm-line:#ecd3a5;
   --t-person:#f83ea2; --t-committee:#138976; --t-organization:#ce7915; --t-donor:#ad58fd;
   --t-vendor:#9c3602; --t-office:#15a344; --t-filing:#0a9cbc; --t-deadline:#807300;
-  --edge:#b9c0c6; --money:#85bb65;
-  --display:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --r:4px;
+  --edge:#c3bcae; --money:#4c8c3a; --raised:#4c8c3a; --spent:#1a87a8;
+  --shadow:0 1px 2px rgba(40,35,25,.06),0 6px 20px rgba(40,35,25,.06);
+  --font:"Atkinson Hyperlegible", "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:12px; --r-sm:8px;
   color-scheme:light;
 }
 :root[data-theme="dark"]{
-  --bg:#1e2124; --surface:#26292d; --wash:#222528; --ink:#e8d3b6; --strong:#f2d9b8; --muted:#9aa1a9; --line:#34383d; --tagline:#ffffff;
-  --dollar:#85bb65; --accent:#85bb65; --accent-soft:#2a3328; --focus:#a8d68a; --tickerbg:#16181a;
+  --bg:#1e2124; --surface:#26292d; --wash:#222528; --ink:#e8d3b6; --strong:#f2d9b8; --muted:#a9aeb4; --line:#3a3e43; --tagline:#c8b497;
+  --dollar:#85bb65; --accent:#85bb65; --accent-ink:#14200f; --accent-soft:#2a3328; --focus:#a8d68a; --warm:#2e2a22; --warm-line:#5a4c33;
   --t-person:#d61666; --t-committee:#0ea99a; --t-organization:#b07000; --t-donor:#8b4df5;
   --t-vendor:#b74e2c; --t-office:#3bac56; --t-filing:#1b89a5; --t-deadline:#a4941c;
-  --edge:#4a5057; --money:#85bb65;
+  --edge:#4a5057; --money:#85bb65; --raised:#6a9e4c; --spent:#1b89a5;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.2);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding:20px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px));font-variant-numeric:tabular-nums}
-.wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:26px}
-section{min-width:0}
-h2{font:600 13px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line);text-wrap:balance}
-h3{font:600 17px/1.3 var(--display);letter-spacing:-.01em;color:var(--strong);margin:0}
-a{color:var(--focus)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 var(--font);font-variant-numeric:tabular-nums;padding:0 max(16px,env(safe-area-inset-right,0px)) 56px max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
+h1,h2,h3{color:var(--strong);line-height:1.25;margin:0;text-wrap:balance}
+h1{font-size:clamp(28px,4vw,38px)}
+h2{font-size:clamp(23px,3vw,28px)}
+h3{font-size:20px}
 p{margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+button,select,input,textarea{font:inherit;color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-button,select,input,textarea{font:inherit}
-:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-/* Masthead */
-header{display:grid;gap:10px}
-.mast{display:flex;align-items:baseline;gap:8px 14px;flex-wrap:wrap;border-bottom:2px solid var(--dollar);padding-bottom:8px}
-.brand{font:700 clamp(24px,3.2vw,34px)/1 var(--display);letter-spacing:-.02em;color:var(--strong)}
-.brand em{font-style:normal;color:var(--dollar)}
-.tagline{font:13px var(--mono);color:var(--tagline);letter-spacing:.06em;text-transform:uppercase}
-.mast-ctrl{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.lvl{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.lvl button{border:0;background:var(--surface);color:var(--ink);font:500 12px var(--mono);padding:5px 11px;cursor:pointer}
-.lvl button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
-.state-sel,.theme{font:500 12px var(--mono);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 10px;cursor:pointer;max-width:210px}
+.muted{color:var(--muted)}
+.small{font-size:15px}
+/* Header */
+.top{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding:20px 0 6px;border-bottom:3px solid var(--dollar)}
+.brand{display:flex;flex-direction:column}
+.brand b{font-size:clamp(26px,3.4vw,32px);color:var(--strong);letter-spacing:-.01em;line-height:1.1}
+.brand b em{font-style:normal;color:var(--accent)}
+.brand span{font-size:15px;color:var(--tagline)}
+.prefs{margin-left:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.prefs label{display:grid;gap:2px;font-size:13px;color:var(--muted);font-weight:700}
+.prefs select,.pill-btn{min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font-size:16px;cursor:pointer}
 /* Search */
-.hs{position:relative;z-index:20}
-.hs-bar{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 6px 0 12px}
-.hs-bar:focus-within{border-color:var(--dollar)}
-.hs-bar input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font:14px var(--body);padding:11px 0;outline:none}
-.hs-bar input::placeholder{color:var(--muted)}
-.hs-ico{color:var(--muted);flex:none}
-.hs-pop{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 12px 32px rgba(0,0,0,.35);overflow:hidden}
-.hs-list{list-style:none;margin:0;padding:4px 0;max-height:420px;overflow:auto}
-.hs-opt{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:8px 14px;cursor:pointer;border-left:2px solid transparent}
-.hs-opt[aria-selected="true"],.hs-opt:hover{background:var(--wash);border-left-color:var(--dollar)}
-.hs-opt .k{font:600 9.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 5px;border-radius:3px;border:1px solid var(--line);color:var(--muted);align-self:center;white-space:nowrap}
-.hs-opt .t{font:500 13.5px/1.35 var(--body);color:var(--strong)}
-.hs-opt .t mark{background:none;color:var(--accent);font-weight:700}
-.hs-opt .m{grid-column:2;font:11.5px var(--mono);color:var(--muted)}
-.hs-empty,.hs-foot{padding:10px 14px;color:var(--muted);font-size:12px}
-.hs-foot{font-family:var(--mono);border-top:1px solid var(--line);background:var(--wash)}
-.hs-jump{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13px var(--body);box-shadow:0 6px 18px rgba(0,0,0,.3);cursor:pointer;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
-.hs-jump.on{opacity:1;pointer-events:auto}
-/* Notice-style lede */
-.notice{border-left:3px solid var(--dollar);background:var(--surface);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:var(--r);padding:10px 14px;font-size:14px}
-.notice b{color:var(--strong)}
-.sub{color:var(--muted);font-size:13.5px;margin:0 0 10px;max-width:860px}
-.src{font-size:12px;color:var(--muted)}
-.src a{color:var(--focus)}
-.q{font-size:12.5px;color:var(--muted);border-left:2px solid var(--line);padding-left:8px;margin-top:4px}
-.ex{font:600 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px dashed var(--muted);color:var(--muted);border-radius:999px;padding:1px 8px;white-space:nowrap}
-/* Milestone bar + setup */
-.ms{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;list-style:none;margin:0 0 12px;padding:0}
-.ms button{all:unset;box-sizing:border-box;display:grid;gap:6px;width:100%;cursor:pointer;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
-.ms button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-.ms .bar{height:6px;border-radius:3px;background:var(--line)}
-.ms .n{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.ms .l{font:600 13.5px/1.25 var(--display);color:var(--strong)}
-.ms .s{font:11px var(--mono);color:var(--muted)}
-.ms li.done .bar{background:var(--dollar)} .ms li.done .s{color:var(--accent)}
-.ms li.now button{border-color:var(--accent)} .ms li.now .bar{background:var(--strong)}
-@media (max-width:700px){.ms{grid-template-columns:1fr}.ms button{grid-template-columns:70px 1fr;align-items:center}.ms .bar{grid-row:span 3}}
-.setup{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:14px}
-.setup .kick{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.setup h3{font-size:clamp(20px,2.4vw,26px)}
-.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-.field{display:grid;gap:4px;min-width:0}
-.field label,.flabel{font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.field input,.field select,.field textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);color:var(--ink);font-size:14px}
-.field textarea{min-height:96px;resize:vertical}
-.hint{font-size:12.5px;color:var(--muted)}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.btn{padding:8px 14px;font:600 13px var(--body);color:var(--bg);background:var(--accent);border:0;border-radius:999px;cursor:pointer}
-.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
-.btn:disabled{opacity:.5;cursor:default}
-.checks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.checks li{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:start;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg)}
-.checks input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
-.checks input[type=date]{padding:4px 6px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);font:12px var(--mono)}
-.checks .nm{font-weight:600;color:var(--strong)}
-.checks .say{grid-column:2/-1;font-size:13px;color:var(--ink)}
-.list-ed{display:grid;gap:6px}
-.list-ed .it{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:6px 10px;border:1px solid var(--line);border-radius:var(--r);font-size:13.5px;background:var(--bg)}
-.list-ed .it button{all:unset;cursor:pointer;color:var(--muted);font:12px var(--mono)}
-.result{background:var(--accent-soft);border-left:3px solid var(--dollar);border-radius:var(--r);padding:10px 12px;font-size:14px;display:grid;gap:4px}
-.result b{color:var(--strong)}
-.winbox{display:flex;gap:18px;flex-wrap:wrap;align-items:baseline}
-.winbox .big{font:600 32px/1 var(--mono);color:var(--strong)}
-/* Key dates */
-.dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.date{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:4px;align-content:start}
-.date .when{font:500 13px var(--mono)}
-.date .left{font:12px var(--mono);color:var(--muted)}
-.date .left b{color:var(--strong)}
-.date.next{border-color:var(--accent)} .date.next .when{color:var(--accent)}
+.search{position:relative;z-index:20}
+.search-bar{display:flex;align-items:center;gap:10px;background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:0 8px 0 18px;box-shadow:var(--shadow)}
+.search-bar:focus-within{border-color:var(--accent)}
+.search-bar input{flex:1;min-width:0;border:0;background:none;font-size:18px;padding:13px 0;outline:none}
+.search-bar input::placeholder{color:var(--muted)}
+.pop{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.pop ul{list-style:none;margin:0;padding:6px 0;max-height:420px;overflow:auto}
+.opt{display:grid;gap:0 10px;grid-template-columns:auto 1fr;padding:10px 16px;cursor:pointer;border-left:3px solid transparent}
+.opt[aria-selected="true"],.opt:hover{background:var(--wash);border-left-color:var(--accent)}
+.opt .k{font-size:13px;font-weight:700;color:var(--muted);align-self:center;min-width:64px}
+.opt .t{color:var(--strong)} .opt .t mark{background:var(--accent-soft);color:inherit;border-radius:3px}
+.opt .m{grid-column:2;font-size:14px;color:var(--muted)}
+.pop .foot{font-size:14px;color:var(--muted);padding:8px 16px;border-top:1px solid var(--line);background:var(--wash)}
+.jump{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;min-height:48px;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);font-size:16px;font-weight:700;cursor:pointer;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+.jump.on{opacity:1;pointer-events:auto}
+/* Tabs */
+.tabs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;padding:6px;background:var(--wash);border-radius:var(--r);list-style:none;margin:0}
+.tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border-radius:var(--r-sm);text-decoration:none;color:var(--ink);font-size:15px;font-weight:700;text-align:center;line-height:1.2;min-height:64px;justify-content:center}
+.tabs a svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabs a[aria-current="page"]{background:var(--surface);color:var(--accent);box-shadow:var(--shadow)}
+@media (max-width:760px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.tabs a{font-size:13.5px;min-height:58px}}
+/* Cards and common pieces */
+.view{display:grid;gap:20px;min-width:0}
+.view[hidden]{display:none}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);display:grid;gap:12px;min-width:0;align-content:start}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+.lede{font-size:19px;max-width:60ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 22px;font-size:17px;font-weight:700;color:var(--accent-ink);background:var(--accent);border:0;border-radius:999px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn.small{min-height:40px;padding:6px 16px;font-size:15px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--wash);color:var(--muted)}
+.tag.ok{background:var(--accent-soft);color:var(--accent)}
+.tag.ex{background:var(--warm);color:var(--ink);border:1px dashed var(--warm-line)}
+.tag.late{background:var(--strong);color:var(--bg)}
+.note{background:var(--warm);border:1px solid var(--warm-line);border-radius:var(--r);padding:14px 18px;font-size:16px}
+.where{font-size:15px;color:var(--muted)}
+.where summary{cursor:pointer;color:var(--accent);font-weight:700;list-style:none;display:inline-flex;gap:6px;align-items:center;min-height:32px}
+.where summary::before{content:"ⓘ"}
+.where[open] summary{margin-bottom:6px}
+.where blockquote{margin:6px 0;padding:6px 12px;border-left:3px solid var(--line);font-style:italic;color:var(--ink)}
+/* Home */
+.hello{display:grid;gap:6px;padding-top:6px}
+.next{border:2px solid var(--accent);background:linear-gradient(0deg,var(--surface),var(--surface)) padding-box}
+.next .eyebrow{font-size:15px;font-weight:700;color:var(--accent)}
+.next h2{font-size:clamp(24px,3vw,30px)}
+.progress{height:14px;border-radius:999px;background:var(--wash);overflow:hidden;border:1px solid var(--line)}
+.progress i{display:block;height:100%;background:var(--accent);border-radius:999px}
+.ms{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.ms button{all:unset;box-sizing:border-box;width:100%;display:grid;gap:4px;justify-items:start;padding:12px;border:2px solid var(--line);border-radius:var(--r-sm);background:var(--surface);cursor:pointer;min-height:92px}
+.ms button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.ms .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;background:var(--wash);color:var(--muted)}
+.ms .l{font-weight:700;color:var(--strong);font-size:16px;line-height:1.25}
+.ms .s{font-size:14px;color:var(--muted)}
+.ms .done .dot{background:var(--accent);color:var(--accent-ink)}
+.ms .now button{border-color:var(--accent)}
+.ms.ms-list{grid-template-columns:1fr}.ms.ms-list button{grid-template-columns:auto 1fr;align-items:center;min-height:0;padding:10px 12px}.ms.ms-list .dot{grid-row:span 2}
+@media (max-width:760px){.ms{grid-template-columns:1fr}.ms button{grid-template-columns:auto 1fr;align-items:center;min-height:0}.ms .dot{grid-row:span 2}}
+/* Setup */
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px}
+.field{display:grid;gap:6px;min-width:0}
+.field label,.flabel{font-weight:700;color:var(--strong);font-size:16px}
+.field input,.field select,.field textarea,.inline-in{width:100%;min-height:48px;padding:10px 14px;border:2px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-size:17px}
+.field textarea{min-height:130px;resize:vertical;line-height:1.5}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);outline:none}
+.hint{font-size:15px;color:var(--muted)}
+.choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.choice button{all:unset;box-sizing:border-box;display:grid;gap:2px;padding:14px 16px;border:2px solid var(--line);border-radius:var(--r-sm);background:var(--surface);cursor:pointer}
+.choice button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.choice button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.choice b{color:var(--strong)} .choice span{font-size:14px;color:var(--muted)}
+.list-ed{display:grid;gap:8px}
+.list-ed .it{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--wash)}
+.linkbtn{all:unset;cursor:pointer;color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.linkbtn:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.result{background:var(--accent-soft);border-radius:var(--r-sm);padding:14px 18px;display:grid;gap:4px}
+.big{font-size:clamp(34px,5vw,46px);font-weight:700;color:var(--strong);line-height:1.1}
+/* Steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:start}
+.step .num{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--wash);color:var(--muted);border:2px solid var(--line)}
+.step.done .num{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.step.now .num{border-color:var(--accent);color:var(--accent)}
+.step .body{display:grid;gap:8px;min-width:0}
+.step .meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:15px;color:var(--muted);align-items:center}
+.step .meta select{min-height:36px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:15px}
+.check{display:inline-flex;gap:10px;align-items:center;font-weight:700;cursor:pointer;min-height:44px}
+.check input{width:24px;height:24px;accent-color:var(--accent)}
+.datein{min-height:40px;padding:4px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-size:15px}
+/* Dates */
+.date{display:grid;gap:6px}
+.date .when{font-size:20px;font-weight:700;color:var(--strong)}
+.date .left{font-size:16px}
+.date.next{border:2px solid var(--accent)}
+.date.next .left{color:var(--accent);font-weight:700}
 .date.live{border-style:dashed}
-.date p{font-size:14px}
-.date .where{font-size:12px;color:var(--muted)}
-/* To-do board (Accountability board pattern) */
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:0 0 12px}
-.tot{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;display:grid;gap:2px;min-width:0}
-.tot b{font:600 22px/1.1 var(--mono);color:var(--strong);overflow-wrap:anywhere}
-.tot span{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.frame{max-height:640px;overflow-y:auto;padding:8px;background:var(--wash);border:1px solid var(--line);border-radius:var(--r);display:grid;gap:8px}
-.brow{display:grid;grid-template-columns:minmax(200px,1.2fr) minmax(180px,1fr) minmax(220px,1.4fr);gap:14px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
-@media (max-width:860px){.brow{grid-template-columns:1fr}}
-.brow h3{font-size:15px}
-.brow .meta{font:11px var(--mono);color:var(--muted);letter-spacing:.04em;margin-top:4px}
-.ladder{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;margin:2px 0 4px}
-.ladder i{display:block;height:8px;border-radius:2px;background:var(--line)}
-.ladder i.on{background:var(--accent)} .ladder i.now{background:var(--strong)}
-.stage{font:600 12px var(--mono);color:var(--ink)}
-.who{font:600 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--strong);background:var(--surface)}
-.who-sel{display:inline-block;width:auto;max-width:160px;font:600 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:2px 6px;color:var(--strong);background:var(--surface)}
-.todo{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px}
-.since{font:11px var(--mono);color:var(--muted)}
-.late{color:var(--strong);font-weight:700}
-/* Map + record panel */
-.map-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
-.map-bar input{flex:1 1 320px;min-width:0;font:15px var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink)}
-.fullmap{padding:6px 14px;font:600 13px var(--body);color:var(--bg);background:var(--accent);border:0;border-radius:999px;cursor:pointer;white-space:nowrap}
-.filt-btn{font:500 13px var(--mono);padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:none;color:var(--ink);cursor:pointer}
-.filt-btn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
-.filt{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:10px 12px;margin-bottom:10px;display:grid;gap:8px}
-.controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font:500 12px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 10px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
-.chip[aria-pressed="false"]{opacity:.45}
-.chip b{font:500 11px var(--mono);color:var(--muted)}
-.chip svg{width:12px;height:12px}
-.chip-lbl{font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;flex-wrap:wrap}
-.seg button{font:500 12px var(--body);background:var(--surface);color:var(--ink);border:0;padding:6px 10px;cursor:pointer}
-.seg button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
-.map-how{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 8px;padding:8px 12px;font:500 13px var(--mono);color:var(--strong);background:var(--accent-soft);border-left:3px solid var(--dollar);border-radius:var(--r)}
-.map-how span+span::before{content:"·";margin-right:18px;color:var(--accent)}
+/* Team map */
 .bench{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px}
 @media (max-width:860px){.bench{grid-template-columns:1fr}}
-.graph{background:var(--wash);border:1px solid var(--line);border-radius:var(--r);position:relative;min-height:520px;overflow:hidden}
-.graph svg{width:100%;height:100%;display:block;min-height:520px;touch-action:none}
-.backmap{position:absolute;top:10px;left:10px;z-index:2;padding:8px 14px;font:600 13px var(--body);color:var(--bg);background:var(--accent);border:0;border-radius:999px;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.35)}
-.graph .exnote{position:absolute;right:10px;top:10px;z-index:2}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;align-content:start;min-width:0;max-height:640px;overflow:auto}
-.panel h3{font-size:19px}
-.type{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.howto{margin:0;padding-left:18px;display:grid;gap:8px}
-.howto li::marker{color:var(--accent)}
-.backbtn{display:block;width:100%;padding:10px 12px;font:600 14px var(--body);text-align:left;color:var(--bg);background:var(--accent);border:0;border-radius:var(--r);cursor:pointer}
-.facts{display:grid;grid-template-columns:100px 1fr;gap:4px 10px;margin:0;font-size:13.5px}
+.graph{background:var(--wash);border:1px solid var(--line);border-radius:var(--r);position:relative;min-height:480px;overflow:hidden}
+.graph svg{width:100%;height:100%;display:block;min-height:480px;touch-action:none}
+.backmap{position:absolute;top:12px;left:12px;z-index:2;min-height:44px;padding:8px 16px;font-size:15px;font-weight:700;color:var(--accent-ink);background:var(--accent);border:0;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
+.exnote{position:absolute;right:12px;top:12px;z-index:2}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:12px;align-content:start;min-width:0;max-height:620px;overflow:auto;box-shadow:var(--shadow)}
+.facts{display:grid;grid-template-columns:90px 1fr;gap:4px 12px;margin:0;font-size:16px}
 .facts dt{color:var(--muted)} .facts dd{margin:0;min-width:0;overflow-wrap:anywhere}
-.rel{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.rel li{border-top:1px solid var(--line);padding-top:8px;font-size:13.5px}
-.linkbtn{all:unset;cursor:pointer;color:var(--focus);font-weight:500}
-.legend-shapes{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
-.legend-shapes span{display:inline-flex;gap:5px;align-items:center}
-svg text{font:11px var(--body);fill:var(--ink);paint-order:stroke;stroke:var(--wash);stroke-width:3px}
-.link{stroke:var(--edge);stroke-opacity:.8}
-.link.money{stroke:var(--money);stroke-opacity:.95;stroke-width:2}
-.link.paper{stroke-dasharray:2 3}
+.rel{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:16px}
+.rel li{border-top:1px solid var(--line);padding-top:8px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:15px}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;gap:6px;align-items:center;min-height:40px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);cursor:pointer;font-size:15px}
+.chip[aria-pressed="false"]{opacity:.45}
+.how{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:15px;color:var(--ink);background:var(--accent-soft);border-radius:var(--r-sm);padding:10px 14px}
+svg text{font:13px var(--font);fill:var(--ink);paint-order:stroke;stroke:var(--wash);stroke-width:4px}
+.link{stroke:var(--edge);stroke-opacity:.9}
+.link.money{stroke:var(--money);stroke-width:2.5}
+.link.paper{stroke-dasharray:2 4}
 .node path{stroke:var(--wash);stroke-width:2px;cursor:pointer}
-.node.sel path{stroke:var(--strong);stroke-width:2.5px}
-.dim{opacity:.12}
+.node.sel path{stroke:var(--strong);stroke-width:3px}
+.node:focus{outline:none}.node:focus-visible path{stroke:var(--focus);stroke-width:3px}
+.dim{opacity:.15}
+.team-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.team-list li{display:flex;gap:10px;align-items:center;padding:10px 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface)}
+/* Money */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px}
+.tile{padding:14px 16px;border-radius:var(--r-sm);background:var(--wash);display:grid;gap:2px}
+.tile span{font-size:15px;color:var(--muted);font-weight:700}
+.tile b{font-size:26px;color:var(--strong)}
+.tile.r{border-left:5px solid var(--raised)}.tile.s{border-left:5px solid var(--spent)}.tile.d{border-left:5px dashed var(--muted)}.tile.c{border-left:5px solid var(--dollar)}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:240px}
+.chart .ax text{font-size:13px;fill:var(--muted);stroke:none}
+.chart .grid line{stroke:var(--line);stroke-dasharray:2 3}
+.key{display:flex;gap:16px;flex-wrap:wrap;font-size:15px}
+.key i{display:inline-block;width:14px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.tip{position:absolute;pointer-events:none;background:var(--strong);color:var(--bg);border-radius:var(--r-sm);padding:6px 10px;font-size:14px;white-space:nowrap}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-sm)}
+table{border-collapse:collapse;width:100%;font-size:16px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:14px;color:var(--muted);background:var(--wash)}
+td.n{text-align:right;white-space:nowrap}
+details.more>summary{cursor:pointer;font-weight:700;color:var(--accent);min-height:40px;display:flex;align-items:center}
+.ledger{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;align-items:end}
+.ledger label{display:grid;gap:4px;font-size:15px;font-weight:700}
+.ledger input,.ledger select{min-height:44px;padding:8px 10px;border:2px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-size:16px;width:100%}
+.limit-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.limit-row b{white-space:nowrap;color:var(--strong)}
 /* Last election */
-.le-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-@media (max-width:860px){.le-grid{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;align-content:start;min-width:0}
-.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
-table{border-collapse:collapse;width:100%;font-size:13.5px}
-th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-td.n{font-family:var(--mono);text-align:right;white-space:nowrap}
-.hbar{display:grid;grid-template-columns:minmax(110px,170px) 1fr auto;gap:4px 10px;align-items:center;font-size:13px}
-.hbar .b{height:12px;background:var(--line);border-radius:2px;overflow:hidden}
-.hbar .b i{display:block;height:100%;background:var(--ink);border-radius:2px}
-.hbar .v{font:12px var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
-details.tbl>summary{cursor:pointer;font:12px var(--mono);color:var(--muted);padding:6px 0}
-/* Money board: always dark */
-.board{border:1px solid #34383d;border-radius:var(--r);background:#16181a;color:#e8d3b6;overflow:hidden}
-.board-head{display:flex;align-items:stretch;justify-content:space-between;border-bottom:1px solid #34383d;flex-wrap:wrap}
-.tk-label{background:var(--dollar);color:#0f2414;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;display:flex;align-items:center}
-.board-head .ex{margin:8px 12px;color:#c8b497;border-color:#9aa1a9}
-.mb{padding:18px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
-@media (max-width:860px){.mb{grid-template-columns:1fr}}
-.mb-cap{font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#c8b497}
-.mb-big{font:600 clamp(32px,5vw,44px)/1.05 var(--mono);letter-spacing:-.02em;color:#f2d9b8}
-.mb-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:12px}
-.mb-st{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border:1px solid #34383d;border-left:3px solid #85bb65;border-radius:var(--r);background:#1b1d1f}
-.mb-st i{font:500 11px var(--mono);font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:#c8b497}
-.mb-st b{font:600 20px var(--mono);color:#f2d9b8}
-.mb-st.sp{border-left-color:#1b89a5}.mb-st.db{border-left-style:dashed;border-left-color:#c8b497}
-.lim{border:1px solid #34383d;border-radius:var(--r);background:#1b1d1f;padding:12px;display:grid;gap:8px;align-content:start}
-.lim h3{color:#f2d9b8;font-size:15px}
-.lim table{font-size:13px} .lim th{color:#9aa1a9} .lim td,.lim th{border-bottom-color:#2c3035}
-.lim p{font-size:12.5px;color:#c8b497}
-.lim a,.board a{color:#a8d68a}
-.chart{padding:0 18px 12px}
-.chart svg{display:block;width:100%;height:220px}
-.chart .ax text{font:11px var(--mono);fill:#9aa1a9;stroke:none}
-.chart .grid line{stroke:#2c3035;stroke-dasharray:2 3}
-.chart-legend{display:flex;gap:16px;flex-wrap:wrap;font:12px var(--mono);color:#c8b497;padding:6px 0}
-.chart-legend i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
-.board details>summary{cursor:pointer;font:12px var(--mono);color:#9aa1a9;padding:8px 18px;border-top:1px solid #34383d}
-.board table{color:#e8d3b6} .board th{color:#9aa1a9;background:none} .board td,.board th{border-bottom-color:#2c3035}
-.ledger-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;padding:12px 18px;border-top:1px solid #34383d;align-items:end}
-.ledger-form label{font:600 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#9aa1a9;display:grid;gap:3px}
-.ledger-form input,.ledger-form select{padding:7px 8px;border:1px solid #34383d;border-radius:var(--r);background:#1e2124;color:#e8d3b6;font-size:13px;width:100%}
-.ledger-form .btn{background:#85bb65;color:#0f2414}
-.board .flag{color:#f2d9b8;font-weight:700}
-.tip{position:absolute;pointer-events:none;background:#26292d;border:1px solid #34383d;border-radius:var(--r);padding:6px 9px;font:12px var(--mono);color:#e8d3b6;white-space:nowrap}
-/* Sponsors + footer */
-.sponsors{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 16px;display:grid;gap:8px}
-.sponsors .lbl{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.sponsors p{font-size:12.5px;color:var(--muted)}
-footer{font-size:12px;color:var(--muted);max-width:90ch}
-.social{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px}
-.social .lbl{font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:4px}
-.social a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-size:13px}
+.say{font-size:19px;max-width:62ch}
+.say b{color:var(--strong)}
+.hbar{display:grid;grid-template-columns:minmax(110px,180px) 1fr auto;gap:6px 12px;align-items:center;font-size:16px}
+.hbar .b{height:16px;background:var(--wash);border-radius:999px;overflow:hidden}
+.hbar .b i{display:block;height:100%;background:var(--muted);border-radius:999px}
+.hbar .v{font-size:15px;color:var(--muted);text-align:right;white-space:nowrap}
+/* Footer */
+.sponsors{font-size:15px;color:var(--muted)}
+footer{font-size:15px;color:var(--muted);display:grid;gap:12px;border-top:1px solid var(--line);padding-top:20px}
+.social{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.social .lbl{font-weight:700;color:var(--ink);margin-right:4px}
+.social a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 16px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;background:var(--surface)}
 .social a:hover{border-color:var(--accent);color:var(--accent)}
-.social svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.social svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header>
-  <div class="mast">
-    <span class="brand">Dweller <em>Campaign</em></span>
-    <span class="tagline">Run for office, on the record</span>
-    <span class="mast-ctrl">
-      <span class="lvl" role="group" aria-label="Level of office" id="lvl"><button type="button" data-l="local">Local</button><button type="button" data-l="state">State</button><button type="button" data-l="federal">Federal</button></span>
-      <label class="sr" for="state">Your state</label><select id="state" class="state-sel"></select>
-      <button class="theme" id="theme" type="button"></button>
-    </span>
-  </div>
-  <div class="hs" id="hs">
-    <div class="hs-bar">
-      <svg class="hs-ico" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
-      <label class="sr" for="hs-q">Search Dweller Campaign</label>
-      <input id="hs-q" type="search" placeholder="Search steps, deadlines, forms, people on your map, rules…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="hs-list">
-    </div>
-    <div class="hs-pop" id="hs-pop" hidden><ul class="hs-list" id="hs-list" role="listbox" aria-label="Search results"></ul><div class="hs-foot">Searches the steps for your race, key dates, your campaign map, contribution limits and every official source. ↑↓ to move · Enter to open · Esc to close</div></div>
+<header class="top">
+  <div class="brand"><b>Dweller <em>Campaign</em></b><span>Your step-by-step guide to running for office</span></div>
+  <div class="prefs">
+    <label for="lvl">Running for<select id="lvl"><option value="local">Local office</option><option value="state">State office</option><option value="federal">Federal office</option></select></label>
+    <label for="state">In<select id="state"></select></label>
+    <button class="pill-btn" id="theme" type="button"></button>
   </div>
 </header>
 
-<p class="notice" id="lede"></p>
-
-<section aria-labelledby="h-setup" id="setup">
-  <h2 id="h-setup">Your campaign setup</h2>
-  <ol class="ms" id="ms"></ol>
-  <div class="setup" id="setup-body" aria-live="polite"></div>
-</section>
-
-<section aria-labelledby="h-dates" id="dates-sec">
-  <h2 id="h-dates">Key dates</h2>
-  <p class="sub" id="dates-sub"></p>
-  <div class="dates" id="dates"></div>
-</section>
-
-<section aria-labelledby="h-todo" id="todo">
-  <h2 id="h-todo">Campaign to-do list</h2>
-  <p class="sub">Every step to run for this office, in order, from the official rules. Tick a step in Legal Readiness when it's done; due dates follow from the dates you enter and from the official calendar.</p>
-  <div class="tiles" id="todo-tiles"></div>
-  <p class="since" id="todo-count"></p>
-  <div class="frame" id="todo-list" tabindex="0" aria-label="Campaign to-do list (scrolls)"></div>
-</section>
-
-<section aria-labelledby="h-map" id="map">
-  <h2 id="h-map">Campaign map</h2>
-  <p class="sub" style="color:var(--ink)">Everyone and everything in your campaign in one picture: you, your committee, treasurer, team, endorsers, donors, vendors, filings, deadlines and the election office. Tap any dot to see its record.</p>
-  <div class="map-bar">
-    <label class="sr" for="mq">Search the map</label>
-    <input id="mq" type="search" placeholder="Search a name on your map…" autocomplete="off">
-    <button type="button" class="fullmap" id="fullmap">↺ Show full map</button>
-    <button type="button" class="filt-btn" id="filt-btn" aria-expanded="true" aria-controls="filt">Hide filters ▴</button>
+<div class="search" id="search">
+  <div class="search-bar">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+    <label class="sr" for="q">Search Dweller Campaign</label>
+    <input id="q" type="search" placeholder="What do you need help with? Try “treasurer” or “filing fee”" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="qlist">
   </div>
-  <div class="filt" id="filt">
-    <div class="controls"><span class="chip-lbl">Show</span><div class="chips" id="chips" aria-label="Show or hide kinds of dots"></div></div>
-    <div class="controls"><span class="chip-lbl">Links</span><div class="seg" id="lsw" role="group" aria-label="Which links to show"><button type="button" data-k="all" aria-pressed="true">All links</button><button type="button" data-k="money" aria-pressed="false">Money</button><button type="button" data-k="paper" aria-pressed="false">Filings and deadlines</button><button type="button" data-k="team" aria-pressed="false">People and groups</button></div></div>
-  </div>
-  <p class="map-how"><span>Drag to move</span><span>Pinch or scroll to zoom</span><span>Tap a dot for its record</span><span>↺ <b>Show full map</b> to start over</span></p>
-  <div class="bench">
-    <div class="graph" id="graph"><button type="button" class="backmap" id="backmap" hidden>✕ Show the full map</button><span class="exnote" id="map-ex"></span><svg id="svg" role="img" aria-label="Map of the people, groups, money, filings and deadlines in this campaign"></svg></div>
-    <aside class="panel" id="panel" aria-live="polite"></aside>
-  </div>
-</section>
-
-<section aria-labelledby="h-last" id="last">
-  <h2 id="h-last">Last election for this seat</h2>
-  <div id="last-body"></div>
-</section>
-
-<section aria-labelledby="h-money" id="money">
-  <h2 id="h-money">Fundraising</h2>
-  <div class="board" id="board"></div>
-</section>
-
-<aside class="sponsors" aria-labelledby="h-sp"><span class="lbl" id="h-sp">Partners &amp; sponsors</span><p>Dweller Campaign has no partners or sponsors yet, and it never shows ads. Partners and sponsors have no say over what this site shows or says, and the tools, wording and prominence are the same for every party and for independents.</p></aside>
-
-<footer><nav class="social" aria-label="Dweller on social media"><span class="lbl">Follow Dweller</span><a href="https://bsky.app/profile/dwellerapp.bsky.social" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z"/></svg>Bluesky<span class="sr"> @dwellerapp.bsky.social (opens in a new tab)</span></a><a href="https://www.facebook.com/profile.php?id=61596396866910" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A4.5 4.5 0 0 1 21 18.5"/></svg>Facebook<span class="sr"> page (opens in a new tab)</span></a><a href="https://www.instagram.com/joindweller/" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h2l1.5-2h4l1.5 2h2A2.5 2.5 0 0 1 20 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg>Instagram<span class="sr"> @joindweller (opens in a new tab)</span></a></nav>Every rule, limit and deadline links to the office that sets it: the FEC, your state election office, or your county or city clerk. Where no official source has an item, we say so and point you to the office. This is not legal advice. What you enter stays in this browser. Spot a mistake? Email DwellerApp@proton.me.</footer>
+  <div class="pop" id="pop" hidden><ul id="qlist" role="listbox" aria-label="Search results"></ul><div class="foot">Use ↑ and ↓ to move, Enter to open, Esc to close.</div></div>
 </div>
-<button class="hs-jump" id="hs-jump" type="button" tabindex="-1" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>Back to search</button>
+
+<nav aria-label="Sections"><ul class="tabs" id="tabs"></ul></nav>
+
+<main id="main">
+  <section class="view" id="v-home" aria-labelledby="h-home"></section>
+  <section class="view" id="v-setup" aria-labelledby="h-setup" hidden></section>
+  <section class="view" id="v-steps" aria-labelledby="h-steps" hidden></section>
+  <section class="view" id="v-dates" aria-labelledby="h-dates" hidden></section>
+  <section class="view" id="v-money" aria-labelledby="h-money" hidden></section>
+  <section class="view" id="v-team" aria-labelledby="h-team" hidden></section>
+  <section class="view" id="v-last" aria-labelledby="h-last" hidden></section>
+</main>
+
+<p class="sponsors"><b>Partners and sponsors:</b> none yet, and we never show ads. Partners and sponsors will have no say over what Dweller Campaign shows or says. The same tools and wording are here for every party and for independents.</p>
+
+<footer><nav class="social" aria-label="Dweller on social media"><span class="lbl">Follow Dweller</span><a href="https://bsky.app/profile/dwellerapp.bsky.social" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z"/></svg>Bluesky<span class="sr"> @dwellerapp.bsky.social (opens in a new tab)</span></a><a href="https://www.facebook.com/profile.php?id=61596396866910" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A4.5 4.5 0 0 1 21 18.5"/></svg>Facebook<span class="sr"> page (opens in a new tab)</span></a><a href="https://www.instagram.com/joindweller/" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h2l1.5-2h4l1.5 2h2A2.5 2.5 0 0 1 20 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg>Instagram<span class="sr"> @joindweller (opens in a new tab)</span></a></nav>
+<p>Every rule, limit and deadline links to the office that sets it: the FEC, your state election office, or your county or city clerk. If no official source has something, we say so and tell you who to ask. This is a guide, not legal advice. What you type stays in this browser. Spot a mistake? Email DwellerApp@proton.me.</p></footer>
+</div>
+<button class="jump" id="jump" type="button" tabindex="-1" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>Back to search</button>
 
 <script>
-(function(){let th="dark";try{th=localStorage.getItem("dc-theme")||"dark"}catch(e){} document.documentElement.dataset.theme=th;})();
+(function(){let th="light";try{th=localStorage.getItem("dc-theme")||"light"}catch(e){} document.documentElement.dataset.theme=th;})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="data.js"></script>
 <script>
-const D = window.CAMPAIGN_DATA;
-const TODAY = new Date(); TODAY.setHours(0,0,0,0);
-const $ = id=>document.getElementById(id);
-const esc = s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const num = n=>Number(n).toLocaleString("en-US");
-const usd = n=>(n<0?"−":"")+"$"+Math.abs(Math.round(n)).toLocaleString("en-US");
-const MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const pdate = s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
-const fmt = s=>{if(!s)return"—";const d=pdate(s);return `${MO[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`};
-const iso = d=>d.toISOString().slice(0,10);
-const addDays=(s,n)=>{const d=pdate(s);d.setDate(d.getDate()+n);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
-const days = s=>Math.round((pdate(s)-TODAY)/864e5);
-const away = s=>{const n=days(s);return n===0?"<b>today</b>":n>0?`in ${num(n)} day${n===1?"":"s"}`:`${num(-n)} day${n===-1?"":"s"} ago <b class="late">(passed)</b>`};
-const srcA = k=>{const s=D.src[k];return s?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`:""};
-const srcs = ks=>(ks||[]).map(srcA).filter(Boolean).join("; ");
+const D=window.CAMPAIGN_DATA;
+const TODAY=new Date();TODAY.setHours(0,0,0,0);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const num=n=>Number(n).toLocaleString("en-US");
+const usd=n=>(n<0?"−":"")+"$"+Math.abs(Math.round(n)).toLocaleString("en-US");
+const MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const pdate=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const fmt=s=>{if(!s)return"";const d=pdate(s);return `${MON[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`};
+const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const addDays=(s,n)=>{const d=pdate(s);d.setDate(d.getDate()+n);return ymd(d)};
+const days=s=>Math.round((pdate(s)-TODAY)/864e5);
+const away=s=>{const n=days(s);return n===0?"Today":n===1?"Tomorrow":n>0?`In ${num(n)} days`:`${num(-n)} day${n===-1?"":"s"} ago`};
+const srcA=k=>{const s=D.src[k];return s?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`:""};
+const srcs=ks=>(ks||[]).map(srcA).filter(Boolean).join(" · ");
 const STATES={AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",DC:"District of Columbia",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
-const STATE_OFFICE_FINDER={name:"USA.gov: State and local election offices",url:"https://www.usa.gov/state-election-office"};
+const FINDER={name:"USA.gov: State and local election offices",url:"https://www.usa.gov/state-election-office"};
+const LV={local:"local",state:"state",federal:"federal"};
 
 // ---------- saved profile (this browser only) ----------
 const KEY="dc-profile";
 const BLANK={level:"state",state:"CA",why:"",office:"",officeKind:"assembly",name:"",street:"",zip:"",geo:null,district:"",steps:{},owners:{},opponents:[],expected:"",budget:"",treasurer:"",team:[],ledger:null,step:0,example:true};
-let P; try{P=Object.assign({},BLANK,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){P={...BLANK}}
+let P;try{P=Object.assign({},BLANK,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){P={...BLANK}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}};
-// Example campaign: shown until the candidate enters their own. Clearly labeled, never presented as real.
 const EXAMPLE={name:"Example Candidate",office:"State Assembly, 1st District",treasurer:"Example Treasurer",team:[{name:"Example Campaign Manager",role:"Staff"},{name:"Example Volunteer Lead",role:"Volunteer"},{name:"Example Neighborhood Association",role:"Endorser (group)"}],
   ledger:[{d:"2026-08-04",kind:"in",who:"Example Donor A",amt:500},{d:"2026-08-19",kind:"in",who:"Example Donor B",amt:250},{d:"2026-09-02",kind:"out",who:"Example Print Shop",amt:420,memo:"Yard signs"},{d:"2026-09-15",kind:"in",who:"Example Donor C",amt:1000},{d:"2026-10-01",kind:"out",who:"Example Print Shop",amt:310,memo:"Door hangers"},{d:"2026-10-09",kind:"debt",who:"Example Web Designer",amt:600,memo:"Website, unpaid"}]};
-const ex=k=>P.example&&!P[k]||(Array.isArray(P[k])&&!P[k].length&&P.example)?EXAMPLE[k]:P[k];
 const ledger=()=>P.ledger||(P.example?EXAMPLE.ledger:[]);
+const team=()=>P.team.length?P.team:(P.example?EXAMPLE.team:[]);
 
-// ---------- masthead: level, state, theme ----------
-(function(){const s=$("state");s.innerHTML=Object.entries(STATES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");s.value=P.state;
-  s.onchange=()=>{P.state=s.value;P.geo=null;P.district="";save();renderAll()};
-  document.querySelectorAll("#lvl button").forEach(b=>b.onclick=()=>{P.level=b.dataset.l;save();renderAll()});
-  const t=$("theme"),lab=()=>{t.textContent=document.documentElement.dataset.theme==="dark"?"Light":"Dark";t.setAttribute("aria-label",`Switch to ${t.textContent.toLowerCase()} theme`)};lab();
-  t.onclick=()=>{const n=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=n;try{localStorage.setItem("dc-theme",n)}catch(e){}lab();drawMoney()};})();
-const LV={local:"Local",state:"State",federal:"Federal"};
 const ladder=()=>D.ladders[P.level];
 const covered=()=>{const L=ladder();return !L.stateOnly||L.stateOnly===P.state};
-const office=()=>P.level==="federal"?D.offices.federal:(D.offices[P.state]||{name:`${STATES[P.state]}'s election office`,url:STATE_OFFICE_FINDER.url,finder:true});
-const officeA=()=>{const o=office();return `<a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.finder?` (find it through ${esc(STATE_OFFICE_FINDER.name)})`:""}`};
+const office=()=>P.level==="federal"?D.offices.federal:(D.offices[P.state]||{name:`${STATES[P.state]}'s election office`,url:FINDER.url,finder:true});
+const officeA=()=>{const o=office();return `<a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>`};
+const raceWords=()=>P.level==="federal"?"a federal office":`${LV[P.level]} office in ${STATES[P.state]}`;
 
-function renderLede(){const L=ladder();
-  $("lede").innerHTML=`<b>Thinking about running?</b> Dweller Campaign walks you from the first idea to the last report, for ${P.level==="federal"?"federal office":`${LV[P.level].toLowerCase()} office in ${esc(STATES[P.state])}`}. Every rule, limit and deadline links to the office that sets it. `+
-   (covered()?`The steps below come from ${P.level==="federal"?"the FEC":esc(L.model)+" rules"}, checked ${fmt(D.checked)}.`:`We haven't checked ${esc(STATES[P.state])}'s ${LV[P.level].toLowerCase()} rules yet, so the steps below are named the same way but have no ${esc(STATES[P.state])} source; ${officeA()} has them.`)+
-   ` Nonpartisan: the same tools and wording for every party and for independents.`;}
+// ---------- header controls ----------
+(function(){const s=$("state");s.innerHTML=Object.entries(STATES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+  s.onchange=()=>{P.state=s.value;P.geo=null;P.district="";save();renderAll()};
+  $("lvl").onchange=e=>{P.level=e.target.value;save();renderAll()};
+  const t=$("theme"),lab=()=>{const d=document.documentElement.dataset.theme==="dark";t.textContent=d?"☀ Light mode":"☾ Dark mode";};lab();
+  t.onclick=()=>{const n=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=n;try{localStorage.setItem("dc-theme",n)}catch(e){}lab();if(VIEW==="money")drawChart();if(VIEW==="team")drawMap()};})();
 
-// ---------- milestone bar + setup wizard ----------
-const MS=[["Mission & Office","Why you're running and the seat"],["District & Dates","Your address, districts and dates"],["Legal Readiness","The steps to file and qualify"],["Opponents & Win Number","Who else is running, votes to win"],["Budget & Team","Money goal, treasurer and team"]];
-const msDone=i=>[()=>P.why.trim()&&P.office.trim(),()=>!!P.geo||!!P.district,()=>ladder().steps.some(s=>P.steps[P.level+":"+s.id]),()=>!!P.expected,()=>!!P.budget&&!!P.treasurer][i]();
-function renderMS(){$("ms").innerHTML=MS.map((m,i)=>`<li class="${msDone(i)?"done":""} ${P.step===i?"now":""}"><button type="button" data-i="${i}" aria-current="${P.step===i?"step":"false"}"><span class="bar"></span><span class="n">Step ${i+1} of 5</span><span class="l">${esc(m[0])}</span><span class="s">${msDone(i)?"✓ Done":P.step===i?"Open":"To do"}</span></button></li>`).join("");
-  $("ms").querySelectorAll("button").forEach(b=>b.onclick=()=>{P.step=+b.dataset.i;save();renderMS();renderSetup()});}
-const field=(id,label,val,type="text",ph="")=>`<div class="field"><label for="${id}">${label}</label>${type==="textarea"?`<textarea id="${id}" placeholder="${esc(ph)}">${esc(val)}</textarea>`:`<input id="${id}" type="${type}" value="${esc(val)}" placeholder="${esc(ph)}">`}</div>`;
-const nav=i=>`<div class="row">${i>0?`<button class="btn ghost" type="button" data-go="${i-1}">← Back</button>`:""}<button class="btn" type="button" data-save="${i}">Save${i<4?" and continue →":""}</button></div>`;
-function renderSetup(){const i=P.step,b=$("setup-body");let h=`<span class="kick">Step ${i+1} of 5 · ${esc(MS[i][0])}</span>`;
-  if(i===0){h+=`<h3>Let's start with why.</h3><p class="hint">Voters remember why you're running long after they forget your plans. Write it the way you'd say it to a neighbor. Nothing here is shared; it stays in this browser.</p>
-   <div class="fields">${field("f-why","Why I'm running",P.why,"textarea","I'm running because…")}<div class="field" style="align-content:start;gap:12px">${field("f-name","Your name as it will appear",P.name,"text","First and last name")}${field("f-office","Office you're running for",P.office,"text",P.level==="federal"?"U.S. House, District …":P.level==="state"?"State Assembly, District …":"City Council, District …")}
-   <div class="field"><label for="f-kind">Kind of seat</label><select id="f-kind">${[["assembly","State lower house (Assembly / House)"],["senate","State upper house (Senate)"],["house","U.S. House"],["ussenate","U.S. Senate"],["county","County office"],["city","City or town office"],["school","School board"],["other","Other"]].map(([k,v])=>`<option value="${k}" ${P.officeKind===k?"selected":""}>${v}</option>`).join("")}</select></div></div></div>`;}
-  if(i===1){h+=`<h3>Where you live sets your districts and your dates.</h3><p class="hint">Enter your street address and ZIP code. We look up your congressional and state legislative districts with the free ${srcA("census")} (a ZIP code alone isn't enough for it). The address goes only to the Census Bureau and isn't stored anywhere but this browser.</p>
-   <div class="fields">${field("f-street","Street address",P.street,"text","123 Main St")}${field("f-zip","ZIP code",P.zip,"text","5 digits")}${field("f-dist","District (if you know it)",P.district,"text","For example: 1")}</div>
-   <div class="row"><button class="btn ghost" type="button" id="geo-go">Look up my districts</button><span class="hint" id="geo-msg"></span></div><div id="geo-out">${geoHTML()}</div>`;}
-  if(i===2){const L=ladder();h+=`<h3>Legal readiness: ${esc(LV[P.level])} steps${L.stateOnly?` (${esc(L.model)})`:""}.</h3><p class="hint">Tick each step when it's done and enter the date. Steps marked “live” get their dates from your location. ${covered()?"":`<b>We haven't checked ${esc(STATES[P.state])}'s rules yet</b>; the quoted rules below are from ${esc(L.model)} and are shown only as an example of what to ask ${officeA()}.`}</p>
-   <ul class="checks">${L.steps.map(s=>{const k=P.level+":"+s.id,v=P.steps[k];return `<li><input type="checkbox" id="c-${s.id}" data-k="${k}" ${v?"checked":""} aria-label="${esc(s.name)} done"><label class="nm" for="c-${s.id}">${esc(s.name)}${s.live?` <span class="ex">Live</span>`:""}</label><input type="date" data-d="${k}" value="${v&&v!==true?esc(v):""}" aria-label="Date ${esc(s.name)} was done"><span class="say">${esc(s.say)}${s.src&&covered()?` <span class="src">· ${srcs(s.src)}</span>`:""}</span></li>`}).join("")}</ul>`;}
-  if(i===3){const r=lastResult();h+=`<h3>Who else is running, and how many votes it takes to win.</h3><p class="hint">List everyone running for the seat, in the same way for every party and for independents. The win number is simple arithmetic on the turnout you expect: more than half of the votes cast in a two-way race. It's a planning figure, not a rule.</p>
-   <div class="fields"><div class="field"><span class="flabel">Others running</span><div class="list-ed" id="opp-list">${P.opponents.map((o,j)=>`<div class="it"><span>${esc(o)}</span><button type="button" data-rm="${j}" aria-label="Remove ${esc(o)}">Remove</button></div>`).join("")||`<span class="hint">No one listed yet.</span>`}</div><div class="row"><input id="f-opp" placeholder="Name, as filed" style="flex:1;min-width:0;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);color:var(--ink)"><button class="btn ghost" type="button" id="opp-add">Add</button></div></div>
-   <div class="field">${field("f-exp","Votes you expect to be cast for this seat",P.expected,"number","For example: 210000")}${r?`<p class="hint">Last time, ${num(r.candidates.reduce((a,c)=>a+c.votes,0))} votes were cast for ${esc(r.office)} (${esc(r.election)}). <button class="linkbtn" type="button" id="use-last">Use that</button></p>`:""}</div></div>
-   <div class="result"><span class="flabel">Your win number</span><div class="winbox"><span class="big" id="win">${P.expected?num(Math.floor(+P.expected/2)+1):"—"}</span><span class="hint">votes, if ${P.expected?num(+P.expected):"…"} are cast in a two-way race. With more candidates, the most votes wins unless your state's rules say otherwise; ask ${officeA()}.</span></div></div>`;}
-  if(i===4){h+=`<h3>Budget and team.</h3><p class="hint">Name your treasurer first: ${P.level==="federal"?"the FEC requires a treasurer for your committee":"California requires every committee to appoint one"}${P.level!=="federal"?` (${srcA("ck")})`:""}. Everyone you add here goes on your campaign map.</p>
-   <div class="fields">${field("f-budget","Fundraising goal ($)",P.budget,"number","For example: 50000")}${field("f-treas","Treasurer",P.treasurer,"text","Name")}</div>
-   <div class="field"><span class="flabel">Team, endorsers and helpers</span><div class="list-ed" id="team-list">${P.team.map((t,j)=>`<div class="it"><span>${esc(t.name)} · <span class="since">${esc(t.role)}</span></span><button type="button" data-rmt="${j}" aria-label="Remove ${esc(t.name)}">Remove</button></div>`).join("")||`<span class="hint">No one listed yet.</span>`}</div>
-   <div class="row"><input id="f-tname" placeholder="Name" style="flex:2 1 160px;min-width:0;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);color:var(--ink)"><select id="f-trole" style="flex:1 1 140px;padding:8px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);color:var(--ink)">${["Staff","Volunteer","Endorser (person)","Endorser (group)","Vendor"].map(r=>`<option>${r}</option>`).join("")}</select><button class="btn ghost" type="button" id="team-add">Add</button></div></div>`;}
-  h+=nav(i);b.innerHTML=h;wireSetup(i);}
-function readSetup(i){const v=id=>($(id)||{}).value??"";
-  if(i===0){P.why=v("f-why");P.name=v("f-name");P.office=v("f-office");P.officeKind=v("f-kind")}
-  if(i===1){P.street=v("f-street");P.zip=v("f-zip");P.district=v("f-dist")}
-  if(i===3){P.expected=v("f-exp")}
-  if(i===4){P.budget=v("f-budget");P.treasurer=v("f-treas")}
-  if(P.why||P.name||P.office||P.treasurer||P.team.length)P.example=false;}
-function wireSetup(i){const b=$("setup-body");
-  b.querySelectorAll("[data-go]").forEach(x=>x.onclick=()=>{readSetup(i);P.step=+x.dataset.go;save();renderAll()});
-  b.querySelectorAll("[data-save]").forEach(x=>x.onclick=()=>{readSetup(i);if(i<4)P.step=i+1;save();renderAll();$("setup").scrollIntoView({block:"start"})});
-  b.querySelectorAll("[data-k]").forEach(c=>c.onchange=()=>{const k=c.dataset.k,d=b.querySelector(`[data-d="${k}"]`);P.steps[k]=c.checked?(d.value||iso(TODAY)):false;if(c.checked&&!d.value)d.value=iso(TODAY);P.example=false;save();renderAll(true)});
-  b.querySelectorAll("[data-d]").forEach(d=>d.onchange=()=>{const k=d.dataset.d;if(d.value){P.steps[k]=d.value;b.querySelector(`[data-k="${k}"]`).checked=true}save();renderAll(true)});
-  if($("geo-go"))$("geo-go").onclick=()=>{readSetup(1);save();lookup()};
-  if($("opp-add"))$("opp-add").onclick=()=>{readSetup(3);const n=$("f-opp").value.trim();if(n){P.opponents.push(n);save();renderSetup()}};
-  b.querySelectorAll("[data-rm]").forEach(x=>x.onclick=()=>{readSetup(3);P.opponents.splice(+x.dataset.rm,1);save();renderSetup()});
-  if($("use-last"))$("use-last").onclick=()=>{const r=lastResult();P.expected=String(r.candidates.reduce((a,c)=>a+c.votes,0));save();renderAll(true)};
-  if($("f-exp"))$("f-exp").oninput=e=>{$("win").textContent=e.target.value?num(Math.floor(+e.target.value/2)+1):"—"};
-  if($("team-add"))$("team-add").onclick=()=>{readSetup(4);const n=$("f-tname").value.trim();if(n){P.team.push({name:n,role:$("f-trole").value});P.example=false;save();renderAll(true)}};
-  b.querySelectorAll("[data-rmt]").forEach(x=>x.onclick=()=>{readSetup(4);P.team.splice(+x.dataset.rmt,1);save();renderAll(true)});}
+// ---------- tabs and views (one topic at a time) ----------
+const IC={home:'<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>',setup:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+  steps:'<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>',dates:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  money:'<path d="M12 2v20"/><path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',team:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A4.5 4.5 0 0 1 21 18.5"/>',
+  last:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'};
+const VIEWS=[["home","Home"],["setup","Set up"],["steps","Steps to run"],["dates","Key dates"],["money","Money"],["team","Your team"],["last","Last election"]];
+let VIEW="home";
+function renderTabs(){$("tabs").innerHTML=VIEWS.map(([k,l])=>`<li><a href="#${k}" ${VIEW===k?'aria-current="page"':""}><svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>${l}</a></li>`).join("")}
+function show(v,focus){if(!VIEWS.find(x=>x[0]===v))v="home";VIEW=v;VIEWS.forEach(([k])=>$("v-"+k).hidden=k!==v);renderTabs();renderView();if(focus){const h=$("v-"+v).querySelector("h1,h2");if(h){h.tabIndex=-1;h.focus({preventScroll:true})}window.scrollTo({top:$("tabs").offsetTop-10})}}
+addEventListener("hashchange",()=>show(location.hash.slice(1),true));
+function renderView(){({home:renderHome,setup:renderSetup,steps:renderSteps,dates:renderDates,money:renderMoney,team:renderTeam,last:renderLast})[VIEW]()}
 
-// ---------- ZIP / address lookup: US Census Geocoder (free, no key, JSONP because it doesn't allow CORS) ----------
-function geoHTML(){if(!P.geo)return"";const g=P.geo;return `<div class="result"><b>${esc(g.matched)}</b>${g.rows.map(r=>`<span>${esc(r)}</span>`).join("")}<span class="src">From the ${srcA("census")}, looked up ${fmt(g.on)}. Offices on your ballot and election dates for this address: ${officeA()}.</span></div>`;}
-function lookup(){const msg=$("geo-msg");if(!P.street||!/^\d{5}$/.test(P.zip)){msg.textContent="Enter a street address and a 5-digit ZIP code.";return}
-  msg.textContent="Looking up…";const cb="dcGeo"+Date.now();const s=document.createElement("script");let done=false;
-  window[cb]=j=>{done=true;delete window[cb];s.remove();try{const m=j.result.addressMatches[0];if(!m){msg.textContent="The Census Geocoder didn't find that address. Check the spelling, or enter your district by hand.";return}
-    const G=m.geographies||{},rows=[];let st="";
-    for(const [k,arr] of Object.entries(G)){const a=arr&&arr[0];if(!a)continue;
-      if(/^States$/.test(k)){st=a.STUSAB||"";rows.push("State: "+a.NAME)}
-      else if(/Counties/.test(k))rows.push("County: "+a.NAME);
-      else if(/Congressional District/.test(k))rows.push(a.NAME);
-      else if(/State Legislative Districts - Upper/.test(k))rows.push("State senate: "+a.NAME);
-      else if(/State Legislative Districts - Lower/.test(k))rows.push("State house or assembly: "+a.NAME);
-      else if(/Incorporated Places/.test(k))rows.push("City or town: "+a.NAME);}
-    P.geo={matched:m.matchedAddress,rows,on:iso(TODAY)};if(st&&STATES[st]){P.state=st;$("state").value=st}
-    const lower=(G["State Legislative Districts - Lower"]||G["2024 State Legislative Districts - Lower"]||[])[0];if(!P.district&&lower&&lower.BASENAME)P.district=lower.BASENAME;
-    save();renderAll(true);}catch(e){msg.textContent="The lookup answered in a form we couldn't read. Enter your district by hand."}};
-  s.src=`https://geocoding.geo.census.gov/geocoder/geographies/address?street=${encodeURIComponent(P.street)}&zip=${P.zip}&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=jsonp&callback=${cb}`;
-  s.onerror=()=>{if(!done)msg.textContent="The Census Geocoder couldn't be reached. Try again, or enter your district by hand."};
-  document.body.appendChild(s);setTimeout(()=>{if(!done)msg.textContent="No answer from the Census Geocoder yet. Try again, or enter your district by hand."},15000);}
-
-// ---------- tasks shared by dates, board, map and search ----------
+// ---------- tasks and dates ----------
 function tasks(){const L=ladder();let prev=null;return L.steps.map((s,i)=>{const k=P.level+":"+s.id,done=P.steps[k];let due=null,dueWhy="";
-  if(s.due&&P.steps[P.level+":"+s.due.after]&&P.steps[P.level+":"+s.due.after]!==true){due=addDays(P.steps[P.level+":"+s.due.after],s.due.days);dueWhy=`${s.due.days} days after “${L.steps.find(x=>x.id===s.due.after).name}”`}
+  const a=s.due&&P.steps[P.level+":"+s.due.after];if(a&&a!==true){due=addDays(a,s.due.days);dueWhy=`${s.due.days} days after “${L.steps.find(x=>x.id===s.due.after).name}”`}
   const t={...s,i,k,done,due,dueWhy,since:prev&&prev!==true?prev:null};prev=done||prev;return t})}
 function keyDates(){const out=D.dates.filter(d=>d.level===P.level&&(!d.state||d.state===P.state)).map(d=>({...d,src:[d.src]}));
-  tasks().forEach(t=>{if(t.due&&!t.done)out.push({date:t.due,what:`${t.name} due (${t.dueWhy})`,who:P.level==="federal"?"FEC":"Your filing officer",src:t.src})});
+  tasks().forEach(t=>{if(t.due&&!t.done)out.push({date:t.due,what:`${t.name}: due ${t.dueWhy}`,who:P.level==="federal"?"FEC":"Your filing officer",src:t.src})});
   return out.sort((a,b)=>a.date<b.date?-1:1)}
+const whereHTML=(t,open)=>{const q=(t.quote||[]).map(x=>`<blockquote>“${esc(x)}”</blockquote>`).join("");
+  return `<details class="where" ${open?"open":""}><summary>Where this comes from</summary>${covered()&&t.src?`${q}<p>${srcs(t.src)}${t.note?`. ${esc(t.note)}`:""}</p>`:t.live?`<p>This depends on where you live. ${officeA()} publishes it.${P.geo?"":" Add your address in Set up so we can match your districts."}</p>`:`<p>We haven't checked ${esc(STATES[P.state])}'s rules for this step yet. ${officeA()} can tell you.</p>`}</details>`};
 
-function renderDates(){const ds=keyDates(),up=ds.filter(d=>days(d.date)>=0),next=up[0];
-  $("dates-sub").innerHTML=`Countdowns from today. ${P.level==="federal"?"Federal reporting dates come from the FEC calendar.":covered()?`Dates from the ${esc(ladder().model)} sources for the 2026 cycle; past ones stay, marked passed.`:`No checked ${esc(STATES[P.state])} dates yet.`} Election day and ballot dates for your address are filled in from your location.`;
-  const live=ladder().steps.filter(s=>s.live).map(s=>`<div class="date live"><span class="when">Date from your location</span><p><b>${esc(s.name)}</b></p><span class="where">No checked date for ${P.geo?esc(P.geo.matched):"your address"} yet. ${officeA()} publishes it.</span></div>`).join("");
-  $("dates").innerHTML=ds.map(d=>`<div class="date ${d===next?"next":""}" data-search="${esc(d.what)}"><span class="when">${fmt(d.date)}</span><span class="left">${away(d.date)}</span><p>${esc(d.what)}</p><span class="where">${esc(d.who)} · ${srcs(d.src)}</span></div>`).join("")+live;}
+// ---------- Home ----------
+const MS=[["Your why and your office","Why you're running"],["Where you live","Your districts"],["Paperwork","What you've filed"],["Votes to win","Your win number"],["Money and team","Goal and helpers"]];
+const msDone=i=>[()=>P.why.trim()&&P.office.trim(),()=>!!P.geo||!!P.district,()=>ladder().steps.some(s=>P.steps[P.level+":"+s.id]),()=>!!P.expected,()=>!!P.budget&&!!P.treasurer][i]();
+function msHTML(){return `<ol class="ms${VIEW==="home"?" ms-list":""}">${MS.map((m,i)=>`<li class="${msDone(i)?"done":""} ${P.step===i&&VIEW==="setup"?"now":""}"><button type="button" data-ms="${i}"><span class="dot">${msDone(i)?"✓":i+1}</span><span class="l">${esc(m[0])}</span><span class="s">${msDone(i)?"Done":"To do"}</span></button></li>`).join("")}</ol>`}
+function wireMS(root){root.querySelectorAll("[data-ms]").forEach(b=>b.onclick=()=>{P.step=+b.dataset.ms;save();if(VIEW==="setup")renderSetup();else location.hash="setup"})}
+function renderHome(){const T=tasks(),done=T.filter(t=>t.done).length,cur=T.find(t=>!t.done),up=keyDates().filter(d=>days(d.date)>=0).slice(0,3),setupN=MS.filter((m,i)=>msDone(i)).length;
+  const v=$("v-home");v.innerHTML=`<div class="hello"><h1 id="h-home">${P.name?`Hi, ${esc(P.name.split(" ")[0])}.`:"Thinking about running? Welcome."}</h1>
+   <p class="lede">We'll take this one step at a time. You're looking at ${esc(raceWords())}. Every rule here links to the office that sets it, so you can check it yourself.</p></div>
+   ${cur?`<div class="card next"><span class="eyebrow">Your next step · ${done} of ${T.length} done</span><h2>${esc(cur.name)}</h2><p class="lede">${esc(cur.say)}</p>
+    ${cur.due?`<p><span class="tag ${days(cur.due)<0?"late":"ok"}">Due ${fmt(cur.due)} · ${away(cur.due)}${days(cur.due)<0?" (passed)":""}</span></p>`:""}
+    <div class="progress" role="img" aria-label="${done} of ${T.length} steps done"><i style="width:${done/T.length*100}%"></i></div>
+    <div class="row"><button class="btn" type="button" id="mark">I've done this</button><a class="btn ghost" href="#steps">See all the steps</a></div>${whereHTML(cur)}</div>`
+   :`<div class="card next"><span class="eyebrow">All steps done</span><h2>You've finished every step on the list.</h2><p>Keep filing your reports on time. Your dates are under Key dates.</p></div>`}
+   <div class="grid2"><div class="card"><h2>Set up your campaign</h2><p class="muted">${setupN} of 5 parts done. Each one takes a few minutes, and you can stop any time.</p>${msHTML()}<div class="row"><a class="btn small" href="#setup">${setupN?"Continue":"Start"} setup</a></div></div>
+   <div class="card"><h2>Coming up</h2>${up.length?up.map((d,i)=>`<div class="date"><span class="when">${fmt(d.date)}</span><span class="left ${i===0?"":"muted"}" style="${i===0?"color:var(--accent);font-weight:700":""}">${away(d.date)}</span><span>${esc(d.what)}</span></div>`).join('<hr style="border:0;border-top:1px solid var(--line);margin:4px 0">'):`<p>No dates coming up on the official calendars we've checked. Election and ballot dates for your address come from ${officeA()}.</p>`}<a class="linkbtn" href="#dates">All key dates</a></div></div>
+   ${P.example?`<p class="note"><span class="tag ex">Example</span> Until you fill in your own details, the money and team pages show an example campaign with made-up names, so you can see how they work.</p>`:""}
+   <div class="note">You don't have to know any of this already. Each step says who does it and who to ask. If you get stuck, ${officeA()} answers questions from candidates.</div>`;
+  wireMS(v);if($("mark"))$("mark").onclick=()=>{P.steps[cur.k]=ymd(TODAY);P.example=false;save();renderHome()};}
 
-function renderBoard(){const T=tasks(),done=T.filter(t=>t.done).length,openT=T.filter(t=>!t.done),cur=openT[0];
-  const dueS=T.filter(t=>t.due&&!t.done).sort((a,b)=>a.due<b.due?-1:1),late=dueS.filter(t=>days(t.due)<0).length;
-  $("todo-tiles").innerHTML=`<div class="tot"><b>${done} of ${T.length}</b><span>Steps done</span></div><div class="tot"><b>${cur?esc(cur.name):"All done"}</b><span>Now</span></div><div class="tot"><b>${dueS[0]?fmt(dueS[0].due):"—"}</b><span>Next due date</span></div><div class="tot"><b>${late}</b><span>Past due</span></div>`;
-  $("todo-count").textContent=`${T.length} steps · ${LV[P.level]} · ${ladder().model}${covered()?"":` (example; ${STATES[P.state]} not checked yet)`}`;
-  const owners=["Candidate","Treasurer","Campaign manager","Volunteer"];
-  $("todo-list").innerHTML=T.map(t=>{const o=P.owners[t.k]||(/committee|reports|post|closed|postgeneral/.test(t.id)?"Treasurer":"Candidate");
-   return `<div class="brow" data-search="${esc(t.name)}"><div><h3>${t.i+1}. ${esc(t.name)}</h3><div class="meta">${t.done?`DONE ${t.done!==true?fmt(t.done).toUpperCase():""}`:t===cur?"NOW":"TO DO"}${t.live?" · DATE FROM YOUR LOCATION":""}</div></div>
-   <div><div class="ladder" aria-hidden="true">${T.map(x=>`<i class="${x.done?"on":""} ${x===t?"now":""}"></i>`).join("")}</div><div class="stage">Step ${t.i+1} of ${T.length}</div></div>
-   <ul class="todo"><li><span><label class="sr" for="o-${t.id}">Owner</label><select class="who-sel" id="o-${t.id}" data-o="${t.k}">${owners.map(x=>`<option ${x===o?"selected":""}>${x}</option>`).join("")}</select> ${esc(t.say)}</span></li>
-   <li class="since">${t.since?`Open since ${fmt(t.since)}`:"Open since: starts when the step before is done"}${t.due?` · Due ${fmt(t.due)}${days(t.due)<0&&!t.done?' <b class="late">(passed)</b>':""}`:t.live?" · Due: from your location":""}</li>
-   <li class="src">${t.src&&covered()?`Source: ${srcs(t.src)}`:t.live?`Source: ${officeA()}`:`No checked source for ${esc(STATES[P.state])}; ask ${officeA()}`}${t.note?` · ${esc(t.note)}`:""}</li></ul></div>`}).join("");
-  $("todo-list").querySelectorAll("[data-o]").forEach(s=>s.onchange=()=>{P.owners[s.dataset.o]=s.value;save();drawMap()});}
+// ---------- Set up ----------
+const field=(id,label,val,type="text",ph="",hint="")=>`<div class="field"><label for="${id}">${label}</label>${type==="textarea"?`<textarea id="${id}" placeholder="${esc(ph)}">${esc(val)}</textarea>`:`<input id="${id}" type="${type}" value="${esc(val)}" placeholder="${esc(ph)}">`}${hint?`<span class="hint">${hint}</span>`:""}</div>`;
+function renderSetup(){const i=P.step,v=$("v-setup");let h=`<div class="hello"><h1 id="h-setup">Set up your campaign</h1><p class="lede">Five short parts. Everything you type stays in this browser.</p></div>${msHTML()}<div class="card">`;
+  if(i===0){h+=`<span class="tag">Part 1 of 5</span><h2>Let's start with why.</h2><p class="lede">Voters remember why you're running long after they forget the details. Write it the way you'd say it to a neighbor.</p>
+   ${field("f-why","Why are you running?",P.why,"textarea","I'm running because…","What problem in your community made you decide to step up?")}
+   <div class="fields">${field("f-name","Your name, as it will appear on the ballot",P.name,"text","First and last name")}${field("f-office","The office you're running for",P.office,"text",P.level==="federal"?"U.S. House, District …":P.level==="state"?"State Assembly, District …":"City Council, District …")}</div>
+   <div class="field"><span class="flabel">What level is this office?</span><div class="choice" role="group" aria-label="Level of office">${[["local","Local","City council, county, school board"],["state","State","State house or senate, statewide office"],["federal","Federal","U.S. House or U.S. Senate"]].map(([k,a,b])=>`<button type="button" data-lv="${k}" aria-pressed="${P.level===k}"><b>${a}</b><span>${b}</span></button>`).join("")}</div></div>
+   <div class="field"><label for="f-kind">Which seat is it?</label><select id="f-kind">${[["assembly","State lower house (Assembly or House)"],["senate","State upper house (Senate)"],["house","U.S. House"],["ussenate","U.S. Senate"],["county","County office"],["city","City or town office"],["school","School board"],["other","Something else"]].map(([k,x])=>`<option value="${k}" ${P.officeKind===k?"selected":""}>${x}</option>`).join("")}</select></div>`}
+  if(i===1){h+=`<span class="tag">Part 2 of 5</span><h2>Where do you live?</h2><p class="lede">Your address decides your districts and which dates apply to you. We ask the U.S. Census Bureau's free lookup, and your address isn't sent anywhere else.</p>
+   <div class="fields">${field("f-street","Street address",P.street,"text","123 Main St")}${field("f-zip","ZIP code",P.zip,"text","5 digits")}</div>
+   <div class="row"><button class="btn" type="button" id="geo-go">Find my districts</button><span class="hint" id="geo-msg" role="status"></span></div>
+   ${P.geo?`<div class="result"><b>${esc(P.geo.matched)}</b>${P.geo.rows.map(r=>`<span>${esc(r)}</span>`).join("")}<span class="hint">From the ${srcA("census")}, ${fmt(P.geo.on)}. Election dates for this address: ${officeA()}.</span></div>`:""}
+   ${field("f-dist","Or type your district number, if you know it",P.district,"text","For example: 1")}`}
+  if(i===2){const L=ladder();h+=`<span class="tag">Part 3 of 5</span><h2>What have you filed so far?</h2><p class="lede">Tick anything you've already done. If you haven't started, that's fine: the Steps page walks you through each one.</p>
+   ${covered()?"":`<p class="note">We haven't checked ${esc(STATES[P.state])}'s rules yet. These steps are named the way most states use them; ${officeA()} has the details.</p>`}
+   <div style="display:grid;gap:6px">${L.steps.map(s=>{const k=P.level+":"+s.id,d=P.steps[k];return `<label class="check"><input type="checkbox" data-k="${k}" ${d?"checked":""}>${esc(s.name)}${d&&d!==true?` <span class="muted small">(${fmt(d)})</span>`:""}</label>`}).join("")}</div>`}
+  if(i===3){const r=lastResult()||exampleResult(),votes=r?r.candidates.reduce((a,c)=>a+c.votes,0):0;h+=`<span class="tag">Part 4 of 5</span><h2>How many votes will it take?</h2><p class="lede">In a two-way race you need more than half the votes cast. Start from how many people voted for this seat last time.</p>
+   ${r?`<p>${lastResult()?"":`<span class="tag ex">Example</span> `}Last time, the candidates for ${esc(r.office)} got <b>${num(votes)}</b> votes in all. <button class="linkbtn" type="button" id="use-last">Use that number</button></p>`:""}
+   ${field("f-exp","Votes you expect to be cast",P.expected,"number","For example: 210000")}
+   <div class="result"><span class="flabel">Your win number</span><span class="big" id="win">${P.expected?num(Math.floor(+P.expected/2)+1):"—"}</span><span class="hint">votes. This is simple arithmetic for planning, not a rule. With more than two candidates, ask ${officeA()} how winners are decided.</span></div>
+   <div class="field"><span class="flabel">Who else is running?</span><p class="hint">Write each name the same way, whatever their party.</p><div class="list-ed">${P.opponents.map((o,j)=>`<div class="it"><span>${esc(o)}</span><button class="linkbtn" type="button" data-rm="${j}">Remove</button></div>`).join("")}</div>
+   <div class="row"><input class="inline-in" id="f-opp" placeholder="Name" style="flex:1 1 200px;width:auto"><button class="btn ghost small" type="button" id="opp-add">Add</button></div></div>`}
+  if(i===4){h+=`<span class="tag">Part 5 of 5</span><h2>Money and team</h2><p class="lede">Choose a treasurer first. They keep the money records and file the reports${P.level==="federal"?"":`, and ${P.state==="CA"?"California requires every committee to have one":"most states require one"}`}.</p>
+   <div class="fields">${field("f-budget","How much do you hope to raise? ($)",P.budget,"number","For example: 50000")}${field("f-treas","Who is your treasurer?",P.treasurer,"text","Name")}</div>
+   <div class="field"><span class="flabel">Who's helping?</span><div class="list-ed">${P.team.map((t,j)=>`<div class="it"><span>${esc(t.name)} <span class="muted small">· ${esc(t.role)}</span></span><button class="linkbtn" type="button" data-rmt="${j}">Remove</button></div>`).join("")}</div>
+   <div class="row"><input class="inline-in" id="f-tname" placeholder="Name" style="flex:2 1 180px;width:auto"><select class="inline-in" id="f-trole" style="flex:1 1 160px;width:auto">${["Staff","Volunteer","Endorser (person)","Endorser (group)","Vendor"].map(r=>`<option>${r}</option>`).join("")}</select><button class="btn ghost small" type="button" id="team-add">Add</button></div></div>`}
+  h+=`<div class="row" style="margin-top:6px">${i>0?`<button class="btn ghost" type="button" id="prev">Back</button>`:""}<button class="btn" type="button" id="next">${i<4?"Save and continue":"Save and finish"}</button></div></div>`;
+  v.innerHTML=h;wireMS(v);
+  const read=()=>{const g=id=>($(id)||{}).value;if(i===0){P.why=g("f-why");P.name=g("f-name");P.office=g("f-office");P.officeKind=g("f-kind")}
+    if(i===1){P.street=g("f-street");P.zip=g("f-zip");P.district=g("f-dist")}if(i===3)P.expected=g("f-exp");if(i===4){P.budget=g("f-budget");P.treasurer=g("f-treas")}
+    if(P.why||P.name||P.office||P.treasurer||P.team.length)P.example=false;save()};
+  $("next").onclick=()=>{read();if(i<4){P.step=i+1;save();renderSetup();$("v-setup").querySelector("h2").scrollIntoView({block:"center"})}else location.hash="home"};
+  if($("prev"))$("prev").onclick=()=>{read();P.step=i-1;save();renderSetup()};
+  v.querySelectorAll("[data-lv]").forEach(b=>b.onclick=()=>{read();P.level=b.dataset.lv;$("lvl").value=P.level;save();renderSetup()});
+  v.querySelectorAll("[data-k]").forEach(c=>c.onchange=()=>{P.steps[c.dataset.k]=c.checked?ymd(TODAY):false;P.example=false;save();renderSetup()});
+  if($("geo-go"))$("geo-go").onclick=()=>{read();lookup()};
+  if($("use-last"))$("use-last").onclick=()=>{const r=lastResult()||exampleResult();P.expected=String(r.candidates.reduce((a,c)=>a+c.votes,0));save();renderSetup()};
+  if($("f-exp"))$("f-exp").oninput=e=>{$("win").textContent=e.target.value?num(Math.floor(+e.target.value/2)+1):"—"};
+  if($("opp-add"))$("opp-add").onclick=()=>{read();const n=$("f-opp").value.trim();if(n){P.opponents.push(n);save();renderSetup()}};
+  v.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{read();P.opponents.splice(+b.dataset.rm,1);save();renderSetup()});
+  if($("team-add"))$("team-add").onclick=()=>{read();const n=$("f-tname").value.trim();if(n){P.team.push({name:n,role:$("f-trole").value});P.example=false;save();renderSetup()}};
+  v.querySelectorAll("[data-rmt]").forEach(b=>b.onclick=()=>{read();P.team.splice(+b.dataset.rmt,1);save();renderSetup()});}
 
-// ---------- campaign map ----------
-const SHAPES={circle:"M7,0A7,7 0 1,1 -7,0A7,7 0 1,1 7,0Z",hex:"M7,0L3.5,6.1L-3.5,6.1L-7,0L-3.5,-6.1L3.5,-6.1Z",square:"M-6,-6H6V6H-6Z",diamond:"M0,-8L8,0L0,8L-8,0Z",down:"M-7.5,-5.5H7.5L0,7.5Z",house:"M-7,7V-1L0,-8L7,-1V7Z",page:"M-5.5,-7.5H2L5.5,-4V7.5H-5.5Z",up:"M0,-8L8,6.5H-8Z"};
-const TY=Object.fromEntries(D.types.map(([k,l,s])=>[k,{label:l,shape:s,one:l.replace(/s$/,"").replace(/ie$/,"y")}]));TY.person.one="Person";
-const shapeSVG=(t,size=12)=>`<svg viewBox="-9 -9 18 18" width="${size}" height="${size}" aria-hidden="true"><path d="${SHAPES[TY[t].shape]}" fill="var(--t-${t})"/></svg>`;
-let SHOW=Object.fromEntries(D.types.map(([k])=>[k,true])),LINKS="all",PICK=null,MQ="";
-function graph(){const nodes=[],links=[],add=(id,type,label,info)=>{if(!nodes.find(n=>n.id===id))nodes.push({id,type,label,info:info||{}});return id};
-  const isEx=P.example,cand=add("cand","person",P.name||(isEx?EXAMPLE.name:"You (the candidate)"),{Role:"Candidate",Office:P.office||(isEx?EXAMPLE.office:"Not set yet"),Why:P.why||""});
-  const cmte=add("cmte","committee",`${P.name||(isEx?EXAMPLE.name:"Your")}${P.name||isEx?" for ":" "}${(P.office||(isEx?EXAMPLE.office:"campaign committee")).split(",")[0]}`,{Role:"Candidate's committee",Registered:tasks().find(t=>/committee/.test(t.id))?.done?"Yes":"Not yet"});
-  links.push({s:cand,t:cmte,k:"team",l:"controls"});
-  const tr=P.treasurer||(isEx?EXAMPLE.treasurer:"");if(tr){add("treas","person",tr,{Role:"Treasurer"});links.push({s:"treas",t:cmte,k:"team",l:"treasurer of"})}
-  (P.team.length?P.team:isEx?EXAMPLE.team:[]).forEach((m,i)=>{const ty=/group/.test(m.role)?"organization":m.role==="Vendor"?"vendor":"person";add("tm"+i,ty,m.name,{Role:m.role});links.push({s:"tm"+i,t:ty==="vendor"?cmte:cand,k:ty==="vendor"?"money":"team",l:m.role.toLowerCase()})});
-  const by={};ledger().forEach(e=>{const ty=e.kind==="in"?"donor":"vendor",id=(ty==="donor"?"d:":"v:")+e.who;add(id,ty,e.who,{});by[id]=(by[id]||0)+e.amt;
-    const n=nodes.find(x=>x.id===id);n.info[e.kind==="in"?"Gave":e.kind==="debt"?"Owed":"Paid"]=usd(by[id]);links.push({s:e.kind==="in"?id:cmte,t:e.kind==="in"?cmte:id,k:"money",l:e.kind==="in"?"gave":"paid",amt:e.amt})});
-  const o=office();add("office","office",o.name,{Role:P.level==="federal"?"Federal election regulator":"Election office",Website:`<a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.url)}</a>`});
-  if(P.level!=="federal"&&D.offices[P.state]&&D.offices[P.state].ethics){const e=D.offices[P.state].ethics;add("ethics","office",e.name,{Role:"Campaign finance and ethics",Website:`<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.url)}</a>`})}
-  tasks().forEach(t=>{if(!t.src&&!t.live)return;const fid="f:"+t.id;add(fid,"filing",t.name,{Status:t.done?"Done"+(t.done!==true?" "+fmt(t.done):""):"To do",What:esc(t.say),Source:t.src&&covered()?srcs(t.src):officeA()});
-    links.push({s:cmte,t:fid,k:"paper",l:"files"});links.push({s:fid,t:nodes.find(n=>n.id==="ethics")&&P.level!=="federal"&&/committee|intention|reports|closed|post/.test(t.id)?"ethics":"office",k:"paper",l:"filed with"});
-    if(t.due){const did="dl:"+t.id;add(did,"deadline",`${t.name} due ${fmt(t.due)}`,{Due:fmt(t.due)+" ("+away(t.due)+")",Why:t.dueWhy});links.push({s:fid,t:did,k:"paper",l:"due"})}});
-  keyDates().filter(d=>!d.src||d.who!=="Your filing officer").slice(0,6).forEach((d,i)=>{if(d.what.includes(" due (")&&d.who==="Your filing officer")return;const id="kd"+i;add(id,"deadline",d.what,{Date:fmt(d.date)+" ("+away(d.date)+")",Source:srcs(d.src)});links.push({s:id,t:"office",k:"paper",l:"set by"})});
-  return {nodes,links}}
-let sim=null,G=null,zoomB=null,svgSel=null,G0fit=null;
-function drawMap(){const {nodes,links}=graph();G={nodes,links};
-  $("chips").innerHTML=D.types.map(([k,l])=>`<button type="button" class="chip" data-t="${k}" aria-pressed="${SHOW[k]}">${shapeSVG(k)}${esc(l)} <b>${nodes.filter(n=>n.type===k).length}</b></button>`).join("");
-  $("chips").querySelectorAll(".chip").forEach(c=>c.onclick=()=>{SHOW[c.dataset.t]=!SHOW[c.dataset.t];c.setAttribute("aria-pressed",SHOW[c.dataset.t]);applyView()});
-  $("map-ex").innerHTML=P.example?`<span class="ex">Example campaign</span>`:"";
-  const svg=d3.select("#svg");svg.selectAll("*").remove();svgSel=svg;const box=$("graph").getBoundingClientRect(),W=Math.max(320,box.width),H=Math.max(520,box.height);svg.attr("viewBox",`0 0 ${W} ${H}`);
-  const g=svg.append("g");zoomB=d3.zoom().scaleExtent([.4,4]).on("zoom",e=>g.attr("transform",e.transform));svg.call(zoomB).on("click",e=>{if(e.target===svg.node())pick(null)});
-  const L=links.map(l=>({...l,source:l.s,target:l.t}));
-  const ln=g.append("g").selectAll("line").data(L).join("line").attr("class",d=>"link "+(d.k==="money"?"money":d.k==="paper"?"paper":"")).attr("stroke-width",d=>d.k==="money"?Math.min(5,1.5+Math.log10(d.amt||1)/2):1.2);
-  const nd=g.append("g").selectAll("g").data(nodes).join("g").attr("class","node").attr("tabindex",0).attr("role","button").attr("aria-label",d=>`${TY[d.type].one}: ${d.label}`)
-    .on("click",(e,d)=>{e.stopPropagation();pick(d.id)}).on("keydown",(e,d)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick(d.id)}})
-    .call(d3.drag().on("start",(e,d)=>{if(!e.active)sim.alphaTarget(.2).restart();d.fx=d.x;d.fy=d.y}).on("drag",(e,d)=>{d.fx=e.x;d.fy=e.y}).on("end",(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null}));
-  nd.append("path").attr("d",d=>SHAPES[TY[d.type].shape]).attr("fill",d=>`var(--t-${d.type})`).attr("transform",d=>d.id==="cand"?"scale(1.7)":"scale(1.15)");
-  nd.append("text").attr("dy",d=>d.id==="cand"?26:20).attr("text-anchor","middle").text(d=>d.label.length>28?d.label.slice(0,27)+"…":d.label);
-  sim&&sim.stop();const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  sim=d3.forceSimulation(nodes).force("link",d3.forceLink(L).id(d=>d.id).distance(d=>d.k==="paper"?70:90)).force("charge",d3.forceManyBody().strength(-260)).force("center",d3.forceCenter(W/2,H/2)).force("collide",d3.forceCollide(30))
-    .on("tick",()=>{ln.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);nd.attr("transform",d=>`translate(${d.x},${d.y})`)});
-  const fit=()=>{const xs=nodes.map(n=>n.x),ys=nodes.map(n=>n.y),x0=Math.min(...xs)-60,x1=Math.max(...xs)+60,y0=Math.min(...ys)-30,y1=Math.max(...ys)+40;
-    const k=Math.min(1.4,W/(x1-x0),H/(y1-y0));svg.call(zoomB.transform,d3.zoomIdentity.translate(W/2-k*(x0+x1)/2,H/2-k*(y0+y1)/2).scale(k));};
-  G0fit=fit;
-  if(reduce){sim.stop();for(let i=0;i<300;i++)sim.tick();sim.on("tick")();fit()}else{sim.stop();for(let i=0;i<300;i++)sim.tick();sim.on("tick")();fit();}
-  G.ln=ln;G.nd=nd;applyView();renderPanel();}
-function applyView(){if(!G)return;const q=MQ.toLowerCase(),nb=new Set();if(PICK){nb.add(PICK);G.links.forEach(l=>{if(l.s===PICK)nb.add(l.t);if(l.t===PICK)nb.add(l.s)})}
-  const vis=n=>SHOW[n.type]&&(!q||n.label.toLowerCase().includes(q)||PICK);
-  G.nd.attr("display",d=>SHOW[d.type]?null:"none").classed("dim",d=>(PICK&&!nb.has(d.id))||(q&&!PICK&&!d.label.toLowerCase().includes(q))).classed("sel",d=>d.id===PICK);
-  G.ln.attr("display",d=>{const a=G.nodes.find(n=>n.id===(d.source.id||d.source)),b=G.nodes.find(n=>n.id===(d.target.id||d.target));return SHOW[a.type]&&SHOW[b.type]&&(LINKS==="all"||LINKS===d.k)?null:"none"})
-    .classed("dim",d=>PICK&&!((d.source.id||d.source)===PICK||(d.target.id||d.target)===PICK));
-  $("backmap").hidden=!PICK;}
-function pick(id){PICK=id;applyView();renderPanel();if(!id){$("mq").value="";MQ="";applyView()}}
-function renderPanel(){const p=$("panel");if(!PICK||!G||!G.nodes.find(n=>n.id===PICK)){
-  p.innerHTML=`<span class="type">How to read this</span><h3>Tap any dot</h3><ul class="howto"><li>A tap shows that dot's record: who or what it is, money in or out, and the source for any rule or date.</li><li>Each kind of dot has its own shape and color:<div class="legend-shapes" style="margin-top:6px">${D.types.map(([k,l])=>`<span>${shapeSVG(k)}${esc(TY[k].one)}</span>`).join("")}</div></li><li>Thick green lines are money. Dotted lines are filings and deadlines. Thin lines tie people and groups together.</li></ul>${P.example?`<p class="hint"><span class="ex">Example campaign</span> Fill in your setup above and this map becomes yours.</p>`:""}`;return}
-  const n=G.nodes.find(x=>x.id===PICK),rel=G.links.filter(l=>l.s===n.id||l.t===n.id);
-  p.innerHTML=`<button class="backbtn" type="button" id="back">← Back to the full map</button><span class="type">${shapeSVG(n.type)} ${esc(TY[n.type].one)}</span><h3>${esc(n.label)}</h3>
-   <dl class="facts">${Object.entries(n.info).filter(([,v])=>v).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${/</.test(v)?v:esc(v)}</dd>`).join("")}</dl>
-   ${rel.length?`<span class="type">Connected to</span><ul class="rel">${rel.map(l=>{const o=G.nodes.find(x=>x.id===(l.s===n.id?l.t:l.s));return `<li>${l.s===n.id?esc(l.l):"← "+esc(l.l)} <button class="linkbtn" type="button" data-p="${esc(o.id)}">${esc(o.label)}</button>${l.amt?` · ${usd(l.amt)}`:""}</li>`}).join("")}</ul>`:""}`;
-  $("back").onclick=()=>{pick(null);$("map").scrollIntoView({block:"start"})};p.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>pick(b.dataset.p));}
-$("fullmap").onclick=()=>{pick(null);if(G0fit)G0fit()};
-$("backmap").onclick=()=>pick(null);
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&PICK&&!$("hs-pop").contains(document.activeElement)){pick(null)}});
-$("mq").oninput=e=>{MQ=e.target.value.trim();PICK=null;renderPanel();applyView();if(MQ&&G){const m=G.nodes.filter(n=>n.label.toLowerCase().includes(MQ.toLowerCase()));if(m.length===1)pick(m[0].id)}};
-$("filt-btn").onclick=()=>{const b=$("filt-btn"),o=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",!o);$("filt").hidden=o;b.textContent=o?"Filters ▾":"Hide filters ▴"};
-document.querySelectorAll("#lsw button").forEach(b=>b.onclick=()=>{LINKS=b.dataset.k;document.querySelectorAll("#lsw button").forEach(x=>x.setAttribute("aria-pressed",x===b));applyView()});
+// Address lookup: US Census Geocoder (free, no key). It doesn't allow CORS, so the page uses JSONP as its docs say.
+function lookup(){const msg=$("geo-msg");if(!P.street||!/^\d{5}$/.test(P.zip)){msg.textContent="Please enter a street address and a 5-digit ZIP code.";return}
+  msg.textContent="Looking that up…";const cb="dcGeo"+Date.now(),s=document.createElement("script");let done=false;
+  window[cb]=j=>{done=true;delete window[cb];s.remove();try{const m=j.result.addressMatches[0];if(!m){msg.textContent="We couldn't find that address. Check the spelling, or type your district below.";return}
+    const G=m.geographies||{},rows=[];let st="";
+    for(const [k,arr] of Object.entries(G)){const a=arr&&arr[0];if(!a)continue;
+      if(/^States$/.test(k)){st=a.STUSAB||"";rows.push("State: "+a.NAME)}else if(/Counties/.test(k))rows.push("County: "+a.NAME);
+      else if(/Congressional District/.test(k))rows.push(a.NAME);else if(/State Legislative Districts - Upper/.test(k))rows.push("State senate: "+a.NAME);
+      else if(/State Legislative Districts - Lower/.test(k))rows.push("State house or assembly: "+a.NAME);else if(/Incorporated Places/.test(k))rows.push("City or town: "+a.NAME)}
+    P.geo={matched:m.matchedAddress,rows,on:ymd(TODAY)};if(st&&STATES[st]){P.state=st;$("state").value=st}
+    const lowK=Object.keys(G).find(k=>/State Legislative Districts - Lower/.test(k)),low=lowK&&G[lowK][0];if(!P.district&&low&&low.BASENAME)P.district=low.BASENAME;
+    save();renderSetup()}catch(e){msg.textContent="The lookup answered in a way we couldn't read. Please type your district below."}};
+  s.src=`https://geocoding.geo.census.gov/geocoder/geographies/address?street=${encodeURIComponent(P.street)}&zip=${P.zip}&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=jsonp&callback=${cb}`;
+  s.onerror=()=>{if(!done)msg.textContent="We couldn't reach the Census lookup. Please try again, or type your district below."};
+  document.body.appendChild(s);setTimeout(()=>{if(!done)msg.textContent="The Census lookup is taking a while. Try again, or type your district below."},15000)}
 
-// ---------- last election ----------
-function lastResult(){const key=`${P.state}:${P.officeKind}:${String(P.district||"").replace(/\D/g,"")}`;return D.results[key]||null}
-function renderLast(){const r=lastResult(),b=$("last-body"),ex=!r&&P.level==="state"&&P.state==="CA";const R=r||(ex||P.example?D.results["CA:assembly:1"]:null);
-  if(!R){b.innerHTML=`<p class="notice">We don't have checked results for ${P.office?esc(P.office):"this seat"} yet. Results, turnout and voter registration by party for your race are published by ${officeA()}${P.level==="federal"?`, and federal results by state election offices`:""}. Pick your seat and district in setup step 1 and 2 so we can match them.</p>`;return}
-  const votes=R.candidates.reduce((a,c)=>a+c.votes,0),reg=R.registration,noVote=reg?reg.total-votes:null,mx=Math.max(...reg.parties.map(p=>p[1]));
-  b.innerHTML=`${r?"":`<p class="sub"><span class="ex">Example</span> Showing ${esc(R.office)} until we can match your own seat and district.</p>`}
-  <p class="sub">${esc(R.office)} · ${esc(R.election)}${R.counties?` · Counties: ${esc(R.counties)}`:""}</p>
-  <div class="tiles"><div class="tot"><b>${num(votes)}</b><span>Votes for this office</span></div><div class="tot"><b>${num(reg.total)}</b><span>Registered (as of ${esc(reg.asof)})</span></div>
-  <div class="tot"><b>${num(noVote)}</b><span>Registered, no vote for this office</span></div><div class="tot"><b>${R.mail?num(R.mail):"Not published"}</b><span>Mail ballots for this seat</span></div></div>
-  <div class="le-grid"><div class="card"><h3>Results</h3><div class="tablewrap"><table><thead><tr><th>Candidate</th><th>Party (as printed)</th><th style="text-align:right">Votes</th><th style="text-align:right">Share</th></tr></thead><tbody>${R.candidates.map(c=>`<tr><td>${esc(c.name)}</td><td>${esc(c.party)}</td><td class="n">${num(c.votes)}</td><td class="n">${esc(c.pct)}</td></tr>`).join("")}</tbody></table></div>
-   <p class="src">Source: ${srcA(R.candidates_src)}. “Registered, no vote for this office” is registered voters minus votes for this office (${num(reg.total)} − ${num(votes)}); it also counts people who voted but skipped this race.</p>
-   <p class="src">${esc(R.missing)} Statewide in that election: ${num(R.statewide.voters)} of ${num(R.statewide.registered)} registered voters voted (${esc(R.statewide.turnout)}), and ${num(R.statewide.mail)} voted by mail (${esc(R.statewide.mail_pct)}). Source: ${srcA(R.statewide.src)}.</p></div>
-  <div class="card"><h3>Registered voters by party</h3><div class="hbar" role="img" aria-label="Registered voters by party, ${esc(R.office)}">${reg.parties.map(p=>`<span>${esc(p[0])}</span><span class="b"><i style="width:${(p[1]/mx*100).toFixed(1)}%"></i></span><span class="v">${num(p[1])} · ${esc(p[2])}</span>`).join("")}</div>
-   <details class="tbl"><summary>Show as table</summary><div class="tablewrap"><table><thead><tr><th>Party</th><th style="text-align:right">Registered</th><th style="text-align:right">Percent</th></tr></thead><tbody>${reg.parties.map(p=>`<tr><td>${esc(p[0])}</td><td class="n">${num(p[1])}</td><td class="n">${esc(p[2])}</td></tr>`).join("")}<tr><td><b>Total</b></td><td class="n"><b>${num(reg.total)}</b></td><td></td></tr></tbody></table></div></details>
-   <p class="src">Every party gets the same bar color; parties are listed in the order the report prints them. Source: ${srcA(reg.src)}.</p></div></div>`;}
+// ---------- Steps to run ----------
+function renderSteps(){const T=tasks(),done=T.filter(t=>t.done).length,cur=T.find(t=>!t.done),owners=["You (the candidate)","Your treasurer","Campaign manager","A volunteer"];
+  $("v-steps").innerHTML=`<div class="hello"><h1 id="h-steps">Steps to run for ${esc(raceWords())}</h1><p class="lede">${covered()?`These come from ${P.level==="federal"?"the Federal Election Commission":esc(ladder().model)+" rules"}, checked ${fmt(D.checked)}.`:`We haven't checked ${esc(STATES[P.state])}'s rules yet, so these are the usual steps. ${officeA()} has the details for your state.`} Tick each one when it's done.</p></div>
+  <div class="card"><div class="row" style="justify-content:space-between"><b>${done} of ${T.length} steps done</b>${cur?`<span class="muted">Next: ${esc(cur.name)}</span>`:""}</div><div class="progress" role="img" aria-label="${done} of ${T.length} steps done"><i style="width:${done/T.length*100}%"></i></div></div>
+  <ol class="steps">${T.map(t=>{const o=P.owners[t.k]||(/committee|reports|post|closed|postgeneral/.test(t.id)?owners[1]:owners[0]);
+   return `<li class="card step ${t.done?"done":""} ${t===cur?"now":""}"><span class="num" aria-hidden="true">${t.done?"✓":t.i+1}</span><div class="body">
+    <h2 style="font-size:21px">${esc(t.name)}${t===cur?` <span class="tag ok">Next</span>`:""}</h2><p>${esc(t.say)}</p>
+    <div class="meta"><label class="check" style="font-weight:700;color:var(--ink)"><input type="checkbox" data-k="${t.k}" ${t.done?"checked":""}>Done</label>${t.done?`<label>on <input class="datein" type="date" data-d="${t.k}" value="${t.done!==true?esc(t.done):""}"></label>`:""}
+     <label>Who does it: <select data-o="${t.k}">${owners.map(x=>`<option ${x===o?"selected":""}>${x}</option>`).join("")}</select></label>
+     ${t.due?`<span class="tag ${days(t.due)<0&&!t.done?"late":"ok"}">Due ${fmt(t.due)}${days(t.due)<0&&!t.done?" (passed)":""}</span>`:t.live?`<span class="tag">Date depends on where you live</span>`:""}</div>
+    ${whereHTML(t)}</div></li>`}).join("")}</ol>`;
+  const v=$("v-steps");v.querySelectorAll("[data-k]").forEach(c=>c.onchange=()=>{P.steps[c.dataset.k]=c.checked?ymd(TODAY):false;P.example=false;save();renderSteps()});
+  v.querySelectorAll("[data-d]").forEach(d=>d.onchange=()=>{if(d.value){P.steps[d.dataset.d]=d.value;save();renderSteps()}});
+  v.querySelectorAll("[data-o]").forEach(s=>s.onchange=()=>{P.owners[s.dataset.o]=s.value;save()});}
 
-// ---------- money board (always dark) ----------
-function drawMoney(){const E=ledger(),inn=E.filter(e=>e.kind==="in").reduce((a,e)=>a+e.amt,0),out=E.filter(e=>e.kind==="out").reduce((a,e)=>a+e.amt,0),debt=E.filter(e=>e.kind==="debt").reduce((a,e)=>a+e.amt,0),cash=inn-out;
-  const lim=D.limits[P.level],limOK=lim&&(!lim.state||lim.state===P.state);
-  const perDonor={};E.filter(e=>e.kind==="in").forEach(e=>perDonor[e.who]=(perDonor[e.who]||0)+e.amt);
-  const cap=limOK&&lim.rows[0]?+(lim.rows[0][1].match(/\$([\d,]+)/)||[0,"0"])[1].replace(/,/g,""):0;
-  const over=cap?Object.entries(perDonor).filter(([,v])=>v>cap):[];
-  const months={};E.forEach(e=>{if(e.kind==="debt")return;const m=e.d.slice(0,7);months[m]=months[m]||{in:0,out:0};months[m][e.kind]+=e.amt});const M=Object.keys(months).sort();
-  $("board").innerHTML=`<div class="board-head"><span class="tk-label">Fundraising board</span>${P.ledger?"":P.example?`<span class="ex">Example numbers</span>`:""}</div>
-  <div class="mb"><div><span class="mb-cap">Cash on hand</span><div class="mb-big">${usd(cash)}</div>${P.budget?`<p style="color:#c8b497;margin-top:4px">${usd(inn)} raised of your ${usd(+P.budget)} goal (${Math.round(inn/+P.budget*100)}%)</p>`:""}
-   <div class="mb-tiles"><div class="mb-st"><i>Raised</i><b>${usd(inn)}</b></div><div class="mb-st sp"><i>Spent</i><b>${usd(out)}</b></div><div class="mb-st"><i>Cash on hand</i><b>${usd(cash)}</b></div><div class="mb-st db"><i>Debts owed</i><b>${usd(debt)}</b></div></div>
-   ${over.length?`<p style="margin-top:10px;color:#e8d3b6">⚑ <span class="flag">Check:</span> ${over.map(([w,v])=>`${esc(w)} has given ${usd(v)} in total`).join("; ")}, more than ${usd(cap)}. The limit is per election, so this may be fine across a primary and a general; confirm with ${P.level==="federal"?srcA("fec_lim"):"your filing officer"}.</p>`:""}</div>
-   <div class="lim"><h3>Contribution limits</h3>${limOK?`<p>${esc(lim.cycle)}</p>${lim.rows.length?`<table><tbody>${lim.rows.map(r=>`<tr><td>${esc(r[0])}</td><td class="n" style="color:#f2d9b8">${esc(r[1])}</td></tr>`).join("")}</tbody></table>`:""}<p>${esc(lim.note)}</p><p>Source: ${srcs(lim.src)}</p>`:`<p>We haven't checked ${esc(STATES[P.state])}'s ${LV[P.level].toLowerCase()} limits yet. ${officeA()} publishes them.</p>`}</div></div>
-  <div class="chart"><div class="chart-legend"><span><i style="background:#6a9e4c"></i>Raised</span><span><i style="background:#1b89a5"></i>Spent</span></div><div style="position:relative"><svg id="mchart" role="img" aria-label="Money raised and spent by month"></svg><div class="tip" id="mtip" hidden></div></div></div>
-  <details><summary>Show as table</summary><div style="overflow-x:auto;padding:0 18px 12px"><table><thead><tr><th>Date</th><th>Kind</th><th>Who</th><th>Memo</th><th style="text-align:right">Amount</th><th></th></tr></thead><tbody>${E.map((e,i)=>`<tr><td class="n" style="text-align:left">${fmt(e.d)}</td><td>${e.kind==="in"?"Contribution":e.kind==="out"?"Expense":"Debt"}</td><td>${esc(e.who)}</td><td>${esc(e.memo||"")}</td><td class="n">${usd(e.amt)}</td><td>${P.ledger?`<button class="linkbtn" type="button" data-del="${i}" style="color:#a8d68a">Remove</button>`:""}</td></tr>`).join("")||`<tr><td colspan="6">Nothing recorded yet.</td></tr>`}</tbody></table></div></details>
-  <form class="ledger-form" id="lf"><label>Date<input type="date" id="l-d" required value="${iso(TODAY)}"></label><label>Kind<select id="l-k"><option value="in">Contribution</option><option value="out">Expense</option><option value="debt">Debt owed</option></select></label><label>Who<input id="l-w" required placeholder="Name"></label><label>Amount ($)<input id="l-a" type="number" min="0" step="0.01" required></label><label>Memo<input id="l-m" placeholder="Optional"></label><button class="btn" type="submit">${P.ledger?"Add":"Start my own and add"}</button></form>
-  <p style="padding:0 18px 14px;font-size:12px;color:#9aa1a9">This is a planning ledger kept in this browser, not your official report. File your reports with ${P.level==="federal"?"the FEC":"your filing officer"} on time.</p>`;
-  $("lf").onsubmit=e=>{e.preventDefault();if(!P.ledger)P.ledger=[];P.ledger.push({d:$("l-d").value,kind:$("l-k").value,who:$("l-w").value.trim(),amt:+$("l-a").value,memo:$("l-m").value.trim()});P.example=false;save();renderAll(true)};
-  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{P.ledger.splice(+b.dataset.del,1);save();renderAll(true)});
-  const svg=d3.select("#mchart"),W=$("mchart").getBoundingClientRect().width||600,H=220,m={l:56,r:8,t:10,b:24};svg.attr("viewBox",`0 0 ${W} ${H}`);
-  if(!M.length){svg.append("text").attr("x",W/2).attr("y",H/2).attr("text-anchor","middle").attr("fill","#9aa1a9").attr("stroke","none").text("No money recorded yet");return}
-  const x=d3.scaleBand().domain(M).range([m.l,W-m.r]).padding(.3),x2=d3.scaleBand().domain(["in","out"]).range([0,x.bandwidth()]).padding(.08),y=d3.scaleLinear().domain([0,d3.max(M,k=>Math.max(months[k].in,months[k].out))||1]).nice().range([H-m.b,m.t]);
+// ---------- Key dates ----------
+function renderDates(){const ds=keyDates(),up=ds.filter(d=>days(d.date)>=0),past=ds.filter(d=>days(d.date)<0).reverse(),live=ladder().steps.filter(s=>s.live);
+  const card=(d,next)=>`<div class="card date ${next?"next":""}"><span class="when">${fmt(d.date)}</span><span class="left">${away(d.date)}${days(d.date)<0?" <b>(passed)</b>":""}</span><p>${esc(d.what)}</p><p class="where">Set by ${esc(d.who)} · ${srcs(d.src)}</p></div>`;
+  $("v-dates").innerHTML=`<div class="hello"><h1 id="h-dates">Key dates</h1><p class="lede">The dates that matter for ${esc(raceWords())}, soonest first. Each one links to the official calendar it came from.</p></div>
+  ${up.length?`<div class="grid3">${up.map((d,i)=>card(d,i===0)).join("")}</div>`:`<p class="note">No upcoming dates on the official calendars we've checked for this race yet.</p>`}
+  <div class="card"><h2>Dates that depend on where you live</h2><p>${live.map(s=>`<b>${esc(s.name)}</b>`).join(", ")}. ${P.geo?`For ${esc(P.geo.matched)}, `:"Once you add your address in Set up, "}${officeA()} publishes these dates. We'll show them here once we've checked them.</p></div>
+  ${past.length?`<details class="more"><summary>Past dates (${past.length})</summary><div class="grid3">${past.map(d=>card(d)).join("")}</div></details>`:""}`;}
+
+// ---------- Money ----------
+function renderMoney(){const E=ledger(),sum=k=>E.filter(e=>e.kind===k).reduce((a,e)=>a+e.amt,0),inn=sum("in"),out=sum("out"),debt=sum("debt"),cash=inn-out;
+  const lim=D.limits[P.level],limOK=lim&&(!lim.state||lim.state===P.state),per={};E.filter(e=>e.kind==="in").forEach(e=>per[e.who]=(per[e.who]||0)+e.amt);
+  const cap=limOK&&lim.rows[0]?+((lim.rows[0][1].match(/\$([\d,]+)/)||[0,"0"])[1].replace(/,/g,"")):0,over=cap?Object.entries(per).filter(([,v])=>v>cap):[];
+  $("v-money").innerHTML=`<div class="hello"><h1 id="h-money">Money</h1><p class="lede">Keep track of what comes in and goes out, and the limits on what each person can give.</p></div>
+  <div class="card">${!P.ledger&&P.example?`<p><span class="tag ex">Example numbers</span> Add your first entry below and this becomes yours.</p>`:""}
+   <span class="muted" style="font-weight:700">Cash on hand</span><span class="big">${usd(cash)}</span>${P.budget?`<p>${usd(inn)} raised toward your goal of ${usd(+P.budget)}.</p><div class="progress" role="img" aria-label="${Math.round(inn/+P.budget*100)}% of goal"><i style="width:${Math.min(100,inn/+P.budget*100)}%"></i></div>`:""}
+   <div class="tiles"><div class="tile r"><span>Raised</span><b>${usd(inn)}</b></div><div class="tile s"><span>Spent</span><b>${usd(out)}</b></div><div class="tile c"><span>Cash on hand</span><b>${usd(cash)}</b></div><div class="tile d"><span>Bills not yet paid</span><b>${usd(debt)}</b></div></div>
+   ${over.length?`<p class="note"><b>Worth checking:</b> ${over.map(([w,x])=>`${esc(w)} has given ${usd(x)}`).join("; ")}, which is more than ${usd(cap)}. The limit is per election, so this may be fine across a primary and a general. ${P.level==="federal"?srcA("fec_lim"):"Ask your filing officer."}</p>`:""}</div>
+  <div class="grid2"><div class="card"><h2>Month by month</h2><div class="key"><span><i style="background:var(--raised)"></i>Raised</span><span><i style="background:var(--spent)"></i>Spent</span></div><div class="chart"><svg id="mchart" role="img" aria-label="Money raised and spent by month"></svg><div class="tip" id="mtip" hidden></div></div>
+   <details class="more"><summary>Show as a table</summary><div class="tablewrap"><table><thead><tr><th>Date</th><th>What</th><th>Who</th><th style="text-align:right">Amount</th><th></th></tr></thead><tbody>${E.map((e,i)=>`<tr><td>${fmt(e.d)}</td><td>${e.kind==="in"?"Gift to the campaign":e.kind==="out"?"Spent":"Bill not yet paid"}${e.memo?`: ${esc(e.memo)}`:""}</td><td>${esc(e.who)}</td><td class="n">${usd(e.amt)}</td><td>${P.ledger?`<button class="linkbtn" type="button" data-del="${i}">Remove</button>`:""}</td></tr>`).join("")||`<tr><td colspan="5">Nothing recorded yet.</td></tr>`}</tbody></table></div></details></div>
+   <div class="card"><h2>How much one person can give</h2>${limOK?`<p class="muted">${esc(lim.cycle)}</p>${lim.rows.map(r=>`<div class="limit-row"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("")}<p class="small">${esc(lim.note)}</p><p class="where">${srcs(lim.src)}</p>`:`<p>We haven't checked ${esc(STATES[P.state])}'s limits yet. ${officeA()} publishes them.</p>`}</div></div>
+  <div class="card"><h2>Add money in or out</h2><form class="ledger" id="lf"><label>Date<input type="date" id="l-d" required value="${ymd(TODAY)}"></label><label>What<select id="l-k"><option value="in">Gift to the campaign</option><option value="out">Money spent</option><option value="debt">Bill not yet paid</option></select></label><label>Who<input id="l-w" required placeholder="Name"></label><label>Amount ($)<input id="l-a" type="number" min="0" step="0.01" required></label><label>Note<input id="l-m" placeholder="Optional"></label><button class="btn" type="submit">Add</button></form>
+   <p class="hint">This is a planning notebook kept in this browser. It isn't your official report: your treasurer still files those with ${P.level==="federal"?"the FEC":"your filing officer"}.</p></div>`;
+  $("lf").onsubmit=e=>{e.preventDefault();if(!P.ledger)P.ledger=[];P.ledger.push({d:$("l-d").value,kind:$("l-k").value,who:$("l-w").value.trim(),amt:+$("l-a").value,memo:$("l-m").value.trim()});P.example=false;save();renderMoney()};
+  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{P.ledger.splice(+b.dataset.del,1);save();renderMoney()});drawChart();}
+function drawChart(){const el=$("mchart");if(!el)return;const E=ledger(),months={};E.forEach(e=>{if(e.kind==="debt")return;const m=e.d.slice(0,7);months[m]=months[m]||{in:0,out:0};months[m][e.kind]+=e.amt});const M=Object.keys(months).sort();
+  const svg=d3.select(el);svg.selectAll("*").remove();const W=el.getBoundingClientRect().width||600,H=240,m={l:60,r:6,t:10,b:28};svg.attr("viewBox",`0 0 ${W} ${H}`);
+  if(!M.length){svg.append("text").attr("x",W/2).attr("y",H/2).attr("text-anchor","middle").style("stroke","none").style("fill","var(--muted)").text("Nothing recorded yet");return}
+  const x=d3.scaleBand().domain(M).range([m.l,W-m.r]).padding(.3),x2=d3.scaleBand().domain(["in","out"]).range([0,x.bandwidth()]).padding(.1),y=d3.scaleLinear().domain([0,d3.max(M,k=>Math.max(months[k].in,months[k].out))||1]).nice().range([H-m.b,m.t]);
   svg.append("g").attr("class","grid").selectAll("line").data(y.ticks(4)).join("line").attr("x1",m.l).attr("x2",W-m.r).attr("y1",y).attr("y2",y);
-  svg.append("g").attr("class","ax").selectAll("text").data(y.ticks(4)).join("text").attr("x",m.l-6).attr("y",d=>y(d)+4).attr("text-anchor","end").text(d=>usd(d));
-  svg.append("g").attr("class","ax").selectAll("text").data(M).join("text").attr("x",d=>x(d)+x.bandwidth()/2).attr("y",H-6).attr("text-anchor","middle").text(d=>{const [yy,mm]=d.split("-");return MO[+mm-1]+" "+yy.slice(2)});
+  svg.append("g").attr("class","ax").selectAll("text").data(y.ticks(4)).join("text").attr("x",m.l-8).attr("y",d=>y(d)+4).attr("text-anchor","end").text(d=>usd(d));
+  svg.append("g").attr("class","ax").selectAll("text").data(M).join("text").attr("x",d=>x(d)+x.bandwidth()/2).attr("y",H-6).attr("text-anchor","middle").text(d=>MON[+d.slice(5)-1].slice(0,3)+" "+d.slice(0,4));
   const tip=$("mtip");
   svg.append("g").selectAll("g").data(M).join("g").attr("transform",d=>`translate(${x(d)},0)`).selectAll("path").data(d=>["in","out"].map(k=>({m:d,k,v:months[d][k]}))).join("path")
-   .attr("d",d=>{const bx=x2(d.k),w=x2.bandwidth(),y0=y(0),y1=y(d.v),r=Math.min(4,w/2,y0-y1);return d.v?`M${bx},${y0}V${y1+r}Q${bx},${y1} ${bx+r},${y1}H${bx+w-r}Q${bx+w},${y1} ${bx+w},${y1+r}V${y0}Z`:""}).attr("fill",d=>d.k==="in"?"#6a9e4c":"#1b89a5")
-   .on("pointerenter pointermove",(e,d)=>{tip.hidden=false;tip.textContent=`${d.k==="in"?"Raised":"Spent"} · ${MO[+d.m.slice(5)-1]} ${d.m.slice(0,4)}: ${usd(d.v)}`;const r=$("mchart").getBoundingClientRect();tip.style.left=Math.min(e.clientX-r.left+10,r.width-180)+"px";tip.style.top=(e.clientY-r.top-30)+"px"}).on("pointerleave",()=>tip.hidden=true);}
+   .attr("d",d=>{const bx=x2(d.k),w=x2.bandwidth(),y0=y(0),y1=y(d.v),r=Math.min(4,w/2,y0-y1);return d.v?`M${bx},${y0}V${y1+r}Q${bx},${y1} ${bx+r},${y1}H${bx+w-r}Q${bx+w},${y1} ${bx+w},${y1+r}V${y0}Z`:""})
+   .style("fill",d=>d.k==="in"?"var(--raised)":"var(--spent)")
+   .on("pointerenter pointermove",(e,d)=>{tip.hidden=false;tip.textContent=`${d.k==="in"?"Raised":"Spent"} in ${MON[+d.m.slice(5)-1]}: ${usd(d.v)}`;const r=el.getBoundingClientRect();tip.style.left=Math.min(e.clientX-r.left+10,r.width-200)+"px";tip.style.top=(e.clientY-r.top-34)+"px"}).on("pointerleave",()=>tip.hidden=true);}
 
-// ---------- site search ----------
-function index(){const L=ladder(),out=[];
-  tasks().forEach(t=>out.push({k:"Step",t:t.name,m:t.say,go:"#todo"}));
-  keyDates().forEach(d=>out.push({k:"Date",t:d.what,m:fmt(d.date)+" · "+d.who,go:"#dates-sec"}));
-  if(G)G.nodes.forEach(n=>out.push({k:TY[n.type].one,t:n.label,m:"On your campaign map",go:"#map",pick:n.id}));
-  const lim=D.limits[P.level];if(lim)lim.rows.forEach(r=>out.push({k:"Limit",t:r[0]+": "+r[1],m:lim.cycle,go:"#money"}));
-  Object.values(D.src).forEach(s=>out.push({k:"Source",t:s.label,m:s.url,url:s.url}));
-  MS.forEach((m,i)=>out.push({k:"Setup",t:m[0],m:m[1],go:"#setup",step:i}));
-  out.push({k:"Section",t:"Last election for this seat",m:"Votes, registration by party, turnout",go:"#last"},{k:"Section",t:"Fundraising board",m:"Raised, spent, cash on hand, debts, limits",go:"#money"});return out}
-(function(){const q=$("hs-q"),pop=$("hs-pop"),ul=$("hs-list");let res=[],sel=0;
-  const show=()=>{const s=q.value.trim().toLowerCase();const all=index();res=s?all.filter(r=>(r.t+" "+r.m+" "+r.k).toLowerCase().includes(s)).slice(0,30):all.filter(r=>r.k==="Step"||r.k==="Date").slice(0,12);sel=0;
+// ---------- Your team (map) ----------
+const SHAPES={circle:"M7,0A7,7 0 1,1 -7,0A7,7 0 1,1 7,0Z",hex:"M7,0L3.5,6.1L-3.5,6.1L-7,0L-3.5,-6.1L3.5,-6.1Z",square:"M-6,-6H6V6H-6Z",diamond:"M0,-8L8,0L0,8L-8,0Z",down:"M-7.5,-5.5H7.5L0,7.5Z",house:"M-7,7V-1L0,-8L7,-1V7Z",page:"M-5.5,-7.5H2L5.5,-4V7.5H-5.5Z",up:"M0,-8L8,6.5H-8Z"};
+const ONE={person:"Person",committee:"Committee",organization:"Organization",donor:"Donor",vendor:"Vendor",office:"Office",filing:"Filing",deadline:"Deadline"};
+const SH=Object.fromEntries(D.types.map(([k,,s])=>[k,s]));
+const shapeSVG=(t,n=14)=>`<svg viewBox="-9 -9 18 18" width="${n}" height="${n}" aria-hidden="true"><path d="${SHAPES[SH[t]]}" style="fill:var(--t-${t})"/></svg>`;
+let SHOW=Object.fromEntries(D.types.map(([k])=>[k,true])),PICK=null,G=null,sim=null,zoomB=null,fitFn=null,TEAMVIEW="map";
+function graph(){const nodes=[],links=[],add=(id,type,label,info)=>{if(!nodes.find(n=>n.id===id))nodes.push({id,type,label,info:info||{}});return id},ex=P.example;
+  add("cand","person",P.name||(ex?EXAMPLE.name:"You"),{Role:"Candidate",Office:P.office||(ex?EXAMPLE.office:"Not set yet")});
+  add("cmte","committee",`${P.name||(ex?EXAMPLE.name:"Your")} campaign committee`,{Role:"Your committee"});links.push({s:"cand",t:"cmte",k:"team",l:"runs"});
+  const tr=P.treasurer||(ex?EXAMPLE.treasurer:"");if(tr){add("treas","person",tr,{Role:"Treasurer"});links.push({s:"treas",t:"cmte",k:"team",l:"treasurer of"})}
+  team().forEach((m,i)=>{const ty=/group/.test(m.role)?"organization":m.role==="Vendor"?"vendor":"person";add("tm"+i,ty,m.name,{Role:m.role});links.push({s:"tm"+i,t:ty==="vendor"?"cmte":"cand",k:"team",l:m.role.toLowerCase()})});
+  const by={};ledger().forEach(e=>{const ty=e.kind==="in"?"donor":"vendor",id=ty[0]+":"+e.who;add(id,ty,e.who,{});by[id]=(by[id]||0)+e.amt;nodes.find(x=>x.id===id).info[e.kind==="in"?"Gave":e.kind==="debt"?"Owed":"Paid"]=usd(by[id]);links.push({s:e.kind==="in"?id:"cmte",t:e.kind==="in"?"cmte":id,k:"money",l:e.kind==="in"?"gave":"paid",amt:e.amt})});
+  const o=office();add("office","office",o.name,{Role:"Where you file",Website:`<a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.url)}</a>`});
+  const t=tasks(),cur=t.find(x=>!x.done);if(cur){add("f:"+cur.id,"filing",cur.name,{Status:"Your next step",What:cur.say});links.push({s:"cmte",t:"f:"+cur.id,k:"paper",l:"next step"});links.push({s:"f:"+cur.id,t:"office",k:"paper",l:"filed with"})}
+  const nd=keyDates().find(d=>days(d.date)>=0);if(nd){add("dl","deadline",nd.what,{Date:`${fmt(nd.date)} (${away(nd.date)})`,Source:srcs(nd.src)});links.push({s:"dl",t:"office",k:"paper",l:"set by"})}
+  return {nodes,links}}
+function renderTeam(){const g=graph();
+  $("v-team").innerHTML=`<div class="hello"><h1 id="h-team">Your team</h1><p class="lede">Everyone helping your campaign, the people who give and the businesses you pay, all in one picture. Tap anyone to see more.</p></div>
+  ${P.example?`<p class="note"><span class="tag ex">Example</span> These are made-up names. Add your treasurer and team in Set up, and your own money on the Money page.</p>`:""}
+  <div class="row" role="group" aria-label="How to show your team"><button class="btn ${TEAMVIEW==="map"?"":"ghost"} small" type="button" data-tv="map" aria-pressed="${TEAMVIEW==="map"}">Picture</button><button class="btn ${TEAMVIEW==="list"?"":"ghost"} small" type="button" data-tv="list" aria-pressed="${TEAMVIEW==="list"}">List</button></div>
+  ${TEAMVIEW==="list"?`<div class="card"><ul class="team-list">${g.nodes.map(n=>`<li>${shapeSVG(n.type,18)}<span><b>${esc(n.label)}</b> <span class="muted small">· ${esc(n.info.Role||ONE[n.type])}${n.info.Gave?" · gave "+n.info.Gave:""}${n.info.Paid?" · paid "+n.info.Paid:""}${n.info.Owed?" · owed "+n.info.Owed:""}</span></span></li>`).join("")}</ul></div>`:
+  `<div class="chips" id="chips">${D.types.map(([k,l])=>`<button type="button" class="chip" data-t="${k}" aria-pressed="${SHOW[k]}">${shapeSVG(k)}${esc(l)}</button>`).join("")}</div>
+  <p class="how"><span>Drag to move</span><span>Pinch or scroll to zoom</span><span>Tap someone to see more</span><span><button class="linkbtn" type="button" id="fullmap">↺ Show everyone</button></span></p>
+  <div class="bench"><div class="graph" id="graph"><button type="button" class="backmap" id="backmap" hidden>✕ Show everyone</button><svg id="svg" role="img" aria-label="Picture of your campaign team, donors, vendors and election office"></svg></div><aside class="panel" id="panel" aria-live="polite"></aside></div>`}`;
+  document.querySelectorAll("[data-tv]").forEach(b=>b.onclick=()=>{TEAMVIEW=b.dataset.tv;renderTeam()});
+  if(TEAMVIEW==="map"){$("chips").querySelectorAll(".chip").forEach(c=>c.onclick=()=>{SHOW[c.dataset.t]=!SHOW[c.dataset.t];c.setAttribute("aria-pressed",SHOW[c.dataset.t]);applyView()});
+   $("fullmap").onclick=()=>{pick(null);fitFn&&fitFn()};$("backmap").onclick=()=>pick(null);drawMap()}}
+function drawMap(){const el=$("svg");if(!el)return;const {nodes,links}=graph();G={nodes,links};
+  const svg=d3.select(el);svg.selectAll("*").remove();const box=$("graph").getBoundingClientRect(),W=Math.max(300,box.width),H=Math.max(480,box.height);svg.attr("viewBox",`0 0 ${W} ${H}`);
+  const g=svg.append("g");zoomB=d3.zoom().scaleExtent([.4,4]).on("zoom",e=>g.attr("transform",e.transform));svg.call(zoomB).on("click",e=>{if(e.target===el)pick(null)});
+  const L=links.map(l=>({...l,source:l.s,target:l.t}));
+  const ln=g.append("g").selectAll("line").data(L).join("line").attr("class",d=>"link "+(d.k==="money"?"money":d.k==="paper"?"paper":""));
+  const nd=g.append("g").selectAll("g").data(nodes).join("g").attr("class","node").attr("tabindex",0).attr("role","button").attr("aria-label",d=>`${ONE[d.type]}: ${d.label}`)
+    .on("click",(e,d)=>{e.stopPropagation();pick(d.id)}).on("keydown",(e,d)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick(d.id)}})
+    .call(d3.drag().on("start",(e,d)=>{d.fx=d.x;d.fy=d.y}).on("drag",(e,d)=>{d.fx=e.x;d.fy=e.y;d.x=e.x;d.y=e.y;tick()}).on("end",(e,d)=>{d.fx=null;d.fy=null}));
+  nd.append("path").attr("d",d=>SHAPES[SH[d.type]]).style("fill",d=>`var(--t-${d.type})`).attr("transform",d=>d.id==="cand"?"scale(2)":"scale(1.4)");
+  nd.append("text").attr("dy",d=>d.id==="cand"?32:24).attr("text-anchor","middle").text(d=>d.label.length>30?d.label.slice(0,29)+"…":d.label);
+  const tick=()=>{ln.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);nd.attr("transform",d=>`translate(${d.x},${d.y})`)};
+  sim=d3.forceSimulation(nodes).force("link",d3.forceLink(L).id(d=>d.id).distance(110)).force("charge",d3.forceManyBody().strength(-420)).force("center",d3.forceCenter(W/2,H/2)).force("collide",d3.forceCollide(48)).stop();
+  for(let i=0;i<320;i++)sim.tick();tick();
+  fitFn=()=>{const xs=nodes.map(n=>n.x),ys=nodes.map(n=>n.y),x0=Math.min(...xs)-90,x1=Math.max(...xs)+90,y0=Math.min(...ys)-40,y1=Math.max(...ys)+50,k=Math.min(1.3,W/(x1-x0),H/(y1-y0));svg.call(zoomB.transform,d3.zoomIdentity.translate(W/2-k*(x0+x1)/2,H/2-k*(y0+y1)/2).scale(k))};fitFn();
+  G.ln=ln;G.nd=nd;applyView();renderPanel()}
+function applyView(){if(!G||!G.nd)return;const nb=new Set();if(PICK){nb.add(PICK);G.links.forEach(l=>{if(l.s===PICK)nb.add(l.t);if(l.t===PICK)nb.add(l.s)})}
+  G.nd.attr("display",d=>SHOW[d.type]?null:"none").classed("dim",d=>PICK&&!nb.has(d.id)).classed("sel",d=>d.id===PICK);
+  G.ln.attr("display",d=>SHOW[d.source.type]&&SHOW[d.target.type]?null:"none").classed("dim",d=>PICK&&d.source.id!==PICK&&d.target.id!==PICK);
+  if($("backmap"))$("backmap").hidden=!PICK}
+function pick(id){PICK=id;applyView();renderPanel()}
+function renderPanel(){const p=$("panel");if(!p)return;const n=PICK&&G.nodes.find(x=>x.id===PICK);
+  if(!n){p.innerHTML=`<h2 style="font-size:22px">Tap anyone</h2><p>You'll see who they are, any money they gave or were paid, and how they're connected to your campaign.</p><div class="legend">${D.types.map(([k])=>`<span>${shapeSVG(k)}${ONE[k]}</span>`).join("")}</div><p class="small muted">Green lines are money. Dotted lines lead to paperwork and dates.</p>`;return}
+  const rel=G.links.filter(l=>l.s===n.id||l.t===n.id);
+  p.innerHTML=`<button class="btn" type="button" id="back" style="width:100%">← Back to everyone</button><span class="muted small">${shapeSVG(n.type)} ${ONE[n.type]}</span><h2 style="font-size:22px">${esc(n.label)}</h2>
+   <dl class="facts">${Object.entries(n.info).filter(([,v])=>v).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${/</.test(v)?v:esc(v)}</dd>`).join("")}</dl>
+   ${rel.length?`<b>Connected to</b><ul class="rel">${rel.map(l=>{const o=G.nodes.find(x=>x.id===(l.s===n.id?l.t:l.s));return `<li>${esc(l.l)}: <button class="linkbtn" type="button" data-p="${esc(o.id)}">${esc(o.label)}</button>${l.amt?` (${usd(l.amt)})`:""}</li>`}).join("")}</ul>`:""}`;
+  $("back").onclick=()=>pick(null);p.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>pick(b.dataset.p))}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&PICK&&VIEW==="team"&&$("pop").hidden)pick(null)});
+
+// ---------- Last election ----------
+function lastResult(){return D.results[`${P.state}:${P.officeKind}:${String(P.district||"").replace(/\D/g,"")}`]||null}
+function exampleResult(){return (P.state==="CA"&&P.level==="state")||P.example?D.results["CA:assembly:1"]:null}
+function renderLast(){const r=lastResult(),R=r||exampleResult(),v=$("v-last");
+  if(!R){v.innerHTML=`<div class="hello"><h1 id="h-last">Last election for this seat</h1></div><div class="card"><p class="lede">We don't have checked results for ${P.office?esc(P.office):"your seat"} yet. ${officeA()} publishes past results, turnout and how many voters are registered with each party.</p><p>Fill in your seat and address in <a href="#setup">Set up</a> so we can match them.</p></div>`;return}
+  const votes=R.candidates.reduce((a,c)=>a+c.votes,0),reg=R.registration,win=R.candidates.reduce((a,c)=>c.votes>a.votes?c:a),mx=Math.max(...reg.parties.map(p=>p[1]));
+  v.innerHTML=`<div class="hello"><h1 id="h-last">Last election for this seat</h1>${r?"":`<p><span class="tag ex">Example</span> Showing ${esc(R.office)} until we can match your own seat and district.</p>`}</div>
+  <div class="card"><p class="muted" style="font-weight:700">${esc(R.office)} · ${esc(R.election)}</p>
+   <p class="say">The candidates got <b>${num(votes)}</b> votes in all (their totals added together). The winner, ${esc(win.name)}, got <b>${num(win.votes)}</b> votes (${esc(win.pct)}).</p>
+   <p class="say"><b>${num(reg.total)}</b> people were registered to vote in the district. About <b>${num(reg.total-votes)}</b> of them didn't vote for this seat, either because they didn't vote or because they skipped this race.</p>
+   <p class="say">Mail ballots for this district: <b>not published</b>. Across California, ${esc(R.statewide.mail_pct)} of voters voted by mail in that election.</p>
+   <details class="where"><summary>Where this comes from</summary><p>${srcA(R.candidates_src)} · ${srcA(reg.src)} · ${srcA(R.statewide.src)}. ${esc(R.missing)}</p></details></div>
+  <div class="grid2"><div class="card"><h2>How each candidate did</h2><div class="tablewrap"><table><thead><tr><th>Candidate</th><th>Party</th><th style="text-align:right">Votes</th><th style="text-align:right">Share</th></tr></thead><tbody>${R.candidates.map(c=>`<tr><td>${esc(c.name)}</td><td>${esc(c.party)}</td><td class="n">${num(c.votes)}</td><td class="n">${esc(c.pct)}</td></tr>`).join("")}</tbody></table></div><p class="hint">Party as printed in the official results.</p></div>
+   <div class="card"><h2>Registered voters by party</h2><p class="hint">As of ${esc(reg.asof)}. Every party is shown the same way, in the order the official report lists them.</p><div class="hbar" role="img" aria-label="Registered voters by party">${reg.parties.map(p=>`<span>${esc(p[0])}</span><span class="b"><i style="width:${(p[1]/mx*100).toFixed(1)}%"></i></span><span class="v">${num(p[1])} (${esc(p[2])})</span>`).join("")}</div>
+   <details class="more"><summary>Show as a table</summary><div class="tablewrap"><table><thead><tr><th>Party</th><th style="text-align:right">Registered</th><th style="text-align:right">Share</th></tr></thead><tbody>${reg.parties.map(p=>`<tr><td>${esc(p[0])}</td><td class="n">${num(p[1])}</td><td class="n">${esc(p[2])}</td></tr>`).join("")}<tr><td><b>Total</b></td><td class="n"><b>${num(reg.total)}</b></td><td></td></tr></tbody></table></div></details></div></div>`;}
+
+// ---------- search ----------
+function index(){const out=[];tasks().forEach(t=>out.push({k:"Step",t:t.name,m:t.say,go:"steps"}));keyDates().forEach(d=>out.push({k:"Date",t:d.what,m:fmt(d.date),go:"dates"}));
+  const lim=D.limits[P.level];if(lim)lim.rows.forEach(r=>out.push({k:"Limit",t:`${r[0]}: ${r[1]}`,m:lim.cycle,go:"money"}));
+  graph().nodes.forEach(n=>out.push({k:"Team",t:n.label,m:ONE[n.type],go:"team",pick:n.id}));
+  VIEWS.forEach(([k,l])=>out.push({k:"Page",t:l,m:"Go to this page",go:k}));MS.forEach((m,i)=>out.push({k:"Set up",t:m[0],m:m[1],go:"setup",step:i}));
+  Object.values(D.src).forEach(s=>out.push({k:"Source",t:s.label,m:"Official source",url:s.url}));return out}
+(function(){const q=$("q"),pop=$("pop"),ul=$("qlist");let res=[],sel=0;
+  const close=()=>{pop.hidden=true;q.setAttribute("aria-expanded","false")};
+  const showRes=()=>{const s=q.value.trim().toLowerCase();res=s?index().filter(r=>(r.t+" "+r.m+" "+r.k).toLowerCase().includes(s)).slice(0,25):index().filter(r=>r.k==="Page");sel=0;
     const hi=t=>s?esc(t).replace(new RegExp("("+s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"),"<mark>$1</mark>"):esc(t);
-    ul.innerHTML=res.map((r,i)=>`<li class="hs-opt" role="option" id="ho${i}" aria-selected="${i===sel}" data-i="${i}"><span class="k">${esc(r.k)}</span><span class="t">${hi(r.t)}</span><span class="m">${esc(r.m)}</span></li>`).join("")||`<li class="hs-empty">Nothing matches. Try a form number, a step or a name.</li>`;
+    ul.innerHTML=res.map((r,i)=>`<li class="opt" role="option" id="o${i}" aria-selected="${i===sel}" data-i="${i}"><span class="k">${esc(r.k)}</span><span class="t">${hi(r.t)}</span><span class="m">${esc(r.m)}</span></li>`).join("")||`<li class="opt"><span></span><span>Nothing matches. Try a word like “treasurer”, “fee” or “report”.</span></li>`;
     pop.hidden=false;q.setAttribute("aria-expanded","true")};
-  const go=r=>{if(!r)return;pop.hidden=true;q.setAttribute("aria-expanded","false");if(r.url){window.open(r.url,"_blank","noopener");return}
-    if(r.step!=null){P.step=r.step;save();renderMS();renderSetup()}const el=document.querySelector(r.go);if(el)el.scrollIntoView({block:"start"});if(r.pick)pick(r.pick)};
-  q.oninput=show;q.onfocus=show;
-  q.onkeydown=e=>{if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();sel=(sel+(e.key==="ArrowDown"?1:-1)+res.length)%Math.max(1,res.length);ul.querySelectorAll(".hs-opt").forEach((o,i)=>o.setAttribute("aria-selected",i===sel));q.setAttribute("aria-activedescendant","ho"+sel)}
-    if(e.key==="Enter"){e.preventDefault();go(res[sel])}if(e.key==="Escape"){pop.hidden=true;q.setAttribute("aria-expanded","false")}};
-  ul.onclick=e=>{const o=e.target.closest(".hs-opt");if(o)go(res[+o.dataset.i])};
-  document.addEventListener("click",e=>{if(!$("hs").contains(e.target)){pop.hidden=true;q.setAttribute("aria-expanded","false")}});
-  const j=$("hs-jump");const io=new IntersectionObserver(([en])=>{const on=!en.isIntersecting;j.classList.toggle("on",on);j.tabIndex=on?0:-1;j.setAttribute("aria-hidden",!on)});io.observe($("hs"));
-  j.onclick=()=>{window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});q.focus({preventScroll:true})};})();
+  const go=r=>{if(!r)return;close();if(r.url){window.open(r.url,"_blank","noopener");return}if(r.step!=null){P.step=r.step;save()}if(r.pick){TEAMVIEW="map";PICK=r.pick}if(location.hash==="#"+r.go)show(r.go,true);else location.hash=r.go};
+  q.oninput=showRes;q.onfocus=showRes;
+  q.onkeydown=e=>{if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();sel=(sel+(e.key==="ArrowDown"?1:-1)+res.length)%Math.max(1,res.length);ul.querySelectorAll(".opt").forEach((o,i)=>o.setAttribute("aria-selected",i===sel));q.setAttribute("aria-activedescendant","o"+sel)}
+    if(e.key==="Enter"){e.preventDefault();go(res[sel])}if(e.key==="Escape")close()};
+  ul.onclick=e=>{const o=e.target.closest(".opt[data-i]");if(o)go(res[+o.dataset.i])};
+  document.addEventListener("click",e=>{if(!$("search").contains(e.target))close()});
+  const j=$("jump");new IntersectionObserver(([en])=>{const on=!en.isIntersecting;j.classList.toggle("on",on);j.tabIndex=on?0:-1;j.setAttribute("aria-hidden",!on)}).observe($("search"));
+  j.onclick=()=>{window.scrollTo({top:0});q.focus({preventScroll:true})};})();
 
-function renderAll(keepSetup){document.querySelectorAll("#lvl button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===P.level));$("state").value=P.state;
-  renderLede();renderMS();if(!keepSetup||P.step!==1&&P.step!==3&&P.step!==4&&P.step!==2)renderSetup();else renderSetup();renderDates();renderBoard();drawMap();renderLast();drawMoney();}
-renderAll();
-let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{drawMap();drawMoney()},250)});
+function renderAll(){$("lvl").value=P.level;$("state").value=P.state;renderView()}
+$("lvl").value=P.level;$("state").value=P.state;show(location.hash.slice(1)||"home");
+let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{if(VIEW==="money")drawChart();if(VIEW==="team"&&TEAMVIEW==="map")drawMap()},250)});
 </script>
 </body>
 </html>
