@@ -1,6 +1,6 @@
 # Dweller Campaign — Design Guide
 
-**Living document · v2.0 · Last updated November 21, 2026**
+**Living document · v2.1 · Last updated November 22, 2026**
 Reference build: `campaign/index.html` in `tlsman71/dweller`. Every design change updates this guide in the same pull request and adds a row to the [change log](#12-change-log). See [section 11](#11-how-this-guide-stays-current).
 
 Dweller Campaign helps people thinking about running for local, state or federal office set up and run a campaign. **It should feel like a patient friend walking you through it, not a research terminal.** Many first-time candidates are new to all of this, and some are older and easily put off by a wall of data, so the page shows one topic at a time, in large, plain type, with the next step always in front.
@@ -210,5 +210,6 @@ CI (`.github/workflows/campaign-design-guide.yml`) fails a pull request when the
 
 | Version | Date | What changed | Why | Commit |
 | --- | --- | --- | --- | --- |
+| v2.1 | Nov 22, 2026 | Browser tab icon: the Dweller Campaign house (yellow house, white ballot box, green ballot with a check) on a dark rounded square, as `favicon.svg`, `favicon-32.png` and `apple-touch-icon.png`, linked in the page head. No page colors, tokens or chart colors changed, so no validator run was needed. | Tom, Nov 22, 2026: each Dweller site should show its own logo on the browser tab | pending |
 | v2.0 | Nov 21, 2026 | New direction: warm and friendly instead of the Docket terminal look. Light warm default (dark is optional), Atkinson Hyperlegible at 18px, rounded cards with soft shadows, sentence case. One topic per page behind seven large tabs; a home page with only the next step, setup progress and coming dates; the five-part setup kept as the milestone bar; simplified team picture with a List view; Money follows the theme; last election leads with plain sentences. Sources moved under "Where this comes from". Node colors unchanged. Chart colors re-checked: light `#4C8C3A`/`#1A87A8` on `#FFFFFF` and dark `#6A9E4C`/`#1B89A5` on `#26292D` pass all checks. | Tom, Nov 21, 2026: the Docket format was too rigid; Campaign should be warm and user friendly, not a mass of data that could overwhelm a would-be candidate, especially older ones | 01a0265 |
 | v1.0 | Nov 21, 2026 | First build on the Docket design system: masthead with level and state, search, setup wizard and milestone bar, key dates, to-do board, campaign map with eight node types and shapes, last-election snapshot, fundraising board, sponsors panel, footer. Node colors validated (adjacent pairs pass in both themes; all-pairs covered by shapes); chart colors validated on `#16181A`. | Tom's spec of Nov 21, 2026 and his review-pane approvals | 1f59760 |
