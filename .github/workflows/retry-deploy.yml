@@ -1,0 +1,42 @@
+# Re-runs a failed GitHub Pages deploy (Tom, Nov 22, 2026; copied from tlsman71/dweller-docket).
+# GitHub's Pages deploy has been failing on the first try after merges with
+# "No artifacts named github-pages were found" and passing on the second.
+# This repo publishes with GitHub's built-in "pages build and deployment" workflow (deploy from branch),
+# which serves the tlsman71.github.io/dweller copies of Dweller, Campaign and Health.
+# Up to two automatic retries, 45s apart; if the third attempt also fails, opens an issue so Tom gets an email.
+# Runs that GitHub cancels because a newer commit replaced them are not failures and are not retried.
+# health.dwellerapp.org is deployed by Cloudflare Pages, not by GitHub Actions; see CLAUDE.md for that check.
+name: Retry failed deploy
+
+on:
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    types: [completed]
+
+permissions:
+  actions: write
+  issues: write
+
+jobs:
+  retry:
+    if: github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RUN_ID: ${{ github.event.workflow_run.id }}
+      ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+      SHA: ${{ github.event.workflow_run.head_sha }}
+      URL: ${{ github.event.workflow_run.html_url }}
+    steps:
+      - name: Retry the deploy (attempts 1 and 2 only)
+        if: github.event.workflow_run.run_attempt < 3
+        run: |
+          sleep 45
+          gh run rerun "$RUN_ID" --failed --repo "$GITHUB_REPOSITORY"
+          echo "Re-ran deploy $RUN_ID (attempt $ATTEMPT failed)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Tell Tom after three failed attempts
+        if: github.event.workflow_run.run_attempt >= 3
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "GitHub Pages deploy failed 3 times (${SHA:0:7})" \
+            --body "The GitHub Pages deploy for commit ${SHA} failed on all three attempts, so the tlsman71.github.io/dweller pages may not show the latest merge (health.dwellerapp.org is deployed separately by Cloudflare). Run: ${URL}. Re-run it from that page, or check githubstatus.com."
