@@ -259,10 +259,15 @@ table.tx td.amt{font-weight:700;white-space:nowrap}
 .record{padding:20px;max-height:560px;overflow-y:auto;overscroll-behavior:contain}
 .record:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
 @media (max-width:920px){.record{max-height:70vh}}
-.rthumb{display:block;margin-top:16px;border-top:1px solid var(--line);padding-top:14px;text-decoration:none;color:var(--chalk)}
-.rthumb img{display:block;width:100%;max-width:300px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
-.rthumb span{display:block;margin-top:6px;font-size:15px;color:var(--gold2);font-weight:700}
-.rthumb:hover img{border-color:var(--gold2)}
+.rpic{margin:0 0 16px}
+.rpic a.rimg{display:block}
+.rpic img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r,10px);border:1px solid var(--line)}
+.rpic a.rimg:hover img,.rpic a.rimg:focus-visible img{border-color:var(--gold2)}
+.rpic .rnote{margin:6px 0 0;font-size:15px;color:var(--mute)}
+.rpic .ract{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.rpic .ract a{font-size:15px;color:var(--gold2);font-weight:700}
+.rpic .sharei{width:48px;min-width:48px;min-height:48px}
+.rpic .sharemenu{bottom:auto;top:56px}
 .record h3{font-family:var(--chalkfont);font-size:30px;line-height:1.1;margin-bottom:8px}
 .record ol{padding-left:22px;margin:8px 0}
 .record li{margin-bottom:10px;font-size:18px}
@@ -390,7 +395,7 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
 <link rel="stylesheet" href="../deck/deck.css">
 </head>
 <body>
-<div class="draft" role="note">Design mockup, version 2 · Nov 13, 2026 · Figures are drafts until they pass Phase 1 source checks.</div>
+<div class="draft" role="note">Design mockup, version 2.1 · Nov 22, 2026 · Figures are drafts until they pass Phase 1 source checks.</div>
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="Dweller Health, home">
@@ -800,32 +805,34 @@ footer h3{font-family:var(--chalkfont);font-size:26px;color:var(--chalk);margin-
      whose preview tags make the card picture appear in the post. Nothing is shown on this page. */
   var pageBase=base.replace(/mockup\/$/,"")+"drawings/p/";
   function sharePage(s){return pageBase+s.id+".html"}
-  function share(s){
+  function share(s,btn,m){
     var url=sharePage(s), card="../drawings/share/"+s.id+".jpg", title=(s.caption.status==="approved"?s.headline:s.label)+" · Dweller Health";
     if(navigator.share&&s.image.status==="approved"){
       fetch(card).then(function(r){return r.blob()}).then(function(bl){
         var f=new File([bl],"dweller-health-"+s.id+".jpg",{type:"image/jpeg"});
         return navigator.share(navigator.canShare&&navigator.canShare({files:[f]})?{files:[f],title:title,text:title+" "+url}:{title:title,text:title,url:url});
-      }).catch(function(err){if(err&&err.name!=="AbortError")menu(s,url,title)});
+      }).catch(function(err){if(err&&err.name!=="AbortError")menu(s,url,title,btn,m)});
       return;
     }
-    menu(s,url,title);
+    menu(s,url,title,btn,m);
   }
-  function menu(s,url,title){
-    var m=document.getElementById("sharemenu"),btn=document.getElementById("sharebtn");
+  function menu(s,url,title,btn,m){
+    m=m||document.getElementById("sharemenu");btn=btn||document.getElementById("sharebtn");
     if(!m.hidden){m.hidden=true;btn.setAttribute("aria-expanded","false");return}
     var u=encodeURIComponent(url),t=encodeURIComponent(title),ut=encodeURIComponent(title+" "+url);
     var nets=[["Facebook","https://www.facebook.com/sharer/sharer.php?u="+u],["X","https://x.com/intent/post?text="+t+"&url="+u],["Bluesky","https://bsky.app/intent/compose?text="+ut],["LinkedIn","https://www.linkedin.com/sharing/share-offsite/?url="+u],["Reddit","https://www.reddit.com/submit?url="+u+"&title="+t],["Email","mailto:?subject="+t+"&body="+ut]];
-    m.innerHTML=nets.map(function(x){return '<a role="menuitem" href="'+x[1]+'" data-net="'+x[0]+'">'+x[0]+'</a>'}).join("")+'<button role="menuitem" type="button" id="sharecopy">Copy the link</button>';
+    m.innerHTML=nets.map(function(x){return '<a role="menuitem" href="'+x[1]+'" data-net="'+x[0]+'">'+x[0]+'</a>'}).join("")+'<button role="menuitem" type="button">Copy the link</button>';
     m.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(ev){
       m.hidden=true;btn.setAttribute("aria-expanded","false");
       if(a.dataset.net==="Email")return;
       ev.preventDefault();window.open(a.href,"dhshare","width=640,height=640,noopener")})});
-    document.getElementById("sharecopy").addEventListener("click",function(){var c=this;
+    m.querySelector("button[role=menuitem]").addEventListener("click",function(){var c=this;
       (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(function(){c.textContent="Link copied"},function(){window.prompt("Copy this link:",url)})});
     m.hidden=false;btn.setAttribute("aria-expanded","true");m.querySelector("a").focus();
   }
   document.addEventListener("click",function(ev){var m=document.getElementById("sharemenu");if(m&&!m.hidden&&!ev.target.closest(".sharewrap")){m.hidden=true;document.getElementById("sharebtn").setAttribute("aria-expanded","false")}});
+  /* The node pane on the money map shares its picture the same way (Tom, Nov 22, 2026). */
+  window.DH_sharePicture=function(id,btn,m){var s=D.slides.filter(function(x){return x.id===id})[0];if(s)share(s,btn,m)};
   document.addEventListener("keydown",function(ev){var m=document.getElementById("sharemenu");if(ev.key==="Escape"&&m&&!m.hidden){m.hidden=true;document.getElementById("sharebtn").focus()}});
   frame.querySelector(".prev").addEventListener("click",function(){show(i-1)});
   frame.querySelector(".next").addEventListener("click",function(){show(i+1)});
@@ -1131,17 +1138,23 @@ function drawMap(){
     g.addEventListener("click",open);g.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();open()}});
   });
 }
-/* The node's approved picture, at the bottom of its record (Tom, Nov 15 20:26). Only approved pictures appear;
-   clicking it opens that picture in the slide show at the top of the page. */
+/* The node's approved picture, at the very top of its record, above the title, so the picture sits on top of the
+   information it depicts (Tom, Nov 22, 2026; docs/node-illustrations-protection.md). Only approved pictures appear;
+   no picture, no placeholder. Share button works like the slide show's. */
+var SHAREICON='<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3" fill="currentColor"/><circle cx="6" cy="12" r="3" fill="currentColor"/><circle cx="18" cy="19" r="3" fill="currentColor"/><path d="M8.6 10.7l6.8-4M8.6 13.3l6.8 4" stroke="currentColor" stroke-width="2.2" fill="none"/></svg>';
 function thumb(id){var D=window.DH_DRAWINGS,sl=D&&D.slides.filter(function(x){return x.id===id&&x.image.status==="approved"})[0];
   if(!sl)return "";
-  return '<a class="rthumb" href="#slide-'+esc(id)+'"><img src="../drawings/img/'+esc(id)+'.webp" alt="'+esc(sl.scene||sl.label)+'" loading="lazy"><span>See this picture in the slide show</span></a>'}
+  return '<figure class="rpic"><a class="rimg" href="#slide-'+esc(id)+'" title="See this picture in the slide show"><img src="../drawings/img/'+esc(id)+'.webp" alt="'+esc(sl.scene||sl.label)+'"></a>'+
+    '<figcaption class="rnote">Illustration. The facts and sources are below.</figcaption>'+
+    '<div class="ract"><span class="sharewrap"><button class="btn gold sharei" type="button" id="rsharebtn" aria-haspopup="menu" aria-expanded="false" aria-label="Share this picture" title="Share this picture">'+SHAREICON+'</button><span class="sharemenu" id="rsharemenu" role="menu" hidden></span></span>'+
+    '<a href="#slide-'+esc(id)+'">See it in the slide show</a></div></figure>'}
 function record(id){
   var R=$("record");R.scrollTop=0;
   if(!id){R.innerHTML='<h3>How to read this</h3><ol><li>Click a circle to see its record, in date order, each with its source.</li><li>Solid green lines are documented money or facts.</li><li>Dashed amber lines are estimates.</li><li>Grey dashed circles are not yet sourced. Nothing goes on the map without a document.</li></ol>';return}
   var n=byId[id],L=E.filter(function(e){return e.s===id||e.t===id}).sort(function(a,b){return String(a.d||"").localeCompare(String(b.d||""))});
-  R.innerHTML='<h3>'+esc(n.n)+'</h3><p class="src">'+NT[n.t].n+' · '+L.length+' connections</p><ol>'+L.map(function(e){var other=e.s===id?byId[e.t].n:byId[e.s].n,dir=e.s===id?"→ ":"← ";
-    return '<li><span class="kind k-'+e.k+'" style="font-size:14px;padding:1px 8px">'+e.k+'</span> '+(e.d?'<b>'+esc(e.d)+'</b> · ':'')+dir+esc(other)+': '+esc(e.l)+(e.amtTxt?' <b>('+esc(e.amtTxt)+')</b>':'')+'<div class="src">Source: '+esc(e.src)+'</div></li>'}).join("")+'</ol><button class="btn" id="clearsel">Show the whole map</button>'+thumb(id);
+  R.innerHTML=thumb(id)+'<h3>'+esc(n.n)+'</h3><p class="src">'+NT[n.t].n+' · '+L.length+' connections</p><ol>'+L.map(function(e){var other=e.s===id?byId[e.t].n:byId[e.s].n,dir=e.s===id?"→ ":"← ";
+    return '<li><span class="kind k-'+e.k+'" style="font-size:14px;padding:1px 8px">'+e.k+'</span> '+(e.d?'<b>'+esc(e.d)+'</b> · ':'')+dir+esc(other)+': '+esc(e.l)+(e.amtTxt?' <b>('+esc(e.amtTxt)+')</b>':'')+'<div class="src">Source: '+esc(e.src)+'</div></li>'}).join("")+'</ol><button class="btn" id="clearsel">Show the whole map</button>';
+  var rb=$("rsharebtn");if(rb)rb.addEventListener("click",function(){if(window.DH_sharePicture)window.DH_sharePicture(id,rb,$("rsharemenu"))});
   $("clearsel").addEventListener("click",function(){sel=null;drawMap();record(null)});
 }
 [].forEach.call(document.querySelectorAll(".fbtn"),function(b){b.addEventListener("click",function(){filt=b.dataset.f;[].forEach.call(document.querySelectorAll(".fbtn"),function(x){x.setAttribute("aria-pressed",x===b)});drawBands();drawTable();drawMap()})});
@@ -1180,6 +1193,7 @@ $("dates").innerHTML=D.map(function(d){return '<li class="date"><div class="d">'
     menu();
   });
   document.addEventListener("click",function(ev){if(!m.hidden&&!ev.target.closest("#deck .sharewrap"))close()});
+  document.addEventListener("click",function(ev){var rm=document.getElementById("rsharemenu");if(rm&&!rm.hidden&&!ev.target.closest("#record .sharewrap")){rm.hidden=true;document.getElementById("rsharebtn").setAttribute("aria-expanded","false")}});
   document.addEventListener("keydown",function(ev){if(ev.key==="Escape"&&!m.hidden){close();btn.focus()}});
 })();
 </script>
