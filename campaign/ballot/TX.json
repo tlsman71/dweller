@@ -1,23 +1,698 @@
 {
  "state": "TX",
  "name": "Texas",
- "built": "2026-11-23T09:16:12.651Z",
+ "built": "2026-11-23T09:17:25.923Z",
  "cycles": [
   2026,
   2028
  ],
- "offices": [],
- "elections": [
+ "offices": [
   {
-   "date": "2033-06-06",
-   "what": "Google Test Election (Future)",
-   "civic_id": "1001",
-   "division": "ocd-division/country:us",
-   "state": null,
-   "level": "national",
-   "src": "civic_elections"
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/senate/TX/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/01/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/02/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/03/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/05/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/06/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "07",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/07/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "08",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/08/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "09",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/09/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "10",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/10/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "11",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/11/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "12",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/12/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "13",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/13/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "14",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/14/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "15",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/15/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "16",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/16/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "17",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/17/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "18",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/18/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "19",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/19/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "20",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/20/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "21",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/21/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "22",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/22/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "23",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/23/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "24",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/24/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "25",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/25/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "26",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/26/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "27",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/27/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "28",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/28/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "29",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/29/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "30",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/30/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "31",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/31/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "32",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/32/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "33",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/33/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "34",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/34/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "35",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/35/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "36",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/36/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "37",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/37/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "38",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/TX/38/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "President",
+   "office_code": "P",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/president/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/01/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/02/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/03/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/05/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/06/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "07",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/07/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "08",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/08/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "09",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/09/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "10",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/10/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "11",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/11/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "12",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/12/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "13",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/13/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "14",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/14/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "15",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/15/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "16",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/16/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "17",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/17/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "18",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/18/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "19",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/19/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "20",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/20/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "21",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/21/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "22",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/22/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "23",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/23/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "24",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/24/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "25",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/25/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "26",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/26/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "27",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/27/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "28",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/28/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "29",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/29/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "30",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/30/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "31",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/31/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "32",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/32/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "33",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/33/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "34",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/34/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "35",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/35/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "36",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/36/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "37",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/37/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "38",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/TX/38/2028/",
+   "src": "fec_races"
   }
  ],
+ "elections": [],
  "contests": [],
  "contests_for": null,
  "filing": [
@@ -64,8 +739,5 @@
    "src": "usagov"
   }
  },
- "voterinfo": {
-  "status": 400,
-  "reason": "parseError"
- }
+ "voterinfo": null
 }

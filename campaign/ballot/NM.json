@@ -1,23 +1,77 @@
 {
  "state": "NM",
  "name": "New Mexico",
- "built": "2026-11-23T09:16:12.651Z",
+ "built": "2026-11-23T09:17:25.923Z",
  "cycles": [
   2026,
   2028
  ],
- "offices": [],
- "elections": [
+ "offices": [
   {
-   "date": "2033-06-06",
-   "what": "Google Test Election (Future)",
-   "civic_id": "1001",
-   "division": "ocd-division/country:us",
-   "state": null,
-   "level": "national",
-   "src": "civic_elections"
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/senate/NM/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NM/01/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NM/02/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NM/03/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "President",
+   "office_code": "P",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/president/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NM/01/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NM/03/2028/",
+   "src": "fec_races"
   }
  ],
+ "elections": [],
  "contests": [],
  "contests_for": null,
  "filing": [
@@ -64,8 +118,5 @@
    "src": "usagov"
   }
  },
- "voterinfo": {
-  "status": 400,
-  "reason": "parseError"
- }
+ "voterinfo": null
 }

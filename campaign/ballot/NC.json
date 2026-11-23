@@ -1,23 +1,293 @@
 {
  "state": "NC",
  "name": "North Carolina",
- "built": "2026-11-23T09:16:12.651Z",
+ "built": "2026-11-23T09:17:25.923Z",
  "cycles": [
   2026,
   2028
  ],
- "offices": [],
- "elections": [
+ "offices": [
   {
-   "date": "2033-06-06",
-   "what": "Google Test Election (Future)",
-   "civic_id": "1001",
-   "division": "ocd-division/country:us",
-   "state": null,
-   "level": "national",
-   "src": "civic_elections"
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/senate/NC/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/01/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/02/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/03/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "04",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/04/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/05/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/06/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "07",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/07/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "08",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/08/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "09",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/09/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "10",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/10/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "11",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/11/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "12",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/12/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "13",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/13/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "14",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/NC/14/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "President",
+   "office_code": "P",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/president/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/senate/NC/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/01/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/02/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/03/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "04",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/04/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/05/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/06/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "07",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/07/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "08",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/08/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "09",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/09/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "10",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/10/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "11",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/11/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "12",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/12/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "13",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/13/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "14",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/NC/14/2028/",
+   "src": "fec_races"
   }
  ],
+ "elections": [],
  "contests": [],
  "contests_for": null,
  "filing": [
@@ -27,9 +297,9 @@
    "status": "not_in_free_data",
    "what": "Deadline to file to get on the ballot for Congress",
    "ask": {
-    "name": "North Carolina election office (find it on USA.gov)",
-    "url": "https://www.usa.gov/state-election-office",
-    "src": "usagov"
+    "name": "North Carolina State Board of Elections",
+    "url": "https://www.ncsbe.gov/candidates",
+    "src": "data_js"
    }
   },
   {
@@ -38,9 +308,9 @@
    "status": "not_in_free_data",
    "what": "Filing period for state offices",
    "ask": {
-    "name": "North Carolina election office (find it on USA.gov)",
-    "url": "https://www.usa.gov/state-election-office",
-    "src": "usagov"
+    "name": "North Carolina State Board of Elections",
+    "url": "https://www.ncsbe.gov/candidates",
+    "src": "data_js"
    }
   },
   {
@@ -49,9 +319,9 @@
    "status": "not_in_free_data",
    "what": "Filing period for county, city and school board offices",
    "ask": {
-    "name": "North Carolina election office (find it on USA.gov)",
-    "url": "https://www.usa.gov/state-election-office",
-    "src": "usagov"
+    "name": "North Carolina State Board of Elections",
+    "url": "https://www.ncsbe.gov/candidates",
+    "src": "data_js"
    }
   }
  ],
@@ -59,13 +329,10 @@
   "state": null,
   "local": null,
   "ask": {
-   "name": "North Carolina election office (find it on USA.gov)",
-   "url": "https://www.usa.gov/state-election-office",
-   "src": "usagov"
+   "name": "North Carolina State Board of Elections",
+   "url": "https://www.ncsbe.gov/candidates",
+   "src": "data_js"
   }
  },
- "voterinfo": {
-  "status": 400,
-  "reason": "parseError"
- }
+ "voterinfo": null
 }
