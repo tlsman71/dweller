@@ -180,9 +180,9 @@
    "status": "not_in_free_data",
    "what": "Deadline to file to get on the ballot for Congress",
    "ask": {
-    "name": "Louisiana election office (find it on USA.gov)",
-    "url": "https://www.usa.gov/state-election-office",
-    "src": "usagov"
+    "name": "Louisiana election office",
+    "url": "https://voterportal.sos.la.gov",
+    "src": "civic_voterinfo"
    }
   },
   {
@@ -191,9 +191,9 @@
    "status": "not_in_free_data",
    "what": "Filing period for state offices",
    "ask": {
-    "name": "Louisiana election office (find it on USA.gov)",
-    "url": "https://www.usa.gov/state-election-office",
-    "src": "usagov"
+    "name": "Louisiana election office",
+    "url": "https://voterportal.sos.la.gov",
+    "src": "civic_voterinfo"
    }
   },
   {
@@ -202,9 +202,9 @@
    "status": "not_in_free_data",
    "what": "Filing period for county, city and school board offices",
    "ask": {
-    "name": "Louisiana election office (find it on USA.gov)",
-    "url": "https://www.usa.gov/state-election-office",
-    "src": "usagov"
+    "name": "Louisiana election office",
+    "url": "https://voterportal.sos.la.gov",
+    "src": "civic_voterinfo"
    }
   }
  ],
@@ -217,9 +217,9 @@
   },
   "local": null,
   "ask": {
-   "name": "Louisiana election office (find it on USA.gov)",
-   "url": "https://www.usa.gov/state-election-office",
-   "src": "usagov"
+   "name": "Louisiana election office",
+   "url": "https://voterportal.sos.la.gov",
+   "src": "civic_voterinfo"
   }
  },
  "voterinfo": {

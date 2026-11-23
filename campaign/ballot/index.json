@@ -468,7 +468,8 @@
    "report_type": "12GR",
    "what": null,
    "year": 2026,
-   "src": "fec_reports"
+   "src": "fec_reports",
+   "scope": "some"
   },
   {
    "date": "2026-12-03",
@@ -476,7 +477,8 @@
    "report_type": "30G",
    "what": "POST-GENERAL",
    "year": 2026,
-   "src": "fec_reports"
+   "src": "fec_reports",
+   "scope": "all"
   },
   {
    "date": "2026-12-17",
@@ -484,7 +486,8 @@
    "report_type": "30GR",
    "what": null,
    "year": 2026,
-   "src": "fec_reports"
+   "src": "fec_reports",
+   "scope": "some"
   },
   {
    "date": "2026-12-20",
@@ -492,7 +495,8 @@
    "report_type": "M12",
    "what": "DECEMBER MONTHLY",
    "year": 2026,
-   "src": "fec_reports"
+   "src": "fec_reports",
+   "scope": "some"
   },
   {
    "date": "2026-12-31",
@@ -500,7 +504,8 @@
    "report_type": "30GR",
    "what": null,
    "year": 2026,
-   "src": "fec_reports"
+   "src": "fec_reports",
+   "scope": "some"
   },
   {
    "date": "2027-01-11",
@@ -508,7 +513,8 @@
    "report_type": "30GR",
    "what": null,
    "year": 2026,
-   "src": "fec_reports"
+   "src": "fec_reports",
+   "scope": "some"
   },
   {
    "date": "2027-01-31",
@@ -516,7 +522,8 @@
    "report_type": "YE",
    "what": "YEAR-END",
    "year": 2026,
-   "src": "fec_reports"
+   "src": "fec_reports",
+   "scope": "all"
   }
  ]
 }

@@ -593,7 +593,7 @@ async function loadBallot(){const st=P.state;if(BAL.st[st]&&BAL.idx)return;
       for(const [k,v] of Object.entries(BAL.idx.src||{}))D.src["bal:"+k]={label:v.label,url:v.url}}
     if(!BAL.st[st]){const r=await fetch(`ballot/${st}.json`,{cache:"no-cache"});if(!r.ok)throw 0;BAL.st[st]=await r.json();
       const o=BAL.st[st].election_offices||{},a=o.ask,l=o.local;if(a)D.src["bal:ask:"+st]={label:a.name,url:a.url};
-      D.src["bal:local:"+st]=l&&l.electionInfoUrl?{label:l.name||"Your local election office",url:l.electionInfoUrl}:D.src["bal:ask:"+st]}
+      D.src["bal:local:"+st]=l&&l.electionInfoUrl?{label:"Your local election office",url:l.electionInfoUrl}:D.src["bal:ask:"+st]}
     BAL.err=false}catch(e){BAL.err=true}
   if(P.state===st)refresh(...OPEN)}
 const ballot=()=>BAL.st[P.state]||null;

@@ -302,14 +302,16 @@ for (const [st, name] of Object.entries(STATES)) {
   // Filing dates: no free API publishes candidate filing deadlines (they are set by each state, and
   // by counties and cities for local offices). Say so, and point to who publishes them.
   const stateOffice = vi?.state_office || null;
-  const ask = stateOffice?.electionInfoUrl
-    ? { name: stateOffice.name || `${name} election office`, url: stateOffice.electionInfoUrl, src: "civic_voterinfo" }
+  // Google's "name" field is sometimes a person (an election director), so the label is ours.
+  const civicUrl = stateOffice?.electionInfoUrl || stateOffice?.ballotInfoUrl || null;
+  const ask = civicUrl
+    ? { name: `${name} election office`, url: civicUrl, src: "civic_voterinfo" }
     : CHECKED_OFFICES[st]?.url ? { name: CHECKED_OFFICES[st].name, url: CHECKED_OFFICES[st].url, src: "data_js" }
     : { name: `${name} election office (find it on USA.gov)`, url: SOURCES.usagov.url, src: "usagov" };
   const filing = ["federal", "state", "local"].map((level) => ({
     level, date: null, status: "not_in_free_data",
     what: level === "federal" ? "Deadline to file to get on the ballot for Congress" : level === "state" ? "Filing period for state offices" : "Filing period for county, city and school board offices",
-    ask: level === "local" && vi?.local_office?.electionInfoUrl ? { name: vi.local_office.name || "Your local election office", url: vi.local_office.electionInfoUrl, src: "civic_voterinfo" } : ask,
+    ask: level === "local" && vi?.local_office?.electionInfoUrl ? { name: "Your local election office", url: vi.local_office.electionInfoUrl, src: "civic_voterinfo" } : ask,
   }));
 
   const file = {
