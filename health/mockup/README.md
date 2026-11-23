@@ -1,4 +1,4 @@
-# Dweller Health · landing-page mockup (v2.1)
+# Dweller Health · landing-page mockup (v2.2)
 
 Design mockup of the Dweller Health landing page, Nov 13, 2026. Every figure is a draft until it passes Phase 1 source checks.
 
@@ -24,4 +24,5 @@ Design mockup of the Dweller Health landing page, Nov 13, 2026. Every figure is 
 - North Carolina figures beside the national ones, once verified.
 
 ## Change log
+- **v2.2 · Nov 22, 2026:** browser tab icon: the Dweller Health house (yellow house, white door, green cross) as `favicon.svg`, `favicon-32.png` and `apple-touch-icon.png` (Tom).
 - **v2.1 · Nov 22, 2026:** money-map record: the node's picture moved from the bottom to the top of the record, full width, with a share button (Tom; project doc `docs/node-illustrations-protection.md`).
