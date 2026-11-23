@@ -54,6 +54,17 @@ const SOURCES = {
 
 const OFFICE = { H: "U.S. House", S: "U.S. Senate", P: "President" };
 
+// Election offices whose pages we have read and listed in campaign/data.js (offices), used when
+// Google Civic gives no office link for a state.
+const CHECKED_OFFICES = await (async () => {
+  try {
+    const text = await readFile(path.join(HERE, "..", "data.js"), "utf8");
+    const window = {};
+    new Function("window", text)(window);
+    return window.CAMPAIGN_DATA?.offices || {};
+  } catch { return {}; }
+})();
+
 function addMonths(iso, n) {
   const d = new Date(iso + "T00:00:00Z");
   d.setUTCMonth(d.getUTCMonth() + n);
@@ -84,7 +95,13 @@ async function getJson(url, params, { allow404 = false } = {}) {
     calls++;
     const res = await fetch(u, { headers: { accept: "application/json" } });
     if (res.ok) return res.json();
-    if ((res.status === 429 || res.status >= 500) && attempt < 4) { await sleep(2000 * attempt); continue; }
+    if (res.status === 429 && attempt < 5) {
+      // api.data.gov limits each key per hour. Wait as long as it asks (capped), then try again.
+      const wait = Math.min(Number(res.headers.get("retry-after")) || 30 * attempt, 120);
+      console.error(`${u.host}${u.pathname}: HTTP 429, limit ${res.headers.get("x-ratelimit-limit") ?? "?"}, remaining ${res.headers.get("x-ratelimit-remaining") ?? "?"}; waiting ${wait}s`);
+      await sleep(wait * 1000); continue;
+    }
+    if (res.status >= 500 && attempt < 4) { await sleep(2000 * attempt); continue; }
     if (allow404 && (res.status === 404 || res.status === 400)) return { _status: res.status, ...(await res.json().catch(() => ({}))) };
     // Host and path only: the query string holds the key.
     throw new Error(`${u.host}${u.pathname} answered HTTP ${res.status}`);
@@ -111,22 +128,24 @@ function fecRaceUrl(office, state, district, cycle) {
 }
 
 async function fecRaces() {
-  const byState = {};
-  for (const st of Object.keys(STATES)) {
-    const rows = [];
-    for (const cycle of CYCLES) {
-      const res = await fecPages("elections/search", { state: st, cycle: String(cycle) });
-      for (const r of res) {
-        const office = r.office || null;
-        if (!OFFICE[office]) continue;
+  const byState = Object.fromEntries(Object.keys(STATES).map((st) => [st, []]));
+  for (const cycle of CYCLES) {
+    // One paged call per cycle for the whole country (about 500 races), not one per state.
+    const res = await fecPages("elections/search", { cycle: String(cycle) });
+    for (const r of res) {
+      const office = r.office || null;
+      if (!OFFICE[office]) continue;
+      const c = Number(r.cycle || cycle);
+      // The President's race applies to every state.
+      const states = office === "P" ? Object.keys(STATES) : STATES[r.state] ? [r.state] : [];
+      for (const st of states) {
         const district = office === "H" ? pad2(r.district) : null;
-        rows.push({
-          level: "federal", office: OFFICE[office], office_code: office,
-          district, cycle: Number(r.cycle || cycle),
-          url: fecRaceUrl(office, st, district, Number(r.cycle || cycle)), src: "fec_races",
-        });
+        byState[st].push({ level: "federal", office: OFFICE[office], office_code: office, district, cycle: c, url: fecRaceUrl(office, st, district, c), src: "fec_races" });
       }
     }
+  }
+  for (const st of Object.keys(STATES)) {
+    const rows = byState[st];
     const seen = new Set();
     byState[st] = rows.filter((r) => { const k = `${r.office_code}|${r.district}|${r.cycle}`; if (seen.has(k)) return false; seen.add(k); return true; })
       .sort((a, b) => a.cycle - b.cycle || "PSH".indexOf(a.office_code) - "PSH".indexOf(b.office_code) || String(a.district).localeCompare(String(b.district)));
@@ -171,7 +190,8 @@ const levelOfDivision = (ocd) => (!ocd || /^ocd-division\/country:us$/.test(ocd)
 async function civicElections() {
   const body = await getJson("https://www.googleapis.com/civicinfo/v2/elections", { key: civicKey() });
   return (body.elections || [])
-    .filter((e) => String(e.id) !== "2000" && e.electionDay && e.electionDay >= today) // 2000 is Google's test election
+    // Google lists test elections (id 2000, "Google Test Election ...") next to real ones. Leave them out.
+    .filter((e) => !["2000", "1001"].includes(String(e.id)) && !/\btest election\b/i.test(e.name || "") && e.electionDay && e.electionDay >= today)
     .map((e) => ({
       date: e.electionDay, what: clean(e.name), civic_id: String(e.id),
       division: clean(e.ocdDivisionId), state: stateOfDivision(e.ocdDivisionId), level: levelOfDivision(e.ocdDivisionId),
@@ -254,7 +274,7 @@ if (cElections) {
   vinfo = await section("civic_voterinfo", "GOOGLE_CIVIC_API_KEY", async () => {
     const out = {};
     for (const st of Object.keys(STATES)) {
-      const e = cElections.find((x) => x.state === st) || cElections.find((x) => x.level === "national");
+      const e = cElections.find((x) => x.state === st);
       if (!e) continue;
       out[st] = await civicVoterInfo(st, e.civic_id);
       if (!FIX) await sleep(150);
@@ -280,6 +300,7 @@ for (const [st, name] of Object.entries(STATES)) {
   const stateOffice = vi?.state_office || null;
   const ask = stateOffice?.electionInfoUrl
     ? { name: stateOffice.name || `${name} election office`, url: stateOffice.electionInfoUrl, src: "civic_voterinfo" }
+    : CHECKED_OFFICES[st]?.url ? { name: CHECKED_OFFICES[st].name, url: CHECKED_OFFICES[st].url, src: "data_js" }
     : { name: `${name} election office (find it on USA.gov)`, url: SOURCES.usagov.url, src: "usagov" };
   const filing = ["federal", "state", "local"].map((level) => ({
     level, date: null, status: "not_in_free_data",
