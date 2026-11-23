@@ -1,0 +1,462 @@
+{
+ "built": "2026-11-23T09:16:12.651Z",
+ "today": "2026-11-23",
+ "cycles": [
+  2026,
+  2028
+ ],
+ "fetched": {
+  "civic_elections": "2026-11-23T09:15:57.385Z",
+  "civic_voterinfo": "2026-11-23T09:16:12.650Z"
+ },
+ "src": {
+  "fec_races": {
+   "label": "FEC: Elections (races by state and district)",
+   "url": "https://www.fec.gov/data/elections/",
+   "api": "https://api.open.fec.gov/developers/#/financial/get_elections_search_",
+   "official": true
+  },
+  "fec_dates": {
+   "label": "FEC: Election dates",
+   "url": "https://www.fec.gov/calendar/",
+   "api": "https://api.open.fec.gov/developers/#/dates/get_election_dates_",
+   "official": true
+  },
+  "fec_reports": {
+   "label": "FEC: Reporting dates and deadlines",
+   "url": "https://www.fec.gov/help-candidates-and-committees/dates-and-deadlines/",
+   "api": "https://api.open.fec.gov/developers/#/dates/get_reporting_dates_",
+   "official": true
+  },
+  "civic_elections": {
+   "label": "Google Civic Information API: elections",
+   "url": "https://developers.google.com/civic-information/docs/v2/elections",
+   "api": "https://www.googleapis.com/civicinfo/v2/elections",
+   "official": false,
+   "note": "Google lists elections from state and local election offices. It is not itself an election office, so each date links the office that publishes it."
+  },
+  "civic_voterinfo": {
+   "label": "Google Civic Information API: voter info (official data only)",
+   "url": "https://developers.google.com/civic-information/docs/v2/elections/voterInfoQuery",
+   "api": "https://www.googleapis.com/civicinfo/v2/voterinfo",
+   "official": false,
+   "note": "Asked with officialOnly=true, so it returns only what the state's election office published."
+  },
+  "usagov": {
+   "label": "USA.gov: State and local election offices",
+   "url": "https://www.usa.gov/state-election-office",
+   "official": true
+  }
+ },
+ "states": {
+  "AL": {
+   "name": "Alabama",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "AK": {
+   "name": "Alaska",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "AZ": {
+   "name": "Arizona",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "AR": {
+   "name": "Arkansas",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "CA": {
+   "name": "California",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "CO": {
+   "name": "Colorado",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "CT": {
+   "name": "Connecticut",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "DE": {
+   "name": "Delaware",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "DC": {
+   "name": "District of Columbia",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "FL": {
+   "name": "Florida",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "GA": {
+   "name": "Georgia",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "HI": {
+   "name": "Hawaii",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "ID": {
+   "name": "Idaho",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "IL": {
+   "name": "Illinois",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "IN": {
+   "name": "Indiana",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "IA": {
+   "name": "Iowa",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "KS": {
+   "name": "Kansas",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "KY": {
+   "name": "Kentucky",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "LA": {
+   "name": "Louisiana",
+   "offices": 0,
+   "elections": 2,
+   "contests": 0,
+   "next": "2026-12-12",
+   "state_office": true
+  },
+  "ME": {
+   "name": "Maine",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "MD": {
+   "name": "Maryland",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "MA": {
+   "name": "Massachusetts",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "MI": {
+   "name": "Michigan",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "MN": {
+   "name": "Minnesota",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "MS": {
+   "name": "Mississippi",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "MO": {
+   "name": "Missouri",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "MT": {
+   "name": "Montana",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "NE": {
+   "name": "Nebraska",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "NV": {
+   "name": "Nevada",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "NH": {
+   "name": "New Hampshire",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "NJ": {
+   "name": "New Jersey",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "NM": {
+   "name": "New Mexico",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "NY": {
+   "name": "New York",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "NC": {
+   "name": "North Carolina",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "ND": {
+   "name": "North Dakota",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "OH": {
+   "name": "Ohio",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "OK": {
+   "name": "Oklahoma",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "OR": {
+   "name": "Oregon",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "PA": {
+   "name": "Pennsylvania",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "RI": {
+   "name": "Rhode Island",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "SC": {
+   "name": "South Carolina",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "SD": {
+   "name": "South Dakota",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "TN": {
+   "name": "Tennessee",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "TX": {
+   "name": "Texas",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "UT": {
+   "name": "Utah",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "VT": {
+   "name": "Vermont",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "VA": {
+   "name": "Virginia",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "WA": {
+   "name": "Washington",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "WV": {
+   "name": "West Virginia",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "WI": {
+   "name": "Wisconsin",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  },
+  "WY": {
+   "name": "Wyoming",
+   "offices": 0,
+   "elections": 1,
+   "contests": 0,
+   "next": "2033-06-06",
+   "state_office": false
+  }
+ },
+ "federal_reports": []
+}

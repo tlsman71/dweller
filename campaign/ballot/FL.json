@@ -1,0 +1,71 @@
+{
+ "state": "FL",
+ "name": "Florida",
+ "built": "2026-11-23T09:16:12.651Z",
+ "cycles": [
+  2026,
+  2028
+ ],
+ "offices": [],
+ "elections": [
+  {
+   "date": "2033-06-06",
+   "what": "Google Test Election (Future)",
+   "civic_id": "1001",
+   "division": "ocd-division/country:us",
+   "state": null,
+   "level": "national",
+   "src": "civic_elections"
+  }
+ ],
+ "contests": [],
+ "contests_for": null,
+ "filing": [
+  {
+   "level": "federal",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Deadline to file to get on the ballot for Congress",
+   "ask": {
+    "name": "Florida election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  },
+  {
+   "level": "state",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for state offices",
+   "ask": {
+    "name": "Florida election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  },
+  {
+   "level": "local",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for county, city and school board offices",
+   "ask": {
+    "name": "Florida election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  }
+ ],
+ "election_offices": {
+  "state": null,
+  "local": null,
+  "ask": {
+   "name": "Florida election office (find it on USA.gov)",
+   "url": "https://www.usa.gov/state-election-office",
+   "src": "usagov"
+  }
+ },
+ "voterinfo": {
+  "status": 400,
+  "reason": "parseError"
+ }
+}
