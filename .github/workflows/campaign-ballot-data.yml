@@ -18,7 +18,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: campaign-ballot-data-${{ github.head_ref || github.ref }}
+  group: campaign-ballot-data-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -28,8 +28,6 @@ jobs:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref }}
 
       - uses: actions/setup-node@v4
         with:
@@ -43,8 +41,18 @@ jobs:
         run: |
           if node campaign/scripts/build-ballot-data.mjs; then echo "failed=0" >> "$GITHUB_OUTPUT"; else echo "failed=1" >> "$GITHUB_OUTPUT"; fi
 
+      # On a pull request, keep the result as a run artifact to look at; don't commit
+      # (a bot commit on a PR branch makes GitHub hold the next checks for approval).
+      - name: Keep the result (pull requests)
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ballot-data
+          path: campaign/ballot/
+
       # A run where only the build times changed is not worth a commit.
       - name: Commit if the data changed
+        if: github.event_name != 'pull_request'
         run: |
           git add -A campaign/ballot
           if git diff --cached --quiet; then echo "No change"; exit 0; fi
@@ -52,7 +60,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -m "Campaign ballot data: daily update from OpenFEC and Google Civic"
-            git push origin "HEAD:${{ github.head_ref || github.ref_name }}"
+            git push
           else
             echo "Only build times changed; not committing"
           fi

@@ -603,7 +603,7 @@ function ballotDates(){const B=ballot(),out=[];if(!B)return out;const cd=myCD();
       out.push({date:e.date,what:`${e.what}: ${e.office}${e.district&&e.office_code==="H"?`, District ${+e.district}`:""}${e.notes?` (${e.notes})`:""}`,who:"FEC",src:["bal:fec_dates"],live:true,election:true})}
     else if(e.src==="civic_elections"){const lv=e.level==="local"?"local":"state";if(P.level==="federal"?e.level!=="national":lv!==P.level&&e.level!=="national")return;if(e.level==="local"&&!P.geo)return;if(!inMyArea(e.division))return;
       const k=(e.level==="local"?"bal:local:":"bal:ask:")+P.state;out.push({date:e.date,what:e.what,who:`Listed by Google Civic; confirm with ${D.src[k].label}`,src:[k,"bal:civic_elections"],live:true,election:true})}});
-  if(P.level==="federal"&&BAL.idx)(BAL.idx.federal_reports||[]).forEach(r=>out.push({date:r.date,what:`${r.what?r.what.toLowerCase().replace(/(^|[\s-])\w/g,x=>x.toUpperCase()):r.report_type} report due`,who:"FEC",src:["bal:fec_reports"],live:true,report:true}));
+  if(P.level==="federal"&&BAL.idx)(BAL.idx.federal_reports||[]).filter(r=>r.scope==="all"&&r.what).forEach(r=>out.push({date:r.date,what:`${r.what?r.what.toLowerCase().replace(/(^|[\s-])\w/g,x=>x.toUpperCase()):r.report_type} report due`,who:"FEC",src:["bal:fec_reports"],live:true,report:true}));
   return out}
 function ballotHTML(){const B=ballot(),built=BAL.idx&&BAL.idx.built;
   if(!B)return `<div class="card" id="ballot"><h3>On your ballot</h3><p>${BAL.err?`We couldn't load the daily ballot update just now. ${officeA()} lists the seats and dates for ${esc(STATES[P.state])}.`:"Loading the seats and dates for your area…"}</p></div>`;

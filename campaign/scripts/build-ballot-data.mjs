@@ -177,7 +177,11 @@ async function fecReportDates() {
     const k = `${r.due_date}|${r.report_type}`;
     if (!r.due_date || seen.has(k)) continue;
     seen.add(k);
-    out.push({ date: String(r.due_date).slice(0, 10), level: "federal", report_type: clean(r.report_type), what: clean(r.report_type_full) || null, year: r.report_year ?? null, src: "fec_reports" });
+    // "all": the quarterly, year-end and general-election reports every House and Senate campaign
+    // files in an election year. "some": monthly, runoff, special and primary reports, which apply
+    // only to some states or filers; the API doesn't say which, so the page doesn't show them.
+    const scope = ["Q1", "Q2", "Q3", "YE", "12G", "30G"].includes(r.report_type) ? "all" : "some";
+    out.push({ date: String(r.due_date).slice(0, 10), level: "federal", report_type: clean(r.report_type), what: clean(r.report_type_full) || null, year: r.report_year ?? null, scope, src: "fec_reports" });
   }
   return out;
 }
