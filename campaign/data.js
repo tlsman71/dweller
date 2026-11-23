@@ -29,7 +29,20 @@ src: {
   nc_file26:{label:"NC State Board of Elections press release, Nov 18, 2025: Candidate Filing for 2026 Elections Begins Dec. 1", url:"https://www.ncsbe.gov/news/press-releases/2025/11/18/candidate-filing-2026-elections-begins-dec-1"},
   nc_sched:{label:"NC State Board of Elections: State and County Reporting Schedule, 2025–26", url:"https://www.ncsbe.gov/campaign-finance/reporting-schedules/state-and-county-reporting-schedule"},
   census:  {label:"US Census Geocoder", url:"https://geocoding.geo.census.gov/geocoder/"},
+  fec_site:{label:"FEC: Candidate committee website example", url:"https://www.fec.gov/help-candidates-and-committees/making-disbursements/advertising/candidate-committee-website-example/"},
+  nc_legend:{label:"NC State Board of Elections: Disclosure Legends", url:"https://www.ncsbe.gov/campaign-finance/disclosure-legends"},
+  irs_c3:  {label:"IRS: Restriction of political campaign intervention by Section 501(c)(3) tax-exempt organizations", url:"https://www.irs.gov/charities-non-profits/charitable-organizations/restriction-of-political-campaign-intervention-by-section-501c3-tax-exempt-organizations"},
 },
+// "Paid for by" notices on ads and websites, read word for word (Nov 23, 2026). Only levels/states listed here are shown; others link the office.
+disclaimers: {
+  federal: {src:["fec_site"], quote:["This is an example of the disclaimer notice required for a candidate committee's website.","The notice must state that the communication was paid for by the authorized committee."],
+    say:"The FEC says your campaign website needs a notice that your committee paid for it."},
+  NC: {src:["nc_legend"], quote:["The disclosure legend is only required for print media, radio, and television advertisements.","North Carolina does not currently require disclosures on internet or social media advertisements.","An \"Authorized by\" statement is not required if the advertisement is sponsored by the candidate or candidate committee.","The height of the disclosure legend shall be at least five percent (5%) of the height of the printed space","the type shall be no less than 12-point font.","Yard signs, posters, and magnetic signs with a print area of equal to or less than 50 square feet do not require a disclosure legend."],
+    say:"North Carolina asks for a \"Paid for by\" legend on print, radio and TV ads, not on websites or social media. On print, the legend must be at least 12-point type and at least 5% of the height of the printed space. Small yard signs (50 square feet or less) don't need one."},
+},
+// Nonprofits and endorsements, read word for word (Nov 23, 2026).
+charities: {src:["irs_c3"], quote:["all section 501(c)(3) organizations are absolutely prohibited from directly or indirectly participating in","conducted in a non-partisan manner do not constitute prohibited political campaign activity."],
+  say:"Groups that are 501(c)(3) charities can't take part in a campaign for or against any candidate, so don't ask them to endorse you. The IRS says voter education, including public forums, run in a non-partisan way is allowed, so you can ask to speak at a non-partisan forum they hold."},
 // Election offices to point to when we have no checked entry. Only offices whose pages we have read are listed.
 offices: {
   federal: {name:"Federal Election Commission", url:"https://www.fec.gov/help-candidates-and-committees/"},

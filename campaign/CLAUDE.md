@@ -1,6 +1,6 @@
 # Working on Dweller Campaign
 
-Dweller Campaign (`campaign/`) helps people thinking about running for local, state or federal office set up and run a campaign. Since design guide v2.0 it has its own warm, friendly look (light default, Atkinson Hyperlegible, one topic per page) instead of the Dweller Docket terminal look; it keeps Docket's sourcing and neutrality rules.
+Dweller Campaign (`campaign/`) helps people thinking about running for local, state or federal office set up and run a campaign. Since design guide v2.0 it has its own warm, friendly look (light default, Atkinson Hyperlegible, one long page of eight phases since v3.0) instead of the Dweller Docket terminal look; it keeps Docket's sourcing and neutrality rules.
 
 ## The design guide is a living document
 
