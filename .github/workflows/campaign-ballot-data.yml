@@ -1,0 +1,64 @@
+# Dweller Campaign: daily build of the ballot data the ZIP/address lookup reads (campaign/ballot/).
+# OpenFEC: federal races, election dates and report dates. Google Civic: elections by area and,
+# close to an election, contests from each state's official feed. Free APIs only.
+# Keys come from this repo's Actions secrets and never reach the files or the log.
+# tlsman71/dweller-campaign deploys the committed data to campaign.dwellerapp.org within 30 minutes.
+name: Campaign ballot data
+
+on:
+  schedule:
+    - cron: "15 10 * * *"   # daily, 10:15 UTC (5:15 AM Eastern in winter)
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "campaign/scripts/build-ballot-data.mjs"
+      - ".github/workflows/campaign-ballot-data.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: campaign-ballot-data-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Pull requests from forks get no secrets; skip them.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build ballot data
+        id: build
+        env:
+          FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+          GOOGLE_CIVIC_API_KEY: ${{ secrets.GOOGLE_CIVIC_API_KEY }}
+        run: |
+          if node campaign/scripts/build-ballot-data.mjs; then echo "failed=0" >> "$GITHUB_OUTPUT"; else echo "failed=1" >> "$GITHUB_OUTPUT"; fi
+
+      # A run where only the build times changed is not worth a commit.
+      - name: Commit if the data changed
+        run: |
+          git add -A campaign/ballot
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          if git diff --cached -U0 | grep '^[+-] ' | grep -vqE '"(built|civic_[a-z]+|fec_[a-z]+)": "20[0-9-]+T[0-9:.]+Z"'; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Campaign ballot data: daily update from OpenFEC and Google Civic"
+            git push origin "HEAD:${{ github.head_ref || github.ref_name }}"
+          else
+            echo "Only build times changed; not committing"
+          fi
+
+      - name: Fail if a source failed
+        if: steps.build.outputs.failed == '1'
+        run: |
+          echo "::error::At least one source failed or had no key; its previous data was kept. See the Build ballot data step."
+          exit 1
