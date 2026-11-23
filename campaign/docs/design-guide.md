@@ -1,9 +1,9 @@
 # Dweller Campaign — Design Guide
 
-**Living document · v2.1 · Last updated November 22, 2026**
+**Living document · v3.0 · Last updated November 23, 2026**
 Reference build: `campaign/index.html` in `tlsman71/dweller`. Every design change updates this guide in the same pull request and adds a row to the [change log](#12-change-log). See [section 11](#11-how-this-guide-stays-current).
 
-Dweller Campaign helps people thinking about running for local, state or federal office set up and run a campaign. **It should feel like a patient friend walking you through it, not a research terminal.** Many first-time candidates are new to all of this, and some are older and easily put off by a wall of data, so the page shows one topic at a time, in large, plain type, with the next step always in front.
+Dweller Campaign helps people thinking about running for local, state or federal office set up and run a campaign. **It should feel like a patient friend walking you through it, not a research terminal.** Many first-time candidates are new to all of this, and some are older and easily put off by a wall of data. Since v3.0 (Tom, Nov 23, 2026) the whole road is one long page: eight numbered phases from Exploring to after the election, so a candidate sees everything ahead at a glance. Each phase opens only when tapped, the type stays large and plain, and the next step is always in front.
 
 Since v2.0 (Tom, Nov 21, 2026) Dweller Campaign no longer follows the Dweller Docket look. Docket is for research and finding things out; Campaign is for doing. It keeps Docket's rules about sources and neutrality, the dollar green brand color and the node colors, and drops the terminal look (dark default, mono caps labels, dense boards).
 
@@ -11,7 +11,7 @@ Since v2.0 (Tom, Nov 21, 2026) Dweller Campaign no longer follows the Dweller Do
 
 ## 1. Principles
 
-1. **One thing at a time.** Each page covers one topic. The home page shows only the next step, setup progress and the next few dates. Detail (sources, tables, the full ladder) is one tap away, never in the way.
+1. **The whole road, one phase at a time.** One long page shows all eight phases in order, like Docket and Health, so nothing ahead is hidden. Long does not mean dense: a closed phase shows only its number, name, one sentence and the names of its steps. Detail (sources, tables, tools) sits inside an open phase or one tap away. The next step is always on screen in the sticky road bar.
 2. **Warm and calm.** Light warm background, white cards with soft shadows, rounded corners, friendly sentences ("You don't have to know any of this already"). No alarm colors, no jargon, no ALL CAPS.
 3. **Easy to read and tap.** 18px body text in Atkinson Hyperlegible (made for low-vision readers), buttons at least 44px tall, labels in words next to every icon.
 4. **Official source first.** Every rule, limit, deadline and figure links to the office that sets or publishes it: the FEC, the state election office or ethics commission, or the county or city clerk, shown under a small **Where this comes from** link. If no official source has an item, the page says so and links the office. Nothing is filled from memory.
@@ -19,7 +19,8 @@ Since v2.0 (Tom, Nov 21, 2026) Dweller Campaign no longer follows the Dweller Do
 6. **Live where the record is live.** Dates that depend on where the candidate lives are filled in from their location, never guessed. Until a checked source exists, the page says the date depends on where you live and links the office.
 7. **Free public sources only.** Census Geocoder now; OpenFEC and Google Civic through a scheduled build. No paid AI search (Tom, Nov 21, 2026).
 8. **Private by default.** What a candidate enters stays in their browser (`localStorage` key `dc-profile`). The street address goes only to the Census Bureau when they press Look up.
-9. **Examples are labeled.** Until a candidate enters their own, Money and Your team show an example campaign with an **Example** tag and fictional names that start with "Example".
+9. **Examples are labeled.** Until a candidate enters their own, the money, donor, team and coalition tools show an example campaign with an **Example** tag and fictional names that start with "Example".
+10. **Rules and tips look different.** Every step is tagged either **Official step** (from the ladder, with its source and exact words under **Where this comes from**) or **Tip** (practical advice from running campaigns, not a rule, never cited as one).
 
 ## 2. Color
 
@@ -120,50 +121,67 @@ Numbers use tabular figures. Sentence case everywhere; no ALL CAPS labels, no mo
 
 ## 5. Page anatomy
 
-**Always on top:**
+One long page, top to bottom (since v3.0, Tom, Nov 23, 2026). There are no tabs.
 
-1. **Header.** "Dweller Campaign" with Campaign in green, the line "Your step-by-step guide to running for office", and two plain selects: **Running for** (Local, State or Federal office) and **In** (state). A **Dark mode** / **Light mode** pill. A 2px dollar-green rule underneath.
-2. **Search box**: "What do you need help with?". Finds steps, dates, limits, names, pages and sources. ↑↓, Enter, Esc. A **Back to search** pill appears bottom-right once the box scrolls away.
-3. **Tabs**: a row of seven large tabs with an icon and a word each: Home, Set up, Steps to run, Key dates, Money, Your team, Last election (four per row on phones). Each opens its own page (`#home`, `#setup`, `#steps`, `#dates`, `#money`, `#team`, `#last`).
+1. **Header.** "Dweller Campaign" with Campaign in green, the line "Your step-by-step guide to running for office", and two plain selects: **Running for** (Local, State or Federal office) and **In** (state). A **Dark mode** / **Light mode** pill. A 3px dollar-green rule underneath.
+2. **Search box**: "What do you need help with?". Finds steps, tips, tools, dates, limits, names, phases, setup parts and sources; picking one opens its phase and scrolls to it. ↑↓, Enter, Esc. A **Back to search** pill appears bottom-right once the box scrolls away.
+3. **Road bar** (sticky at the top while scrolling): eight numbered circles, one per phase, with a short word beside each on wide screens (numbers only under 900px, so it never scrolls sideways). A done phase shows ✓ in green; the phase holding the next step has a green ring; the phase on screen is outlined. Under it: "Phase 3 of 8: Make it official" and **Next step: …**, a link that opens and scrolls to that step.
+4. **Overview**: a welcome line for the chosen level and state; **the road map**, eight cards (number, name, when, "n of m done", "You are here" on the current one); **Your next step** card (phase, step, sentence, due date if any, progress across the whole road, **Show me how**); **Coming up** with the next three dates; the Example note; **Open all phases** / **Close all phases**.
+5. **Phases 1 to 8**, each a section with a large numbered circle, "Phase 3 of 8 · Filing", the name, one sentence, an **Open this phase** / **Hide this phase** button and "n of m done". Closed, it lists its steps as small pills (done ones green with ✓). Open, it shows its steps as numbered cards, then its tools. Open phases are remembered (`localStorage` key `dc-open`); on a first visit only the phase with the next step is open.
 
-**Pages:**
+| Phase | When | Steps | Tools inside |
+| --- | --- | --- | --- |
+| 1 Start with why | Exploring | Tips: write your why, talk it over · Official: Exploring | The five-part setup with the milestone bar (6.1) |
+| 2 Know your race | Before you file | Tips: find your districts, read your office's candidate page | Your districts (Census lookup result), Who sets the rules, Key dates (next one outlined, more and past folded, dates that depend on where you live), How much one person can give |
+| 3 Make it official | Filing | Official: intention, committee, treasurer training, filed to run, on the ballot (as the ladder for the level and state has them) | The step cards themselves, with **Who does it**, due dates and sources |
+| 4 Raise the money | All through the race | Tips: goal, first ten people, call time, record every gift · Official: reports during the race | People to ask, Call time, Your money (6.3) |
+| 5 Build your team | All through the race | Tips: treasurer, first three helpers, meet one group | Team picture / List (6.2), hiring guide, playbooks, local groups and coalitions |
+| 6 Reach the voters | The months before the vote | Tips: win number, start meeting voters, practice three questions, website | Win number and supporters found, meeting-voters counter, last election (6.4), your message, forum and debate practice, campaign website checklist and "Paid for by" notice |
+| 7 Election day | Primary and general | Tips: voting plans, election-day helpers · Official: primary, election day | Election dates for your race, questions to ask your election office |
+| 8 After the election | Win or lose | Tip: thank everyone · Official: post-election reports, closed out | Report dates after the general election |
 
-- **Home**: a welcome line for the chosen level and state; **Your next step** card (the step, a plain sentence, progress bar, **I've done this**, **See all the steps**, **Where this comes from**); **Set up your campaign** with the five parts as a short list and **Start setup**; **Coming up** with the next dates; the Example note; and a reassurance note that names the state election office.
-- **Set up**: the five-part milestone bar (Mission & Office, District & Dates, Legal Readiness, Opponents & Win Number, Budget & Team, shown as "Your why and your office", "Where you live", "Paperwork", "Votes to win", "Money and team") above one part at a time. See 6.1.
-- **Steps to run**: progress bar, then one numbered card per step with a **Done** checkbox, the date, a **Who does it** select (Candidate, Treasurer, Campaign manager, Volunteer), due date with "(passed)" in bold, and **Where this comes from**.
-- **Key dates**: upcoming dates as cards with "In 16 days"; the next one has a green border. A card explains dates that depend on where you live. Past dates are folded under **Past dates**.
-- **Money**: see 6.3.
-- **Your team**: see 6.2.
-- **Last election**: see 6.4.
+Steps are numbered 1 to N down the whole road. Tips with a tool behind them tick themselves ("Done when you fill in part 1 of setup").
 
-**Always at the bottom:** partners and sponsors (no ads, sponsors have no say), Follow Dweller pills (Bluesky, Facebook, Instagram), and the sourcing note with "This is a guide, not legal advice".
+**Always at the bottom:** partners and sponsors (no ads, sponsors have no say), Follow Dweller pills (Bluesky, Facebook, Instagram), and the sourcing note with "This is a guide, not legal advice" and what **Tip** means.
 
 ## 6. Components
 
 ### 6.1 Setup
 
-Part 1 opens with **"Let's start with why."** (from the v1 prototype). Each part has a small "Part 2 of 5" line, a heading in a question ("Where do you live?", "What have you filed so far?", "How many votes will it take?"), one plain hint, large fields with labels above them, and **Back** / **Save and continue** buttons.
+Lives in Phase 1 as one card: the five-part milestone bar, then one part at a time. Other phases link back to a part ("Add my address" opens part 2). Part 1 opens with **"Let's start with why."** (from the v1 prototype). Each part has a small "Part 2 of 5" line, a heading in a question ("Where do you live?", "What have you filed so far?", "How many votes will it take?"), one plain hint, large fields with labels above them, and **Back** / **Save and continue** buttons.
 
 - **Where you live** asks for street and ZIP (the Census Geocoder needs a street) and calls it by JSONP. The result shows in a soft green box with the source and date, and the state select follows it.
 - **Paperwork** is the ladder for the level as a checklist with dates and sources.
 - **Votes to win** lists others running (same fields for everyone) and works out the win number as arithmetic, labeled a planning figure, not a rule.
-- **Money and team** sets the goal and treasurer and adds team members, donors and vendors to Your team.
+- **Money and team** sets the goal, the treasurer and the committee's name (used in the call script and the "Paid for by" draft) and adds team members, donors and vendors to Your team.
 
-### 6.2 Your team
+### 6.2 Your team (Phase 5)
 
-A **Picture / List** switch. The picture is the campaign map simplified: candidate, committee, treasurer, team, donors, vendors, the office, the next filing and the next deadline, with type chips, a green how-to strip (drag, zoom, tap, **Show everyone**) and a side panel that starts with **Tap anyone** and a key in words. After a tap: **← Back to everyone**, the type, the name, facts and connections. The List shows the same people grouped by type, for anyone who'd rather not use the picture. The panel drops below the picture on phones.
+A **Picture / List** switch. The picture is the campaign map simplified: candidate, committee, treasurer, team, donors, vendors, the office, the next filing and the next deadline, with type chips, a green how-to strip (drag, zoom, tap, **Show everyone**) and a side panel that starts with **Tap anyone** and a key in words. After a tap: **← Back to everyone**, the type, the name, facts and connections. The List shows the same people grouped by type, for anyone who'd rather not use the picture. The panel drops below the picture on phones. Because the page is long, one finger scrolls the page over the picture; zoom is two-finger pinch, or Ctrl/⌘ + scroll with a mouse.
 
-### 6.3 Money
+### 6.3 Money (Phase 4)
 
-Follows the theme. One big **Cash on hand** figure, progress toward the goal, tiles for Raised, Spent, Cash on hand and Bills not yet paid. A limit-check note appears when one person's gifts pass the per-election limit. **Month by month** bar chart with **Show as a table**. **How much one person can give** for the level and state, with the cycle and source. **Add money in or out** (Gift to the campaign, Money spent, Bill not yet paid), kept in the browser and labeled a planning notebook, not the official report.
+**People to ask**: each person with how you know them, the ask, and a status (To call, Call back, Pledged, Gave, Said no). **Call time**: pick a person and a plain script is built from their name, your why (first sentence), the office and the ask, with the per-election limit from the cited limits; **Copy the script**. **Your money** follows the theme. One big **Cash on hand** figure, progress toward the goal, tiles for Raised, Spent, Cash on hand and Bills not yet paid. A limit-check note appears when one person's gifts pass the per-election limit. **Month by month** bar chart with **Show as a table**. **How much one person can give** for the level and state, with the cycle and source. **Add money in or out** (Gift to the campaign, Money spent, Bill not yet paid), kept in the browser and labeled a planning notebook, not the official report.
 
-### 6.4 Last election
+### 6.4 Last election (Phase 6)
 
 Plain sentences first (votes in all, the winner, registered voters, who didn't vote for this seat), then the candidates table (party as printed) and registered voters by party as bars, each with **Show as a table**. "Votes in all" is labeled as the candidates' totals added together, and "registered, no vote for this office" as a subtraction. Figures the office doesn't publish for the district say so and give the statewide figure with its source. Sources sit under **Where this comes from**. Until a seat is matched, California's 1st Assembly District (2024) is shown with an Example tag.
 
-### 6.5 Notes and tags
+### 6.5 Voter and outreach tools (Phase 6)
 
-Warm note (reassurance, examples), green result box (lookup results), Example tag (dashed), "Depends on where you live" tag (dashed), Done / To do in plain words.
+- **Win number**: from setup part 4, with **Supporters found** as a progress bar toward it (a planning figure).
+- **Meeting voters**: four counters (Doors knocked, Phone calls, Events and forums, Supporters found) with −, +1 and +10 buttons.
+- **Your message**: the candidate's why from Phase 1, shown as a quote.
+- **Practice for forums and debates**: Acknowledge, Bridge, Pivot boxes for each question; five starter questions any candidate may hear, worded the same for everyone; add your own.
+- **Your campaign website**: a six-item checklist and **The "Paid for by" notice**: the rule in plain words for the level or state, a starting draft with the committee's name, and the exact words of the source. Federal from the FEC website example page; North Carolina from the State Board's Disclosure Legends page. Any other state says it hasn't been checked and links the office.
+
+### 6.6 Team tools (Phase 5)
+
+**Who you'll need, and what to ask them** (treasurer, campaign manager, volunteer coordinator, door and phone lead, online helper) and **Playbooks** (first town hall, welcoming a helper, keeping the money records, running on your own), as fold-out lists tagged Tip. **Local groups and coalitions**: name, kind, status (Not asked yet, Asked, Met, Endorsed, Hosting a forum), with the IRS rule on 501(c)(3) charities in plain words and its exact words.
+
+### 6.7 Notes and tags
+
+Warm note (reassurance, examples), green result box (lookup results), Example tag (dashed), "Date depends on where you live" tag (dashed), **Official step** tag (green), **Tip** tag (warm), Next tag, Done / Mark as done in plain words.
 
 ## 7. Wording rules
 
@@ -171,7 +189,8 @@ Warm note (reassurance, examples), green result box (lookup results), Example ta
 - Plain labels: "Filed to run", "Cash on hand", "Bills not yet paid", "Who does it".
 - Exact figures with units and dates: "$5,900 per election".
 - Every rule, limit and deadline links to the office that sets it. If none, say so and name the office.
-- No odds, predictions, endorsements or persuasion.
+- No odds, predictions, endorsements or persuasion. Starter forum questions and the call script carry no position on any issue.
+- Phase names are short verbs or plain nouns: "Start with why", "Know your race", "Make it official", "Raise the money", "Build your team", "Reach the voters", "Election day", "After the election".
 
 ## 8. Ladders
 
@@ -188,12 +207,13 @@ Other states use the same step names; until their sources are checked the page s
 - Text contrast ≥ 4.5:1; marks ≥ 3:1. Color is never the only cue (shapes, words, bold "(passed)").
 - 18px body, Atkinson Hyperlegible, 44px minimum tap targets, every icon has a word beside it.
 - The team picture has a List view with the same content.
-- No sideways scrolling at 390px; tables scroll inside their own frame.
+- No sideways scrolling at 390px; tables scroll inside their own frame. The road bar shows numbers only under 900px so all eight fit.
+- Phase buttons say what they do ("Open this phase") and carry `aria-expanded`; the road bar's links have full phase names for screen readers; the next-step line is a polite live region.
 - Visible focus rings in `--focus`. Reduced motion respected. Charts have **Show as a table**.
 
 ## 10. Data
 
-`campaign/data.js` holds sources, ladders, dates, limits and last-election results. Each entry cites a source key; the page never shows an item without one. Results figures are copied from the official report, never computed, except two labeled sums: "votes in all" (the candidates' totals added together) and "registered, no vote for this office" (a subtraction).
+`campaign/data.js` holds sources, ladders, dates, limits, "Paid for by" rules (`disclaimers`), the 501(c)(3) rule (`charities`) and last-election results. Which phase a ladder step belongs to is worked out in the page from its id. Each entry cites a source key; the page never shows an item without one. Results figures are copied from the official report, never computed, except two labeled sums: "votes in all" (the candidates' totals added together) and "registered, no vote for this office" (a subtraction).
 
 ## 11. How this guide stays current
 
@@ -210,6 +230,7 @@ CI (`.github/workflows/campaign-design-guide.yml`) fails a pull request when the
 
 | Version | Date | What changed | Why | Commit |
 | --- | --- | --- | --- | --- |
+| v3.0 | Nov 23, 2026 | New layout: one long scrolling dashboard instead of seven tabs. Eight numbered phases down the page (Start with why, Know your race, Make it official, Raise the money, Build your team, Reach the voters, Election day, After the election), each open or closed, with a sticky road bar (phase numbers, phase on screen, next step) and an overview road map. Ladder steps and practical tips sit in their phase, numbered down the whole road and tagged Official step or Tip. New tools from the project brief and the v1 prototype: people to ask, call time with a built script, hiring guide, playbooks, local groups and coalitions, meeting-voters counter, forum and debate practice, campaign website checklist with the "Paid for by" notice (FEC and North Carolina, read word for word Nov 23, 2026), and the IRS 501(c)(3) rule. Setup gains the committee's name. No color tokens changed and no chart or node colors changed, so no validator run was needed; new tags reuse existing tokens. | Tom, Nov 23, 2026: the tabbed format felt like slides; he wants one long dashboard like Docket and Health, with running for office laid out as phases so a candidate sees the whole road ahead, and every feature in the design notes | pending |
 | v2.1 | Nov 22, 2026 | Browser tab icon: the Dweller Campaign house (yellow house, white ballot box, green ballot with a check) on a dark rounded square, as `favicon.svg`, `favicon-32.png` and `apple-touch-icon.png`, linked in the page head. No page colors, tokens or chart colors changed, so no validator run was needed. | Tom, Nov 22, 2026: each Dweller site should show its own logo on the browser tab | `f3f2c7d` |
 | v2.0 | Nov 21, 2026 | New direction: warm and friendly instead of the Docket terminal look. Light warm default (dark is optional), Atkinson Hyperlegible at 18px, rounded cards with soft shadows, sentence case. One topic per page behind seven large tabs; a home page with only the next step, setup progress and coming dates; the five-part setup kept as the milestone bar; simplified team picture with a List view; Money follows the theme; last election leads with plain sentences. Sources moved under "Where this comes from". Node colors unchanged. Chart colors re-checked: light `#4C8C3A`/`#1A87A8` on `#FFFFFF` and dark `#6A9E4C`/`#1B89A5` on `#26292D` pass all checks. | Tom, Nov 21, 2026: the Docket format was too rigid; Campaign should be warm and user friendly, not a mass of data that could overwhelm a would-be candidate, especially older ones | 01a0265 |
 | v1.0 | Nov 21, 2026 | First build on the Docket design system: masthead with level and state, search, setup wizard and milestone bar, key dates, to-do board, campaign map with eight node types and shapes, last-election snapshot, fundraising board, sponsors panel, footer. Node colors validated (adjacent pairs pass in both themes; all-pairs covered by shapes); chart colors validated on `#16181A`. | Tom's spec of Nov 21, 2026 and his review-pane approvals | 1f59760 |
