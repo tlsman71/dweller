@@ -1,6 +1,6 @@
 # Dweller Campaign — Design Guide
 
-**Living document · v3.0 · Last updated November 23, 2026**
+**Living document · v3.1 · Last updated November 23, 2026**
 Reference build: `campaign/index.html` in `tlsman71/dweller`. Every design change updates this guide in the same pull request and adds a row to the [change log](#12-change-log). See [section 11](#11-how-this-guide-stays-current).
 
 Dweller Campaign helps people thinking about running for local, state or federal office set up and run a campaign. **It should feel like a patient friend walking you through it, not a research terminal.** Many first-time candidates are new to all of this, and some are older and easily put off by a wall of data. Since v3.0 (Tom, Nov 23, 2026) the whole road is one long page: eight numbered phases from Exploring to after the election, so a candidate sees everything ahead at a glance. Each phase opens only when tapped, the type stays large and plain, and the next step is always in front.
@@ -17,7 +17,7 @@ Since v2.0 (Tom, Nov 21, 2026) Dweller Campaign no longer follows the Dweller Do
 4. **Official source first.** Every rule, limit, deadline and figure links to the office that sets or publishes it: the FEC, the state election office or ethics commission, or the county or city clerk, shown under a small **Where this comes from** link. If no official source has an item, the page says so and links the office. Nothing is filled from memory.
 5. **Nonpartisan by design.** The same tools, wording and prominence for every party and for independents. No persuasion content. No party red or party blue; every party gets the same bar color in the report's order.
 6. **Live where the record is live.** Dates that depend on where the candidate lives are filled in from their location, never guessed. Until a checked source exists, the page says the date depends on where you live and links the office.
-7. **Free public sources only.** Census Geocoder now; OpenFEC and Google Civic through a scheduled build. No paid AI search (Tom, Nov 21, 2026).
+7. **Free public sources only.** Census Geocoder in the page; OpenFEC and Google Civic through a daily build that writes `campaign/ballot/` (since v3.1). No paid AI search (Tom, Nov 21, 2026).
 8. **Private by default.** What a candidate enters stays in their browser (`localStorage` key `dc-profile`). The street address goes only to the Census Bureau when they press Look up.
 9. **Examples are labeled.** Until a candidate enters their own, the money, donor, team and coalition tools show an example campaign with an **Example** tag and fictional names that start with "Example".
 10. **Rules and tips look different.** Every step is tagged either **Official step** (from the ladder, with its source and exact words under **Where this comes from**) or **Tip** (practical advice from running campaigns, not a rule, never cited as one).
@@ -132,12 +132,12 @@ One long page, top to bottom (since v3.0, Tom, Nov 23, 2026). There are no tabs.
 | Phase | When | Steps | Tools inside |
 | --- | --- | --- | --- |
 | 1 Start with why | Exploring | Tips: write your why, talk it over · Official: Exploring | The five-part setup with the milestone bar (6.1) |
-| 2 Know your race | Before you file | Tips: find your districts, read your office's candidate page | Your districts (Census lookup result), Who sets the rules, Key dates (next one outlined, more and past folded, dates that depend on where you live), How much one person can give |
+| 2 Know your race | Before you file | Tips: find your districts, read your office's candidate page | Your districts (Census lookup result), Who sets the rules, **On your ballot** (6.5), Key dates (next one outlined, more and past folded, dates that depend on where you live), How much one person can give |
 | 3 Make it official | Filing | Official: intention, committee, treasurer training, filed to run, on the ballot (as the ladder for the level and state has them) | The step cards themselves, with **Who does it**, due dates and sources |
 | 4 Raise the money | All through the race | Tips: goal, first ten people, call time, record every gift · Official: reports during the race | People to ask, Call time, Your money (6.3) |
 | 5 Build your team | All through the race | Tips: treasurer, first three helpers, meet one group | Team picture / List (6.2), hiring guide, playbooks, local groups and coalitions |
 | 6 Reach the voters | The months before the vote | Tips: win number, start meeting voters, practice three questions, website | Win number and supporters found, meeting-voters counter, last election (6.4), your message, forum and debate practice, campaign website checklist and "Paid for by" notice |
-| 7 Election day | Primary and general | Tips: voting plans, election-day helpers · Official: primary, election day | Election dates for your race, questions to ask your election office |
+| 7 Election day | Primary and general | Tips: voting plans, election-day helpers · Official: primary, election day | Election dates for your race (checked dates plus dates from the daily update, dashed), questions to ask your election office |
 | 8 After the election | Win or lose | Tip: thank everyone · Official: post-election reports, closed out | Report dates after the general election |
 
 Steps are numbered 1 to N down the whole road. Tips with a tool behind them tick themselves ("Done when you fill in part 1 of setup").
@@ -183,6 +183,16 @@ Plain sentences first (votes in all, the winner, registered voters, who didn't v
 
 Warm note (reassurance, examples), green result box (lookup results), Example tag (dashed), "Date depends on where you live" tag (dashed), **Official step** tag (green), **Tip** tag (warm), Next tag, Done / Mark as done in plain words.
 
+### 6.5 On your ballot (since v3.1)
+
+A card in Phase 2, after Your districts, for the level chosen at the top and the candidate's state, matched to their address when they've added one. It reads the static files the daily build writes (`campaign/ballot/<ST>.json`); the page never calls OpenFEC or Google Civic itself, so no key is ever in the page. Three short lists, each row with the item on the left and its source on the right (wrapping under it on phones):
+
+- **Seats up for election.** Federal: President, U.S. Senate and the candidate's U.S. House district for the next cycle, each linking its FEC race page (without an address, one row counts the state's House districts and asks for the address). State and local: contests from the state's official feed through Google Civic (`officialOnly`), shown only when their district is statewide or matches the candidate's areas. When none are listed, a warm note says Google lists them only close to an election and links the election office.
+- **Election dates.** Upcoming dates for the race and place: FEC election dates (by state and House district) and Google Civic elections (by state, county or city). Google isn't an election office, so each Civic date links the state or local election office first, then Google.
+- **Filing dates.** No free official data source publishes candidate filing deadlines, so the row says so in italics and links the office to ask. Never a date from memory.
+
+A **Where this comes from** link names every source and says districts are matched by name and can miss an area. Dates from the update also join Key dates, Coming up and Election day as cards with a **dashed border**, with the words "from the daily update" in a line under Key dates, so the border is never the only cue. If the files can't load, the card says so and links the office.
+
 ## 7. Wording rules
 
 - Talk to the reader as "you", in short sentences. Say what to do and who can help.
@@ -213,7 +223,7 @@ Other states use the same step names; until their sources are checked the page s
 
 ## 10. Data
 
-`campaign/data.js` holds sources, ladders, dates, limits, "Paid for by" rules (`disclaimers`), the 501(c)(3) rule (`charities`) and last-election results. Which phase a ladder step belongs to is worked out in the page from its id. Each entry cites a source key; the page never shows an item without one. Results figures are copied from the official report, never computed, except two labeled sums: "votes in all" (the candidates' totals added together) and "registered, no vote for this office" (a subtraction).
+`campaign/data.js` holds sources, ladders, dates, limits, "Paid for by" rules (`disclaimers`), the 501(c)(3) rule (`charities`) and last-election results. Which phase a ladder step belongs to is worked out in the page from its id. Each entry cites a source key; the page never shows an item without one. `campaign/ballot/` (index plus one JSON file per state) is written every day at 10:15 UTC by `campaign/scripts/build-ballot-data.mjs` in the *Campaign ballot data* workflow, from OpenFEC (races, election dates, report dates) and Google Civic (`elections`, `voterinfo` with `officialOnly`), with the keys in Actions secrets. Every record names its source; a value no free official source has is written as missing with the office to ask. If a source fails, its previous data is kept and the run shows red. Results figures are copied from the official report, never computed, except two labeled sums: "votes in all" (the candidates' totals added together) and "registered, no vote for this office" (a subtraction).
 
 ## 11. How this guide stays current
 
@@ -230,6 +240,7 @@ CI (`.github/workflows/campaign-design-guide.yml`) fails a pull request when the
 
 | Version | Date | What changed | Why | Commit |
 | --- | --- | --- | --- | --- |
+| v3.1 | Nov 23, 2026 | New **On your ballot** card in Phase 2 (6.5): seats up for election, election dates and filing dates for the chosen level, state and address, from a daily build of OpenFEC and Google Civic data into `campaign/ballot/`. Filing dates show "not published in any free official data source" with the office to ask. Dates from the update join Key dates, Coming up and Election day with a dashed border (the existing `.date.live` style) and a line of words saying so. The address lookup now also keeps district codes to match areas. No color tokens, chart or node colors changed, so no validator run was needed; the new list reuses existing tokens. | Tom, Nov 23, 2026: rejected the review card that left ballot info as a gap, and asked for a scheduled Google Civic and OpenFEC build instead | pending |
 | v3.0 | Nov 23, 2026 | New layout: one long scrolling dashboard instead of seven tabs. Eight numbered phases down the page (Start with why, Know your race, Make it official, Raise the money, Build your team, Reach the voters, Election day, After the election), each open or closed, with a sticky road bar (phase numbers, phase on screen, next step) and an overview road map. Ladder steps and practical tips sit in their phase, numbered down the whole road and tagged Official step or Tip. New tools from the project brief and the v1 prototype: people to ask, call time with a built script, hiring guide, playbooks, local groups and coalitions, meeting-voters counter, forum and debate practice, campaign website checklist with the "Paid for by" notice (FEC and North Carolina, read word for word Nov 23, 2026), and the IRS 501(c)(3) rule. Setup gains the committee's name. No color tokens changed and no chart or node colors changed, so no validator run was needed; new tags reuse existing tokens. | Tom, Nov 23, 2026: the tabbed format felt like slides; he wants one long dashboard like Docket and Health, with running for office laid out as phases so a candidate sees the whole road ahead, and every feature in the design notes. Tom accepted every layout, rule and tool card in the review pane on Nov 23 | `9b086e4` |
 | v2.1 | Nov 22, 2026 | Browser tab icon: the Dweller Campaign house (yellow house, white ballot box, green ballot with a check) on a dark rounded square, as `favicon.svg`, `favicon-32.png` and `apple-touch-icon.png`, linked in the page head. No page colors, tokens or chart colors changed, so no validator run was needed. | Tom, Nov 22, 2026: each Dweller site should show its own logo on the browser tab | `f3f2c7d` |
 | v2.0 | Nov 21, 2026 | New direction: warm and friendly instead of the Docket terminal look. Light warm default (dark is optional), Atkinson Hyperlegible at 18px, rounded cards with soft shadows, sentence case. One topic per page behind seven large tabs; a home page with only the next step, setup progress and coming dates; the five-part setup kept as the milestone bar; simplified team picture with a List view; Money follows the theme; last election leads with plain sentences. Sources moved under "Where this comes from". Node colors unchanged. Chart colors re-checked: light `#4C8C3A`/`#1A87A8` on `#FFFFFF` and dark `#6A9E4C`/`#1B89A5` on `#26292D` pass all checks. | Tom, Nov 21, 2026: the Docket format was too rigid; Campaign should be warm and user friendly, not a mass of data that could overwhelm a would-be candidate, especially older ones | 01a0265 |

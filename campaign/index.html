@@ -151,6 +151,14 @@ button,select,input,textarea{font:inherit;color:inherit}
 .date.next{border:2px solid var(--accent)}
 .date.next .left{color:var(--accent);font-weight:700}
 .date.live{border-style:dashed}
+/* On your ballot (scheduled build of OpenFEC + Google Civic) */
+.ballot-list{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.ballot-list li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.ballot-list li:last-child{border-bottom:0}
+.ballot-list .what{font-weight:700;color:var(--strong)}
+.ballot-list .src{font-size:15px;color:var(--muted)}
+.ballot-list .missing{font-style:italic}
+#ballot h4{font-size:19px;margin:20px 0 4px;color:var(--strong)}
 /* Team map */
 .bench{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px}
 @media (max-width:860px){.bench{grid-template-columns:1fr}}
@@ -391,7 +399,7 @@ const whereBox=(inner,open)=>`<details class="where" ${open?"open":""}><summary>
 
 // ---------- header controls ----------
 (function(){const s=$("state");s.innerHTML=Object.entries(STATES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
-  s.onchange=()=>{P.state=s.value;P.geo=null;P.district="";save();renderAll()};
+  s.onchange=()=>{P.state=s.value;P.geo=null;P.district="";save();renderAll();loadBallot()};
   $("lvl").onchange=e=>{P.level=e.target.value;save();renderAll()};
   const t=$("theme"),lab=()=>{const d=document.documentElement.dataset.theme==="dark";t.textContent=d?"☀ Light mode":"☾ Dark mode";};lab();
   t.onclick=()=>{const n=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=n;try{localStorage.setItem("dc-theme",n)}catch(e){}lab();drawChart();drawMap()};})();
@@ -437,6 +445,7 @@ function items(){const T=tasks(),out=[];PHASES.forEach(p=>{(TIPS[p.n]||[]).forEa
 const nextItem=()=>items().find(x=>!x.done);
 function phaseStat(n){const I=items().filter(x=>x.ph===n);return {I,done:I.filter(x=>x.done).length,all:I.length}}
 function keyDates(){const out=D.dates.filter(d=>d.level===P.level&&(!d.state||d.state===P.state)).map(d=>({...d,src:[d.src]}));
+  const have=new Set(out.map(d=>d.date));ballotDates().forEach(d=>{if(!have.has(d.date)||!d.report)out.push(d)});
   tasks().forEach(t=>{if(t.due&&!t.done)out.push({date:t.due,what:`${t.name}: due ${t.dueWhy}`,who:P.level==="federal"?"FEC":"Your filing officer",src:t.src})});
   return out.sort((a,b)=>a.date<b.date?-1:1)}
 const whereHTML=t=>whereBox(covered()&&t.src?`${quotes(t.quote)}<p>${srcs(t.src)}${t.note?`. ${esc(t.note)}`:""}</p>`:t.live?`<p>This depends on where you live. ${officeA()} publishes it.${P.geo?"":" Add your address in Phase 1 so we can match your districts."}</p>`:`<p>We haven't checked ${esc(STATES[P.state])}'s rules for this step yet. ${officeA()} can tell you.</p>`);
@@ -557,25 +566,87 @@ function lookup(){const msg=$("geo-msg");if(!P.street||!/^\d{5}$/.test(P.zip)){m
       if(/^States$/.test(k)){st=a.STUSAB||"";rows.push("State: "+a.NAME)}else if(/Counties/.test(k))rows.push("County: "+a.NAME);
       else if(/Congressional District/.test(k))rows.push(a.NAME);else if(/State Legislative Districts - Upper/.test(k))rows.push("State senate: "+a.NAME);
       else if(/State Legislative Districts - Lower/.test(k))rows.push("State house or assembly: "+a.NAME);else if(/Incorporated Places/.test(k))rows.push("City or town: "+a.NAME)}
-    P.geo={matched:m.matchedAddress,rows,on:ymd(TODAY)};if(st&&STATES[st]){P.state=st;$("state").value=st}
+    P.geo={matched:m.matchedAddress,rows,on:ymd(TODAY),codes:geoCodes(G)};if(st&&STATES[st]){P.state=st;$("state").value=st}
     const lowK=Object.keys(G).find(k=>/State Legislative Districts - Lower/.test(k)),low=lowK&&G[lowK][0];if(!P.district&&low&&low.BASENAME)P.district=low.BASENAME;
-    refresh(...OPEN)}catch(e){msg.textContent="The lookup answered in a way we couldn't read. Please type your district below."}};
+    refresh(...OPEN);loadBallot()}catch(e){msg.textContent="The lookup answered in a way we couldn't read. Please type your district below."}};
   s.src=`https://geocoding.geo.census.gov/geocoder/geographies/address?street=${encodeURIComponent(P.street)}&zip=${P.zip}&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=jsonp&callback=${cb}`;
   s.onerror=()=>{if(!done)msg.textContent="We couldn't reach the Census lookup. Please try again, or type your district below."};
   document.body.appendChild(s);setTimeout(()=>{if(!done)msg.textContent="The Census lookup is taking a while. Try again, or type your district below."},15000)}
+
+// ---------- On your ballot: static data from the daily build (campaign/scripts/build-ballot-data.mjs) ----------
+// The build reads OpenFEC and Google Civic with keys kept in GitHub; the page only reads the JSON it writes.
+const BAL={idx:null,st:{},state:null,err:false};
+const LVL_NAMES={federal:"Federal",state:"State",local:"Local"};
+const ocdName=s=>String(s||"").toLowerCase().replace(/ (county|parish|borough|city and borough|census area|municipality)$/,"").replace(/[.']/g,"").trim().replace(/\s+/g,"_");
+function geoCodes(G){const c={};for(const [k,arr] of Object.entries(G)){const a=arr&&arr[0];if(!a)continue;
+  if(/^States$/.test(k))c.st=a.STUSAB;else if(/Counties/.test(k))c.county=a.BASENAME||a.NAME;else if(/Incorporated Places/.test(k))c.place=a.BASENAME||a.NAME;
+  else if(/Congressional District/.test(k)){const f=Object.keys(a).find(x=>/^CD\d+$/.test(x));const v=f?a[f]:a.BASENAME;c.cd=/^\d+$/.test(String(v))?String(v).padStart(2,"0"):"00"}
+  else if(/Legislative Districts - Upper/.test(k))c.sldu=a.BASENAME;else if(/Legislative Districts - Lower/.test(k))c.sldl=a.BASENAME}return c}
+// The candidate's areas as Open Civic Data ids, matched against the ids Google Civic uses. Matching is by name, so it can miss an area.
+function myDivisions(){const st=P.state.toLowerCase(),base=`ocd-division/country:us/state:${st}`,c=(P.geo&&P.geo.codes)||{},out=[base];
+  if(c.cd&&c.cd!=="00")out.push(`${base}/cd:${+c.cd}`);if(c.sldu)out.push(`${base}/sldu:${ocdName(c.sldu)}`);if(c.sldl)out.push(`${base}/sldl:${ocdName(c.sldl)}`);
+  if(c.county)out.push(`${base}/county:${ocdName(c.county)}`);if(c.place)out.push(`${base}/place:${ocdName(c.place)}`);return out}
+const inMyArea=div=>!div||/^ocd-division\/country:us$/.test(div)||myDivisions().some(m=>m===div||m.startsWith(div+"/"));
+const myCD=()=>P.geo&&P.geo.codes&&P.geo.codes.cd||null;
+async function loadBallot(){const st=P.state;if(BAL.st[st]&&BAL.idx)return;
+  try{if(!BAL.idx){const r=await fetch("ballot/index.json",{cache:"no-cache"});if(!r.ok)throw 0;BAL.idx=await r.json();
+      for(const [k,v] of Object.entries(BAL.idx.src||{}))D.src["bal:"+k]={label:v.label,url:v.url}}
+    if(!BAL.st[st]){const r=await fetch(`ballot/${st}.json`,{cache:"no-cache"});if(!r.ok)throw 0;BAL.st[st]=await r.json();
+      const o=BAL.st[st].election_offices||{},a=o.ask,l=o.local;if(a)D.src["bal:ask:"+st]={label:a.name,url:a.url};
+      D.src["bal:local:"+st]=l&&l.electionInfoUrl?{label:"Your local election office",url:l.electionInfoUrl}:D.src["bal:ask:"+st]}
+    BAL.err=false}catch(e){BAL.err=true}
+  if(P.state===st)refresh(...OPEN)}
+const ballot=()=>BAL.st[P.state]||null;
+// Dates from the build for this race and place, shaped like keyDates() entries. "live" draws them with a dashed border.
+function ballotDates(){const B=ballot(),out=[];if(!B)return out;const cd=myCD();
+  B.elections.forEach(e=>{if(e.src==="fec_dates"){if(P.level!=="federal")return;if(e.office_code==="H"&&cd&&e.district&&e.district!==cd)return;if(e.office_code==="H"&&!cd&&e.district)return;
+      out.push({date:e.date,what:`${e.what}: ${e.office}${e.district&&e.office_code==="H"?`, District ${+e.district}`:""}${e.notes?` (${e.notes})`:""}`,who:"FEC",src:["bal:fec_dates"],live:true,election:true})}
+    else if(e.src==="civic_elections"){const lv=e.level==="local"?"local":"state";if(P.level==="federal"?e.level!=="national":lv!==P.level&&e.level!=="national")return;if(e.level==="local"&&!P.geo)return;if(!inMyArea(e.division))return;
+      const k=(e.level==="local"?"bal:local:":"bal:ask:")+P.state;out.push({date:e.date,what:e.what,who:`Listed by Google Civic; confirm with ${D.src[k].label}`,src:[k,"bal:civic_elections"],live:true,election:true})}});
+  if(P.level==="federal"&&BAL.idx)(BAL.idx.federal_reports||[]).filter(r=>r.scope==="all"&&r.what).forEach(r=>out.push({date:r.date,what:`${r.what?r.what.toLowerCase().replace(/(^|[\s-])\w/g,x=>x.toUpperCase()):r.report_type} report due`,who:"FEC",src:["bal:fec_reports"],live:true,report:true}));
+  return out}
+function ballotHTML(){const B=ballot(),built=BAL.idx&&BAL.idx.built;
+  if(!B)return `<div class="card" id="ballot"><h3>On your ballot</h3><p>${BAL.err?`We couldn't load the daily ballot update just now. ${officeA()} lists the seats and dates for ${esc(STATES[P.state])}.`:"Loading the seats and dates for your area…"}</p></div>`;
+  const cd=myCD(),ask=B.election_offices.ask,askA=`<a href="${esc(ask.url)}" target="_blank" rel="noopener">${esc(ask.name)}</a>`,lv=P.level;
+  const row=(what,detail,src,missing)=>`<li><span><span class="what">${esc(what)}</span>${detail?`<br><span class="muted">${detail}</span>`:""}</span><span class="src ${missing?"missing":""}">${src}</span></li>`;
+  // Seats
+  let seats=[];
+  if(lv==="federal"){const yr=TODAY.getFullYear(),cycs=[...new Set(B.offices.map(o=>o.cycle))].sort(),
+      cyc=cycs.find(c=>c>yr||B.elections.some(e=>e.src==="fec_dates"&&days(e.date)>=0&&e.date.slice(0,4)==String(c)))||cycs[cycs.length-1];
+    const fo=B.offices.filter(o=>o.cycle===cyc),house=fo.filter(o=>o.office_code==="H");
+    fo.filter(o=>o.office_code!=="H").forEach(o=>seats.push(row(o.office,`${o.cycle} election`,`<a href="${esc(o.url)}" target="_blank" rel="noopener">FEC race page</a>`)));
+    if(cd){const h=house.find(o=>o.district===cd);if(h)seats.push(row(`U.S. House, District ${+cd==0?"at large":+cd}`,`${h.cycle} election · your district`,`<a href="${esc(h.url)}" target="_blank" rel="noopener">FEC race page</a>`))}
+    else if(house.length)seats.push(row(`U.S. House (${house.length} district${house.length>1?"s":""} in ${STATES[P.state]})`,`${cyc} election · add your address to see your district`,`<a href="https://www.fec.gov/data/elections/" target="_blank" rel="noopener">FEC elections</a>`))}
+  else{const want=lv==="state"?["administrativeArea1"]:["administrativeArea2","locality","subLocality1","subLocality2","special"];
+    B.contests.filter(c=>c.levels.some(l=>want.includes(l))&&(!c.district||c.district.scope==="statewide"||inMyArea(c.district.id))&&(lv==="state"||P.geo))
+     .forEach(c=>seats.push(row(c.office,`${c.kind==="measure"?"Ballot measure":"Office"}${c.district&&c.district.name?` · ${esc(c.district.name)}`:""}${B.contests_for?` · ${esc(B.contests_for.name)}, ${fmt(B.contests_for.date)}`:""}`,`From ${esc(STATES[P.state])}'s official feed via ${srcA("bal:civic_voterinfo")}`)))}
+  const seatsEmpty=lv==="federal"?`The FEC hasn't listed federal races for ${esc(STATES[P.state])} yet. Check ${askA}.`
+    :`Google's free Civic data lists ${LVL_NAMES[lv].toLowerCase()} seats only when your state publishes them, usually a few weeks before an election, and none are listed for ${P.geo&&lv==="local"?"your area":esc(STATES[P.state])} right now. ${askA} lists the seats up for election.${lv==="local"&&!P.geo?" Add your address so we can match your county and city.":""}`;
+  // Dates
+  const ds=ballotDates().filter(d=>!d.report&&days(d.date)>=0);
+  // Filing
+  const fl=B.filing.find(f=>f.level===lv),flA=`<a href="${esc(fl.ask.url)}" target="_blank" rel="noopener">${esc(fl.ask.name)}</a>`;
+  return `<div class="card" id="ballot"><div class="tool-h"><h3>On your ballot</h3><span class="muted small">${LVL_NAMES[lv]} · ${esc(STATES[P.state])}${P.geo?" · matched to your address":""}</span></div>
+   <p class="hint">Updated every day from free official data${built?`, last on ${fmt(built.slice(0,10))}`:""}. Change the level at the top to see ${lv==="federal"?"state and local":"other"} seats.</p>
+   <h4>Seats up for election</h4>${seats.length?`<ul class="ballot-list">${seats.join("")}</ul>`:`<p class="note">${seatsEmpty}</p>`}
+   <h4>Election dates</h4>${ds.length?`<ul class="ballot-list">${ds.slice(0,8).map(d=>row(fmt(d.date),`${esc(d.what)} · ${away(d.date)}`,srcs(d.src))).join("")}</ul>${ds.length>8?`<p class="hint">${ds.length-8} more under Key dates.</p>`:""}`:`<p class="note">No upcoming ${LVL_NAMES[lv].toLowerCase()} election dates are listed for ${P.geo?"your address":esc(STATES[P.state])} in the free data yet. ${askA} publishes them.</p>`}
+   <h4>Filing dates</h4><ul class="ballot-list">${row(fl.what,"Not published in any free official data source, so we don't show a date.",`Ask ${flA}`,true)}</ul>
+   ${whereBox(`<p>Seats and federal dates: ${srcs(["bal:fec_races","bal:fec_dates"])}. State and local dates and seats: ${srcs(["bal:civic_elections","bal:civic_voterinfo"])}. Google isn't an election office, so its dates link ${askA} to confirm. Your districts are matched by name and can miss an area; your election office has the final word.</p>`)}</div>`}
 
 // ---------- Phase 2: Know your race ----------
 function limitsHTML(){const lim=limits(),ok=lim&&(!lim.state||lim.state===P.state);
   return ok?`<p class="muted">${esc(lim.cycle)}</p>${lim.rows.map(r=>`<div class="limit-row"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("")}<p class="small">${esc(lim.note)}</p>${whereBox(`<p>${srcs(lim.src)}</p>`)}`:`<p>We haven't checked ${esc(STATES[P.state])}'s limits yet. ${officeA()} publishes them.</p>`}
 function bodyRace(){const ds=keyDates(),up=ds.filter(d=>days(d.date)>=0),past=ds.filter(d=>days(d.date)<0).reverse(),live=ladder().steps.filter(s=>s.live),o=office();
-  const card=(d,next)=>`<div class="card date ${next?"next":""}"><span class="when">${fmt(d.date)}</span><span class="left">${away(d.date)}${days(d.date)<0?" <b>(passed)</b>":""}</span><p>${esc(d.what)}</p><p class="where">Set by ${esc(d.who)} · ${srcs(d.src)}</p></div>`;
+  const card=(d,next)=>`<div class="card date ${next?"next":""} ${d.live?"live":""}"><span class="when">${fmt(d.date)}</span><span class="left">${away(d.date)}${days(d.date)<0?" <b>(passed)</b>":""}</span><p>${esc(d.what)}</p><p class="where">Set by ${esc(d.who)} · ${srcs(d.src)}</p></div>`;
   return `${itemsHTML(2)}
   <div class="grid2"><div class="card" id="districts"><h3>Your districts</h3>${P.geo?geoHTML():P.district?`<p>District you typed: <b>${esc(P.district)}</b>.</p>`:`<p>Add your address and we'll find your congressional, state and local districts with the Census Bureau's free lookup.</p><div class="row"><button class="btn small" type="button" data-part="1">Add my address</button></div>`}
-    <p class="hint">Which seats are on your next ballot, and when, comes from ${officeA()}. We'll list them here once we've checked them, each with its official source.</p></div>
+    <p class="hint">The seats on your ballot and their dates are below, under <a href="#ballot">On your ballot</a>.</p></div>
    <div class="card" id="rules"><h3>Who sets the rules</h3><p>For ${esc(raceWords())}, the forms, fees, deadlines and reports come from <a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.ethics?`, and campaign money rules from <a href="${esc(o.ethics.url)}" target="_blank" rel="noopener">${esc(o.ethics.name)}</a>`:""}.</p>${o.finder?`<p class="hint">We haven't checked ${esc(STATES[P.state])}'s office yet, so this link finds it for you.</p>`:""}<p>It's normal to call them. They answer questions from first-time candidates every day.</p></div></div>
+  ${ballotHTML()}
   <div class="card" id="dates"><div class="tool-h"><h3>Key dates</h3><span class="muted small">Soonest first, each linked to the official calendar</span></div>
    ${up.length?`<div class="grid3">${up.slice(0,6).map((d,i)=>card(d,i===0)).join("")}</div>${up.length>6?`<details class="more"><summary>More dates (${up.length-6})</summary><div class="grid3">${up.slice(6).map(d=>card(d)).join("")}</div></details>`:""}`:`<p class="note">No upcoming dates on the official calendars we've checked for this race yet.</p>`}
-   <div class="note"><b>Dates that depend on where you live:</b> ${live.map(s=>esc(s.name)).join(", ")||"none"}. ${P.geo?`For ${esc(P.geo.matched)}, `:"Once you add your address, "}${officeA()} publishes these dates. We'll show them here once we've checked them.</div>
+   ${ballotDates().length?`<p class="hint">Cards with a dashed border come from the daily update under On your ballot.</p>`:""}
+   <div class="note"><b>Dates that depend on where you live:</b> ${live.map(s=>esc(s.name)).join(", ")||"none"}. ${P.geo?`For ${esc(P.geo.matched)}, `:"Once you add your address, "}${officeA()} publishes these dates. When the daily update finds them, they're added above with their source.</div>
    ${past.length?`<details class="more"><summary>Past dates (${past.length})</summary><div class="grid3">${past.map(d=>card(d)).join("")}</div></details>`:""}</div>
   <div class="card" id="limits"><h3>How much one person can give</h3>${limitsHTML()}</div>`}
 
@@ -760,12 +831,12 @@ function wireVoters(v){v.querySelectorAll("[data-oc]").forEach(b=>b.onclick=()=>
   v.querySelectorAll("[data-site]").forEach(c=>c.onchange=()=>{P.todo["site-"+c.dataset.site]=c.checked;const all=["name","why","help","give","contact","notice"].every(k=>P.todo["site-"+k]);P.todo.site=all?ymd(TODAY):false;refresh(6)})}
 
 // ---------- Phase 7 and 8 ----------
-function datesCards(ds,empty){return ds.length?`<div class="grid3">${ds.map(d=>`<div class="card date ${days(d.date)>=0&&d===ds.find(x=>days(x.date)>=0)?"next":""}"><span class="when">${fmt(d.date)}</span><span class="left">${away(d.date)}${days(d.date)<0?" <b>(passed)</b>":""}</span><p>${esc(d.what)}</p><p class="where">Set by ${esc(d.who)} · ${srcs(d.src)}</p></div>`).join("")}</div>`:`<p class="note">${empty}</p>`}
+function datesCards(ds,empty){return ds.length?`<div class="grid3">${ds.map(d=>`<div class="card date ${days(d.date)>=0&&d===ds.find(x=>days(x.date)>=0)?"next":""} ${d.live?"live":""}"><span class="when">${fmt(d.date)}</span><span class="left">${away(d.date)}${days(d.date)<0?" <b>(passed)</b>":""}</span><p>${esc(d.what)}</p><p class="where">Set by ${esc(d.who)} · ${srcs(d.src)}</p></div>`).join("")}</div>`:`<p class="note">${empty}</p>`}
 function bodyVote(){const el=keyDates().filter(d=>d.election||/primary|election/i.test(d.what));
   return `${itemsHTML(7)}<div class="card" id="electiondates"><h3>Election dates for your race</h3>${datesCards(el,`We haven't checked election dates for ${esc(raceWords())} yet. ${officeA()} publishes them.`)}</div>
   <div class="card" id="askoffice"><h3>Questions to ask your election office before election day</h3><p><span class="tag advice">Tip</span> The answers differ from place to place, so ask ${officeA()} or your county office:</p>
    <ul><li>Where and how far from a polling place may campaign helpers stand?</li><li>Can my campaign have poll observers, and how do we sign them up?</li><li>When are early voting and mail ballot deadlines?</li><li>When and where will results be posted?</li></ul></div>`}
-function bodyAfter(){const gen=keyDates().filter(d=>d.election).map(d=>d.date).pop(),after=gen?keyDates().filter(d=>d.date>gen):[];
+function bodyAfter(){const gen=keyDates().filter(d=>d.election&&!d.live).map(d=>d.date).pop(),after=gen?keyDates().filter(d=>d.date>gen):[];
   return `${itemsHTML(8)}<div class="card" id="afterdates"><h3>Reports after the election</h3>${datesCards(after,`We haven't checked the after-election report dates for ${esc(raceWords())} yet. ${officeA()} publishes them.`)}
    <p class="hint">Win or lose, keep your records and follow the steps above until your committee is closed or kept for a future run.</p></div>`}
 
@@ -803,7 +874,7 @@ function index(){const out=[];items().forEach(t=>out.push({k:t.kind==="step"?"St
 
 // ---------- start ----------
 function renderAll(){$("lvl").value=P.level;$("state").value=P.state;renderRoad();renderOverview();renderHeads();PHASES.forEach(p=>renderBody(p.n))}
-buildPhases();renderAll();
+buildPhases();renderAll();loadBallot();
 // Which phase is on screen: highlight it in the road bar.
 (function(){const seen=new Map();const io=new IntersectionObserver(es=>{es.forEach(e=>seen.set(+e.target.id.slice(6),e.isIntersecting?e.boundingClientRect.top:null));
   const vis=[...seen].filter(([,t])=>t!==null).sort((a,b)=>a[0]-b[0]);const c=vis.length?vis[vis.length>1&&vis[0][1]<-200?1:0][0]:CUR;if(c!==CUR){CUR=c;renderRoad()}},{rootMargin:"-140px 0px -55% 0px"});

@@ -1,0 +1,995 @@
+{
+ "state": "CA",
+ "name": "California",
+ "built": "2026-11-23T09:17:25.923Z",
+ "cycles": [
+  2026,
+  2028
+ ],
+ "offices": [
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/01/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/03/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "04",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/04/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/05/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/06/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "07",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/07/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "08",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/08/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "09",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/09/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "10",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/10/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "11",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/11/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "12",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/12/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "13",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/13/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "14",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/14/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "15",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/15/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "16",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/16/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "17",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/17/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "18",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/18/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "19",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/19/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "20",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/20/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "21",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/21/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "22",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/22/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "23",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/23/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "24",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/24/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "25",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/25/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "26",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/26/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "27",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/27/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "28",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/28/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "29",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/29/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "30",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/30/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "31",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/31/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "32",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/32/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "33",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/33/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "34",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/34/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "35",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/35/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "36",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/36/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "37",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/37/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "38",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/38/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "39",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/39/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "40",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/40/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "41",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/41/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "42",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/42/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "43",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/43/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "44",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/44/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "45",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/45/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "46",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/46/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "47",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/47/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "48",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/48/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "49",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/49/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "50",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/50/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "51",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/51/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "52",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/CA/52/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "President",
+   "office_code": "P",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/president/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/senate/CA/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/01/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/03/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "04",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/04/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/05/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/06/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "07",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/07/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "08",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/08/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "09",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/09/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "10",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/10/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "11",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/11/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "12",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/12/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "13",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/13/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "14",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/14/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "15",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/15/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "16",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/16/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "17",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/17/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "18",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/18/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "19",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/19/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "20",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/20/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "21",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/21/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "22",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/22/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "23",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/23/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "24",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/24/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "25",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/25/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "26",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/26/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "27",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/27/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "28",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/28/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "29",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/29/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "30",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/30/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "31",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/31/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "32",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/32/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "33",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/33/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "34",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/34/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "35",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/35/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "36",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/36/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "37",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/37/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "38",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/38/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "39",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/39/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "40",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/40/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "41",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/41/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "42",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/42/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "43",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/43/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "44",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/44/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "45",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/45/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "46",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/46/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "47",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/47/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "48",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/48/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "49",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/49/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "50",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/50/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "51",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/51/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "52",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/CA/52/2028/",
+   "src": "fec_races"
+  }
+ ],
+ "elections": [],
+ "contests": [],
+ "contests_for": null,
+ "filing": [
+  {
+   "level": "federal",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Deadline to file to get on the ballot for Congress",
+   "ask": {
+    "name": "California Secretary of State, Elections",
+    "url": "https://www.sos.ca.gov/elections",
+    "src": "data_js"
+   }
+  },
+  {
+   "level": "state",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for state offices",
+   "ask": {
+    "name": "California Secretary of State, Elections",
+    "url": "https://www.sos.ca.gov/elections",
+    "src": "data_js"
+   }
+  },
+  {
+   "level": "local",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for county, city and school board offices",
+   "ask": {
+    "name": "California Secretary of State, Elections",
+    "url": "https://www.sos.ca.gov/elections",
+    "src": "data_js"
+   }
+  }
+ ],
+ "election_offices": {
+  "state": null,
+  "local": null,
+  "ask": {
+   "name": "California Secretary of State, Elections",
+   "url": "https://www.sos.ca.gov/elections",
+   "src": "data_js"
+  }
+ },
+ "voterinfo": null
+}

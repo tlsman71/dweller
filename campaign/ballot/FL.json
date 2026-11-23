@@ -1,0 +1,590 @@
+{
+ "state": "FL",
+ "name": "Florida",
+ "built": "2026-11-23T09:17:25.923Z",
+ "cycles": [
+  2026,
+  2028
+ ],
+ "offices": [
+  {
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/senate/FL/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/01/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/02/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/03/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "04",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/04/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/05/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/06/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "07",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/07/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "08",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/08/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "09",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/09/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "10",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/10/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "11",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/11/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "12",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/12/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "13",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/13/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "14",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/14/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "15",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/15/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "16",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/16/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "17",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/17/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "18",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/18/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "19",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/19/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "20",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/20/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "21",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/21/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "22",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/22/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "23",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/23/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "24",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/24/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "25",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/25/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "26",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/26/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "27",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/27/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "28",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/FL/28/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "President",
+   "office_code": "P",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/president/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/senate/FL/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/01/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/02/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/03/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "04",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/04/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/05/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/06/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "07",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/07/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "08",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/08/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "09",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/09/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "10",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/10/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "11",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/11/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "12",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/12/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "13",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/13/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "14",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/14/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "15",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/15/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "16",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/16/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "17",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/17/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "18",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/18/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "19",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/19/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "20",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/20/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "21",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/21/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "22",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/22/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "23",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/23/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "24",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/24/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "25",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/25/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "26",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/26/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "27",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/27/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "28",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/FL/28/2028/",
+   "src": "fec_races"
+  }
+ ],
+ "elections": [],
+ "contests": [],
+ "contests_for": null,
+ "filing": [
+  {
+   "level": "federal",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Deadline to file to get on the ballot for Congress",
+   "ask": {
+    "name": "Florida election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  },
+  {
+   "level": "state",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for state offices",
+   "ask": {
+    "name": "Florida election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  },
+  {
+   "level": "local",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for county, city and school board offices",
+   "ask": {
+    "name": "Florida election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  }
+ ],
+ "election_offices": {
+  "state": null,
+  "local": null,
+  "ask": {
+   "name": "Florida election office (find it on USA.gov)",
+   "url": "https://www.usa.gov/state-election-office",
+   "src": "usagov"
+  }
+ },
+ "voterinfo": null
+}

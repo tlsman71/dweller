@@ -26,7 +26,7 @@ No free API covers state and local filing deadlines nationwide, so:
 
 GitHub Pages is static, so a key in the page would be public. Two options:
 
-1. **Scheduled build (start here):** a GitHub Action runs daily with the secrets, fetches FEC and Civic data, and writes JSON the page reads. Fine for federal and statewide dates.
+1. **Scheduled build (in use since Nov 23, 2026):** `.github/workflows/campaign-ballot-data.yml` runs `campaign/scripts/build-ballot-data.mjs` daily at 10:15 UTC (and on pull requests that change it, where the result is kept as a run artifact instead of committed) with the secrets. It writes `campaign/ballot/index.json` and one `campaign/ballot/<ST>.json` per state: federal races (OpenFEC `elections/search`), federal election and report dates (`election-dates`, `reporting-dates`), Civic elections by OCD division, and per state a `voterinfo` call (`officialOnly=true`, the state's name as the address, its next listed election) for the state's election office links and any contests in its official feed. Filing deadlines are not in any free API, so they are written as missing with the office to ask. The page's **On your ballot** card reads these files. To test without keys: `BALLOT_FIXTURES=<dir> node campaign/scripts/build-ballot-data.mjs`.
 2. **Small server function** (for per-ZIP live lookups): a serverless endpoint holds the keys and the page calls it. Needs a host (for example Cloudflare Workers or Vercel) with the same secret names.
 
 Every date shown must link to its official source; a lookup result without one is not displayed.
@@ -51,4 +51,4 @@ The Google key is restricted to the Civic Information API only.
 
 ## Checking the keys
 
-`.github/workflows/campaign-api-check.yml` calls each service once and prints only HTTP status codes. Run it from the Actions tab. It becomes the daily data build once the lookup is written.
+`.github/workflows/campaign-api-check.yml` calls each service once and prints only HTTP status codes. Run it from the Actions tab. The daily data build is `.github/workflows/campaign-ballot-data.yml` (see below).

@@ -1,0 +1,86 @@
+{
+ "state": "DC",
+ "name": "District of Columbia",
+ "built": "2026-11-23T09:17:25.923Z",
+ "cycles": [
+  2026,
+  2028
+ ],
+ "offices": [
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "00",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/DC/00/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "President",
+   "office_code": "P",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/president/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "00",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/DC/00/2028/",
+   "src": "fec_races"
+  }
+ ],
+ "elections": [],
+ "contests": [],
+ "contests_for": null,
+ "filing": [
+  {
+   "level": "federal",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Deadline to file to get on the ballot for Congress",
+   "ask": {
+    "name": "District of Columbia election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  },
+  {
+   "level": "state",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for state offices",
+   "ask": {
+    "name": "District of Columbia election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  },
+  {
+   "level": "local",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for county, city and school board offices",
+   "ask": {
+    "name": "District of Columbia election office (find it on USA.gov)",
+    "url": "https://www.usa.gov/state-election-office",
+    "src": "usagov"
+   }
+  }
+ ],
+ "election_offices": {
+  "state": null,
+  "local": null,
+  "ask": {
+   "name": "District of Columbia election office (find it on USA.gov)",
+   "url": "https://www.usa.gov/state-election-office",
+   "src": "usagov"
+  }
+ },
+ "voterinfo": null
+}

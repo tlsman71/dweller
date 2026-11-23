@@ -1,0 +1,247 @@
+{
+ "state": "LA",
+ "name": "Louisiana",
+ "built": "2026-11-23T09:17:25.923Z",
+ "cycles": [
+  2026,
+  2028
+ ],
+ "offices": [
+  {
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/senate/LA/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/LA/01/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/LA/02/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/LA/03/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/LA/05/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2026,
+   "url": "https://www.fec.gov/data/elections/house/LA/06/2026/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "President",
+   "office_code": "P",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/president/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "district": null,
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/senate/LA/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "01",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/LA/01/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "02",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/LA/02/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "03",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/LA/03/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "04",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/LA/04/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "05",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/LA/05/2028/",
+   "src": "fec_races"
+  },
+  {
+   "level": "federal",
+   "office": "U.S. House",
+   "office_code": "H",
+   "district": "06",
+   "cycle": 2028,
+   "url": "https://www.fec.gov/data/elections/house/LA/06/2028/",
+   "src": "fec_races"
+  }
+ ],
+ "elections": [
+  {
+   "date": "2026-12-12",
+   "level": "federal",
+   "state": "LA",
+   "district": null,
+   "office": "U.S. House",
+   "office_code": "H",
+   "what": "General runoff",
+   "notes": null,
+   "src": "fec_dates"
+  },
+  {
+   "date": "2026-12-12",
+   "level": "federal",
+   "state": "LA",
+   "district": null,
+   "office": "U.S. Senate",
+   "office_code": "S",
+   "what": "General runoff",
+   "notes": null,
+   "src": "fec_dates"
+  },
+  {
+   "date": "2026-12-12",
+   "what": "Louisiana Open General Election",
+   "civic_id": "11264",
+   "division": "ocd-division/country:us/state:la",
+   "state": "LA",
+   "level": "state",
+   "src": "civic_elections"
+  }
+ ],
+ "contests": [],
+ "contests_for": {
+  "date": "2026-12-12",
+  "name": "Louisiana Open General Election",
+  "civic_id": "11264"
+ },
+ "filing": [
+  {
+   "level": "federal",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Deadline to file to get on the ballot for Congress",
+   "ask": {
+    "name": "Louisiana election office",
+    "url": "https://voterportal.sos.la.gov",
+    "src": "civic_voterinfo"
+   }
+  },
+  {
+   "level": "state",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for state offices",
+   "ask": {
+    "name": "Louisiana election office",
+    "url": "https://voterportal.sos.la.gov",
+    "src": "civic_voterinfo"
+   }
+  },
+  {
+   "level": "local",
+   "date": null,
+   "status": "not_in_free_data",
+   "what": "Filing period for county, city and school board offices",
+   "ask": {
+    "name": "Louisiana election office",
+    "url": "https://voterportal.sos.la.gov",
+    "src": "civic_voterinfo"
+   }
+  }
+ ],
+ "election_offices": {
+  "state": {
+   "name": "Sherri Hadskey",
+   "ballotInfoUrl": "https://voterportal.sos.la.gov",
+   "votingLocationFinderUrl": "https://voterportal.sos.la.gov",
+   "absenteeVotingInfoUrl": "https://www.sos.la.gov/elections-voting/ways-to-vote#vote-absentee"
+  },
+  "local": null,
+  "ask": {
+   "name": "Louisiana election office",
+   "url": "https://voterportal.sos.la.gov",
+   "src": "civic_voterinfo"
+  }
+ },
+ "voterinfo": {
+  "status": 200,
+  "election": {
+   "date": "2026-12-12",
+   "name": "Louisiana Open General Election",
+   "civic_id": "11264"
+  },
+  "state_office": {
+   "name": "Sherri Hadskey",
+   "ballotInfoUrl": "https://voterportal.sos.la.gov",
+   "votingLocationFinderUrl": "https://voterportal.sos.la.gov",
+   "absenteeVotingInfoUrl": "https://www.sos.la.gov/elections-voting/ways-to-vote#vote-absentee"
+  },
+  "local_office": null,
+  "contests": [],
+  "sources": [
+   {
+    "name": "Voting Information Project",
+    "official": true
+   }
+  ]
+ }
+}
