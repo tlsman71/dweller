@@ -1,16 +1,16 @@
 {
- "built": "2026-11-23T09:17:25.923Z",
- "today": "2026-11-23",
+ "built": "2026-11-27T19:29:46.510Z",
+ "today": "2026-11-27",
  "cycles": [
   2026,
   2028
  ],
  "fetched": {
-  "civic_elections": "2026-11-23T09:17:25.660Z",
-  "civic_voterinfo": "2026-11-23T09:17:25.922Z",
-  "fec_races": "2026-11-23T09:17:25.405Z",
-  "fec_dates": "2026-11-23T09:17:25.457Z",
-  "fec_reports": "2026-11-23T09:17:25.585Z"
+  "civic_elections": "2026-11-27T19:29:46.082Z",
+  "civic_voterinfo": "2026-11-27T19:29:46.510Z",
+  "fec_races": "2026-11-27T19:29:45.611Z",
+  "fec_dates": "2026-11-27T19:29:45.688Z",
+  "fec_reports": "2026-11-27T19:29:45.874Z"
  },
  "src": {
   "fec_races": {
@@ -468,8 +468,8 @@
    "report_type": "12GR",
    "what": null,
    "year": 2026,
-   "src": "fec_reports",
-   "scope": "some"
+   "scope": "some",
+   "src": "fec_reports"
   },
   {
    "date": "2026-12-03",
@@ -477,8 +477,8 @@
    "report_type": "30G",
    "what": "POST-GENERAL",
    "year": 2026,
-   "src": "fec_reports",
-   "scope": "all"
+   "scope": "all",
+   "src": "fec_reports"
   },
   {
    "date": "2026-12-17",
@@ -486,8 +486,8 @@
    "report_type": "30GR",
    "what": null,
    "year": 2026,
-   "src": "fec_reports",
-   "scope": "some"
+   "scope": "some",
+   "src": "fec_reports"
   },
   {
    "date": "2026-12-20",
@@ -495,8 +495,8 @@
    "report_type": "M12",
    "what": "DECEMBER MONTHLY",
    "year": 2026,
-   "src": "fec_reports",
-   "scope": "some"
+   "scope": "some",
+   "src": "fec_reports"
   },
   {
    "date": "2026-12-31",
@@ -504,8 +504,8 @@
    "report_type": "30GR",
    "what": null,
    "year": 2026,
-   "src": "fec_reports",
-   "scope": "some"
+   "scope": "some",
+   "src": "fec_reports"
   },
   {
    "date": "2027-01-11",
@@ -513,8 +513,8 @@
    "report_type": "30GR",
    "what": null,
    "year": 2026,
-   "src": "fec_reports",
-   "scope": "some"
+   "scope": "some",
+   "src": "fec_reports"
   },
   {
    "date": "2027-01-31",
@@ -522,8 +522,8 @@
    "report_type": "YE",
    "what": "YEAR-END",
    "year": 2026,
-   "src": "fec_reports",
-   "scope": "all"
+   "scope": "all",
+   "src": "fec_reports"
   }
  ]
 }
