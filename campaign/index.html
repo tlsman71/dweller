@@ -307,6 +307,58 @@ footer{font-size:15px;color:var(--muted);display:grid;gap:12px;border-top:1px so
 .qa textarea{min-height:84px;padding:10px 12px;border:2px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-size:16px;line-height:1.5;resize:vertical;width:100%}
 .checklist{list-style:none;margin:0;padding:0;display:grid;gap:4px}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+/* Start here: offices you could run for at your address (v3.2) */
+.finder h2{font-size:clamp(23px,3vw,28px)}
+details.finder>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;min-height:44px}
+details.finder>summary::before{content:"▸";color:var(--accent);font-size:20px}details.finder[open]>summary::before{content:"▾"}
+details.finder[open]>summary{margin-bottom:6px}
+.lvl-h{font-size:17px;color:var(--muted);margin:10px 0 0}
+.offices{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.off{display:grid;gap:8px;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface);min-width:0}
+.off.mine{border:2px solid var(--accent)}
+.off h4{font-size:20px;margin:0;color:var(--strong);line-height:1.25}
+.duty{display:grid;grid-template-columns:minmax(0,8.5em) minmax(0,1fr);gap:6px 14px;margin:0;font-size:16px}
+.duty dt{font-weight:700;color:var(--muted)}.duty dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.duty-box{background:var(--wash);border-radius:var(--r-sm);padding:12px 14px}
+@media (max-width:560px){.duty{grid-template-columns:1fr;gap:2px}.duty dt{margin-top:8px}.duty dd[style]{grid-column:1!important}}
+/* This week's to-dos (v3.2) */
+.weeklist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.wk{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface)}
+.wk input{width:26px;height:26px;margin:2px 0 0;accent-color:var(--accent)}
+.wk .wk-box{width:26px;height:26px;display:grid;place-items:center;border:2px solid var(--line);border-radius:6px;font-weight:700;color:var(--accent);font-size:15px}
+.wk.date-i .wk-box{border:0}
+.wk label{cursor:pointer}.wk b{color:var(--strong)}
+.wk.done b{text-decoration:line-through;text-decoration-thickness:2px;color:var(--muted)}
+.wk .sub{display:block;font-size:15px;color:var(--muted);margin-top:2px}
+/* One-page plan (v3.2): on screen as a sheet of paper, printed on its own */
+.paper{background:#fff;color:#1d2024;border:1px solid var(--line);border-radius:var(--r-sm);padding:22px;box-shadow:var(--shadow);overflow-wrap:anywhere}
+.plan{display:grid;gap:12px;font-size:15px;line-height:1.45}
+.plan h2{font-size:24px;color:#111}.plan h3{font-size:16px;color:#111;margin:0 0 2px}
+.plan-k{font-size:13px;color:#4b5058}.plan-for{font-weight:400;color:#4b5058}
+.plan-h{border-bottom:3px solid #85bb65;padding-bottom:8px;display:grid;gap:2px}
+.plan-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px 20px}
+.plan-s{min-width:0}.plan-s p{margin:0 0 2px}
+.plan-why{font-style:italic}
+.plan-small{font-size:13px;color:#4b5058}
+.plan-blank{color:#4b5058;font-style:italic}
+.plan-list{margin:0;padding:0;list-style:none;display:grid;gap:2px}
+.plan-f{border-top:1px solid #d5d0c5;padding-top:8px;font-size:12px;color:#4b5058}
+.plan-f ol{margin:4px 0 0;padding-left:20px;columns:2;column-gap:20px}
+@media (max-width:560px){.paper{padding:16px}.plan-f ol{columns:1}}
+#printplan{display:none}
+@media print{
+  @page{size:letter;margin:0.45in}
+  :root{color-scheme:light}
+  body{background:#fff!important;color:#000;padding:0;font-size:12pt}
+  .road,.jump,.search{display:none!important}
+  .card{box-shadow:none}
+  body.printing-plan>*:not(#printplan){display:none!important}
+  body.printing-plan #printplan{display:block}
+  #printplan .plan{font-size:9.5pt;gap:8px}#printplan .plan h2{font-size:17pt}#printplan .plan h3{font-size:10.5pt}
+  #printplan .plan-cols{grid-template-columns:1fr 1fr;gap:8px 18px}
+  #printplan .plan-small,#printplan .plan-k{font-size:8.5pt}#printplan .plan-f{font-size:7.5pt}
+  #printplan .plan-s{break-inside:avoid}
+}
 main{display:grid;gap:32px;min-width:0}
 .wrap.after{padding-top:24px}
 </style>
@@ -345,6 +397,7 @@ main{display:grid;gap:32px;min-width:0}
 <footer><nav class="social" aria-label="Dweller on social media"><span class="lbl">Follow Dweller</span><a href="https://bsky.app/profile/dwellerapp.bsky.social" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z"/></svg>Bluesky<span class="sr"> @dwellerapp.bsky.social (opens in a new tab)</span></a><a href="https://www.facebook.com/profile.php?id=61596396866910" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A4.5 4.5 0 0 1 21 18.5"/></svg>Facebook<span class="sr"> page (opens in a new tab)</span></a><a href="https://www.instagram.com/joindweller/" target="_blank" rel="noopener me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h2l1.5-2h4l1.5 2h2A2.5 2.5 0 0 1 20 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg>Instagram<span class="sr"> @joindweller (opens in a new tab)</span></a></nav>
 <p>Every rule, limit and deadline links to the office that sets it: the FEC, your state election office, or your county or city clerk. If no official source has something, we say so and tell you who to ask. Pieces marked <b>Tip</b> are practical advice from running campaigns, not rules. This is a guide, not legal advice. What you type stays in this browser. Spot a mistake? Email DwellerApp@proton.me.</p></footer>
 </div>
+<div id="printplan" aria-hidden="true"></div>
 <button class="jump" id="jump" type="button" tabindex="-1" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>Back to search</button>
 
 <script>
@@ -375,7 +428,7 @@ const LV={local:"local",state:"state",federal:"federal"};
 
 // ---------- saved profile (this browser only) ----------
 const KEY="dc-profile";
-const BLANK={level:"state",state:"NC",why:"",office:"",officeKind:"assembly",name:"",committee:"",street:"",zip:"",geo:null,district:"",steps:{},todo:{},owners:{},opponents:[],expected:"",budget:"",treasurer:"",team:[],ledger:null,prospects:[],groups:[],qa:[],outreach:{doors:0,calls:0,events:0,supporters:0},step:0,example:true};
+const BLANK={level:"state",state:"NC",why:"",office:"",officeKind:"assembly",name:"",committee:"",street:"",zip:"",geo:null,district:"",steps:{},todo:{},owners:{},opponents:[],expected:"",budget:"",treasurer:"",team:[],ledger:null,prospects:[],groups:[],qa:[],outreach:{doors:0,calls:0,events:0,supporters:0},weeks:{},step:0,example:true};
 let P;try{P=Object.assign({},BLANK,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){P={...BLANK}}
 P.outreach=Object.assign({},BLANK.outreach,P.outreach||{});P.todo=P.todo||{};
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}};
@@ -469,6 +522,7 @@ function wireGo(root){root.querySelectorAll("[data-go]").forEach(a=>a.onclick=e=
 function renderOverview(){const I=items(),done=I.filter(x=>x.done).length,nx=nextItem(),up=keyDates().filter(d=>days(d.date)>=0).slice(0,3);
   $("overview").innerHTML=`<div class="hello"><h1 id="h-home">${P.name?`Hi, ${esc(P.name.split(" ")[0])}. Here's your road ahead.`:"Thinking about running? Here's the whole road."}</h1>
    <p class="lede">Running for ${esc(raceWords())} happens in eight phases. Scroll down to see each one, or tap a phase to jump to it. You don't have to know any of this already: each step says who does it and who to ask.</p></div>
+   ${P.office?"":finderHTML()}
    <ol class="roadmap">${PHASES.map(p=>{const s=phaseStat(p.n),dn=s.all&&s.done===s.all,now=nx&&nx.ph===p.n;return `<li class="${dn?"done":""} ${now?"now":""}"><a href="#phase-${p.n}" data-go="${p.n}"><span class="n">${dn?"✓":p.n}</span><b>${esc(p.name)}</b><span class="w">${esc(p.when)}</span><span class="st">${now?"You are here · ":""}${s.done} of ${s.all} done</span></a></li>`}).join("")}</ol>
    <div class="grid2">${nx?`<div class="card next"><span class="eyebrow">Your next step · Phase ${nx.ph}: ${esc(PHASES[nx.ph-1].name)}</span><h2>${esc(nx.name)}</h2><p class="lede">${esc(nx.say)}</p>
      ${nx.due?`<p><span class="tag ${days(nx.due)<0?"late":"ok"}">Due ${fmt(nx.due)} · ${away(nx.due)}${days(nx.due)<0?" (passed)":""}</span></p>`:""}
@@ -476,9 +530,11 @@ function renderOverview(){const I=items(),done=I.filter(x=>x.done).length,nx=nex
      <div class="row"><a class="btn" href="#item-${esc(nx.k)}" data-item="${esc(nx.k)}" data-ph="${nx.ph}">Show me how</a></div></div>`
     :`<div class="card next"><span class="eyebrow">All steps done</span><h2>You've finished every step on the road.</h2><p>Keep filing your reports on time until your committee closes.</p></div>`}
    <div class="card"><h2>Coming up</h2>${up.length?up.map((d,i)=>`<div class="date"><span class="when">${fmt(d.date)}</span><span class="left ${i===0?"":"muted"}" style="${i===0?"color:var(--accent);font-weight:700":""}">${away(d.date)}</span><span>${esc(d.what)}</span></div>`).join('<hr style="border:0;border-top:1px solid var(--line);margin:4px 0">'):`<p>No dates coming up on the official calendars we've checked. Election and ballot dates for your address come from ${officeA()}.</p>`}<button class="linkbtn" type="button" data-go="2">All key dates (Phase 2)</button></div></div>
+   ${weekHTML()}
+   ${P.office?finderHTML():""}
    ${P.example?`<p class="note"><span class="tag ex">Example</span> Until you fill in your own details, the money, team and voter tools show an example campaign with made-up names that start with “Example”, so you can see how they work.</p>`:""}
-   <div class="toolbar"><p class="muted">Each phase opens when you tap it. Open ones stay open next time.</p><div class="row"><button class="btn ghost small" type="button" id="openall">Open all phases</button><button class="btn ghost small" type="button" id="closeall">Close all phases</button></div></div>`;
-  wireGo($("overview"));
+   <div class="toolbar"><p class="muted">Each phase opens when you tap it. Open ones stay open next time.</p><div class="row"><button class="btn ghost small" type="button" data-print>Print my one-page plan</button><button class="btn ghost small" type="button" id="openall">Open all phases</button><button class="btn ghost small" type="button" id="closeall">Close all phases</button></div></div>`;
+  wireGo($("overview"));wireFinder();wireWeek($("overview"));
   $("openall").onclick=()=>{PHASES.forEach(p=>OPEN.add(p.n));saveOpen();renderHeads();PHASES.forEach(p=>renderBody(p.n))};
   $("closeall").onclick=()=>{OPEN.clear();saveOpen();renderHeads();PHASES.forEach(p=>renderBody(p.n))}}
 
@@ -518,7 +574,9 @@ function setupPartHTML(){const i=P.step;let h="";
    ${field("f-why","Why are you running?",P.why,"textarea","I'm running because…","What problem in your community made you decide to step up?")}
    <div class="fields">${field("f-name","Your name, as it will appear on the ballot",P.name,"text","First and last name")}${field("f-office","The office you're running for",P.office,"text",P.level==="federal"?"U.S. House, District …":P.level==="state"?"State House, District …":"City Council, District …")}</div>
    <div class="field"><span class="flabel">What level is this office?</span><div class="choice" role="group" aria-label="Level of office">${[["local","Local","City council, county, school board"],["state","State","State house or senate, statewide office"],["federal","Federal","U.S. House or U.S. Senate"]].map(([k,a,b])=>`<button type="button" data-lv="${k}" aria-pressed="${P.level===k}"><b>${a}</b><span>${b}</span></button>`).join("")}</div></div>
-   <div class="field"><label for="f-kind">Which seat is it?</label><select id="f-kind">${[["assembly","State lower house (Assembly or House)"],["senate","State upper house (Senate)"],["house","U.S. House"],["ussenate","U.S. Senate"],["county","County office"],["city","City or town office"],["school","School board"],["other","Something else"]].map(([k,x])=>`<option value="${k}" ${P.officeKind===k?"selected":""}>${x}</option>`).join("")}</select></div>`;
+   <div class="field"><label for="f-kind">Which seat is it?</label><select id="f-kind">${[["assembly","State lower house (Assembly or House)"],["senate","State upper house (Senate)"],["house","U.S. House"],["ussenate","U.S. Senate"],["county","County office"],["city","City or town office"],["school","School board"],["other","Something else"]].map(([k,x])=>`<option value="${k}" ${P.officeKind===k?"selected":""}>${x}</option>`).join("")}</select></div>
+   <div class="duty-box" id="duty-box">${P.officeKind==="other"?`<p class="hint">${officeA()} can tell you what the office does and who can run.</p>`:dutyDL(P.officeKind)}</div>
+   <p class="hint">Not sure which office? <button class="linkbtn" type="button" id="to-finder">See every office for your address</button>.</p>`;
   if(i===1)h=`<span class="tag">Part 2 of 5</span><h3 style="font-size:24px">Where do you live?</h3><p class="lede">Your address decides your districts and which dates apply to you. We ask the U.S. Census Bureau's free lookup, and your address isn't sent anywhere else.</p>
    <div class="fields">${field("f-street","Street address",P.street,"text","123 Main St")}${field("f-zip","ZIP code",P.zip,"text","5 digits")}</div>
    <div class="row"><button class="btn" type="button" id="geo-go">Find my districts</button><span class="hint" id="geo-msg" role="status"></span></div>
@@ -538,7 +596,7 @@ function setupPartHTML(){const i=P.step;let h="";
    <div class="field"><span class="flabel">Who's helping?</span><div class="list-ed">${P.team.map((t,j)=>`<div class="it"><span>${esc(t.name)} <span class="muted small">· ${esc(t.role)}</span></span><button class="linkbtn" type="button" data-rmt="${j}">Remove</button></div>`).join("")}</div>
    <div class="row"><label class="sr" for="f-tname">Helper's name</label><input class="inline-in" id="f-tname" placeholder="Name" style="flex:2 1 180px;width:auto"><label class="sr" for="f-trole">Their role</label><select class="inline-in" id="f-trole" style="flex:1 1 160px;width:auto">${["Staff","Volunteer","Endorser (person)","Endorser (group)","Vendor"].map(r=>`<option>${r}</option>`).join("")}</select><button class="btn ghost small" type="button" id="team-add">Add</button></div></div>`;
   return h+`<div class="row" style="margin-top:6px">${i>0?`<button class="btn ghost" type="button" id="prev">Back</button>`:""}<button class="btn" type="button" id="next">${i<4?"Save and continue":"Save and finish"}</button></div>`}
-function bodyWhy(){return `${itemsHTML(1)}<div class="card" id="setup"><div class="tool-h"><h3 style="font-size:24px">Set up your campaign</h3><span class="muted">${MS.filter((m,i)=>msDone(i)).length} of 5 parts done · everything stays in this browser</span></div>${msHTML()}<div id="setup-part" style="display:grid;gap:12px">${setupPartHTML()}</div></div>`}
+function bodyWhy(){return `${itemsHTML(1)}<div class="card" id="setup"><div class="tool-h"><h3 style="font-size:24px">Set up your campaign</h3><span class="muted">${MS.filter((m,i)=>msDone(i)).length} of 5 parts done · everything stays in this browser</span></div>${msHTML()}<div id="setup-part" style="display:grid;gap:12px">${setupPartHTML()}</div></div>${planCardHTML()}`}
 function wireSetup(v){const i=P.step;
   v.querySelectorAll("[data-ms]").forEach(b=>b.onclick=()=>{read();P.step=+b.dataset.ms;refresh(1);$("setup").scrollIntoView({block:"start"})});
   const read=()=>{const g=id=>($(id)||{}).value;if(i===0){P.why=g("f-why");P.name=g("f-name");P.office=g("f-office");P.officeKind=g("f-kind")}
@@ -549,6 +607,8 @@ function wireSetup(v){const i=P.step;
   v.querySelectorAll("[data-lv]").forEach(b=>b.onclick=()=>{read();P.level=b.dataset.lv;$("lvl").value=P.level;refresh(...OPEN)});
   v.querySelectorAll("#setup [data-k]").forEach(c=>c.onchange=()=>{P.steps[c.dataset.k]=c.checked?ymd(TODAY):false;P.example=false;refresh(...OPEN)});
   if($("geo-go"))$("geo-go").onclick=()=>{read();lookup()};
+  if($("f-kind"))$("f-kind").onchange=e=>{const k=e.target.value;$("duty-box").innerHTML=k==="other"?`<p class="hint">${officeA()} can tell you what the office does and who can run.</p>`:dutyDL(k)};
+  if($("to-finder"))$("to-finder").onclick=()=>{read();FINDER_FORM=!P.geo;renderOverview();const f=$("finder");if(f.tagName==="DETAILS")f.open=true;f.scrollIntoView({block:"start"})};
   if($("use-last"))$("use-last").onclick=()=>{const r=lastResult()||exampleResult();P.expected=String(r.candidates.reduce((a,c)=>a+c.votes,0));refresh(...OPEN)};
   if($("f-exp"))$("f-exp").oninput=e=>{$("win").textContent=e.target.value?num(Math.floor(+e.target.value/2)+1):"—"};
   if($("opp-add"))$("opp-add").onclick=()=>{read();const n=$("f-opp").value.trim();if(n){P.opponents.push(n);refresh(1)}};
@@ -558,20 +618,136 @@ function wireSetup(v){const i=P.step;
 const geoHTML=()=>`<div class="result"><b>${esc(P.geo.matched)}</b>${P.geo.rows.map(r=>`<span>${esc(r)}</span>`).join("")}<span class="hint">From the ${srcA("census")}, ${fmt(P.geo.on)}. Election dates for this address: ${officeA()}.</span></div>`;
 
 // Address lookup: US Census Geocoder (free, no key). It doesn't allow CORS, so the page uses JSONP as its docs say.
-function lookup(){const msg=$("geo-msg");if(!P.street||!/^\d{5}$/.test(P.zip)){msg.textContent="Please enter a street address and a 5-digit ZIP code.";return}
+function lookup(){P.geoErr="";lookupAddr($("geo-msg"))}
+// Shared by setup part 2 and the "What could you run for?" start: asks the Census Bureau for the districts at P.street/P.zip.
+function lookupAddr(msg,after){if(!P.street||!/^\d{5}$/.test(P.zip)){msg.textContent="Please enter a street address and a 5-digit ZIP code.";return}
   msg.textContent="Looking that up…";const cb="dcGeo"+Date.now(),s=document.createElement("script");let done=false;
-  window[cb]=j=>{done=true;delete window[cb];s.remove();try{const m=j.result.addressMatches[0];if(!m){msg.textContent="We couldn't find that address. Check the spelling, or type your district below.";return}
+  window[cb]=j=>{done=true;delete window[cb];s.remove();try{const m=j.result.addressMatches[0];if(!m){msg.textContent="We couldn't find that address. Check the spelling, or type your district in Phase 1.";return}
     const G=m.geographies||{},rows=[];let st="";
     for(const [k,arr] of Object.entries(G)){const a=arr&&arr[0];if(!a)continue;
       if(/^States$/.test(k)){st=a.STUSAB||"";rows.push("State: "+a.NAME)}else if(/Counties/.test(k))rows.push("County: "+a.NAME);
       else if(/Congressional District/.test(k))rows.push(a.NAME);else if(/State Legislative Districts - Upper/.test(k))rows.push("State senate: "+a.NAME);
-      else if(/State Legislative Districts - Lower/.test(k))rows.push("State house or assembly: "+a.NAME);else if(/Incorporated Places/.test(k))rows.push("City or town: "+a.NAME)}
+      else if(/State Legislative Districts - Lower/.test(k))rows.push("State house or assembly: "+a.NAME);else if(/Incorporated Places/.test(k))rows.push("City or town: "+a.NAME);
+      else if(/School Districts/.test(k))rows.push("School district: "+a.NAME)}
     P.geo={matched:m.matchedAddress,rows,on:ymd(TODAY),codes:geoCodes(G)};if(st&&STATES[st]){P.state=st;$("state").value=st}
     const lowK=Object.keys(G).find(k=>/State Legislative Districts - Lower/.test(k)),low=lowK&&G[lowK][0];if(!P.district&&low&&low.BASENAME)P.district=low.BASENAME;
-    refresh(...OPEN);loadBallot()}catch(e){msg.textContent="The lookup answered in a way we couldn't read. Please type your district below."}};
+    refresh(...OPEN);loadBallot();after&&after()}catch(e){msg.textContent="The lookup answered in a way we couldn't read. Please try again, or type your district in Phase 1."}};
   s.src=`https://geocoding.geo.census.gov/geocoder/geographies/address?street=${encodeURIComponent(P.street)}&zip=${P.zip}&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=jsonp&callback=${cb}`;
-  s.onerror=()=>{if(!done)msg.textContent="We couldn't reach the Census lookup. Please try again, or type your district below."};
-  document.body.appendChild(s);setTimeout(()=>{if(!done)msg.textContent="The Census lookup is taking a while. Try again, or type your district below."},15000)}
+  s.onerror=()=>{if(!done)msg.textContent="We couldn't reach the Census lookup. Please try again in a minute."};
+  document.body.appendChild(s);setTimeout(()=>{if(!done)msg.textContent="The Census lookup is taking a while. Please try again."},15000)}
+
+// ---------- What each office does, and who may run (data.js duties / eligible, each quoted from an official page) ----------
+const KIND_LEVEL={house:"federal",ussenate:"federal",assembly:"state",senate:"state",county:"local",city:"local",school:"local"};
+const duty=k=>D.duties[k+":"+P.state]||D.duties[k]||null;
+const elig=k=>D.eligible[k+":"+P.state]||D.eligible[k]||null;
+const localOfficeA=()=>{const l=D.src["bal:local:"+P.state];return l&&l.url!==office().url?`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`:officeA()};
+const askFor=k=>KIND_LEVEL[k]==="local"?localOfficeA():KIND_LEVEL[k]==="federal"?`<a href="${esc(D.offices.federal.url)}" target="_blank" rel="noopener">the FEC</a> and ${P.level==="federal"&&D.offices[P.state]?`<a href="${esc(D.offices[P.state].url)}" target="_blank" rel="noopener">${esc(D.offices[P.state].name)}</a>`:"your state election office"}`:officeA();
+// One office's job and who may run, as a <dl>. "Where this comes from" holds the exact words.
+function dutyDL(k){const d=duty(k),e=elig(k);
+  const job=d&&d.say?`${esc(d.say)}${whereBox(`${quotes(d.quote)}<p>${srcs(d.src)}${d.note?`. ${esc(d.note)}`:""}</p>`)}`:`<span class="muted">${d&&d.gap?esc(d.gap):"We don't have an official description of this office yet."} Ask ${askFor(k)}.</span>`;
+  const who=e?`${esc(e.say)}${whereBox(`${quotes(e.quote)}<p>${srcs(e.src)}${e.note?`. ${esc(e.note)}`:""}</p>`)}`:`<span class="muted">We haven't checked the rules for ${KIND_LEVEL[k]==="federal"?"this office":esc(STATES[P.state])} yet. ${askFor(k)} can tell you.</span>`;
+  return `<dl class="duty"><dt>What the job is</dt><dd>${job}</dd>${d&&d.gap&&d.say?`<dd class="muted small" style="grid-column:2">${esc(d.gap)}</dd>`:""}<dt>Who can run</dt><dd>${who}</dd></dl>`}
+
+// ---------- Start here: type your address, see the offices you could run for ----------
+// Built from the Census districts for the address. Whether a seat is on the next ballot comes from the daily build
+// (FEC races for federal seats, the state's official feed via Google Civic for others); when neither lists it, we say so and link the office.
+function myOffices(){if(!P.geo)return[];const c=P.geo.codes||{},out=[];
+  const stN=STATES[P.state];
+  out.push({kind:"ussenate",level:"federal",title:"U.S. Senate",area:`All of ${stN}`,district:""});
+  if(c.cd&&c.cd!=="98")out.push({kind:"house",level:"federal",title:`U.S. House, ${+c.cd===0?"at-large seat":"District "+(+c.cd)}`,area:+c.cd===0?`All of ${stN}`:`${stN}'s ${ord(+c.cd)} congressional district`,district:+c.cd===0?"":String(+c.cd)});
+  if(c.sldu)out.push({kind:"senate",level:"state",title:`State Senate, District ${c.sldu}`,area:`District ${c.sldu}`,district:c.sldu});
+  if(c.sldl)out.push({kind:"assembly",level:"state",title:`${P.state==="CA"?"State Assembly":"State House"}, District ${c.sldl}`,area:`District ${c.sldl}`,district:c.sldl});
+  if(c.county)out.push({kind:"county",level:"local",title:`${c.countyName||c.county+" County"} offices`,area:"Your county",district:""});
+  if(c.place)out.push({kind:"city",level:"local",title:`Local offices in ${c.place}`,area:"Your city or town",district:""});
+  out.push({kind:"school",level:"local",title:c.school?`School board: ${c.school}`:"Your school board",area:c.school?"Your school district":"Add your address again to name your school district",district:""});
+  return out}
+const ord=n=>n+(["th","st","nd","rd"][(n%100-20)%10]||["th","st","nd","rd"][n%100]||"th");
+// Is it on the next ballot? Only what the free official data says.
+function upNext(o){const B=ballot();if(!B)return `<span class="muted">Loading the daily update…</span>`;
+  if(o.level==="federal"){const code=o.kind==="house"?"H":"S",cd=P.geo.codes.cd,hit=B.offices.filter(x=>x.office_code===code&&(code==="S"||x.district===cd)).sort((a,b)=>a.cycle-b.cycle).find(x=>x.cycle>TODAY.getFullYear()||B.elections.some(e=>e.src==="fec_dates"&&days(e.date)>=0&&e.date.slice(0,4)==String(x.cycle)));
+    return hit?`The FEC lists this race for the ${hit.cycle} election. <a href="${esc(hit.url)}" target="_blank" rel="noopener">FEC race page</a>`:`The FEC doesn't list this race for ${esc((BAL.idx&&BAL.idx.cycles||[]).join(" or "))}. Ask ${askFor(o.kind)} when it's next on the ballot.`}
+  const re={senate:/senat/i,assembly:/house|assembly|representative/i,county:/count/i,city:/city|town|mayor|council|village/i,school:/school|education/i}[o.kind];
+  const hits=B.contests.filter(x=>x.kind!=="measure"&&re.test(x.office)&&(!x.district||x.district.scope==="statewide"||inMyArea(x.district.id)));
+  return hits.length?`On the ${esc(B.contests_for?B.contests_for.name:"next")} ballot${B.contests_for?`, ${fmt(B.contests_for.date)}`:""}: ${hits.slice(0,3).map(x=>esc(x.office)).join(", ")}. From ${esc(STATES[P.state])}'s official feed via ${srcA("bal:civic_voterinfo")}.`
+    :`The free official data doesn't say yet when this seat is next on the ballot. Ask ${askFor(o.kind)}.`}
+let FINDER_FORM=false;
+function finderHTML(){const O=myOffices(),lv=[["federal","Federal"],["state","State"],["local","Local"]];
+  const form=`<div class="fields">${field("fd-street","Street address",P.street,"text","123 Main St")}${field("fd-zip","ZIP code",P.zip,"text","5 digits")}</div>
+   <div class="row"><button class="btn" type="button" id="fd-go">Show the offices for my address</button><span class="hint" id="fd-msg" role="status"></span></div>
+   <p class="hint">Your address goes only to the U.S. Census Bureau's free lookup, and stays in this browser.</p>`;
+  if(!P.geo||FINDER_FORM)return `<div class="card finder" id="finder"><h2>Not sure what to run for? Start with your address.</h2><p class="lede">Type where you live and we'll list the offices that cover your home, from the U.S. Senate down to your school board, with what each one does and who can run.</p>${form}</div>`;
+  const list=lv.map(([k,l])=>{const os=O.filter(o=>o.level===k);return os.length?`<h3 class="lvl-h">${l}</h3><ul class="offices">${os.map(o=>{const i=O.indexOf(o),mine=P.office===o.title;return `<li class="off ${mine?"mine":""}"><div class="tool-h"><h4>${esc(o.title)}</h4>${mine?`<span class="tag ok">You picked this</span>`:""}</div>${o.area!==o.title.split(", ").pop()&&!o.title.endsWith(o.area)?`<p class="muted small">${esc(o.area)}</p>`:""}
+     ${dutyDL(o.kind)}<dl class="duty"><dt>On the ballot</dt><dd>${upNext(o)}</dd></dl>
+     <div class="row">${mine?`<button class="btn ghost small" type="button" data-go="1">Go to my setup</button>`:`<button class="btn small" type="button" data-pickoff="${i}">I'd like to run for this</button>`}</div></li>`}).join("")}</ul>`:""}).join("");
+  const body=`<p>For <b>${esc(P.geo.matched)}</b>. Districts from the ${srcA("census")}, ${fmt(P.geo.on)}. <button class="linkbtn" type="button" id="fd-again">Use a different address</button></p>${list}
+    <p class="hint">Each office's own rules decide who can run. This list shows the offices whose districts cover your address; your election office has the final word on districts and dates.</p>`;
+  return P.office?`<details class="card finder more" id="finder"><summary><h2 style="font-size:22px">Offices you could run for at your address (${O.length})</h2></summary>${body}</details>`
+    :`<div class="card finder" id="finder"><h2>Offices you could run for at your address</h2><p class="lede">Read what each one does, then pick the one you'd like to run for. You can change your mind later.</p>${body}</div>`}
+function wireFinder(){const go=$("fd-go");
+  if(go)go.onclick=()=>{P.street=$("fd-street").value.trim();P.zip=$("fd-zip").value.trim();save();lookupAddr($("fd-msg"),()=>{FINDER_FORM=false;renderOverview();$("finder").scrollIntoView({block:"start"})})};
+  if($("fd-again"))$("fd-again").onclick=()=>{FINDER_FORM=true;renderOverview();$("fd-street").focus()};
+  document.querySelectorAll("[data-pickoff]").forEach(b=>b.onclick=()=>{const o=myOffices()[+b.dataset.pickoff];P.level=o.level;P.officeKind=o.kind;P.office=o.title;P.district=o.district;P.example=false;P.step=0;$("lvl").value=P.level;
+    OPEN.add(1);saveOpen();refresh(...OPEN);goTo(1,"setup")})}
+
+// ---------- This week's to-dos ----------
+// Monday to Sunday. Road steps that are due or next, dates on the calendar, and a few weekly habits (Tips) once
+// the candidate reaches the phase they belong to. Road steps tick the same box as in their phase.
+const weekOf=d=>{const x=new Date(d);x.setDate(x.getDate()-((x.getDay()+6)%7));x.setHours(0,0,0,0);return ymd(x)};
+const WK=weekOf(TODAY);
+const HABITS=[{id:"calls",ph:4,name:"Make your fundraising calls",say:"Block an hour or two this week, read your script, and update each person's status.",go:[4,"calltime"]},
+ {id:"money",ph:4,name:"Bring your money records up to date",say:"Add this week's gifts and payments, and share them with your treasurer.",go:[4,"money"]},
+ {id:"team",ph:5,name:"Check in with your helpers",say:"A short call or message to each one: what got done, what's next.",go:[5,"teammap"]},
+ {id:"voters",ph:6,name:"Meet voters",say:"Knock doors, make calls or go to an event, and count the supporters you find.",go:[6,"outreach"]}];
+function weekList(wk){const end=addDays(wk,6),I=items(),nx=nextItem(),reached=ph=>(nx?nx.ph:9)>=ph||phaseStat(ph).done>0,out=[],seen=new Set();
+  const isNow=wk===WK;
+  I.filter(t=>t.due&&!t.done&&t.due<=end&&(isNow||t.due>=wk)).forEach(t=>{seen.add(t.k);out.push({type:"road",t,why:days(t.due)<0?`Was due ${fmt(t.due)}`:`Due ${fmt(t.due)}`})});
+  keyDates().filter(d=>d.date>=wk&&d.date<=end&&!d.what.includes(": due ")).forEach(d=>out.push({type:"date",d}));
+  const rest=I.filter(t=>!t.done&&!seen.has(t.k));(isNow?rest.slice(0,3):rest.slice(3,5)).forEach(t=>out.push({type:"road",t,why:isNow&&nx&&t.k===nx.k?"Your next step":"Coming up on your road"}));
+  HABITS.filter(h=>reached(h.ph)).slice(0,isNow?3:2).forEach(h=>out.push({type:"habit",h,done:!!((P.weeks||{})[wk]||{})[h.id]}));
+  return out}
+const weekRange=wk=>{const a=pdate(wk),b=pdate(addDays(wk,6));return `${MON[a.getMonth()]} ${a.getDate()} to ${a.getMonth()===b.getMonth()?"":MON[b.getMonth()]+" "}${b.getDate()}`};
+function weekItemHTML(x,wk,ro){if(x.type==="date")return `<li class="wk date-i"><span class="wk-box" aria-hidden="true">📅</span><span><b>${fmt(x.d.date)}: ${esc(x.d.what)}</b><span class="sub">On the calendar · ${srcs(x.d.src)}</span></span></li>`;
+  if(x.type==="habit")return `<li class="wk ${x.done?"done":""}">${ro?`<span class="wk-box" aria-hidden="true">${x.done?"✓":""}</span>`:`<input type="checkbox" id="wk-${wk}-${x.h.id}" data-habit="${x.h.id}" data-wk="${wk}" ${x.done?"checked":""}>`}<span><label for="wk-${wk}-${x.h.id}"><b>${esc(x.h.name)}</b></label> <span class="tag advice">Tip</span><span class="sub">${esc(x.h.say)} <button class="linkbtn" type="button" data-ph="${x.h.go[0]}" data-anchor="${x.h.go[1]}">Open the tool</button></span></span></li>`;
+  const t=x.t;return `<li class="wk ${t.done?"done":""}">${ro||t.isAuto?`<span class="wk-box" aria-hidden="true">${t.done?"✓":""}</span>`:`<input type="checkbox" id="wk-${wk}-${esc(t.k)}" data-done="${esc(t.k)}" ${t.done?"checked":""}>`}<span><label for="wk-${wk}-${esc(t.k)}"><b>${esc(t.name)}</b></label> ${t.kind==="step"?`<span class="tag rule">Official step</span>`:`<span class="tag advice">Tip</span>`}<span class="sub">${esc(x.why)} · Phase ${t.ph}: ${esc(PHASES[t.ph-1].name)}${t.isAuto?` · ${esc(t.autoSay)}`:""} · <a href="#item-${esc(t.k)}" data-item="${esc(t.k)}" data-ph="${t.ph}">Show me how</a></span></span></li>`}
+function weekHTML(){const L=weekList(WK),N=weekList(addDays(WK,7)),done=L.filter(x=>x.type==="habit"?x.done:x.type==="road"&&x.t.done).length,all=L.filter(x=>x.type!=="date").length;
+  return `<div class="card" id="week"><div class="tool-h"><h2>Your to-do list this week</h2><span class="muted small">${weekRange(WK)} · ${done} of ${all} done</span></div>
+   <p>A few things to do this week, worked out from your road and the official calendar. Tick them off as you go; the list starts fresh every Monday.</p>
+   <ul class="weeklist">${L.map(x=>weekItemHTML(x,WK)).join("")||`<li class="wk"><span></span><span>Nothing left for this week. Nicely done.</span></li>`}</ul>
+   <details class="more"><summary>Next week, ${weekRange(addDays(WK,7))}</summary><ul class="weeklist">${N.map(x=>weekItemHTML(x,addDays(WK,7),true)).join("")||`<li class="wk"><span></span><span>Nothing on the list yet.</span></li>`}</ul></details></div>`}
+function wireWeek(root){root.querySelectorAll("#week [data-habit]").forEach(c=>c.onchange=()=>{P.weeks=P.weeks||{};const w=P.weeks[c.dataset.wk]=P.weeks[c.dataset.wk]||{};w[c.dataset.habit]=c.checked?ymd(TODAY):false;
+    Object.keys(P.weeks).forEach(k=>{if(k<addDays(WK,-56))delete P.weeks[k]});refresh(...OPEN)});
+  root.querySelectorAll("#week [data-done]").forEach(c=>c.onchange=()=>{const k=c.dataset.done;if(k.startsWith("tip:"))P.todo[k.slice(4)]=c.checked?ymd(TODAY):false;else P.steps[k]=c.checked?ymd(TODAY):false;P.example=false;refresh(...OPEN)});
+  root.querySelectorAll("#week [data-anchor]").forEach(b=>b.onclick=()=>goTo(+b.dataset.ph,b.dataset.anchor))}
+
+// ---------- Your campaign plan on one page (printable; built in the browser from what the candidate typed) ----------
+function planHTML(){const L=tasks(),wn=P.expected?Math.floor(+P.expected/2)+1:0,lim=limits(),limOK=lim&&(!lim.state||lim.state===P.state)&&lim.rows[0],d=duty(P.officeKind),o=office();
+  const used=new Set(),cite=ks=>{(ks||[]).forEach(k=>D.src[k]&&used.add(k));return (ks||[]).filter(k=>D.src[k]).map(k=>`[${[...used].indexOf(k)+1}]`).join("")};
+  const blank=(what,part)=>`<span class="plan-blank">Not filled in yet (${part})</span>`;
+  const up=keyDates().filter(x=>days(x.date)>=0).slice(0,5),wk=weekList(WK).filter(x=>x.type!=="date").slice(0,5),E=P.ledger||[],inn=E.filter(e=>e.kind==="in").reduce((a,e)=>a+e.amt,0);
+  const sec=(h,b)=>`<section class="plan-s"><h3>${h}</h3>${b}</section>`;
+  const body=`<header class="plan-h"><p class="plan-k">My campaign plan · made with Dweller Campaign on ${fmt(ymd(TODAY))}</p>
+     <h2>${P.name?esc(P.name):`<span class="plan-blank">Your name</span>`} <span class="plan-for">for</span> ${P.office?esc(P.office):blank("","Phase 1, part 1")}</h2>
+     <p>${esc(LVL_NAMES[P.level])} office · ${esc(STATES[P.state])}${P.committee?` · ${esc(P.committee)}`:""}</p></header>
+   <div class="plan-cols">
+   ${sec("Why I'm running",P.why.trim()?`<p class="plan-why">“${esc(P.why.trim())}”</p>`:blank("","Phase 1, part 1"))}
+   ${sec("What the job is",d&&d.say?`<p>${esc(d.say)} ${cite(d.src)}</p>`:`<p>Ask ${esc(o.name)} what this office does.</p>`)}
+   ${sec("Where I live",P.geo?`<p>${esc(P.geo.matched)}</p><p class="plan-small">${P.geo.rows.map(esc).join(" · ")} ${cite(["census"])}</p>`:P.district?`<p>District ${esc(P.district)}</p>`:blank("","Phase 1, part 2"))}
+   ${sec("Votes to win",wn?`<p><b>${num(wn)} votes</b>: half of the ${num(+P.expected)} votes I expect to be cast, plus one. A planning figure for a two-way race, not a rule.</p>`:blank("","Phase 1, part 4"))}
+   ${sec("Money",`<p>${P.budget?`Goal: <b>${usd(+P.budget)}</b>.`:blank("","Phase 1, part 5")} ${E.length?`Raised so far: ${usd(inn)} (my notebook, not the official report).`:""}</p>${limOK?`<p class="plan-small">Most one person can give: ${esc(lim.rows[0][1])}, ${esc(lim.cycle)} ${cite(lim.src)}</p>`:""}`)}
+   ${sec("My team",`<p>Treasurer: ${P.treasurer?esc(P.treasurer):blank("","Phase 1, part 5")}</p>${P.team.length?`<p class="plan-small">${P.team.map(t=>`${esc(t.name)} (${esc(t.role.toLowerCase())})`).join(" · ")}</p>`:""}`)}
+   ${sec("Paperwork, in order",`<ul class="plan-list">${L.map(t=>`<li>${t.done?"☑":"☐"} ${esc(t.name)}${t.done&&t.done!==true?`, done ${fmt(t.done)}`:t.due?`, due ${fmt(t.due)}`:t.live?", date depends on where you live":""}${covered()&&t.src?" "+cite(t.src):""}</li>`).join("")}</ul>${covered()?"":`<p class="plan-small">The usual steps; ${esc(STATES[P.state])}'s rules aren't checked yet. Ask ${esc(o.name)}.</p>`}`)}
+   ${sec("Coming up",up.length?`<ul class="plan-list">${up.map(x=>`<li><b>${fmt(x.date)}</b>: ${esc(x.what)} ${cite(x.src)}</li>`).join("")}</ul>`:`<p>No dates on the calendars we've checked. Ask ${esc(o.name)}.</p>`)}
+   ${sec(`This week (${weekRange(WK)})`,wk.length?`<ul class="plan-list">${wk.map(x=>x.type==="habit"?`<li>${x.done?"☑":"☐"} ${esc(x.h.name)}</li>`:`<li>${x.t.done?"☑":"☐"} ${esc(x.t.name)}</li>`).join("")}</ul>`:"<p>Nothing left this week.</p>")}
+   ${sec("Who to ask",`<p>${esc(o.name)}: ${esc(o.url.replace(/^https?:\/\//,""))}${o.ethics?`<br>${esc(o.ethics.name)}: ${esc(o.ethics.url.replace(/^https?:\/\//,""))}`:""}</p>`)}
+   </div>
+   <footer class="plan-f"><p>A guide, not legal advice. Every rule and date comes from the office that sets it; check it there before you act.</p><ol>${[...used].map(k=>`<li>${esc(D.src[k].label)}: ${esc(D.src[k].url.replace(/^https?:\/\//,""))}</li>`).join("")}</ol></footer>`;
+  return `<article class="plan" aria-label="Your campaign plan on one page">${body}</article>`}
+function planCardHTML(){return `<div class="card" id="plan"><div class="tool-h"><h3 style="font-size:24px">Your plan on one page</h3><div class="row"><button class="btn" type="button" data-print>Print or save as PDF</button></div></div>
+  <p>Everything you've set up, on one sheet of paper to keep, share with your treasurer or family, or put on the fridge. It's made in this browser from what you typed; nothing is sent anywhere.</p>
+  <div class="paper">${planHTML()}</div></div>`}
+function printPlan(){$("printplan").innerHTML=planHTML();document.body.classList.add("printing-plan");window.print()}
+addEventListener("afterprint",()=>document.body.classList.remove("printing-plan"));
+document.addEventListener("click",e=>{if(e.target.closest("[data-print]")){e.preventDefault();printPlan()}});
 
 // ---------- On your ballot: static data from the daily build (campaign/scripts/build-ballot-data.mjs) ----------
 // The build reads OpenFEC and Google Civic with keys kept in GitHub; the page only reads the JSON it writes.
@@ -579,7 +755,8 @@ const BAL={idx:null,st:{},state:null,err:false};
 const LVL_NAMES={federal:"Federal",state:"State",local:"Local"};
 const ocdName=s=>String(s||"").toLowerCase().replace(/ (county|parish|borough|city and borough|census area|municipality)$/,"").replace(/[.']/g,"").trim().replace(/\s+/g,"_");
 function geoCodes(G){const c={};for(const [k,arr] of Object.entries(G)){const a=arr&&arr[0];if(!a)continue;
-  if(/^States$/.test(k))c.st=a.STUSAB;else if(/Counties/.test(k))c.county=a.BASENAME||a.NAME;else if(/Incorporated Places/.test(k))c.place=a.BASENAME||a.NAME;
+  if(/^States$/.test(k))c.st=a.STUSAB;else if(/Counties/.test(k)){c.county=a.BASENAME||a.NAME;c.countyName=a.NAME}else if(/Incorporated Places/.test(k)){c.place=a.BASENAME||a.NAME}
+  else if(/School Districts/.test(k)&&!c.school)c.school=a.NAME;
   else if(/Congressional District/.test(k)){const f=Object.keys(a).find(x=>/^CD\d+$/.test(x));const v=f?a[f]:a.BASENAME;c.cd=/^\d+$/.test(String(v))?String(v).padStart(2,"0"):"00"}
   else if(/Legislative Districts - Upper/.test(k))c.sldu=a.BASENAME;else if(/Legislative Districts - Lower/.test(k))c.sldl=a.BASENAME}return c}
 // The candidate's areas as Open Civic Data ids, matched against the ids Google Civic uses. Matching is by name, so it can miss an area.
@@ -642,6 +819,7 @@ function bodyRace(){const ds=keyDates(),up=ds.filter(d=>days(d.date)>=0),past=ds
   <div class="grid2"><div class="card" id="districts"><h3>Your districts</h3>${P.geo?geoHTML():P.district?`<p>District you typed: <b>${esc(P.district)}</b>.</p>`:`<p>Add your address and we'll find your congressional, state and local districts with the Census Bureau's free lookup.</p><div class="row"><button class="btn small" type="button" data-part="1">Add my address</button></div>`}
     <p class="hint">The seats on your ballot and their dates are below, under <a href="#ballot">On your ballot</a>.</p></div>
    <div class="card" id="rules"><h3>Who sets the rules</h3><p>For ${esc(raceWords())}, the forms, fees, deadlines and reports come from <a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.ethics?`, and campaign money rules from <a href="${esc(o.ethics.url)}" target="_blank" rel="noopener">${esc(o.ethics.name)}</a>`:""}.</p>${o.finder?`<p class="hint">We haven't checked ${esc(STATES[P.state])}'s office yet, so this link finds it for you.</p>`:""}<p>It's normal to call them. They answer questions from first-time candidates every day.</p></div></div>
+  <div class="card" id="job"><h3>What ${P.office?esc(P.office):"this office"} does</h3>${P.officeKind==="other"?`<p>${officeA()} can tell you what the office does and who can run.</p>`:dutyDL(P.officeKind)}<p class="hint"><button class="linkbtn" type="button" data-go-finder>Compare every office for your address</button></p></div>
   ${ballotHTML()}
   <div class="card" id="dates"><div class="tool-h"><h3>Key dates</h3><span class="muted small">Soonest first, each linked to the official calendar</span></div>
    ${up.length?`<div class="grid3">${up.slice(0,6).map((d,i)=>card(d,i===0)).join("")}</div>${up.length>6?`<details class="more"><summary>More dates (${up.length-6})</summary><div class="grid3">${up.slice(6).map(d=>card(d)).join("")}</div></details>`:""}`:`<p class="note">No upcoming dates on the official calendars we've checked for this race yet.</p>`}
@@ -847,6 +1025,7 @@ function wireBody(n,b){
   b.querySelectorAll("[data-o]").forEach(s=>s.onchange=()=>{P.owners[s.dataset.o]=s.value;save()});
   b.querySelectorAll("[data-part]").forEach(x=>x.onclick=()=>{P.step=+x.dataset.part;save();OPEN.add(1);saveOpen();renderHeads();renderBody(1);goTo(1,"setup")});
   b.querySelectorAll("[data-go]").forEach(a=>a.onclick=e=>{e.preventDefault();goTo(+a.dataset.go)});
+  b.querySelectorAll("[data-go-finder]").forEach(a=>a.onclick=()=>{FINDER_FORM=!P.geo;renderOverview();const f=$("finder");if(f.tagName==="DETAILS")f.open=true;f.scrollIntoView({block:"start"})});
   if(n===1)wireSetup(b);if(n===4)wireMoney(b);if(n===5)wireTeam(b);if(n===6)wireVoters(b)}
 
 // ---------- search ----------
@@ -855,7 +1034,7 @@ function index(){const out=[];items().forEach(t=>out.push({k:t.kind==="step"?"St
   const lim=limits();if(lim&&(!lim.state||lim.state===P.state))lim.rows.forEach(r=>out.push({k:"Limit",t:`${r[0]}: ${r[1]}`,m:lim.cycle,ph:2,a:"limits"}));
   graph().nodes.forEach(n=>out.push({k:"Team",t:n.label,m:ONE[n.type],ph:5,a:"teammap",pick:n.id}));
   PHASES.forEach(p=>out.push({k:"Phase",t:`Phase ${p.n}: ${p.name}`,m:p.say,ph:p.n}));MS.forEach((m,i)=>out.push({k:"Set up",t:m[0],m:m[1],ph:1,a:"setup",step:i}));
-  [["Call time and call script",4,"calltime"],["People to ask (donor list)",4,"prospects"],["Money: raised, spent, cash on hand",4,"money"],["Hiring guide: treasurer, campaign manager, volunteers",5,"hiring"],["Playbooks: town hall, new helpers, money records",5,"playbooks"],["Local groups and coalitions",5,"coalitions"],["Your team picture",5,"teammap"],["Win number",6,"winnum"],["Meeting voters: doors and calls",6,"outreach"],["Last election results",6,"lastelection"],["Debate and forum practice",6,"debate"],["Campaign website and “Paid for by” notice",6,"website"],["Your districts",2,"districts"],["Key dates",2,"dates"],["Election dates",7,"electiondates"],["Reports after the election",8,"afterdates"]].forEach(([t,ph,a])=>out.push({k:"Tool",t,m:`Phase ${ph}: ${PHASES[ph-1].name}`,ph,a}));
+  [["Your plan on one page (print)",1,"plan"],["What this office does and who can run",2,"job"],["This week's to-do list",0,"week"],["What could I run for? Offices for my address",0,"finder"],["Call time and call script",4,"calltime"],["People to ask (donor list)",4,"prospects"],["Money: raised, spent, cash on hand",4,"money"],["Hiring guide: treasurer, campaign manager, volunteers",5,"hiring"],["Playbooks: town hall, new helpers, money records",5,"playbooks"],["Local groups and coalitions",5,"coalitions"],["Your team picture",5,"teammap"],["Win number",6,"winnum"],["Meeting voters: doors and calls",6,"outreach"],["Last election results",6,"lastelection"],["Debate and forum practice",6,"debate"],["Campaign website and “Paid for by” notice",6,"website"],["Your districts",2,"districts"],["Key dates",2,"dates"],["Election dates",7,"electiondates"],["Reports after the election",8,"afterdates"]].forEach(([t,ph,a])=>out.push({k:"Tool",t,m:ph?`Phase ${ph}: ${PHASES[ph-1].name}`:"Top of the page",ph,a}));
   Object.values(D.src).forEach(s=>out.push({k:"Source",t:s.label,m:"Official source",url:s.url}));return out}
 (function(){const q=$("q"),pop=$("pop"),ul=$("qlist");let res=[],sel=0;
   const close=()=>{pop.hidden=true;q.setAttribute("aria-expanded","false")};
@@ -863,7 +1042,7 @@ function index(){const out=[];items().forEach(t=>out.push({k:t.kind==="step"?"St
     const hi=t=>s?esc(t).replace(new RegExp("("+s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"),"<mark>$1</mark>"):esc(t);
     ul.innerHTML=res.map((r,i)=>`<li class="opt" role="option" id="o${i}" aria-selected="${i===sel}" data-i="${i}"><span class="k">${esc(r.k)}</span><span class="t">${hi(r.t)}</span><span class="m">${esc(r.m)}</span></li>`).join("")||`<li class="opt"><span></span><span>Nothing matches. Try a word like “treasurer”, “fee” or “report”.</span></li>`;
     pop.hidden=false;q.setAttribute("aria-expanded","true")};
-  const go=r=>{if(!r)return;close();if(r.url){window.open(r.url,"_blank","noopener");return}if(r.step!=null){P.step=r.step;save();if(OPEN.has(1))renderBody(1)}if(r.pick){TEAMVIEW="map";PICK=r.pick;if(OPEN.has(5))renderBody(5)}goTo(r.ph,r.a)};
+  const go=r=>{if(!r)return;close();if(!r.ph){if(r.a==="finder"){FINDER_FORM=!P.geo;renderOverview();const f=$("finder");if(f.tagName==="DETAILS")f.open=true}const el=$(r.a);el.scrollIntoView({block:"start"});return}if(r.url){window.open(r.url,"_blank","noopener");return}if(r.step!=null){P.step=r.step;save();if(OPEN.has(1))renderBody(1)}if(r.pick){TEAMVIEW="map";PICK=r.pick;if(OPEN.has(5))renderBody(5)}goTo(r.ph,r.a)};
   q.oninput=showRes;q.onfocus=showRes;
   q.onkeydown=e=>{if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();sel=(sel+(e.key==="ArrowDown"?1:-1)+res.length)%Math.max(1,res.length);ul.querySelectorAll(".opt").forEach((o,i)=>o.setAttribute("aria-selected",i===sel));q.setAttribute("aria-activedescendant","o"+sel)}
     if(e.key==="Enter"){e.preventDefault();go(res[sel])}if(e.key==="Escape")close()};
